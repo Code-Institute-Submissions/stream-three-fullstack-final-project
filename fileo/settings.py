@@ -86,7 +86,13 @@ WSGI_APPLICATION = 'fileo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if development:
+if 'DATABASE_URL' in os.environ:
+    print('Production Mode')
+    DATABASES = {
+
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
     print('You are in development mode and using SQLite.')
     DATABASES = {
         'default': {
@@ -94,12 +100,7 @@ if development:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-else:
-    print('Production Mode')
-    DATABASES = {
-
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+   
 
 
 # Password validation
