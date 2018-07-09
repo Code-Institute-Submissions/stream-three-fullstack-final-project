@@ -23,6 +23,7 @@ class UserRegisterForm(forms.Form):
     company = forms.CharField(label='Company Name', required=False, max_length=50)
     phone = forms.IntegerField(widget=forms.TextInput(attrs={'type': 'number'}), 
                             label='Phone', required=False)
+    position = forms.CharField(label='Position', required=False, max_length=50)
     #phone = PhoneNumberField()
     username = forms.CharField(label='Username', max_length=30)
     email = forms.EmailField(max_length=254)
