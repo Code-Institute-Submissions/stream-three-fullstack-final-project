@@ -4,25 +4,31 @@ from accounts.forms import UserLoginForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
 
-# Create your views here.
-
 def index(request):
-    """Returns Index.html"""
-    print('here')
-    if request.user.is_authenticated:
-        print('user authenticated')
-        return redirect(reverse('member_cycles'))
+    """Returns Index.html or redirects to Profiles"""
+    """If already logged in redirect to relevant profile"""
+    #if request.user.is_authenticated:
+        #if request.user.is_member:
+            #return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
+        #elif request.user.is_client:
+            #return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
+    
+    """If POST authenticate User"""
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
-        #print(request.POST['username'])
+        print(request.POST)
         if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'], 
+            user = auth.authenticate(request, username=request.POST['username'], 
                                         password=request.POST['password'])
             if user:
-                auth.login(user=user, request=request)
-                messages.success(request, "You have logged in!")
-                print('here')
-                return redirect(reverse('member_cycles'))
+                if user.is_member:
+                    auth.login(user=user, request=request)
+                    messages.success(request, "You have logged in as a member!")
+                    return redirect(reverse('member_cycles', kwargs={'username':user.username}))
+                elif user.is_client:
+                    auth.login(user=user, request=request)
+                    messages.success(request, 'You are logged in as client!')
+                    return redirect(reverse('client_cycles', kwargs={'username': user.username}))
             else:
                 messages.error(request, 'Your credentials are incorrect')
     else: 
@@ -37,7 +43,11 @@ def logout(request):
     messages.success(request, "You have been logged out of Fileo.")
     return redirect(reverse('index'))
 
-def member_cycles(request):
+def member_cycles(request, username):
     """Member Login View"""
-    #print(request)
-    return render(request, 'member_cycles.html')
+    #username = request.session['user']
+    return render(request, 'member_cycles.html', {'username':username})
+
+def client_cycles(request, username):
+    """Client Login View"""
+    return render(request, 'client_cycles.html', {'username':username})

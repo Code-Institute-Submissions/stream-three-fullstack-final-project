@@ -8,7 +8,7 @@ class AllUser(AbstractUser):
     company = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=50, blank=True)
     position = models.CharField(max_length=50, blank=True)
-
+    
     
 
 ### MODEL HOLDING MEMBER TO CLIENT RELATIONSHIPS ###
