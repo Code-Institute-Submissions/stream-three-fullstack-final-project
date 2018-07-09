@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from accounts.forms import UserLoginForm
+from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
 
@@ -42,11 +43,37 @@ def logout(request):
     messages.success(request, "You have been logged out of Fileo.")
     return redirect(reverse('index'))
 
-def member_cycles(request, username):
-    """Member Login View"""
-    #username = request.session['user']
-    return render(request, 'member_cycles.html', {'username':username})
-
-def client_cycles(request, username):
-    """Client Login View"""
-    return render(request, 'client_cycles.html', {'username':username})
+def register(request):
+    register = UserRegisterForm()
+    if request.method == 'POST':
+        register = UserRegisterForm(request.POST)
+        if register.is_valid():
+            first_name = register.cleaned_data['first_name']
+            last_name = register.cleaned_data['last_name']
+            company = register.cleaned_data['company']
+            phone = register.cleaned_data['phone']
+            username = register.cleaned_data['username']
+            email = register.cleaned_data['email']
+            password1 = register.cleaned_data['password1']
+            password2 = register.cleaned_data['password2']
+            print(password1)
+            #new_user = AllUser(first_name=first_name,
+                                #last_name=last_name,
+                                #company=company,
+                                #phone=phone,
+                                #username=username,
+                                #email=email,
+                                #password1=password1,
+                                #password2=password2)
+            AllUser.objects.create_user(first_name=first_name,
+                                        last_name=last_name,
+                                        company=company,
+                                        phone=phone,
+                                        username=username,
+                                        email=email,
+                                        password=password1
+                                        )
+            #print(first_name)
+    else:
+        register = UserRegisterForm()
+    return render(request, 'register.html', {'register': register})
