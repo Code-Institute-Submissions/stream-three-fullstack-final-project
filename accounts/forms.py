@@ -12,3 +12,19 @@ class UserLoginForm(forms.Form):
     class Meta:
         model = AllUser
         fields = ['username', 'password']
+
+class UserSignUpForm(UserCreationForm):
+    
+    
+    class Meta:
+        model = AllUser
+        fields = ('username',
+                    'first_name', 
+                    'last_name',
+                    'company',
+                    'phone',
+                    'postion',
+                    'email',
+                    'password1',
+                    'password2',
+                 )

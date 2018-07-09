@@ -7,16 +7,15 @@ from .models import AllUser
 def index(request):
     """Returns Index.html or redirects to Profiles"""
     """If already logged in redirect to relevant profile"""
-    #if request.user.is_authenticated:
-        #if request.user.is_member:
-            #return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
-        #elif request.user.is_client:
-            #return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
+    if request.user.is_authenticated:
+        if request.user.is_member:
+            return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
+        elif request.user.is_client:
+            return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
     
     """If POST authenticate User"""
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
-        print(request.POST)
         if login_form.is_valid():
             user = auth.authenticate(request, username=request.POST['username'], 
                                         password=request.POST['password'])
