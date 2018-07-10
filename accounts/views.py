@@ -1,13 +1,11 @@
-import os
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from accounts.forms import UserLoginForm
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
+from .notify import NotifyMember
+
 
 
 def index(request):
@@ -18,16 +16,7 @@ def index(request):
             return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
         elif request.user.is_client:
             return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
-    
-    subject = 'notification'
-    html_message = render_to_string('../templates/emails/client_account_email.html')
-    plain_message = strip_tags(html_message)
-    from_email = os.environ.get('EMAIL_ADDRESS')
-    to = ['dafydd_archard@hotmail.com']
-    send_mail(subject, plain_message, from_email, to, html_message=html_message,fail_silently=True)
-    
-    
-    """If POST authenticate User"""
+
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -78,6 +67,11 @@ def register(request):
                                         )
 
             messages.success(request, "You have successfully created an account! Please go back to the login page and login.")
+            new_email = NotifyMember(register.cleaned_data['first_name'],
+                                register.cleaned_data['email'], 
+                                register.cleaned_data['username'],
+                                )
+            new_email.member_created()
             
     else:
         register = UserRegisterForm()

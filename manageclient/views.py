@@ -3,7 +3,7 @@ from django.contrib import messages
 from accounts.models import AllUser
 from .models import MemberClient
 from accounts.forms import UserRegisterForm
-from accounts.notify import Notify
+from accounts.notify import NotifyClient
 
 # Create your views here.
 
@@ -33,8 +33,7 @@ def manage_clients(request, username):
                 
             messages.success(request, "You have successfully created a new client!")
 
-            print(client.username)
-            new_email = Notify(client.email,
+            new_email = NotifyMember(client.email,
                                 client.first_name, 
                                 member.first_name,
                                 member.company,
