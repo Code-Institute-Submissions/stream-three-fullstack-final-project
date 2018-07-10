@@ -20,10 +20,12 @@ from accounts import urls as urls_accounts
 from cycles import urls as urls_cycles
 from manageclient import urls as urls_manage_client
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^accounts/', include(urls_accounts)),
     url(r'^cycles/', include(urls_cycles)),
     url(r'^profile/', include(urls_manage_client)),
+   
 ]

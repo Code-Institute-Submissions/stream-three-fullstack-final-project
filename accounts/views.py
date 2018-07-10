@@ -1,9 +1,11 @@
+import os
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from accounts.forms import UserLoginForm
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
+from django.core.mail import send_mail
 
 def index(request):
     """Returns Index.html or redirects to Profiles"""
@@ -13,6 +15,13 @@ def index(request):
             return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
         elif request.user.is_client:
             return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
+    host = os.environ.get('EMAIL_ADDRESS')
+    send_mail('TestEmail',
+                'Heres the message',
+                    host,
+                    ['dafydd_archard@hotmail.com'],
+                    fail_silently=False)
+    
     
     """If POST authenticate User"""
     if request.method == 'POST':
