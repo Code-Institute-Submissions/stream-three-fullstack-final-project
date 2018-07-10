@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Manage Your Clients Here.</h1>
+<p>Logged in as {{ username }}</p>
+<form method="POST">
+    {% csrf_token %}
+    {{ new_client.as_p }}
+    <button type="submit">Create New Client</button>
+</form>
+
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endblock %}

@@ -44,6 +44,7 @@ def logout(request):
     return redirect(reverse('index'))
 
 def register(request):
+    """ Register a New Member """
     register = UserRegisterForm()
     if request.user.is_authenticated:
         return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
@@ -51,7 +52,6 @@ def register(request):
     if request.method == 'POST':
         register = UserRegisterForm(request.POST)
         if register.is_valid():
-            print('at validation')
             AllUser.objects.create_user(first_name=register.cleaned_data['first_name'],
                                         last_name=register.cleaned_data['last_name'],
                                         company=register.cleaned_data['company'],
@@ -59,10 +59,12 @@ def register(request):
                                         position=register.cleaned_data['position'],
                                         username=register.cleaned_data['username'],
                                         email=register.cleaned_data['email'],
-                                        password=register.cleaned_data['password1']
+                                        password=register.cleaned_data['password1'],
+                                        is_member=True,
+                                        is_client=False
                                         )
 
-            messages.success(request, "You have successfully created an account!\n Please go back to the login page and login.")
+            messages.success(request, "You have successfully created an account! Please go back to the login page and login.")
             
     else:
         register = UserRegisterForm()

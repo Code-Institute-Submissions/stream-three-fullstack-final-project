@@ -5,6 +5,6 @@
     {{ message }}
 {% endfor %}
 <p>Select Create Client to add a new client.</p>
-<a href="#">Create Client</a>
+<a href="{% url 'manage_clients' username=username %}">Create Client</a>
 
 {% endblock %}

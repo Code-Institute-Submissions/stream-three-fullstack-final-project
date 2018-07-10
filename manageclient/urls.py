@@ -3,6 +3,6 @@ from .views import manage_clients
 
 urlpatterns = [
 
-    url(r'^member/(?P<username>[\w.@+-]+)/manage_clients$', manage_clients, name='manage_clients'),
+    url(r'^manage_clients/(?P<username>[\w.@+-]+)$', manage_clients, name='manage_clients'),
     
 ]
