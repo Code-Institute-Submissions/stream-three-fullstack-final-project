@@ -11,17 +11,17 @@ class EmailAuth:
                 return user
             return None
 
-        except user.DoesNotExist:
+        except AllUser.DoesNotExist:
             return None
 
     def get_user(self, user_id):
 
         try:
             user = AllUser.objects.get(pk=user_id)
-
+            print(user)
             if user.is_active:
                 return user
             return None
 
-        except user.DoesNotExist:
+        except AllUser.DoesNotExist:
             return None

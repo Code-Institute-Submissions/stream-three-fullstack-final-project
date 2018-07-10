@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import AllUser, MemberClient
+from .models import AllUser
 # Register your models here.
 
 class MyUserAdmin(UserAdmin):
@@ -15,7 +15,7 @@ class MyUserAdmin(UserAdmin):
 
 
 admin.site.register(AllUser, MyUserAdmin)
-admin.site.register(MemberClient)
+
 
 
 

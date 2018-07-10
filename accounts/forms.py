@@ -1,8 +1,7 @@
 from django import forms
-from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+
 #from phonenumber_field.modelfields import PhoneNumberField
 from .models import AllUser
 
@@ -27,8 +26,8 @@ class UserRegisterForm(forms.Form):
     #phone = PhoneNumberField()
     username = forms.CharField(label='Username', max_length=30)
     email = forms.EmailField(max_length=254)
-    password1 = forms.CharField(label='Password1', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password2', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
     
     class Meta:
         model = AllUser
@@ -44,14 +43,19 @@ class UserRegisterForm(forms.Form):
                     'password2',
                  ]
 
-    def check_email(self):
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if AllUser.objects.filter(username=username):
+            raise forms.ValidationError(u'Username is already taken.')
+        return username
+     
+    def clean_email(self):
         email = self.cleaned_data.get('email')
-
-        if AllUser.objects.get(email=email):
+        if AllUser.objects.filter(email=email):
             raise forms.ValidationError(u'Email address is already taken.')
         return email
 
-    def check_password(self):
+    def clean_password(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 

@@ -45,9 +45,13 @@ def logout(request):
 
 def register(request):
     register = UserRegisterForm()
+    if request.user.is_authenticated:
+        return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
+        
     if request.method == 'POST':
         register = UserRegisterForm(request.POST)
         if register.is_valid():
+            print('at validation')
             AllUser.objects.create_user(first_name=register.cleaned_data['first_name'],
                                         last_name=register.cleaned_data['last_name'],
                                         company=register.cleaned_data['company'],
@@ -57,7 +61,9 @@ def register(request):
                                         email=register.cleaned_data['email'],
                                         password=register.cleaned_data['password1']
                                         )
-            #print(first_name)
+
+            messages.success(request, "You have successfully created an account!\n Please go back to the login page and login.")
+            
     else:
         register = UserRegisterForm()
     return render(request, 'register.html', {'register': register})
