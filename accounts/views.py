@@ -6,6 +6,9 @@ from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 def index(request):
     """Returns Index.html or redirects to Profiles"""
@@ -15,12 +18,13 @@ def index(request):
             return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
         elif request.user.is_client:
             return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
-    host = os.environ.get('EMAIL_ADDRESS')
-    send_mail('TestEmail',
-                'Heres the message',
-                    host,
-                    ['dafydd_archard@hotmail.com'],
-                    fail_silently=False)
+    
+    subject = 'notification'
+    html_message = render_to_string('../templates/emails/client_account_email.html')
+    plain_message = strip_tags(html_message)
+    from_email = os.environ.get('EMAIL_ADDRESS')
+    to = ['dafydd_archard@hotmail.com']
+    send_mail(subject, plain_message, from_email, to, html_message=html_message,fail_silently=True)
     
     
     """If POST authenticate User"""
