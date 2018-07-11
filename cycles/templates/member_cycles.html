@@ -5,6 +5,14 @@
     {{ message }}
 {% endfor %}
 <p>Select Create Client to add a new client.</p>
-<a href="{% url 'manage_clients' username=username %}">Create Client</a>
+<ul>
+    <li>
+        <a href="{% url 'manage_clients' username=username %}">Create Client</a>
+    </li>
+    <li>
+        <a href="{% url 'member_profile' username=username %}">Edit Profile</a>
+    </li>
+</ul>
+
 
 {% endblock %}

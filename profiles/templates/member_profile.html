@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for  message in messages %}
-<p>{{ messsage }}</p>
-{% endfor %}
-<h1> Before you go. </h1>
-<p> We just need a bit more information from you.</p>
+
+<p>Logged in as {{ username }}</p>
+<h3> Edit Your Profile. </h3>
+<form method="POST">  
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
 
 {% endblock %}

@@ -70,8 +70,6 @@ def register(request):
                                 )
             new_email.member_created()
             
-            return redirect(reverse('member_profile', kwargs={'username':register.cleaned_data['username']}))
-            
     else:
         register = UserRegisterForm()
     return render(request, 'register.html', {'register': register})
