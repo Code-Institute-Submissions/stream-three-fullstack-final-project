@@ -19,6 +19,7 @@ from accounts.views import index
 from accounts import urls as urls_accounts
 from cycles import urls as urls_cycles
 from manageclient import urls as urls_manage_client
+from profiles import urls as urls_profiles
 
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     url(r'^accounts/', include(urls_accounts)),
     url(r'^cycles/', include(urls_cycles)),
     url(r'^profile/', include(urls_manage_client)),
+    url(r'^profile/', include(urls_profiles))
    
 ]

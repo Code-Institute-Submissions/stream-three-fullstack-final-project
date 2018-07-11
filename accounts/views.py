@@ -56,9 +56,6 @@ def register(request):
         if register.is_valid():
             AllUser.objects.create_user(first_name=register.cleaned_data['first_name'],
                                         last_name=register.cleaned_data['last_name'],
-                                        company=register.cleaned_data['company'],
-                                        phone=register.cleaned_data['phone'],
-                                        position=register.cleaned_data['position'],
                                         username=register.cleaned_data['username'],
                                         email=register.cleaned_data['email'],
                                         password=register.cleaned_data['password1'],
@@ -72,6 +69,8 @@ def register(request):
                                 register.cleaned_data['username'],
                                 )
             new_email.member_created()
+            
+            return redirect(reverse('member_profile', kwargs={'username':register.cleaned_data['username']}))
             
     else:
         register = UserRegisterForm()

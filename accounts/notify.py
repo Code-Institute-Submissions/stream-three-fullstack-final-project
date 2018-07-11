@@ -8,14 +8,12 @@ class NotifyClient:
     """Class Sends emails to clients"""
     def __init__(self, recipient_email, 
                 recipient_name, 
-                sender_name, 
-                company,
+                sender_name,
                 client_username
                 ):
         self.recipient_email = recipient_email
         self.recipient_name = recipient_name
         self.sender_name = sender_name
-        self.company = company
         self.client_username = client_username
         
     def client_user_created(self):
@@ -24,7 +22,6 @@ class NotifyClient:
                                         {'recipient_email':self.recipient_email,
                                             'recipient_name' : self.recipient_name,
                                             'sender_name': self.sender_name,
-                                            'company': self.company,
                                             'client_username':self.client_username })
         plain_message = strip_tags(html_message)
         from_email = os.environ.get('EMAIL_ADDRESS')

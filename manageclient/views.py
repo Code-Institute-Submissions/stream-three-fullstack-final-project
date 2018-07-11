@@ -16,9 +16,6 @@ def manage_clients(request, username):
             client_username = new_client.cleaned_data['username']
             AllUser.objects.create_user(first_name=new_client.cleaned_data['first_name'],
                                         last_name=new_client.cleaned_data['last_name'],
-                                        company=new_client.cleaned_data['company'],
-                                        phone=new_client.cleaned_data['phone'],
-                                        position=new_client.cleaned_data['position'],
                                         username=new_client.cleaned_data['username'],
                                         email=new_client.cleaned_data['email'],
                                         password=new_client.cleaned_data['password1'],
@@ -33,10 +30,9 @@ def manage_clients(request, username):
                 
             messages.success(request, "You have successfully created a new client!")
 
-            new_email = NotifyMember(client.email,
+            new_email = NotifyClient(client.email,
                                 client.first_name, 
                                 member.first_name,
-                                member.company,
                                 client.username
                                 )
             new_email.client_user_created()
