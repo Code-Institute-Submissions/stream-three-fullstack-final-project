@@ -9,12 +9,14 @@ class NotifyClient:
     def __init__(self, recipient_email, 
                 recipient_name, 
                 sender_name,
-                client_username
+                client_username,
+                member_company
                 ):
         self.recipient_email = recipient_email
         self.recipient_name = recipient_name
         self.sender_name = sender_name
         self.client_username = client_username
+        self.member_company = member_company
         
     def client_user_created(self):
         subject = 'New Client Account at Fileo.'
@@ -22,7 +24,8 @@ class NotifyClient:
                                         {'recipient_email':self.recipient_email,
                                             'recipient_name' : self.recipient_name,
                                             'sender_name': self.sender_name,
-                                            'client_username':self.client_username })
+                                            'client_username':self.client_username,
+                                            'member_company': self.member_company })
         plain_message = strip_tags(html_message)
         from_email = os.environ.get('EMAIL_ADDRESS')
         to = [self.recipient_email]

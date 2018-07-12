@@ -18,11 +18,6 @@ class UserRegisterForm(forms.Form):
     
     first_name = forms.CharField(label='First Name',max_length=30)
     last_name = forms.CharField(label='Last Name', max_length=30)
-    #company = forms.CharField(label='Company/Production', required=False, max_length=50)
-    #phone = forms.IntegerField(widget=forms.TextInput(attrs={'type': 'number'}), 
-                            #label='Phone', required=False)
-    #position = forms.CharField(label='Position', required=False, max_length=50)
-    #phone = PhoneNumberField()
     username = forms.CharField(label='Username', max_length=30)
     email = forms.EmailField(max_length=254)
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -51,15 +46,16 @@ class UserRegisterForm(forms.Form):
             raise forms.ValidationError(u'Email address is already taken.')
         return email
 
-    def clean_password(self):
-        password1 = self.cleaned_data.get('password1')
-        password2 = self.cleaned_data.get('password2')
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        print(password1)
+        print(password2)
+        if not password1 or not password2: # if there is no value for pword1 or pword2
+            raise ValidationError("Please confirm your password.") # Raise an error
 
-        if not password1 or not password2:
-            raise forms.ValidationError('Please enter your passwords.')
-        
         if password1 != password2:
-            raise forms.ValidationError('Please check your passwords are matching.')
+            raise ValidationError("Passwords must match!")
 
         return password1
 

@@ -8,6 +8,12 @@
     {{ profile_form.as_p }}
     <button type="submit">Submit</button>
 </form>
+<p>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</p>
+
 
 
 {% endblock %}
