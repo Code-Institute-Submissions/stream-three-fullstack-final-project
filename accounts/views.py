@@ -67,6 +67,7 @@ def register(request):
                                 register.cleaned_data['username'],
                                 )
             new_email.member_created()
+            return redirect(reverse('register'))
     else:
         register = UserRegisterForm()
     return render(request, 'register.html', {'register': register})

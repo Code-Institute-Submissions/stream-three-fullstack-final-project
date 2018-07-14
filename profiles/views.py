@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from .models import Profile
 from .forms import ProfileForm
@@ -22,9 +22,11 @@ def member_profile(request, username):
             if is_existing:
                 edit_profile(profile, is_existing)
                 messages.success(request,'You have edited your profile.')
+                return redirect(reverse('member_profile', kwargs={'username':username}))
             else:
                 new_profile(profile, user)
                 messages.success(request,'You have created your profile.')
+                return redirect(reverse('member_profile', kwargs={'username':username}))
     
     return render(request, 'member_profile.html', {'username':username, 
                                                     'profile_form':profile})

@@ -12,10 +12,31 @@
     <li>
         <a href="{% url 'member_profile' username=username %}">Edit Profile</a>
     </li>
-    <form method="POST">
-        {% csrf_token %}
-        {{ cycle_form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <li>
+        <a href="{% url 'porthole' %}">Cycle Porthole</a>
+    </li>
 </ul>
+<form method="POST">
+    {% csrf_token %}
+    {{ cycle_form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<div>
+    {% if cycles %}
+        <hr>
+        {% for cycle in cycles %}
+        <div>
+            <h4>{{ cycle.job_title }}</h4>
+            <h5>Job Description</h5>
+            <p>{{ cycle.description }}</p>
+            <h5>Job Location</h5>
+            <p>{{ cycle.location }}</p>
+            <h5>Client</h5>
+            <p>{{ cycle.client }}</p>
+            <button>Go to Cycle</button>
+        </div>
+        <hr>
+        {% endfor %}
+    {% endif %}
+</div>
 {% endblock %}
