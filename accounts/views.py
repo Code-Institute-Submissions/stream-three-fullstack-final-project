@@ -7,7 +7,6 @@ from .models import AllUser
 from .notify import NotifyMember
 
 
-
 def index(request):
     """Returns Index.html or redirects to Profiles"""
     """If already logged in redirect to relevant profile"""
@@ -16,7 +15,6 @@ def index(request):
             return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
         elif request.user.is_client:
             return redirect(reverse('client_cycles', kwargs={'username':request.user.username}))
-
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -49,8 +47,7 @@ def register(request):
     """ Register a New Member """
     register = UserRegisterForm()
     if request.user.is_authenticated:
-        return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))
-        
+        return redirect(reverse('member_cycles', kwargs={'username':request.user.username})) 
     if request.method == 'POST':
         register = UserRegisterForm(request.POST)
         if register.is_valid():
@@ -62,14 +59,14 @@ def register(request):
                                         is_member=True,
                                         is_client=False
                                         )
-
-            messages.success(request, "You have successfully created an account! Please go back to the login page and login.")
+            messages.success(request, 
+                            """You have successfully created an account! 
+                                Please go back to the login page and login.""")
             new_email = NotifyMember(register.cleaned_data['first_name'],
                                 register.cleaned_data['email'], 
                                 register.cleaned_data['username'],
                                 )
             new_email.member_created()
-            
     else:
         register = UserRegisterForm()
     return render(request, 'register.html', {'register': register})

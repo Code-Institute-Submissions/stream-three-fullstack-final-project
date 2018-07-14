@@ -7,11 +7,7 @@ class MyUserAdmin(UserAdmin):
     model = AllUser
 
     fieldsets = UserAdmin.fieldsets + (
-                (None, {'fields':('is_member', 
-                                    'is_client', 
-                                    'company', 
-                                    'phone', 
-                                    'position')}),)
+                (None, {'fields':('is_member', 'is_client')}),)
 
 
 admin.site.register(AllUser, MyUserAdmin)

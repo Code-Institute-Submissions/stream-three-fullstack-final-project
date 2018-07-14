@@ -14,6 +14,7 @@ def member_cycles(request, username):
     """ If post Create New Cycle """
     if request.method == 'POST':
         create_cycle(user_id, request.POST, user)
+        
         if create_cycle:
             messages.success(request, "A new cycle has been created")
     return render(request, 'member_cycles.html', 
