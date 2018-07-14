@@ -44,11 +44,9 @@ class TestCycleForm(TestCase):
         entry = MemberClient(member=member, client=client)
         entry.save()
 
-        
         user_id = AllUser.objects.get(username='testadmin').pk
         client = MemberClient.objects.filter(member=user_id)
-        print(user_id)
-
+      
         new_form = CycleForm(user_id, {'job_title':'testjob',
                             'location':'testlocation',
                             'description':'testdescription',

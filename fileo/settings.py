@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'manageclient',
     'profiles',
     'localflavor',
+    'cycleporthole',
 ]
 
 MIDDLEWARE = [
