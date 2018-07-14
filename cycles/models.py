@@ -10,5 +10,5 @@ class Cycles(models.Model):
     client = models.ForeignKey(AllUser, related_name='client_cycle', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{0}-{1}'.format(self.job_title, self.location)
+        return '{0}@{1} {2}'.format(self.job_title, self.location,self.description)
 

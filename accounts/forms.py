@@ -49,8 +49,7 @@ class UserRegisterForm(forms.Form):
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        print(password1)
-        print(password2)
+   
         if not password1 or not password2: # if there is no value for pword1 or pword2
             raise ValidationError("Please confirm your password.") # Raise an error
 
