@@ -20,8 +20,8 @@ class TestMemberClient(TestCase):
                                         username=client,
                                         email='testclient@email.com',
                                         password='password',
-                                        is_member=True,
-                                        is_client=False
+                                        is_member=False,
+                                        is_client=True
                                         )
         
         member = get_object_or_404(AllUser, username=member)
