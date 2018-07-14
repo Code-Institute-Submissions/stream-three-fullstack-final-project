@@ -1,6 +1,14 @@
 from django.shortcuts import render
+from .forms import QuotesForm
+from .models import Quotes
 
-# Create your views here.
 
-def porthole(request, username, id):
-    return render(request, 'porthole.html')
+def porthole(request, username, cycle_id, client):
+    new_form = QuotesForm()
+
+    context = {'username': username,
+                'client': client,
+                'cycle_id': cycle_id,
+                'form':new_form}
+
+    return render(request, 'porthole.html', {'context':context})

@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from djmoney.models.fields import MoneyField
+from djmoney.money import Money
+from djmoney.models.validators import MaxMoneyValidator, MinValueValidator
 from accounts.models import AllUser
 from cycles.models import Cycles
 
@@ -17,7 +20,14 @@ class UploadModel(models.Model):
         return "{0} {1}".format(self.file, self.uploaded_at)
                                             
 class Quotes(UploadModel):
-    cycle_value = models.CharField(max_length=50)
+    cycle_value = MoneyField(max_digits=111,
+                            default=0, 
+                            decimal_places=1, 
+                            default_currency='GBP',
+                            validators=[
+                                        MinValueValidator(0),
+                                        ])
+                            
     client = models.ForeignKey(AllUser,related_name='QuotesUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='QuotesMemberFK', on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycles, related_name='QuotesCycleFK', on_delete=models.CASCADE)

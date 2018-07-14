@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Cycle Porthole</h1>
+<p>You are logged in as {{ context.username }}</p>
+<p>Fileo Cycle ID: {{ context.cycle_id }}</p>
+<p>Client: {{ context.client }}</p>
+<form action="">
+    {{ context.form.as_p }}
+</form>
 {% endblock %}

@@ -2,31 +2,17 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from .forms import CycleForm
 from .models import Cycles      
-from .view_func import create_cycle
+from .view_func import create_cycle, get_user_cycles
 from accounts.models import AllUser
 from manageclient.models import MemberClient 
 
 
 def member_cycles(request, username):
-    """ Returns Member Cycles Template Plus all User Cycles """
+    """ Returns Member Cycles Template with all User Cycles """
     user = get_object_or_404(AllUser, username=username)
     user_id = user.pk
     cycle_form = CycleForm(user_id)
-
-    ## Get all cycle info for member, link to porthole passing cycle id and username ##
-    try:
-        users_cycles = Cycles.objects.filter(member=user)
-    except Cycles.DoesNotExist:
-        users_cycles = None
-    #users_clients
-    if users_cycles:
-        print(users_cycles[0].job_title)
-        print(users_cycles[0].location)
-        print(users_cycles[0].description)
-        print(users_cycles[0].client)
-    
-
-
+    users_cycles = get_user_cycles(user)
     """ If post Create New Cycle """
     if request.method == 'POST':
         create_cycle(user_id, request.POST, user)

@@ -18,3 +18,10 @@ def create_cycle(user_id, request, user):
         return True
     else:
         return False
+
+def get_user_cycles(user):
+    try:
+        users_cycles = Cycles.objects.filter(member=user)
+    except Cycles.DoesNotExist:
+        users_cycles = None
+    return users_cycles

@@ -3,7 +3,8 @@ from .views import porthole
 
 urlpatterns = [
 
-    url(r'^(?P<username>[\w.@+-]+)/cycle/(?P<id>\d+)$', porthole, name='porthole')
+    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client>[\w.@+-]+)/(?P<cycle_id>\d+)$', 
+                                                    porthole, name='porthole'),
   
 ]
 #url(r'^cyle-porthole/(?P<username>[\w.@+-]+)/(?P<id>\d+)/$', 

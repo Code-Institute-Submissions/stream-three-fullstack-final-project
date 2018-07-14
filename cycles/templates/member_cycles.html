@@ -31,7 +31,7 @@
             <h5>Client</h5>
             <p>{{ cycle.client }}</p>
             <p> Fileo Project ID: {{ cycle.id }}</p>
-            <form action="{% url 'porthole' username=username id=cycle.id %}">
+            <form action="{% url 'porthole' username=username cycle_id=cycle.id client=cycle.client %}">
                 <button type="submit">Go to Cycle</button>
             </form>
         </div>
