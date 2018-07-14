@@ -1,11 +1,9 @@
 from django.conf.urls import url, include
-from .views import cycle_porthole
+from .views import porthole
 
 urlpatterns = [
 
-    url(r'^$', 
-        cycle_porthole, name='porthole')
-
+    url(r'^(?P<username>[\w.@+-]+)/cycle/(?P<id>\d+)$', porthole, name='porthole')
   
 ]
 #url(r'^cyle-porthole/(?P<username>[\w.@+-]+)/(?P<id>\d+)/$', 

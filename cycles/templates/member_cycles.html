@@ -12,9 +12,6 @@
     <li>
         <a href="{% url 'member_profile' username=username %}">Edit Profile</a>
     </li>
-    <li>
-        <a href="{% url 'porthole' %}">Cycle Porthole</a>
-    </li>
 </ul>
 <form method="POST">
     {% csrf_token %}
@@ -34,8 +31,8 @@
             <h5>Client</h5>
             <p>{{ cycle.client }}</p>
             <p> Fileo Project ID: {{ cycle.id }}</p>
-            <form action="{% url 'porthole' %}">
-                <button>Go to Cycle</button>
+            <form action="{% url 'porthole' username=username id=cycle.id %}">
+                <button type="submit">Go to Cycle</button>
             </form>
         </div>
         <hr>
