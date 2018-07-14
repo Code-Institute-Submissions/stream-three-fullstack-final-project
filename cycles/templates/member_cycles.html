@@ -33,7 +33,10 @@
             <p>{{ cycle.location }}</p>
             <h5>Client</h5>
             <p>{{ cycle.client }}</p>
-            <button>Go to Cycle</button>
+            <p> Fileo Project ID: {{ cycle.id }}</p>
+            <form action="{% url 'porthole' %}">
+                <button>Go to Cycle</button>
+            </form>
         </div>
         <hr>
         {% endfor %}
