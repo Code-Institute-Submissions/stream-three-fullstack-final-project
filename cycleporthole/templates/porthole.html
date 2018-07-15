@@ -3,8 +3,24 @@
 <h1>Cycle Porthole</h1>
 <p>You are logged in as {{ context.username }}</p>
 <p>Fileo Cycle ID: {{ context.cycle_id }}</p>
-<p>Client: {{ context.client }}</p>
-<form action="">
-    {{ context.form.as_p }}
-</form>
+<p>Client: {{ context.client.username }}</p>
+<h2>Job Title</h2>
+<h3>{{ context.cycle.job_title }}</h3>
+<p>@{{ context.cycle.location }}</p>
+<hr>
+<div>
+    <h3>Upload Your Quote</h3>
+    <img alt='Show image of PDF icon if uploaded'>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ context.form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <ul>
+        <li><a href="#">Download File</a></li>
+        <li><a href="#">View File</a></li> 
+    </ul>
+    <p>Status: ""</p>
+</div>
+<hr>
 {% endblock %}
