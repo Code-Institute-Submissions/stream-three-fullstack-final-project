@@ -11,7 +11,7 @@
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
         {{ context.form.as_p }}
         <button type="submit">Submit</button>
@@ -21,6 +21,9 @@
         <li><a href="#">View File</a></li> 
     </ul>
     <p>Status: ""</p>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
 </div>
 <hr>
 {% endblock %}
