@@ -4,10 +4,16 @@ from accounts.models import AllUser
 class Cycles(models.Model):
 
     job_title = models.CharField(max_length=50, blank=False)
-    location = models.CharField(max_length=50, blank=True)
+    location = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=150, blank=False)
-    member = models.ForeignKey(AllUser, related_name='member_cycle', on_delete=models.CASCADE)
-    client = models.ForeignKey(AllUser, related_name='client_cycle', on_delete=models.CASCADE)
+    #job_start = models.DateField(null=True, blank=True)
+    #job_end = models.DateField(null=True, blank=True)
+    member = models.ForeignKey(AllUser, 
+                                related_name='member_cycle', 
+                                on_delete=models.CASCADE)
+    client = models.ForeignKey(AllUser, 
+                                related_name='client_cycle', 
+                                on_delete=models.CASCADE)
 
     def __str__(self):
         return '{0}@{1} {2}'.format(self.job_title, self.location,self.description)

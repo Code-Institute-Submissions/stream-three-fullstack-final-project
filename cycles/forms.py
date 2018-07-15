@@ -14,8 +14,9 @@ class CycleForm(forms.Form):
         self.fields['location'] = forms.CharField(max_length=50)
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)
+        #self.fields['job_start'] = forms.DateField()
+        #self.fields['job_end'] = forms.DateField()
         self.fields['clients'] = forms.ModelChoiceField(queryset=self.choices, 
                                                         label='Attach Client',
                                                         initial=0)
    
-''
