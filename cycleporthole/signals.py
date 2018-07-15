@@ -11,7 +11,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 def auto_delete_file_on_delete(sender, instance, **kwargs):
     """Delete File From System on Deleting DB entry"""
 
-    client_path='media/quotes/{0}/{1}/{2}'.format(instance.member,
+    client_path='media/quote/{0}/{1}/{2}'.format(instance.member,
                                         instance.client,
                                         instance.cycle.id)
     
@@ -20,12 +20,12 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
             try:
                 os.remove(instance.file.path)
             except OSError as e:
-                print(e)
+                print(e + 'error with auto delete signal')
                 raise Http404
                 
             try:
                 shutil.rmtree(client_path)
-                print(client_path)
+                #print(client_path)
             except OSError as e:
                 print(e)
                 raise Http404

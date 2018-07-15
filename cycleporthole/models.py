@@ -12,12 +12,19 @@ from cycles.models import Cycles
 
 def get_upload_path(instance, filename):
     ext = os.path.splitext(filename)[1]
-    print(ext)
-    path='quotes/{0}/{1}/{3}/{0}_{1}_{2}_{3}{4}'.format(instance.member,
-                                    instance.client,
-                                    instance.cycle.job_title,
-                                    instance.cycle.id,
-                                    ext)
+    if instance.is_quote:
+        file_type = 'quote'
+    elif instance.is_po:
+        file_type = 'po'
+    elif instance.is_invoice:
+        file_type = 'invoice'
+    
+    path='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
+                                                instance.member,
+                                                instance.client,
+                                                instance.cycle.job_title,
+                                                instance.cycle.id,
+                                                ext) 
     return path
 
 ### BASE MODEL FOR QUOTE, PO, AND INVOICES ###
@@ -26,7 +33,7 @@ class UploadModel(models.Model):
     file = models.FileField(upload_to=get_upload_path, blank=False,
             validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
     uploaded_at = models.DateTimeField(auto_now_add=True)
-
+    
     class Meta:
         abstract = True
 
@@ -44,6 +51,8 @@ class Quotes(UploadModel):
     client = models.ForeignKey(AllUser,related_name='QuotesUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='QuotesMemberFK', on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycles, related_name='QuotesCycleFK', on_delete=models.CASCADE)
+    is_quote = models.BooleanField(default=True)
+
 
     def __str__(self):
         return "{0} {1} {2} {3} {4} {5}".format(self.file, self.uploaded_at,
@@ -54,6 +63,7 @@ class PurchaseOrder(UploadModel):
     client = models.ForeignKey(AllUser,related_name='POUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='POMemberFK', on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycles, related_name='POCycleFK', on_delete=models.CASCADE)
+    is_po = models.BooleanField(default=True)
 
     def __str__(self):
         return "{0} {1} {2} {3} {4}".format(self.file, self.uploaded_at,
@@ -64,6 +74,7 @@ class Invoices(UploadModel):
     client = models.ForeignKey(AllUser,related_name='InvoiceUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='InvoiceMemberFK', on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycles, related_name='InvoiceCycleFK', on_delete=models.CASCADE)
+    is_invoice = models.BooleanField(default=True)
 
     def __str__(self):
         return "{0} {1} {2} {3} {4}".format(self.file, self.uploaded_at,

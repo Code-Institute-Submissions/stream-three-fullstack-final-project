@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from .forms import QuotesForm
-from .models import Quotes
+from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
+from .models import Quotes, PurchaseOrder, Invoices
 from cycles.models import Cycles
 from accounts.models import AllUser
+from .upload import UploadFile
 
 
 ## Need to Upload Media to Dynamic Folder ##
@@ -11,52 +12,68 @@ from accounts.models import AllUser
 ## Need to Retrieve Status of Each Cycle Stage ##
 ## for logic in showing next stage Divs ##
 
-    
-def upload_quote(request, client, member, cycle):
-    quote_form = QuotesForm(request.POST, request.FILES)
-    if quote_form.is_valid():
-        new_quote = Quotes(file=quote_form.cleaned_data['file'],
-                                cycle_value=quote_form.cleaned_data['cycle_value'],
-                                client=client,
-                                member=member,
-                                cycle=cycle)
-        try:
-            old_quote = Quotes.objects.get(cycle=cycle)
-        except Quotes.DoesNotExist:
-            old_quote = None
-        if old_quote:
-            old_quote.delete()
-            new_quote.save()
-            print('Quote Saved')
-        elif not old_quote:
-            new_quote.save()
-            print('Quote Saved')
-            
-        return True
+## helper_functions ##
 
-## Returns Cycle Detailed Information ##
-def porthole(request, username, cycle_id, client_username):
+def get_porthole_info(username, cycle_id, client_username):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     member = get_object_or_404(AllUser, username=username)
     client = get_object_or_404(AllUser, username=client_username)
+
+    porthole_info = {'cycle':cycle, 'member':member, 'client':client}
+    return porthole_info
+
+
+############## VIEWS #################################
+
+## Returns Cycle Detailed Information including upload forms ##
+def porthole(request, username, cycle_id, client_username):
+    info = get_porthole_info(username, cycle_id, 
+                            client_username)
     quote_form = QuotesForm()
+    po_form = PurchaseOrderForm()
+    invoice_form = InvoiceForm()
     context = {'username': username,
-                'client': client,
+                'client': info['client'],
                 'cycle_id': cycle_id, 
-                'form': quote_form,
-                'cycle': cycle}
+                'quote_form': quote_form,
+                'po_form': po_form,
+                'invoice_form':invoice_form,
+                'cycle': info['cycle']}
 
 
     return render(request, 'porthole.html', {'context':context})
 
 ## Called When a Quote is uploaded ##
 def quote_upload(request, username, cycle_id, client_username):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
-    member = get_object_or_404(AllUser, username=username)
-    client = get_object_or_404(AllUser, username=client_username)
+    info = get_porthole_info(username, cycle_id, 
+                            client_username)
     if request.method == 'POST':
-        upload_quote(request, client, member, cycle)
+        UploadFile(request, 
+                    info['client'], 
+                    info['member'], 
+                    info['cycle']).upload_quote()
         return redirect(reverse('porthole', kwargs={'username':username,
                                             'cycle_id': cycle_id,
                                             'client_username':client_username,
                                             }))
+## Called When a PO is uploaded ##
+def po_upload(request, username, cycle_id, client_username):
+    info = get_porthole_info(username, cycle_id, 
+                            client_username)
+    #if request.method == 'POST':
+        #UploadFile(request, client, member, cycle).upload_quote()
+        #return redirect(reverse('porthole', kwargs={'username':username,
+                                            #'cycle_id': cycle_id,
+                                            #'client_username':client_username,
+                                            #}))
+
+## Called When a Invoice is uploaded ##
+def invoice_upload(request, username, cycle_id, client_username):
+    info = get_porthole_info(username, cycle_id, 
+                            client_username)
+    #if request.method == 'POST':
+        #UploadFile(request, client, member, cycle).upload_quote()
+        #return redirect(reverse('porthole', kwargs={'username':username,
+                                            #'cycle_id': cycle_id,
+                                            #'client_username':client_username,
+                                            #}))

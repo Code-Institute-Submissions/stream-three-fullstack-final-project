@@ -13,7 +13,7 @@
     <img alt='Show image of PDF icon if uploaded'>
     <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
-        {{ context.form.as_p }}
+        {{ context.upload_form.as_p }}
         <button type="submit">Submit</button>
     </form>
     <ul>
@@ -24,6 +24,36 @@
     {% for message in messages %}
     {{ message }}
     {% endfor %}
+</div>
+<hr>
+<div>
+    <h3>Upload Your PO</h3>
+    <img alt='Show image of PDF icon if uploaded'>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'po_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+        {% csrf_token %}
+        {{ context.po_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <ul>
+        <li><a href="#">Download File</a></li>
+        <li><a href="#">View File</a></li> 
+    </ul>
+    <p>Status: ""</p>
+</div>
+<hr>
+<div>
+    <h3>Upload Your Invoice</h3>
+    <img alt='Show image of PDF icon if uploaded'>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'invoice_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+        {% csrf_token %}
+        {{ context.invoice_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <ul>
+        <li><a href="#">Download File</a></li>
+        <li><a href="#">View File</a></li> 
+    </ul>
+    <p>Status: ""</p>
 </div>
 <hr>
 {% endblock %}
