@@ -7,13 +7,15 @@
 <h2>Job Title</h2>
 <h3>{{ context.cycle.job_title }}</h3>
 <p>@{{ context.cycle.location }}</p>
+<h3>Description</h3>
+<P>{{ context.cycle.description }}</P>
 <hr>
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
     <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
-        {{ context.upload_form.as_p }}
+        {{ context.quote_form.as_p }}
         <button type="submit">Submit</button>
     </form>
     <ul>

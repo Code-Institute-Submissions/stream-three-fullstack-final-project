@@ -9,7 +9,7 @@ urlpatterns = [
                                                     quote_upload, name='quote_upload'),
     url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/po$', 
                                                     po_upload, name='po_upload'),
-    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/po$', 
+    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/invoice$', 
                                                     invoice_upload, name='invoice_upload'),
   
 ]

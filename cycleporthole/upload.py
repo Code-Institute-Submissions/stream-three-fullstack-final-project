@@ -1,6 +1,10 @@
 from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
 
+## Class containing methods to push files to Relevant Model ##
+## If the file model already contains an entry, it is first ##
+## deleted before writing the new file to ensure only one ##
+## file exists for each step in a cycle ##
 
 class UploadFile:
     

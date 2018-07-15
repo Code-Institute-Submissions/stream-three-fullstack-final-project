@@ -5,22 +5,13 @@ from .models import Quotes, PurchaseOrder, Invoices
 from cycles.models import Cycles
 from accounts.models import AllUser
 from .upload import UploadFile
+from .view_func import get_porthole_info
 
 
 ## Need to Upload Media to Dynamic Folder ##
 ## Need to Retrieve Project Name and Details ##
 ## Need to Retrieve Status of Each Cycle Stage ##
 ## for logic in showing next stage Divs ##
-
-## helper_functions ##
-
-def get_porthole_info(username, cycle_id, client_username):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
-    member = get_object_or_404(AllUser, username=username)
-    client = get_object_or_404(AllUser, username=client_username)
-
-    porthole_info = {'cycle':cycle, 'member':member, 'client':client}
-    return porthole_info
 
 
 ############## VIEWS #################################
@@ -40,10 +31,9 @@ def porthole(request, username, cycle_id, client_username):
                 'invoice_form':invoice_form,
                 'cycle': info['cycle']}
 
-
     return render(request, 'porthole.html', {'context':context})
 
-## Called When a Quote is uploaded ##
+## Called When a Quote is uploaded and redirected to Porthole View ##
 def quote_upload(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
@@ -52,28 +42,39 @@ def quote_upload(request, username, cycle_id, client_username):
                     info['client'], 
                     info['member'], 
                     info['cycle']).upload_quote()
-        return redirect(reverse('porthole', kwargs={'username':username,
-                                            'cycle_id': cycle_id,
-                                            'client_username':client_username,
-                                            }))
-## Called When a PO is uploaded ##
-def po_upload(request, username, cycle_id, client_username):
-    info = get_porthole_info(username, cycle_id, 
-                            client_username)
-    #if request.method == 'POST':
-        #UploadFile(request, client, member, cycle).upload_quote()
-        #return redirect(reverse('porthole', kwargs={'username':username,
-                                            #'cycle_id': cycle_id,
-                                            #'client_username':client_username,
-                                            #}))
+        return redirect(reverse('porthole',
+                                 kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
 
-## Called When a Invoice is uploaded ##
+## Called When a PO is uploaded and redirected to Porthole View ##
+def po_upload(request, username, cycle_id, client_username):
+    info = get_porthole_info(username, cycle_id, client_username)
+    if request.method == 'POST':
+        UploadFile(request, 
+                    info['client'], 
+                    info['member'], 
+                    info['cycle']).upload_po()
+        return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
+
+## Called When an Invoice is uploaded and redirected to Porthole View ##
 def invoice_upload(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
-    #if request.method == 'POST':
-        #UploadFile(request, client, member, cycle).upload_quote()
-        #return redirect(reverse('porthole', kwargs={'username':username,
-                                            #'cycle_id': cycle_id,
-                                            #'client_username':client_username,
-                                            #}))
+    print('here')
+    if request.method == 'POST':
+       
+        UploadFile(request, 
+                    info['client'], 
+                    info['member'], 
+                    info['cycle']).upload_invoice()
+        return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))

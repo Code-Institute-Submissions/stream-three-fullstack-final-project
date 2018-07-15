@@ -12,12 +12,24 @@ from cycles.models import Cycles
 
 def get_upload_path(instance, filename):
     ext = os.path.splitext(filename)[1]
-    if instance.is_quote:
-        file_type = 'quote'
-    elif instance.is_po:
-        file_type = 'po'
-    elif instance.is_invoice:
-        file_type = 'invoice'
+    print(instance)
+    try:
+        if instance.is_quote:
+            file_type = 'quote'
+    except AttributeError as e:
+        print('File is not a Quote')
+    
+    try:
+        if instance.is_po:
+            file_type = 'po'
+    except AttributeError as e:
+        print('File is not a PO')
+
+    try:
+        if instance.is_invoice:
+            file_type = 'invoice'
+    except AttributeError as e:
+        print('File is not an Invoice')
     
     path='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
                                                 instance.member,
