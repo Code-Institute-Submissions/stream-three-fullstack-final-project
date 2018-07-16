@@ -39,63 +39,51 @@ class TestCyclePortholeModels(TestCase):
                             client=AllUser.objects.get(username='test1client'))
         new_cycle.save()
 
-    def test_quotes_model(self):
+        self.member = AllUser.objects.get(username='test1admin')
+        self.client = AllUser.objects.get(username='test1client')
+        self.cycle = Cycles.objects.get(job_title='job_title')
 
-        member = AllUser.objects.get(username='test1admin')
-        client = AllUser.objects.get(username='test1client')
-        #create_cycle(self.member, self.client)
-        cycle = Cycles.objects.get(job_title='job_title')
+    def test_quotes_model(self):
         new_quote = Quotes(cycle_value=Money(1,'GBP'),
-                            client=client,
-                            member=member,
-                            cycle=cycle,
+                            client=self.client,
+                            member=self.member,
+                            cycle=self.cycle,
                             is_quote=True)
         new_quote.save()
 
-        quote = Quotes.objects.get(member=member)
+        quote = Quotes.objects.get(member=self.member)
 
-        self.assertEqual(member.username, quote.member.username)
-        self.assertEqual(client.username, quote.client.username)
-        self.assertEqual(cycle.job_title, quote.cycle.job_title)
+        self.assertEqual(self.member.username, quote.member.username)
+        self.assertEqual(self.client.username, quote.client.username)
+        self.assertEqual(self.cycle.job_title, quote.cycle.job_title)
         self.assertTrue(quote.is_quote)
         self.assertEqual(quote.cycle_value, Money(1,'GBP'))
 
     def test_po_model(self):
-        member = AllUser.objects.get(username='test1admin')
-        client = AllUser.objects.get(username='test1client')
-        #create_cycle(member, client)
-        cycle = Cycles.objects.get(job_title='job_title')
-        new_po = PurchaseOrder(client=client,
-                        member=member,
-                        cycle=cycle,
+        new_po = PurchaseOrder(client=self.client,
+                        member=self.member,
+                        cycle=self.cycle,
                         is_po=True)
 
         new_po.save()
+        po = PurchaseOrder.objects.get(member=self.member)
 
-        po = PurchaseOrder.objects.get(member=member)
-
-        self.assertEqual(member.username, po.member.username)
-        self.assertEqual(client.username, po.client.username)
-        self.assertEqual(cycle.job_title, po.cycle.job_title)
+        self.assertEqual(self.member.username, po.member.username)
+        self.assertEqual(self.client.username, po.client.username)
+        self.assertEqual(self.cycle.job_title, po.cycle.job_title)
         self.assertTrue(po.is_po)
 
     def test_invoice_model(self):
-        member = AllUser.objects.get(username='test1admin')
-        client = AllUser.objects.get(username='test1client')
-        #create_cycle(member, client)
-        cycle = Cycles.objects.get(job_title='job_title')
-        
-        new_invoice = Invoices(client=client,
-                        member=member,
-                        cycle=cycle,
+        new_invoice = Invoices(client=self.client,
+                        member=self.member,
+                        cycle=self.cycle,
                         is_invoice=True)
 
         new_invoice.save()
+        invoice = Invoices.objects.get(member=self.member)
 
-        invoice = Invoices.objects.get(member=member)
-
-        self.assertEqual(member.username, invoice.member.username)
-        self.assertEqual(client.username, invoice.client.username)
-        self.assertEqual(cycle.job_title, invoice.cycle.job_title)
+        self.assertEqual(self.member.username, invoice.member.username)
+        self.assertEqual(self.client.username, invoice.client.username)
+        self.assertEqual(self.cycle.job_title, invoice.cycle.job_title)
         self.assertTrue(invoice.is_invoice)
             
