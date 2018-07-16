@@ -16,13 +16,14 @@ class UploadFile:
     
     def upload_quote(self):
         quote_form = QuotesForm(self.request.POST, self.request.FILES)
+        #print(quote_form)
         if quote_form.is_valid():
             new_quote = Quotes(file=quote_form.cleaned_data['file'],
                                 cycle_value=quote_form.cleaned_data['cycle_value'],
                                 client=self.client,
                                 member=self.member,
                                 cycle=self.cycle)
-            print(quote_form)
+            #print(new_quote)
             try:
                 old_quote = Quotes.objects.get(cycle=self.cycle)
             except Quotes.DoesNotExist:

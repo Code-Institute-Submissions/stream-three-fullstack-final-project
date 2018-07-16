@@ -7,16 +7,9 @@ from accounts.models import AllUser
 from .upload import UploadFile
 from .view_func import get_porthole_info
 
-
-## Need to Upload Media to Dynamic Folder ##
-## Need to Retrieve Project Name and Details ##
-## Need to Retrieve Status of Each Cycle Stage ##
-## for logic in showing next stage Divs ##
-
-
 ############## VIEWS #################################
 
-## Returns Cycle Detailed Information including upload forms ##
+## Returns Porthole Template ##
 def porthole(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
@@ -66,9 +59,7 @@ def po_upload(request, username, cycle_id, client_username):
 def invoice_upload(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
-    print('here')
     if request.method == 'POST':
-       
         UploadFile(request, 
                     info['client'], 
                     info['member'], 
