@@ -22,6 +22,7 @@ class UploadFile:
                                     client=self.client,
                                     member=self.member,
                                     cycle=self.cycle)
+            print(quote_form.cleaned_data)
             try:
                 old_quote = Quotes.objects.get(cycle=self.cycle)
             except Quotes.DoesNotExist:

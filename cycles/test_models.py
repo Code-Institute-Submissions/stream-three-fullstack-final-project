@@ -2,6 +2,7 @@ from django.test import TestCase
 from cycles.models import Cycles
 from accounts.models import AllUser
 
+
 class TestCyclesModel(TestCase):
     
     def test_create_a_cycle(self):

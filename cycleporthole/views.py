@@ -38,6 +38,7 @@ def quote_upload(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
     if request.method == 'POST':
+        print(request)
         UploadFile(request, 
                     info['client'], 
                     info['member'], 

@@ -1,7 +1,7 @@
 import os
-import shutil
-from django.http import Http404
-from django.dispatch import receiver
+#import shutil
+#from django.dispatch import receiver
+##from django.http import Http404
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from djmoney.models.fields import MoneyField
@@ -12,7 +12,7 @@ from cycles.models import Cycles
 
 def get_upload_path(instance, filename):
     ext = os.path.splitext(filename)[1]
-    print(instance)
+    
     try:
         if instance.is_quote:
             file_type = 'quote'
@@ -49,8 +49,6 @@ class UploadModel(models.Model):
     class Meta:
         abstract = True
 
-    def __str__(self):
-        return "{0} {1}".format(self.file, self.uploaded_at)
                                             
 class Quotes(UploadModel):
     cycle_value = MoneyField(
