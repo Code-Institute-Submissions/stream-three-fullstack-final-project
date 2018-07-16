@@ -2,6 +2,7 @@ from django.test import TestCase
 from cycles.models import Cycles
 from accounts.models import AllUser
 from django.core.files.uploadedfile import SimpleUploadedFile
+from .view_func import get_porthole_info
 
 class TestCyclePortholeViews(TestCase):
     
@@ -63,3 +64,14 @@ class TestCyclePortholeViews(TestCase):
                                                     self.cycle_id)
         request = self.client.post(url)
         self.assertEqual(request.status_code, 302)
+
+    def test_get_porthole_info_is_correct(self):
+        username = 'test1admin'
+        cycle_id = self.cycle_id
+        client_username = 'test1client'
+        porthole_info = get_porthole_info(username, cycle_id, client_username)
+
+        self.assertEqual(type(porthole_info), dict)
+        self.assertEqual(porthole_info['cycle'].id, cycle_id)
+        self.assertEqual(porthole_info['member'].username, username)
+        self.assertEqual(porthole_info['client'].username, client_username)
