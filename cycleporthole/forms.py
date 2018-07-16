@@ -11,11 +11,10 @@ class UploadForm(ModelForm):
 
     def clean_file(self):
         pdf_file = self.cleaned_data['file']
-        print(pdf_file)
         try:
             PyPDF2.PdfFileReader(pdf_file)
         except PdfReadError:
-            raise forms.ValidationError('This is not a PDF file.')
+            raise forms.ValidationError('Please make sure your file is a PDF.')
         return pdf_file
 
 class QuotesForm(UploadForm):
