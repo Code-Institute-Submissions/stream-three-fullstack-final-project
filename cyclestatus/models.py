@@ -1,4 +1,5 @@
 from django.db import models
+from cycleporthole.models import Quotes
 
 # Create your models here.
 
@@ -15,4 +16,7 @@ class CycleStatus(models.Model):
         return "{0}-{1}-{2}-{3}".format(self.approve, self.contest,
                                         self.urgent, self.comment)
 
-#class QuoteStatus(CycleStatus):
+class QuoteStatus(CycleStatus):
+    quote = models.OneToOneField(Quotes, 
+                                on_delete=models.CASCADE, 
+                                primary_key=True)
