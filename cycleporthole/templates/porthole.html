@@ -9,6 +9,12 @@
 <p>@{{ context.cycle.location }}</p>
 <h3>Description</h3>
 <P>{{ context.cycle.description }}</P>
+<h3>Job Value</h3>
+{% if context.quote.cycle_value %}
+<p>{{ context.quote.cycle_value }}</p>
+{% else %}
+<p>Cycle Value not entered yet.</p>
+{% endif %}
 <hr>
 <div>
     <h3>Upload Your Quote</h3>
@@ -19,8 +25,8 @@
         <button type="submit">Submit</button>
     </form>
     <ul>
-        <li><a href="#">Download File</a></li>
-        <li><a href="#">View File</a></li> 
+        <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
+        <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <p>Status: ""</p>
     {% for message in messages %}
@@ -37,8 +43,8 @@
         <button type="submit">Submit</button>
     </form>
     <ul>
-        <li><a href="#">Download File</a></li>
-        <li><a href="#">View File</a></li> 
+        <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
+        <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <p>Status: ""</p>
 </div>
@@ -52,8 +58,8 @@
         <button type="submit">Submit</button>
     </form>
     <ul>
-        <li><a href="#">Download File</a></li>
-        <li><a href="#">View File</a></li> 
+        <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
+        <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <p>Status: ""</p>
 </div>

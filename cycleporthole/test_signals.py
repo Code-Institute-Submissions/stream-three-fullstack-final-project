@@ -6,6 +6,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
 from cycles.models import Cycles
 from djmoney.money import Money
+from .signals import
 
 ## Catch Signal Class ##
 class CatchSignal:
@@ -20,9 +21,11 @@ class CatchSignal:
     def __exit__(self, exc_type, exc_value, tb):
         self.signal.disconnect(self.handler)
 
-## 
+
 class TestCyclePortholeSignalIsSentOnDelete(TestCase):
 
+    ## Build Model Objects ##
+    
     def setUp(self):
         AllUser.objects.create_user(first_name='test1admin',
                                 last_name='test1',

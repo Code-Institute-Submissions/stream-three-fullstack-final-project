@@ -13,16 +13,16 @@ from .view_func import get_porthole_info
 def porthole(request, username, cycle_id, client_username):
     info = get_porthole_info(username, cycle_id, 
                             client_username)
-    quote_form = QuotesForm()
-    po_form = PurchaseOrderForm()
-    invoice_form = InvoiceForm()
     context = {'username': username,
                 'client': info['client'],
                 'cycle_id': cycle_id, 
-                'quote_form': quote_form,
-                'po_form': po_form,
-                'invoice_form':invoice_form,
-                'cycle': info['cycle']}
+                'quote_form': QuotesForm(),
+                'po_form': PurchaseOrderForm(),
+                'invoice_form':InvoiceForm(),
+                'cycle': info['cycle'],
+                'quote': info['quote'],
+                'po': info['po'],
+                'invoice': info['invoice']}
 
     return render(request, 'porthole.html', {'context':context})
 

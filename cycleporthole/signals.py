@@ -49,4 +49,4 @@ def auto_delete_invoice_file(sender, instance, **kwargs):
                                         instance.client,
                                         instance.cycle.id)
     remove_file_on_delete_helper(instance, client_path)
-    
+

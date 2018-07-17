@@ -5,7 +5,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from .view_func import get_porthole_info
 
 class TestCyclePortholeViews(TestCase):
-    
+    ## Build Model Objects ##
     def setUp(self):
         AllUser.objects.create_user(first_name='test1admin',
                                                     last_name='test1',

@@ -7,6 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 class TestCyclePortholeForms(TestCase):
 
 ## TEST FORMS WON'T BE VALID DUE TO INVALID PDF ##
+
     def test_quotes_form_not_valid(self):
         file = SimpleUploadedFile('file.pdf', b'file_content')
         form = QuotesForm({'cycle_value': Money(1, 'GBP')},
