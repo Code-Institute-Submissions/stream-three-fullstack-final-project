@@ -1,5 +1,5 @@
 from django.db import models
-from cycleporthole.models import Quotes
+from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 
 # Create your models here.
 
@@ -20,3 +20,9 @@ class QuoteStatus(CycleStatus):
     quote = models.OneToOneField(Quotes, 
                                 on_delete=models.CASCADE, 
                                 primary_key=True)
+
+class POStatus(CycleStatus):
+    po = models.OneToOneField(PurchaseOrder)
+
+class InvoicesStatus(CycleStatus):
+    invoices = models.OneToOneField(Invoices)

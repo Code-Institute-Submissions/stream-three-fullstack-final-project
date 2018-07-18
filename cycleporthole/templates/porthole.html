@@ -28,7 +28,38 @@
         <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
         <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
-    <p>Status: ""</p>
+    <div>
+        <h4>Quote Status</h4>
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="contest">
+                    <input type="radio" id="contest" value="contest" name="quote_status">
+                    <span>Contest</span>
+                    </label>
+                </div>  
+                <div>
+                    <label for="approve">
+                        <input type="radio" id="approve" value="approve" name="quote_status" checked>
+                        <span>Approve</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="urgent">
+                        <input type="radio" id="urgent" value="urgent" name="quote_status">
+                        <span>Flag as Urgent</span>
+                    </label>
+                </div>
+                <div>
+                    <textarea type="text" name="quote_comments"></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
     {% for message in messages %}
     {{ message }}
     {% endfor %}
@@ -46,7 +77,38 @@
         <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
         <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
-    <p>Status: ""</p>
+    <div>
+        <h4>PO Status</h4>
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="contest">
+                    <input type="radio" id="contest" value="contest" name="po_status">
+                    <span>Contest</span>
+                    </label>
+                </div>  
+                <div>
+                    <label for="approve">
+                        <input type="radio" id="approve" value="approve" name="po_status" checked>
+                        <span>Approve</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="urgent">
+                        <input type="radio" id="urgent" value="urgent" name="po_status">
+                        <span>Flag as Urgent</span>
+                    </label>
+                </div>
+                <div>
+                    <textarea type="text" name="po_comments"></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <hr>
 <div>
@@ -61,7 +123,38 @@
         <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
         <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
-    <p>Status: ""</p>
+    <div>
+        <h4>Invoice Status</h4>
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="contest">
+                    <input type="radio" id="contest" value="contest" name="invoice_status">
+                    <span>Contest</span>
+                    </label>
+                </div>  
+                <div>
+                    <label for="approve">
+                        <input type="radio" id="approve" value="approve" name="invoice_status" checked>
+                        <span>Approve</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="urgent">
+                        <input type="radio" id="urgent" value="urgent" name="invoice_status">
+                        <span>Flag as Urgent</span>
+                    </label>
+                </div>
+                <div>
+                    <textarea type="text" name="invoice_comments"></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <hr>
 {% endblock %}

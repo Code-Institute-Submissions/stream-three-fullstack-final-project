@@ -65,7 +65,7 @@ class Quotes(UploadModel):
 
 
     def __str__(self):
-        return "{0} {1} {2} {3} {4} {5}".format(self.file, self.uploaded_at,
+        return "{0} {1} {2} {3} {4}".format(self.uploaded_at,
                                             self.client, self.member, 
                                             self.cycle, self.cycle_value)
 
@@ -76,9 +76,9 @@ class PurchaseOrder(UploadModel):
     is_po = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{0} {1} {2} {3} {4}".format(self.file, self.uploaded_at,
-                                            self.client, self.member, 
-                                            self.cycle)
+        return "{0} {1} {2} {3}".format(self.uploaded_at,
+                                        self.client, self.member, 
+                                        self.cycle)
 
 class Invoices(UploadModel):
     client = models.ForeignKey(AllUser,related_name='InvoiceUserFK', on_delete=models.CASCADE)
@@ -87,7 +87,7 @@ class Invoices(UploadModel):
     is_invoice = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{0} {1} {2} {3} {4}".format(self.file, self.uploaded_at,
+        return "{0} {1} {2} {3}".format(self.uploaded_at,
                                             self.client, self.member, 
                                             self.cycle)
 
