@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from .views import porthole, quote_upload, po_upload, invoice_upload
+from .views import porthole, quote_upload, po_upload, invoice_upload 
 
 urlpatterns = [
 
@@ -13,5 +13,4 @@ urlpatterns = [
                                                     invoice_upload, name='invoice_upload'),
   
 ]
-#url(r'^cyle-porthole/(?P<username>[\w.@+-]+)/(?P<id>\d+)/$', 
-   # cycle_porthole, name='cycle_porthole')
+

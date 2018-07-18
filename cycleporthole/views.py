@@ -4,8 +4,12 @@ from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
 from cycles.models import Cycles
 from accounts.models import AllUser
+from cyclestatus.models import QuoteStatus
+from cyclestatus.forms import QuoteStatusForm, POStatusForm, InvoicesStatusForm
 from .upload import UploadFile
 from .view_func import get_porthole_info
+
+
 
 ############## VIEWS #################################
 
@@ -22,7 +26,10 @@ def porthole(request, username, cycle_id, client_username):
                 'cycle': info['cycle'],
                 'quote': info['quote'],
                 'po': info['po'],
-                'invoice': info['invoice']}
+                'invoice': info['invoice'],
+                'quote_status_form': QuoteStatusForm(),
+                'po_status_form': POStatusForm(),
+                'invoice_status_form':InvoicesStatusForm() }
 
     return render(request, 'porthole.html', {'context':context})
 
@@ -69,3 +76,4 @@ def invoice_upload(request, username, cycle_id, client_username):
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
+

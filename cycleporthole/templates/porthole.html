@@ -31,32 +31,15 @@
     <div>
         <h4>Quote Status</h4>
         <div>
-            <form action="" method="POST">
+            <form action="{% url 'quote_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 {% csrf_token %}
-                <div>
-                    <label for="contest">
-                    <input type="radio" id="contest" value="contest" name="quote_status">
-                    <span>Contest</span>
-                    </label>
-                </div>  
-                <div>
-                    <label for="approve">
-                        <input type="radio" id="approve" value="approve" name="quote_status" checked>
-                        <span>Approve</span>
-                    </label>
-                </div>
-                <div>
-                    <label for="urgent">
-                        <input type="radio" id="urgent" value="urgent" name="quote_status">
-                        <span>Flag as Urgent</span>
-                    </label>
-                </div>
-                <div>
-                    <textarea type="text" name="quote_comments"></textarea>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
+                <fieldset>
+                    {{ context.quote_status_form.as_p }}
+                    <button type="submit">Set Status</button>
+                </fieldset>
+                
+            <form action="" type="POST" >
+                <button type="submit">Flag as Urgent</button>
             </form>
         </div>
     </div>
@@ -81,31 +64,16 @@
         <h4>PO Status</h4>
         <div>
             <form action="" method="POST">
+                <fieldset>
+                    {% csrf_token %}
+                    {{ context.po_status_form.as_p }}
+                    <button type="submit">Set Status</button>
+                </fieldset>
+            </form>
+            
+            <form action="" type="POST" >
                 {% csrf_token %}
-                <div>
-                    <label for="contest">
-                    <input type="radio" id="contest" value="contest" name="po_status">
-                    <span>Contest</span>
-                    </label>
-                </div>  
-                <div>
-                    <label for="approve">
-                        <input type="radio" id="approve" value="approve" name="po_status" checked>
-                        <span>Approve</span>
-                    </label>
-                </div>
-                <div>
-                    <label for="urgent">
-                        <input type="radio" id="urgent" value="urgent" name="po_status">
-                        <span>Flag as Urgent</span>
-                    </label>
-                </div>
-                <div>
-                    <textarea type="text" name="po_comments"></textarea>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
+                <button type="submit">Flag as Urgent</button>
             </form>
         </div>
     </div>
@@ -126,32 +94,18 @@
     <div>
         <h4>Invoice Status</h4>
         <div>
+            
             <form action="" method="POST">
+                <fieldset>
+                    {% csrf_token %}
+                    {{ context.invoice_status_form.as_p }}
+                    <button type="submit">Set Status</button>
+                </fieldset>
+                
+            </form>
+            <form action="" type="POST">
                 {% csrf_token %}
-                <div>
-                    <label for="contest">
-                    <input type="radio" id="contest" value="contest" name="invoice_status">
-                    <span>Contest</span>
-                    </label>
-                </div>  
-                <div>
-                    <label for="approve">
-                        <input type="radio" id="approve" value="approve" name="invoice_status" checked>
-                        <span>Approve</span>
-                    </label>
-                </div>
-                <div>
-                    <label for="urgent">
-                        <input type="radio" id="urgent" value="urgent" name="invoice_status">
-                        <span>Flag as Urgent</span>
-                    </label>
-                </div>
-                <div>
-                    <textarea type="text" name="invoice_comments"></textarea>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
+                <button type="submit">Flag as Urgent</button>
             </form>
         </div>
     </div>

@@ -7,7 +7,7 @@ class CycleStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
     urgent = models.BooleanField(default=False, blank=False)
-    comment = models.BooleanField(default=False, blank=False)
+    comment = models.TextField(blank=True)
 
     class Meta:
         abstract = True
