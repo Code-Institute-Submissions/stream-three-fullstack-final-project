@@ -2,21 +2,11 @@ from django import forms
 from django.forms import ModelForm
 from .models import QuoteStatus, POStatus, InvoicesStatus
 
-class QuoteStatusForm(ModelForm):
 
+class StatusForm(forms.Form):
+    status = forms.ChoiceField(choices=[('approve','Approve'), ('contest', 'Contest')],
+                                 widget=forms.RadioSelect, label='Status')
+    comment = forms.CharField(required=False, max_length=150, 
+                                widget=forms.Textarea, 
+                                label="Leave a comment")
 
-    class Meta:
-        model = QuoteStatus
-        fields = ['approve', 'contest', 'comment']
-
-class POStatusForm(ModelForm):
-    
-    class Meta:
-        model = POStatus
-        fields = ['approve', 'contest', 'comment']
-
-class InvoicesStatusForm(ModelForm):
-    
-    class Meta:
-        model = InvoicesStatus
-        fields = ['approve', 'contest', 'comment']

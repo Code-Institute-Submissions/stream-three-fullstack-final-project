@@ -7,22 +7,28 @@ class CycleStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
     urgent = models.BooleanField(default=False, blank=False)
-    comment = models.TextField(blank=True)
+    comment = models.TextField(max_length=150, blank=True)
 
     class Meta:
         abstract = True
-        
-    def __string__(self):
-        return "{0}-{1}-{2}-{3}".format(self.approve, self.contest,
-                                        self.urgent, self.comment)
+    
+    
 
 class QuoteStatus(CycleStatus):
     quote = models.OneToOneField(Quotes, 
                                 on_delete=models.CASCADE, 
                                 primary_key=True)
+    def __str__(self):
+        return "{0}".format(self.quote)
 
 class POStatus(CycleStatus):
     po = models.OneToOneField(PurchaseOrder)
 
+    def __str__(self):
+        return "{0}".format(self.po)
+
 class InvoicesStatus(CycleStatus):
-    invoices = models.OneToOneField(Invoices)
+    invoice = models.OneToOneField(Invoices)
+
+    def __str__(self):
+        return "{0}".format(self.invoice)

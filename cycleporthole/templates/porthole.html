@@ -31,10 +31,13 @@
     <div>
         <h4>Quote Status</h4>
         <div>
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
             <form action="{% url 'quote_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
-                    {{ context.quote_status_form.as_p }}
+                    {{ context.status_form.as_p }}
                     <button type="submit">Set Status</button>
                 </fieldset>
                 
@@ -43,9 +46,6 @@
             </form>
         </div>
     </div>
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
 </div>
 <hr>
 <div>
@@ -63,10 +63,13 @@
     <div>
         <h4>PO Status</h4>
         <div>
-            <form action="" method="POST">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+            <form action="{% url 'po_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
-                    {{ context.po_status_form.as_p }}
+                    {{ context.status_form.as_p }}
                     <button type="submit">Set Status</button>
                 </fieldset>
             </form>
@@ -94,11 +97,13 @@
     <div>
         <h4>Invoice Status</h4>
         <div>
-            
-            <form action="" method="POST">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+            <form action="{% url 'invoice_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
-                    {{ context.invoice_status_form.as_p }}
+                    {{ context.status_form.as_p }}
                     <button type="submit">Set Status</button>
                 </fieldset>
                 
