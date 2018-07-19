@@ -41,16 +41,6 @@
                     <button type="submit">Submit</button>
                 </fieldset>
             </form> 
-           <form action="{% url 'quote_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
-                {% csrf_token %}
-                {{ context.urgent_form.as_p }}
-                <button type="submit">Flag or Unflag</button>
-            </form>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ context.action_form.as_p }}
-                <button type="submit">Set Action</button>
-            </form>
         </div>
     </div>
 </div>
@@ -80,11 +70,6 @@
                     <button type="submit">Set Status</button>
                 </fieldset>
             </form>
-            <form action="{% url 'po_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
-                {% csrf_token %}
-                {{ context.urgent_form.as_p }}
-                <button type="submit">Flag or Unflag</button>
-            </form>
         </div>
     </div>
 </div>
@@ -113,11 +98,6 @@
                     {{ context.status_form.as_p }}
                     <button type="submit">Set Status</button>
                 </fieldset>
-            </form>
-            <form action="{% url 'invoice_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
-                {% csrf_token %}
-                {{ context.urgent_form.as_p }}
-                <button type="submit">Flag or Unflag</button>
             </form>
         </div>
     </div>

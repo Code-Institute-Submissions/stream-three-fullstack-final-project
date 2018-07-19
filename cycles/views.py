@@ -13,6 +13,7 @@ def member_cycles(request, username):
     user_id = user.pk
     cycle_form = CycleForm(user_id)
     users_cycles = get_user_cycles(user)
+    print(users_cycles)
     """ If post Create New Cycle """
     if request.method == 'POST':
         create_cycle(user_id, request.POST, user)

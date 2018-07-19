@@ -1,7 +1,9 @@
 from django import forms
+from django.forms import ModelForm
 from .models import Cycles
 from manageclient.models import MemberClient 
 from accounts.models import AllUser
+from jobs.models import Jobs
 
 ## FORM RENDERING DYNAMIC CHOICE SELECTION FOR ATTACHING CLIENT TO CYCLE ##
 class CycleForm(forms.Form):
@@ -9,14 +11,13 @@ class CycleForm(forms.Form):
     def __init__(self, user_id, *args, **kwargs):
         super(CycleForm, self).__init__(*args, **kwargs)
         self.user_id = user_id
-        self.choices = MemberClient.objects.filter(member=self.user_id)
-        self.fields['job_title'] = forms.CharField(max_length=50)
-        self.fields['location'] = forms.CharField(max_length=50)
+        self.job_choices = Jobs.objects.filter(member=self.user_id)
+        self.fields['cycle_title'] = forms.CharField(max_length=50)
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)
-        #self.fields['job_start'] = forms.DateField()
-        #self.fields['job_end'] = forms.DateField()
-        self.fields['clients'] = forms.ModelChoiceField(queryset=self.choices, 
-                                                        label='Attach Client',
-                                                        initial=0)
+        self.fields['jobs'] = forms.ModelChoiceField(queryset=self.job_choices,
+                                                    label='Attach Job',
+                                                    initial=0)
+
    
+    

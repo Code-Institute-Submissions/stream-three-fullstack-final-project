@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'localflavor',
     'cycleporthole',
     'cyclestatus',
+    'jobs',
+    'manageaccount',
 ]
 
 MIDDLEWARE = [

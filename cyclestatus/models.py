@@ -31,7 +31,7 @@ class InvoicesStatus(CycleStatus):
         return "{0}".format(self.invoice)
 
 ###############################################################
-
+"""
 ## Models to store file submission Urgency Statuses for Each Cycle Step ##
 class Urgency(models.Model):
     urgent = models.BooleanField(default=False, blank=False)
@@ -95,3 +95,4 @@ class InvoiceAction(Action):
     
     def __str__(self):
         return "{0}".format(self.invoice)
+"""

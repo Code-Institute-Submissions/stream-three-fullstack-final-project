@@ -5,7 +5,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 from cycles.models import Cycles
 from accounts.models import AllUser
 from cyclestatus.models import QuoteStatus
-from cyclestatus.forms import StatusForm, UrgentForm, ActionForm
+from cyclestatus.forms import StatusForm
 from .upload import UploadFile
 from .view_func import get_porthole_info
 
@@ -28,8 +28,7 @@ def porthole(request, username, cycle_id, client_username):
                 'po': info['po'],
                 'invoice': info['invoice'],
                 'status_form':StatusForm(),
-                'urgent_form': UrgentForm(),
-                'action_form': ActionForm() }
+                 }
 
     return render(request, 'porthole.html', {'context':context})
 
