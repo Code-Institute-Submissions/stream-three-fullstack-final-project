@@ -1,13 +1,20 @@
 from django.conf.urls import url, include
-from .views import set_quote_status, set_po_status, set_invoice_status
+from cyclestatus import views
+
 
 urlpatterns = [
 
     url(r'^quote/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)$', 
-                                                                set_quote_status, name='quote_status'),
+                                                                views.set_quote_status, name='quote_status'),
     url(r'^po/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)$', 
-                                                                set_po_status, name='po_status'),
+                                                                views.set_po_status, name='po_status'),
     url(r'^invoice/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)$', 
-                                                                set_invoice_status, name='invoice_status')
+                                                                views.set_invoice_status, name='invoice_status'),
+    url(r'^quote/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/urgent$', 
+                                                                views.set_quote_urgency, name='quote_urgency'),
+    url(r'^po/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/urgent$', 
+                                                                views.set_po_urgency, name='po_urgency'),
+    url(r'^invoice/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/urgent$', 
+                                                                views.set_invoice_urgency, name='invoice_urgency')
   
 ]

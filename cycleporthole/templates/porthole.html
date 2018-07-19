@@ -29,7 +29,7 @@
         <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <div>
-        <h4>Quote Status</h4>
+        <h4>Approval</h4>
         <div>
             {% for message in messages %}
             {{message}}
@@ -38,11 +38,18 @@
                 {% csrf_token %}
                 <fieldset>
                     {{ context.status_form.as_p }}
-                    <button type="submit">Set Status</button>
+                    <button type="submit">Submit</button>
                 </fieldset>
-                
-            <form action="" type="POST" >
-                <button type="submit">Flag as Urgent</button>
+            </form> 
+           <form action="{% url 'quote_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
+                {% csrf_token %}
+                {{ context.urgent_form.as_p }}
+                <button type="submit">Flag or Unflag</button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ context.action_form.as_p }}
+                <button type="submit">Set Action</button>
             </form>
         </div>
     </div>
@@ -73,10 +80,10 @@
                     <button type="submit">Set Status</button>
                 </fieldset>
             </form>
-            
-            <form action="" type="POST" >
+            <form action="{% url 'po_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
                 {% csrf_token %}
-                <button type="submit">Flag as Urgent</button>
+                {{ context.urgent_form.as_p }}
+                <button type="submit">Flag or Unflag</button>
             </form>
         </div>
     </div>
@@ -106,11 +113,11 @@
                     {{ context.status_form.as_p }}
                     <button type="submit">Set Status</button>
                 </fieldset>
-                
             </form>
-            <form action="" type="POST">
+            <form action="{% url 'invoice_urgency' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST" >
                 {% csrf_token %}
-                <button type="submit">Flag as Urgent</button>
+                {{ context.urgent_form.as_p }}
+                <button type="submit">Flag or Unflag</button>
             </form>
         </div>
     </div>

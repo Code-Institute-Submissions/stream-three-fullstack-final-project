@@ -1,7 +1,4 @@
 import os
-#import shutil
-#from django.dispatch import receiver
-##from django.http import Http404
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from djmoney.models.fields import MoneyField
@@ -31,7 +28,7 @@ def get_upload_path(instance, filename):
     except AttributeError as e:
         print('File is not an Invoice')
     
-    path='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
+    path ='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
                                                 instance.member,
                                                 instance.client,
                                                 instance.cycle.job_title,

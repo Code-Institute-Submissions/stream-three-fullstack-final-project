@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import QuoteStatus, POStatus, InvoicesStatus
+from cyclestatus import models
 
 # Register your models here.
-admin.site.register(QuoteStatus)
-admin.site.register(POStatus)
-admin.site.register(InvoicesStatus)
+admin.site.register(models.QuoteStatus)
+admin.site.register(models.POStatus)
+admin.site.register(models.InvoicesStatus)
+admin.site.register(models.QuoteUrgency)
+admin.site.register(models.POUrgency)
+admin.site.register(models.InvoiceUrgency)

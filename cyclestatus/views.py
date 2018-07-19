@@ -4,7 +4,8 @@ from .models import Quotes, PurchaseOrder, Invoices
 from cycles.models import Cycles
 from accounts.models import AllUser
 from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
-from cyclestatus.forms import StatusForm
+from cyclestatus.models import QuoteUrgency, POUrgency, InvoiceUrgency
+from cyclestatus.forms import StatusForm, UrgentForm
 
 ## Helper Function to Views ##
 def set_status(status_form):
@@ -13,12 +14,23 @@ def set_status(status_form):
         if status_form.cleaned_data['status'] == 'approve':
             approve = True
             contest = False
-        if status_form.cleaned_data['status'] == 'contest':
+        elif status_form.cleaned_data['status'] == 'contest':
             approve = False
             contest = True
         comment = status_form.cleaned_data['comment']
 
         return approve, contest, comment
+
+def set_urgency(form):
+    """Set Urgency to Bool"""
+
+    if form.is_valid():
+        if form.cleaned_data['urgent'] == 'flag':
+            flag = True
+        elif form.cleaned_data['urgent'] == 'unflag':
+            flag = False
+
+        return flag
 
 
 ## Set Status of Quote ##
@@ -43,6 +55,23 @@ def set_quote_status(request, username, cycle_id, client_username):
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
+    return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
+
+
+## Set Urgency of Quote ##
+def set_quote_urgency(request, username, cycle_id, client_username):
+    """ Set Urgency of Quote, save to Model and Redirect to Porthole """
+    cycle = get_object_or_404(Cycles, pk=cycle_id)
+    if request.method == 'POST':
+        form = UrgentForm(request.POST)
+        urgency = set_urgency(form)
+        quote_urgency = QuoteUrgency(urgent=urgency,
+                                    cycle=cycle)
+        quote_urgency.save()
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id,
@@ -76,6 +105,22 @@ def set_po_status(request, username, cycle_id, client_username):
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
+
+def set_po_urgency(request, username, cycle_id, client_username):
+    """ Set Urgency of PO, save to Model and Redirect to Porthole """
+    cycle = get_object_or_404(Cycles, pk=cycle_id)
+    if request.method == 'POST':
+        form = UrgentForm(request.POST)
+        urgency = set_urgency(form)
+        po_urgency = POUrgency(urgent=urgency,
+                                cycle=cycle)
+        po_urgency.save()
+    return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
+
 ## Set Status of Invoice ##
 def set_invoice_status(request, username, cycle_id, client_username):
     """Get Invoice by Cycle Id, Save form to Model and Redirect back to Porthole"""
@@ -103,3 +148,19 @@ def set_invoice_status(request, username, cycle_id, client_username):
                                     'cycle_id': cycle_id,
                                     'client_username':client_username,
                                     }))
+
+
+def set_invoice_urgency(request, username, cycle_id, client_username):
+    """ Set Urgency of Invoice, save to Model and Redirect to Porthole """
+    cycle = get_object_or_404(Cycles, pk=cycle_id)
+    if request.method == 'POST':
+        form = UrgentForm(request.POST)
+        urgency = set_urgency(form)
+        invoice_urgency = InvoiceUrgency(urgent=urgency,
+                                    cycle=cycle)
+        invoice_urgency.save()
+    return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
