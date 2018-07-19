@@ -23,7 +23,6 @@ def set_status(status_form):
 
 def set_urgency(form):
     """Set Urgency to Bool"""
-
     if form.is_valid():
         if form.cleaned_data['urgent'] == 'flag':
             flag = True
@@ -32,6 +31,7 @@ def set_urgency(form):
 
         return flag
 
+######################## QUOTES VIEWS ###########################################
 
 ## Set Status of Quote ##
 def set_quote_status(request, username, cycle_id, client_username):
@@ -78,6 +78,8 @@ def set_quote_urgency(request, username, cycle_id, client_username):
                                         'client_username':client_username,
                                         }))
 
+######################## PO VIEWS ###########################################
+
 ## Set Status of PO ##
 def set_po_status(request, username, cycle_id, client_username):
     """Get PO by Cycle Id, Save form to Model and Redirect back to Porthole"""
@@ -120,6 +122,8 @@ def set_po_urgency(request, username, cycle_id, client_username):
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
+
+######################## INVOICE VIEWS ###########################################
 
 ## Set Status of Invoice ##
 def set_invoice_status(request, username, cycle_id, client_username):

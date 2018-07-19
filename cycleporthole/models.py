@@ -14,19 +14,19 @@ def get_upload_path(instance, filename):
         if instance.is_quote:
             file_type = 'quote'
     except AttributeError as e:
-        print('File is not a Quote')
+        print(e + 'File is not a Quote')
     
     try:
         if instance.is_po:
             file_type = 'po'
     except AttributeError as e:
-        print('File is not a PO')
+        print(e + 'File is not a PO')
 
     try:
         if instance.is_invoice:
             file_type = 'invoice'
     except AttributeError as e:
-        print('File is not an Invoice')
+        print(e + 'File is not an Invoice')
     
     path ='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
                                                 instance.member,
