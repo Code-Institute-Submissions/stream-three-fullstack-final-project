@@ -23,10 +23,12 @@ from manageclient import urls as urls_manage_client
 from profiles import urls as urls_profiles
 from cycleporthole import urls as urls_porthole
 from cyclestatus import urls as urls_status
+from manageaccount import urls as urls_manage_account
 from fileo.settings import MEDIA_ROOT
 
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
     url(r'^$', index, name='index'),
@@ -36,5 +38,5 @@ urlpatterns = [
     url(r'^profile/', include(urls_profiles)),
     url(r'^porthole/', include(urls_porthole)),
     url(r'^status/', include(urls_status)),
-   
+    url(r'^manage/', include(urls_manage_account)),
 ]

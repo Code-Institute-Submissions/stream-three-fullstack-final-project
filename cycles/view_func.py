@@ -1,6 +1,6 @@
 from django.contrib import messages
-from .forms import CycleForm
-from .models import Cycles      
+from managecycle.forms import CycleForm
+from managecycle.models import Cycles      
 from accounts.models import AllUser
 
 ##  Creates New Cycle, Called By Member Cycle View ##

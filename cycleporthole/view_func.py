@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from accounts.models import AllUser
 from .models import Quotes, PurchaseOrder, Invoices
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from .models import Quotes, PurchaseOrder, Invoices
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from accounts.models import AllUser
 from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
 from cyclestatus.forms import StatusForm

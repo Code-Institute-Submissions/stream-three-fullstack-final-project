@@ -5,7 +5,7 @@ from djmoney.models.fields import MoneyField
 from djmoney.money import Money
 from djmoney.models.validators import MaxMoneyValidator, MinValueValidator
 from accounts.models import AllUser
-from cycles.models import Cycles
+from managecycle.models import Cycles
 
 def get_upload_path(instance, filename):
     ext = os.path.splitext(filename)[1]

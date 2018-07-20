@@ -4,7 +4,7 @@ from django.dispatch import Signal, receiver
 from unittest import mock
 from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from djmoney.money import Money
 from .signals import
 

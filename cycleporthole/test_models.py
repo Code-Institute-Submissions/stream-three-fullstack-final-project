@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from djmoney.money import Money
 
 ## Test Helper Functions ##

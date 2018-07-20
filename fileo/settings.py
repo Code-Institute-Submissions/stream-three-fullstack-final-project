@@ -50,13 +50,14 @@ INSTALLED_APPS = [
     'djmoney',
     'accounts',
     'cycles',
-    'manageclient',
     'profiles',
     'localflavor',
     'cycleporthole',
     'cyclestatus',
-    'jobs',
+    'managejobs',
     'manageaccount',
+    'managecycle',
+    'manageclient',
 ]
 
 MIDDLEWARE = [

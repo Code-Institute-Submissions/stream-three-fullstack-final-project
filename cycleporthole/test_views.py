@@ -1,5 +1,5 @@
 from django.test import TestCase
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from accounts.models import AllUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 from .view_func import get_porthole_info

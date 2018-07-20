@@ -1,6 +1,6 @@
 from django.db import models
 from cycleporthole.models import Quotes, PurchaseOrder, Invoices
-from cycles.models import Cycles
+from managecycle.models import Cycles
 
 ## Models to store Boolean Fields about Approval Statuses of each Cycle Step ##
 class CycleStatus(models.Model):

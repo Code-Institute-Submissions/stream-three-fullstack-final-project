@@ -1,5 +1,5 @@
 from django.test import TestCase
-from cycles.models import Cycles
+from managecycle.models import Cycles
 from accounts.models import AllUser
 
 ## CYCLE MODEL TEST ##

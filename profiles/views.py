@@ -7,9 +7,7 @@ from accounts.models import AllUser
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-
-
-    
+ 
 def member_profile(request, username):
     """ Create New Profile or Edit Member Profile if Existing """
     profile = ProfileForm()
