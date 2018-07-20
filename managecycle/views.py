@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from managecycle.forms import CycleForm
+from .forms import CycleForm
 from .models import Cycles      
 from .view_func import create_cycle
 from cycles.view_func import get_user_cycles
