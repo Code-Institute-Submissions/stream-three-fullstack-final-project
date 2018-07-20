@@ -8,10 +8,11 @@ from managejobs.models import Jobs
 
 class CycleForm(forms.Form):
     
-    def __init__(self, user_id, *args, **kwargs):
+    def __init__(self, member, *args, **kwargs):
         super(CycleForm, self).__init__(*args, **kwargs)
-        self.user_id = user_id
-        self.job_choices = Jobs.objects.filter(member=self.user_id)
+        self.member = member
+        self.job_choices = Jobs.objects.filter(member=self.member)
+        #print(self.job_choices)
         self.fields['cycle_title'] = forms.CharField(max_length=50)
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)

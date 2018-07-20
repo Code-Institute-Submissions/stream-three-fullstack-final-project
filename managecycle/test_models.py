@@ -25,14 +25,13 @@ class TestCyclesModel(TestCase):
         
     def test_create_a_cycle(self):
         
-        job_title = 'Test Job'
+        cycle_title = 'Test Job'
         location = 'Test Location'
         description = 'Description'
         member = AllUser.objects.get(username='testadmin')
         client = AllUser.objects.get(username='testclient')
 
-        new_cycle = Cycles(job_title=job_title,
-                            location=location,
+        new_cycle = Cycles(cycle_title=cycle_title,
                             description=description,
                             member=member,
                             client=client)

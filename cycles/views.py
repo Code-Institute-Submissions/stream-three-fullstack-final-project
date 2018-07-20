@@ -10,11 +10,7 @@ from manageclient.models import MemberClient
 def member_cycles(request, username):
     """ Returns Member Cycles Template with all User Cycles """
     user = get_object_or_404(AllUser, username=username)
-    #cycles = 
-    #user_id = user.pk
-    #cycle_form = CycleForm(user_id)
     users_cycles = get_user_cycles(user)
-    #print(users_cycles)
     
     return render(request, 'member_cycles.html', 
                             {'username':username,

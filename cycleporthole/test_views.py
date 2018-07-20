@@ -3,6 +3,7 @@ from managecycle.models import Cycles
 from accounts.models import AllUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 from .view_func import get_porthole_info
+from managejobs.models import Jobs
 
 class TestCyclePortholeViews(TestCase):
     ## Build Model Objects ##
@@ -23,16 +24,26 @@ class TestCyclePortholeViews(TestCase):
                                         is_member=False,
                                         is_client=True
                                         )
-        new_cycle = Cycles(job_title='job_title',
-                        location='location',
+        
+        new_job = Jobs(job_title='testjob',
+                        job_number='1',
+                        location='testlocation',
+                        start_date='now',
+                        end_date='tomorrow',
+                        member=AllUser.objects.get(username='test1admin'),
+                        client=AllUser.objects.get(username='test1client'),
+                        )
+        new_job.save()
+        new_cycle = Cycles(cycle_title='cycle_title',
                         description='description',
                         member=AllUser.objects.get(username='test1admin'),
-                        client=AllUser.objects.get(username='test1client'))
+                        client=AllUser.objects.get(username='test1client'),
+                        job=Jobs.objects.get(job_title='testjob'))
         new_cycle.save()
 
-        self.username = AllUser.objects.get(username='test1admin').username
-        self.cycle_id = Cycles.objects.get(job_title='job_title').id
-        self.client_username = AllUser.objects.get(username='test1client').username
+        self.username = 'test1admin'
+        self.cycle_id = Cycles.objects.get(cycle_title='cycle_title').id
+        self.client_username = 'test1client'
 
     def test_porthole_view_returns_template(self):
         url = '/porthole/member/{0}/{1}/{2}/'.format(self.username,

@@ -6,7 +6,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
 from managecycle.models import Cycles
 from djmoney.money import Money
-from .signals import
+#from .signals import 
 
 ## Catch Signal Class ##
 class CatchSignal:
@@ -43,8 +43,7 @@ class TestCyclePortholeSignalIsSentOnDelete(TestCase):
                                     is_member=False,
                                     is_client=True
                                     )
-        new_cycle = Cycles(job_title='job_title',
-                            location='location',
+        new_cycle = Cycles(cycle_title='cycle_title',
                             description='description',
                             member=AllUser.objects.get(username='test1admin'),
                             client=AllUser.objects.get(username='test1client'))
@@ -52,7 +51,7 @@ class TestCyclePortholeSignalIsSentOnDelete(TestCase):
 
         self.member = AllUser.objects.get(username='test1admin')
         self.client = AllUser.objects.get(username='test1client')
-        self.cycle = Cycles.objects.get(job_title='job_title')
+        self.cycle = Cycles.objects.get(cycle_title='cycle_title')
 
 
     def test_signal_sent_when_quote_deleted(self):

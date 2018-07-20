@@ -32,8 +32,7 @@ class TestCyclePortholeModels(TestCase):
                                     is_member=False,
                                     is_client=True
                                     )
-        new_cycle = Cycles(job_title='job_title',
-                            location='location',
+        new_cycle = Cycles(cycle_title='cycle_title',
                             description='description',
                             member=AllUser.objects.get(username='test1admin'),
                             client=AllUser.objects.get(username='test1client'))
@@ -41,7 +40,7 @@ class TestCyclePortholeModels(TestCase):
 
         self.member = AllUser.objects.get(username='test1admin')
         self.client = AllUser.objects.get(username='test1client')
-        self.cycle = Cycles.objects.get(job_title='job_title')
+        self.cycle = Cycles.objects.get(cycle_title='cycle_title')
 
     def test_quotes_model(self):
         new_quote = Quotes(cycle_value=Money(1,'GBP'),
@@ -55,7 +54,7 @@ class TestCyclePortholeModels(TestCase):
 
         self.assertEqual(self.member.username, quote.member.username)
         self.assertEqual(self.client.username, quote.client.username)
-        self.assertEqual(self.cycle.job_title, quote.cycle.job_title)
+        self.assertEqual(self.cycle.cycle_title, quote.cycle.cycle_title)
         self.assertTrue(quote.is_quote)
         self.assertEqual(quote.cycle_value, Money(1,'GBP'))
 
@@ -70,7 +69,7 @@ class TestCyclePortholeModels(TestCase):
 
         self.assertEqual(self.member.username, po.member.username)
         self.assertEqual(self.client.username, po.client.username)
-        self.assertEqual(self.cycle.job_title, po.cycle.job_title)
+        self.assertEqual(self.cycle.cycle_title, po.cycle.cycle_title)
         self.assertTrue(po.is_po)
 
     def test_invoice_model(self):
@@ -84,6 +83,6 @@ class TestCyclePortholeModels(TestCase):
 
         self.assertEqual(self.member.username, invoice.member.username)
         self.assertEqual(self.client.username, invoice.client.username)
-        self.assertEqual(self.cycle.job_title, invoice.cycle.job_title)
+        self.assertEqual(self.cycle.cycle_title, invoice.cycle.cycle_title)
         self.assertTrue(invoice.is_invoice)
             

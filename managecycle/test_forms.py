@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from .forms import CycleForm
 from accounts.models import AllUser
 from manageclient.models import MemberClient
+from managejobs.models import Jobs
 
 
 class TestCycleForm(TestCase):
@@ -38,19 +39,25 @@ class TestCycleForm(TestCase):
                                         is_member=False,
                                         is_client=True
                                         )
-
+       
         member = get_object_or_404(AllUser, username=member)
         client = get_object_or_404(AllUser, username=client)
-        entry = MemberClient(member=member, client=client)
-        entry.save()
+        new_job = Jobs(job_title='testjob',
+                        job_number='1',
+                        location='testlocation',
+                        start_date='now',
+                        end_date='tomorrow',
+                        member=member,
+                        client=client
+                    )
+        new_job.save()
 
         user_id = AllUser.objects.get(username='testadmin').pk
-        client = MemberClient.objects.filter(member=user_id)
-      
-        new_form = CycleForm(user_id, {'job_title':'testjob',
-                            'location':'testlocation',
+        job = Jobs.objects.get(member=member).pk
+        print(job)
+        new_form = CycleForm(member, {'cycle_title':'testjob',
                             'description':'testdescription',
-                            'clients':client})
+                            'jobs': str(job)})
 
         self.assertTrue(new_form.is_valid())
         
