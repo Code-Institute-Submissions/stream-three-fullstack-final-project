@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from managecycle.models import Cycles
+from .models import Cycles
 from manageclient.models import MemberClient 
 from accounts.models import AllUser
 from managejobs.models import Jobs
