@@ -19,8 +19,11 @@ def manage_cycles(request, username):
         create_cycle(user_id, request.POST, user)
         if create_cycle:
             messages.success(request, "A new cycle has been created")
-            return redirect(reverse('member_cycles', kwargs={'username':user.username}))
-    return render(request, 'member_cycles.html', 
+            return redirect(reverse('manage_cycles', kwargs={'username':user.username}))
+    return render(request, 'manage_cycles.html', 
                             {'username':username,
                             'cycle_form':cycle_form,
                             'cycles': users_cycles})
+
+def delete_cycle(request, username, user_id):
+    return redirect(reverse('manage_cycles', kwargs={'username':username}))

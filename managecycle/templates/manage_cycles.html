@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>You are logged in as {{ username }}</h1>
+<p>Manage your Cycles here.</p>
+<h2>Add Cycle</h2>
+<form method="POST">
+    {% csrf_token %}
+
+       {{ cycle_form.as_p }}
+        
+        <p>You are seeing an empty drop down list because you haven't added any Jobs to your account yet.
+            You must do this before you can create a new job.
+        </p>
+        <p>You can follow the link here to Manage Clients.</p>
+        <div>
+            <a href="#">Manage Clients</a>
+        </div>
+    <button type="submit">Add Cycle</button>
+</form>
+<p>
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+</p>
+<hr>
+<div>
+ 
+   
+</div>
+{% endblock %}

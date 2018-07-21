@@ -17,11 +17,12 @@ class JobsForm(forms.Form):
         self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)
         self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget)
         self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices, 
-                                                        label='Attach Client',
+                                                        label='Clients',
+                                                        empty_label=None,
                                                         initial=0)
+        self.fields['client'].empty_label = "Attach a client"
 
     def clean_job_number(self):
-
         form_job_number = self.cleaned_data.get('job_number')
         try:
             existing_jobs = Jobs.objects.filter(
@@ -29,12 +30,11 @@ class JobsForm(forms.Form):
                                         ).filter(
                                         job_number=form_job_number   
                                         )
-            print(existing_jobs)
         except Jobs.DoesNotExist:
             existing_jobs = None
 
         if existing_jobs:
-            raise ValidationError(u'The job number already exists. Make it is unique.')
+            raise ValidationError(u'The job number already exists for your company. Make sure it is unique.')
       
         return form_job_number
         

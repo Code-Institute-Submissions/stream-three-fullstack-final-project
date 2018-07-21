@@ -23,11 +23,11 @@ def index(request):
             if user:
                 if user.is_member:
                     auth.login(user=user, request=request)
-                    messages.success(request, "You have logged in as a member!")
+                    #messages.success(request, "You have logged in as a member!")
                     return redirect(reverse('member_cycles', kwargs={'username':user.username}))
                 elif user.is_client:
                     auth.login(user=user, request=request)
-                    messages.success(request, 'You are logged in as client!')
+                    #messages.success(request, 'You are logged in as client!')
                     return redirect(reverse('client_cycles', kwargs={'username': user.username}))
             else:
                 messages.error(request, 'Your credentials are incorrect')
@@ -68,6 +68,6 @@ def register(request):
                                 )
             new_email.member_created()
             return redirect(reverse('register'))
-    else:
-        register = UserRegisterForm()
+    #else:
+        #register = UserRegisterForm()
     return render(request, 'register.html', {'register': register})

@@ -5,7 +5,7 @@ from accounts.models import AllUser
 
 class Jobs(models.Model):
     job_title = models.CharField(max_length=50, blank=False)
-    job_number = models.CharField(max_length=50, blank=False, null=True)
+    job_number = models.CharField(max_length=50, blank=False)
     location = models.CharField(max_length=50, blank=False)
     start_date = models.CharField(max_length=50, blank=False)
     end_date = models.CharField(max_length=50, blank=False)

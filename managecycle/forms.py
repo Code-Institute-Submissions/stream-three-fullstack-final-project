@@ -17,5 +17,7 @@ class CycleForm(forms.Form):
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)
         self.fields['jobs'] = forms.ModelChoiceField(queryset=self.job_choices,
-                                                    label='Attach Job',
-                                                    initial=0)
+                                                    label='Jobs',
+                                                    initial=0,
+                                                    required=True)
+        self.fields['jobs'].empty_label='Attach a Job'
