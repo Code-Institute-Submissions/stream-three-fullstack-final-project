@@ -1,12 +1,13 @@
 {% extends 'base.html'%}
 {% block content %}
 <h1>Logged into Member Cycle Page as {{ username }}</h1>
-<p>This will just show a feed of current cycles and overview of account.</p>
 <h2>Manage Account</h2>
-<p>Select Create Client to add a new client.</p>
+{% if not profile %}
+<p>Your profile isn't complete yet. You won't be able to use the full Fileo service until completed.</p>
+{% endif %}
 <ul>
     <li>
-        <a href="{% url 'member_profile' username=username %}">Manage Profile</a>
+        <a href="{% url 'member_profile' username=username %}">Manage Profile</a>{% if profile %}<span> Completed</span>{% endif %}
     </li>
     <li>
         <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>

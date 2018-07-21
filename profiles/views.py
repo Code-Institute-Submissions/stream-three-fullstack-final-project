@@ -1,30 +1,61 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from .models import Profile
 from .forms import ProfileForm
 from .view_func import profile_exists, edit_profile, new_profile
+from .view_func import update_profile_in_member_client_model
 from accounts.models import AllUser
 from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
- 
+## View to Create a Full Member Profile ##
 def member_profile(request, username):
-    """ Create New Profile or Edit Member Profile if Existing """
-    profile = ProfileForm()
     user = get_object_or_404(AllUser, username=username)
     user_id = user.pk
+    is_existing = profile_exists(user_id)
+    if is_existing:
+        profile = ProfileForm(model_to_dict(is_existing))
+    else:
+        profile = ProfileForm()
     if request.method == 'POST':
         profile = ProfileForm(request.POST)
         if profile.is_valid():
-            is_existing = profile_exists(user_id)
             if is_existing:
                 edit_profile(profile, is_existing)
-                messages.success(request,'You have edited your profile.')
-                return redirect(reverse('member_profile', kwargs={'username':username}))
+                #messages.success(request,'You have edited your profile.')
+                return redirect(reverse('member_cycles', kwargs={'username':username}))
             else:
                 new_profile(profile, user)
-                messages.success(request,'You have created your profile.')
-                return redirect(reverse('member_profile', kwargs={'username':username}))
+                #messages.success(request,'You have created your profile.')
+                return redirect(reverse('member_cycles', kwargs={'username':username}))
     
     return render(request, 'member_profile.html', {'username':username, 
-                                                    'profile_form':profile})
+                                                    'profile_form':profile,
+                                                    'existing':is_existing})
+
+## View to Create or Edit Client Profile ##
+def client_profile(request, username, client_id):
+    client = get_object_or_404(AllUser, pk=client_id)
+    is_existing = profile_exists(client_id)
+    if is_existing:
+        profile = ProfileForm(model_to_dict(is_existing))
+    else:
+        profile = ProfileForm() 
+    if request.method == 'POST':
+        profile = ProfileForm(request.POST)
+        if profile.is_valid():
+            if is_existing:
+                edit_profile(profile, is_existing)
+                update_profile_in_member_client_model(client_id)
+                #messages.success(request, 'You have edited the Profile for {0}'.format(client.username))
+                return redirect(reverse('manage_clients', kwargs={'username':username}))
+
+            else:
+                new_profile(profile, client)
+                update_profile_in_member_client_model(client_id)
+                #messages.success(request, "You have created a new Profile for {0}".format(client.username))
+                return redirect(reverse('manage_clients', kwargs={'username':username}))
+    return render(request, 'client_profile.html', {'username':username,
+                                                    'profile_form':profile,
+                                                    'client':client,
+                                                    'existing':is_existing})

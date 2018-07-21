@@ -5,16 +5,18 @@ from managecycle.models import Cycles
 from managecycle.view_func import get_user_cycles
 from accounts.models import AllUser
 from manageclient.models import MemberClient 
-
-
+from profiles.models import Profile
+from profiles.view_func import profile_exists
+## Returns Member Cycles Template with all User Cycles ##
 def member_cycles(request, username):
-    """ Returns Member Cycles Template with all User Cycles """
     user = get_object_or_404(AllUser, username=username)
     users_cycles = get_user_cycles(user)
-    
+    is_existing = profile_exists(user.pk)
+        
     return render(request, 'member_cycles.html', 
                             {'username':username,
-                            'cycles': users_cycles})
+                            'cycles': users_cycles,
+                            'profile':is_existing})
 
 
 

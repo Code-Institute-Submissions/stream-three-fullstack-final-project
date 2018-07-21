@@ -2,11 +2,15 @@
 {% block content %}
 <h1>Manage Your Clients Here.</h1>
 <p>Logged in as {{ username }}</p>
+<h3>Create a New Client</h3>
 <form method="POST">
     {% csrf_token %}
     {{ new_client.as_p }}
     <button type="submit">Create New Client</button>
 </form>
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
 <hr>
 <div>
     {% for client in clients %}
@@ -17,6 +21,22 @@
         <p>{{ client.client.username }}</p>
         <h3>Client Email</h3>
         <p>{{ client.client.email }}</p>
+        {% if client.profile.company %}
+        <h3>Company</h3>
+        <p>{{client.profile.company}}</p>
+        <h3>Phone Number</h3>
+        <p>{{client.profile.phone}}</p>
+        <h3>Position</h3>
+        <p>{{client.profile.position}}</p>
+        {% else %}
+        <p>No Profile saved for this client.</p>
+        {% endif %}
+        
+
+        <form action="{% url 'client_profile' username=username client_id=client.client.id%}">
+            {% csrf_token %}
+            <button type="submit">Client Profile</button>
+        </form>
         <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}">
             {% csrf_token %}
             <button type="submit">Delete Client</button>
@@ -25,7 +45,4 @@
     <hr>
     {% endfor %}
 </div>
-{% for message in messages %}
-<p>{{ message }}</p>
-{% endfor %}
 {% endblock %}

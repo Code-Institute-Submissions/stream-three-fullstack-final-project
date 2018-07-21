@@ -4,10 +4,10 @@
 <p>Logged in as {{ username }}</p>
 
 {% if not existing %}
-<h1>Create Your Profile</h1>
-<p>Fill in the details below to add one to the system.</p>
+<h1>Create {{ client.username }}'s Profile</h1>
+<p>You haven't created a full profile for <strong>{{ client.username }}</strong> yet. Fill in the details below to update the system.</p>
 {% else %}
-<h1>Update your Profile</h1>
+<h1>Update {{ client.username }}'s Profile</h1>
 {% endif %}
 <form method="POST">  
     {% csrf_token %}
@@ -23,5 +23,7 @@
     {{ message }}
     {% endfor %}
 </p>
+
+
 
 {% endblock %}

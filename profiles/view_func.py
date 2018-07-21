@@ -1,5 +1,7 @@
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from .models import Profile
+from manageclient.models import MemberClient
 
 ## Check if a User already has a Profile ##
 def profile_exists(user_id):
@@ -25,4 +27,12 @@ def new_profile(profile, user):
                             position=profile.cleaned_data['position'],
                             user=user)
     new_profile.save()
+    return True
+
+## Get Profile based on client id, write to Profile model ##
+def update_profile_in_member_client_model(client_id):
+    profile = get_object_or_404(Profile, user=client_id)
+    add_profile = get_object_or_404(MemberClient, client=client_id)
+    add_profile.profile = profile
+    add_profile.save()
     return True

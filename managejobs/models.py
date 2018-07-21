@@ -17,4 +17,4 @@ class Jobs(models.Model):
                                 on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{0}-{1}".format(self.job_title, self.location)
+        return "Job Title: {0}, Client: {1}".format(self.job_title, self.client)
