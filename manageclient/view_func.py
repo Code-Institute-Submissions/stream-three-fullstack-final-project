@@ -35,3 +35,11 @@ def email_client_account_details(profile, username, new_client):
                                     )
     new_email.client_user_created()
     return True
+
+def get_all_clients_of_user(user_id):
+    try:
+        clients = MemberClient.objects.filter(member=user_id)
+        print(clients)
+    except MemberClient.DoesNotExist:
+        clients = None
+    return clients

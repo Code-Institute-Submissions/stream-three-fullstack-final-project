@@ -30,6 +30,5 @@ def manage_cycles(request, username):
 def delete_cycle(request, username, cycle_id):
     if request.method == 'POST':
         cycle = get_object_or_404(Cycles, pk=cycle_id)
-        print(cycle)
         cycle.delete()
     return redirect(reverse('manage_cycles', kwargs={'username':username}))

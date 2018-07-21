@@ -7,7 +7,24 @@
     {{ new_client.as_p }}
     <button type="submit">Create New Client</button>
 </form>
-
+<hr>
+<div>
+    {% for client in clients %}
+    <div>
+        <h3>Client</h3>
+        <p>{{ client.client.first_name }} {{ client.client.last_name }}</p>
+        <h3>Client Username</h3>
+        <p>{{ client.client.username }}</p>
+        <h3>Client Email</h3>
+        <p>{{ client.client.email }}</p>
+        <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+            {% csrf_token %}
+            <button type="submit">Delete Client</button>
+        </form>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
 {% for message in messages %}
 <p>{{ message }}</p>
 {% endfor %}
