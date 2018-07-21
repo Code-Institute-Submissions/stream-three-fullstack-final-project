@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'cycleporthole',
     'cyclestatus',
     'managejobs',
-    'manageaccount',
     'managecycle',
     'manageclient',
 ]

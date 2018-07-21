@@ -2,7 +2,22 @@
 {% block content %}
 <h1>Logged into Member Cycle Page as {{ username }}</h1>
 <p>This will just show a feed of current cycles and overview of account.</p>
-<a href="{% url 'manage_account' username=username %}">Manage Account</a>
+<h2>Manage Account</h2>
+<p>Select Create Client to add a new client.</p>
+<ul>
+    <li>
+        <a href="{% url 'member_profile' username=username %}">Manage Profile</a>
+    </li>
+    <li>
+        <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
+    </li>
+    <li>
+        <a href="{% url 'manage_jobs' username=username %}">Manage Jobs</a> 
+    </li>
+    <li>
+        <a href="#}">Manage Cycles</a>
+    </li>
+</ul>
 <hr>
 <div>
     {% if cycles %}

@@ -5,7 +5,7 @@ from .models import Cycles
 from .view_func import create_cycle
 from cycles.view_func import get_user_cycles
 from accounts.models import AllUser
-from manageclient.models import MemberClient 
+#from manageclient.models import MemberClient 
 
 def manage_cycles(request, username):
     """ Returns Manage Cycles Template with all User Cycles """
