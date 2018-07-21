@@ -7,16 +7,14 @@
     {% csrf_token %}
     {{ form.as_p }}
     {% if not clients %}
-    <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
-        You must do this before you can create a new job.
-    </p>
-    <p>You can follow the link here to Manage Clients.</p>
-    <div>
-        <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
-    </div>
+        <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
+            You must do this before you can create a new job.
+        </p>
+        <p>You can follow the link here to Manage Clients.</p>
+        <div>
+            <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
+        </div>
     {% endif %}
-    
-
     <button type="submit">Add Job</button>
 </form>
 <p>

@@ -3,27 +3,33 @@ from django.contrib import messages
 from .forms import CycleForm
 from .models import Cycles      
 from .view_func import create_cycle
-from cycles.view_func import get_user_cycles
+from .view_func import get_user_cycles
 from accounts.models import AllUser
-#from manageclient.models import MemberClient 
+from managejobs.view_func import get_all_jobs_for_user
+
+##  Returns Manage Cycles Template with all User Cycles, ##
+## and a form to create new user cycles ##
 
 def manage_cycles(request, username):
-    """ Returns Manage Cycles Template with all User Cycles """
     user = get_object_or_404(AllUser, username=username)
-    user_id = user.pk
-    cycle_form = CycleForm(user_id)
+    cycle_form = CycleForm(user.pk)
     users_cycles = get_user_cycles(user)
-    #print(users_cycles)
-    """ If post Create New Cycle """
+    jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
-        create_cycle(user_id, request.POST, user)
+        create_cycle(user.pk, request.POST, user)
         if create_cycle:
             messages.success(request, "A new cycle has been created")
             return redirect(reverse('manage_cycles', kwargs={'username':user.username}))
     return render(request, 'manage_cycles.html', 
                             {'username':username,
                             'cycle_form':cycle_form,
-                            'cycles': users_cycles})
+                            'cycles': users_cycles,
+                            'jobs': jobs})
 
-def delete_cycle(request, username, user_id):
+## Delete Cycle View, redirects to Manage Cycles View ##
+def delete_cycle(request, username, cycle_id):
+    if request.method == 'POST':
+        cycle = get_object_or_404(Cycles, pk=cycle_id)
+        print(cycle)
+        cycle.delete()
     return redirect(reverse('manage_cycles', kwargs={'username':username}))

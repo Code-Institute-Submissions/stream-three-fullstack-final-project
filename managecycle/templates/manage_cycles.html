@@ -5,16 +5,16 @@
 <h2>Add Cycle</h2>
 <form method="POST">
     {% csrf_token %}
-
        {{ cycle_form.as_p }}
-        
-        <p>You are seeing an empty drop down list because you haven't added any Jobs to your account yet.
-            You must do this before you can create a new job.
-        </p>
-        <p>You can follow the link here to Manage Clients.</p>
-        <div>
-            <a href="#">Manage Clients</a>
-        </div>
+        {% if not jobs %}
+            <p>You are seeing an empty drop down list because you haven't added any Jobs to your account yet.
+                You must do this before you can create a new job.
+            </p>
+            <p>You can follow the link here to Manage Clients.</p>
+            <div>
+                <a href="#">Manage Clients</a>
+            </div>
+        {% endif %}
     <button type="submit">Add Cycle</button>
 </form>
 <p>
@@ -24,7 +24,24 @@
 </p>
 <hr>
 <div>
- 
-   
+    {% for cycle in cycles %}
+    <div>
+        <h3>Cycle Title</h3>
+        <p>{{ cycle.cycle_title }}</p>
+        <h3>Description</h3>
+        <p>{{ cycle.description }}</p>
+        <h3>Job</h3>
+        <p>{{ cycle.job.job_title }}</p>
+        <h3>Client</h3>
+        <p>{{ cycle.client.first_name}} {{ cycle.client.last_name}}</p>
+        <h3>Client Username</h3>
+        <p>{{ cycle.client.username }}</p>
+        <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+        <form method='POST' action="{% url 'delete_cycle' username=username cycle_id=cycle.id %}">
+            {% csrf_token %}
+        <button type='submit'>Delete Cycle</button>
+        </form>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from managecycle.forms import CycleForm
 from managecycle.models import Cycles      
-from .view_func import get_user_cycles
+from managecycle.view_func import get_user_cycles
 from accounts.models import AllUser
 from manageclient.models import MemberClient 
 

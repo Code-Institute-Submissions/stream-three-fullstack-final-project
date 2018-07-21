@@ -12,6 +12,7 @@ def manage_jobs(request, username):
     user_id = member.pk
     jobs = get_all_jobs_for_user(username, user_id)
     clients = does_the_user_have_clients(username, user_id)
+    form = JobsForm(user_id)
     if request.method == 'POST':
         form = JobsForm(user_id, request.POST)
         if form.is_valid():
@@ -27,9 +28,7 @@ def manage_jobs(request, username):
             new_job.save()
             messages.success(request, 'New Job Created.')
             return redirect(reverse('manage_jobs', 
-                                    kwargs={'username':username}))     
-    else:
-        form = JobsForm(user_id)
+                                    kwargs={'username':username}))             
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
                                                 'jobs':jobs,
