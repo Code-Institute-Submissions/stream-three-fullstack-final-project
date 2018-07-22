@@ -13,8 +13,12 @@
         </p>
     </div>
     <div class="fieldWrapper">
-        <p>Job No: {{ job.job_number }} <strong>cannot be changed.</strong></p>
-    </div>
+        <p><strong>Job number cannot be altered.</strong></p>
+       <p>
+           {{ form.job_number.errors }}
+           {{ form.job_number.label_tag }}
+           {{ form.job_number}}
+       </p>
     <div class="fieldWrapper">
         <p>
             {{ form.location.errors }}
@@ -45,4 +49,8 @@
     </div>
     <button type="submit">Update</button>
 </form>
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
 {% endblock %}

@@ -4,10 +4,10 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import FormView
 from django.contrib import messages
 from django.forms.models import model_to_dict
-from .forms import JobsForm
+from .forms import JobsForm, EditJobsForm
 from accounts.forms import AllUser
 from .models import Jobs
-from .view_func import get_all_jobs_for_user, does_the_user_have_clients
+from .view_func import get_all_jobs_for_user, does_the_user_have_clients, update_job
 
 ## Return Manage Jobs Template ##
 ## User can see all jobs and create new ones ##
@@ -40,12 +40,28 @@ def manage_jobs(request, username):
 
     
 ## Edit Job View, Redirect to Manage Jobs ##
-## GET JOB BY JOB ID AND POPULATE FORM, REDIRECT TO EDIT JOB WITH SUCCESSFULLY EDITED MESSAGE ##
+
 def edit_job(request, username, job_id):
     job = get_object_or_404(Jobs, pk=job_id)
     user_id = get_object_or_404(AllUser, username=username)
-    form = JobsForm(user_id, model_to_dict(job))
+    form = EditJobsForm(user_id, model_to_dict(job))
+    if request.method == 'POST':
+        form = EditJobsForm(user_id, request.POST)
+        if form.is_valid():
+            client = get_object_or_404(AllUser, 
+                                    username=form.cleaned_data.get('client'))
+            job.job_title = form.cleaned_data.get('job_title')
+            job.location = form.cleaned_data.get('location')
+            job.start_date = form.cleaned_data.get('start_date')
+            job.end_date = form.cleaned_data.get('end_date')
+            job.client = client
+            job.save()
 
+            messages.success(request, 'You have successfully edited Job No: {0}'.format(
+                                                        form.cleaned_data.get('job_number')
+                                                    ))
+            return redirect(reverse('edit_job', kwargs={'username':username,
+                                                        'job_id': job_id}))
     return render(request, 'edit_job.html', {'username':username,
                                             'form': form,
                                             'job': job })

@@ -1,6 +1,7 @@
+from django.shortcuts import get_object_or_404
 from .models import Jobs
 from manageclient.models import MemberClient
-
+from accounts.models import AllUser
 ## Helper Functions for Manage Jobs views##
 
 ## Get a QuerySet of all of the Users Jobs ##
@@ -12,7 +13,7 @@ def get_all_jobs_for_user(username, user_id):
     return jobs
 
 ## Establish if the User has clients. Needed in order to ##
-## flag in the template whether a user needs to create ##
+## flag in manage_clients template whether a user needs to create ##
 ## a client before creating a job. ##
 def does_the_user_have_clients(username, user_id):
     try:
@@ -21,3 +22,14 @@ def does_the_user_have_clients(username, user_id):
         clients = None
     return clients
 
+## Update the selected Job, preserving Job Number ##
+def update_job(job, form):
+    client = get_object_or_404(AllUser, 
+                            username=form.cleaned_data.get('client'))
+    job.job_title = form.cleaned_data.get('job_title')
+    job.location = form.cleaned_data.get('location')
+    job.start_date = form.cleaned_data.get('start_date')
+    job.end_date = form.cleaned_data.get('end_date')
+    job.client = client
+    job.save() 
+    return True
