@@ -16,10 +16,11 @@ class JobsForm(forms.Form):
                                                     widget=forms.Textarea)
         self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)
         self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget)
-        self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices, 
+        self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices,
+                                                        to_field_name='client',
                                                         label='Clients',
-                                                        empty_label=None,
-                                                        initial=0)
+                                                        initial=0,
+                                                        )
         self.fields['client'].empty_label = "Attach a client"
 
     def clean_job_number(self):

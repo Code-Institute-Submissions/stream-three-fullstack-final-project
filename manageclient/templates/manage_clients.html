@@ -31,8 +31,6 @@
         {% else %}
         <p>No Profile saved for this client.</p>
         {% endif %}
-        
-
         <form action="{% url 'client_profile' username=username client_id=client.client.id%}">
             {% csrf_token %}
             <button type="submit">Client Profile</button>

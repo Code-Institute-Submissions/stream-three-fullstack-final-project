@@ -1,5 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+from django.views.generic import FormView
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from .forms import JobsForm
 from accounts.forms import AllUser
 from .models import Jobs
@@ -36,6 +40,15 @@ def manage_jobs(request, username):
 
     
 ## Edit Job View, Redirect to Manage Jobs ##
+## GET JOB BY JOB ID AND POPULATE FORM, REDIRECT TO EDIT JOB WITH SUCCESSFULLY EDITED MESSAGE ##
+def edit_job(request, username, job_id):
+    job = get_object_or_404(Jobs, pk=job_id)
+    user_id = get_object_or_404(AllUser, username=username)
+    form = JobsForm(user_id, model_to_dict(job))
+
+    return render(request, 'edit_job.html', {'username':username,
+                                            'form': form,
+                                            'job': job })
 
 ## Delete Job View, Redirect to Manage Jobs ##
 def delete_job(request, username, job_id):

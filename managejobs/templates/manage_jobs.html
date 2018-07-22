@@ -41,6 +41,10 @@
         <p>{{ job.client.first_name }} {{ job.client.last_name }}</p>
         <h4>Client Username</h4>
         <p>{{ job.client.username }}</p>
+        <form method="POST" action="{% url 'edit_job' username=username job_id=job.id %}">
+            {% csrf_token %}
+            <button type="submit">Edit Job</button>
+        </form>
         <form method = "POST" action="{% url 'delete_job' username=username job_id=job.id %}">
             {% csrf_token %}
             <button type="submit">Delete Job</button>

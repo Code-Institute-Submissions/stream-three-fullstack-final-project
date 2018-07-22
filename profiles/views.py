@@ -4,7 +4,7 @@ from django.forms.models import model_to_dict
 from .models import Profile
 from .forms import ProfileForm
 from .view_func import profile_exists, edit_profile, new_profile
-from .view_func import update_profile_in_member_client_model
+from .view_func import add_profile_in_member_client_model
 from accounts.models import AllUser
 from django.shortcuts import render, get_object_or_404
 
@@ -46,13 +46,13 @@ def client_profile(request, username, client_id):
         if profile.is_valid():
             if is_existing:
                 edit_profile(profile, is_existing)
-                update_profile_in_member_client_model(client_id)
+                add_profile_in_member_client_model(client_id)
                 #messages.success(request, 'You have edited the Profile for {0}'.format(client.username))
                 return redirect(reverse('manage_clients', kwargs={'username':username}))
 
             else:
                 new_profile(profile, client)
-                update_profile_in_member_client_model(client_id)
+                add_profile_in_member_client_model(client_id)
                 #messages.success(request, "You have created a new Profile for {0}".format(client.username))
                 return redirect(reverse('manage_clients', kwargs={'username':username}))
     return render(request, 'client_profile.html', {'username':username,

@@ -30,7 +30,7 @@ def new_profile(profile, user):
     return True
 
 ## Get Profile based on client id, write to Profile model ##
-def update_profile_in_member_client_model(client_id):
+def add_profile_in_member_client_model(client_id):
     profile = get_object_or_404(Profile, user=client_id)
     add_profile = get_object_or_404(MemberClient, client=client_id)
     add_profile.profile = profile
