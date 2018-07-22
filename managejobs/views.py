@@ -40,7 +40,6 @@ def manage_jobs(request, username):
 
     
 ## Edit Job View, Redirect to Manage Jobs ##
-
 def edit_job(request, username, job_id):
     job = get_object_or_404(Jobs, pk=job_id)
     user_id = get_object_or_404(AllUser, username=username)
@@ -48,19 +47,12 @@ def edit_job(request, username, job_id):
     if request.method == 'POST':
         form = EditJobsForm(user_id, request.POST)
         if form.is_valid():
-            client = get_object_or_404(AllUser, 
-                                    username=form.cleaned_data.get('client'))
-            job.job_title = form.cleaned_data.get('job_title')
-            job.location = form.cleaned_data.get('location')
-            job.start_date = form.cleaned_data.get('start_date')
-            job.end_date = form.cleaned_data.get('end_date')
-            job.client = client
-            job.save()
-
-            messages.success(request, 'You have successfully edited Job No: {0}'.format(
-                                                        form.cleaned_data.get('job_number')
-                                                    ))
-            return redirect(reverse('edit_job', kwargs={'username':username,
+            job_updated = update_job(job, form)
+            if job_updated:
+                messages.success(request, 'You have successfully edited Job No: {0}'.format(
+                                                            form.cleaned_data.get('job_number')
+                                                        ))
+                return redirect(reverse('edit_job', kwargs={'username':username,
                                                         'job_id': job_id}))
     return render(request, 'edit_job.html', {'username':username,
                                             'form': form,
