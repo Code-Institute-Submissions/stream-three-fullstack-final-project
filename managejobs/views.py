@@ -35,7 +35,8 @@ def manage_jobs(request, username):
                                 kwargs={'username':username}))          
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
-                                                'jobs':jobs,
+                                                'jobs':jobs[0],
+                                                'jobs_count': jobs[1],
                                                 'clients':clients })
 
     

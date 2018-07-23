@@ -15,6 +15,11 @@ def profile_exists(user_id):
 def edit_profile(profile, is_existing):
     is_existing.company = profile.cleaned_data['company']
     is_existing.phone = profile.cleaned_data['phone']
+    is_existing.address1 = profile.cleaned_data['address1']
+    is_existing.address2 = profile.cleaned_data['address2']
+    is_existing.city = profile.cleaned_data['city']
+    is_existing.region = profile.cleaned_data['region']
+    is_existing.post_code = profile.cleaned_data['post_code']
     is_existing.position = profile.cleaned_data['position']
     is_existing.save()
     return True
@@ -24,6 +29,11 @@ def edit_profile(profile, is_existing):
 def new_profile(profile, user):
     new_profile = Profile(company=profile.cleaned_data['company'],
                             phone=profile.cleaned_data['phone'],
+                            address1=profile.cleaned_data['address1'],
+                            address2=profile.cleaned_data['address2'],
+                            city=profile.cleaned_data['city'],
+                            region=profile.cleaned_data['region'],
+                            post_code=profile.cleaned_data['post_code'],
                             position=profile.cleaned_data['position'],
                             user=user)
     new_profile.save()

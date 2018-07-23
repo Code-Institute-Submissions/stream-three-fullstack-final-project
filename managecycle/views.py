@@ -25,7 +25,8 @@ def manage_cycles(request, username):
     return render(request, 'manage_cycles.html', 
                             {'username':username,
                             'cycle_form':cycle_form,
-                            'cycles': users_cycles,
+                            'cycles': users_cycles[0],
+                            'cycle_count': users_cycles[1],
                             'jobs': jobs})
 
 ## Edit Cycle and Redirect to Manage Cycles ##
@@ -33,6 +34,9 @@ def edit_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
                                         'description': cycle.description,
+                                        'location': cycle.location,
+                                        'start_date': cycle.start_date,
+                                        'end_date': cycle.end_date,
                                         'jobs': cycle.job })
     if request.method == 'POST':
         form = CycleForm(cycle.member.id, request.POST)

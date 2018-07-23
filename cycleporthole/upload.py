@@ -1,10 +1,12 @@
 from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
+import datetime
 
 ## Class containing methods to push files to Relevant Model ##
 ## If the file model already contains an entry, it is deleted ##
-## before writing the new entry. A signal is used to ensure only one ##
-## file exists for each step in a cycle ##
+## before writing the new entry. A signal is used to delete the PDF 
+# to ensure only one file exists for each step in a cycle. ##
+
 
 class UploadFile:
     
@@ -18,6 +20,7 @@ class UploadFile:
         quote_form = QuotesForm(self.request.POST, self.request.FILES)
         if quote_form.is_valid():
             new_quote = Quotes(file=quote_form.cleaned_data['file'],
+                                uploaded_at=datetime.datetime.now(),
                                 cycle_value=quote_form.cleaned_data['cycle_value'],
                                 client=self.client,
                                 member=self.member,

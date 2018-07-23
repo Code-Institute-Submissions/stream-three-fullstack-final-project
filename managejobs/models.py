@@ -6,9 +6,9 @@ from accounts.models import AllUser
 class Jobs(models.Model):
     job_title = models.CharField(max_length=50, blank=False)
     job_number = models.CharField(max_length=50, blank=False)
-    location = models.CharField(max_length=50, blank=False)
-    start_date = models.CharField(max_length=50, blank=False)
-    end_date = models.CharField(max_length=50, blank=False)
+    location = models.CharField(max_length=50, blank=False, null=True)
+    start_date = models.CharField(max_length=50, blank=False, null=True)
+    end_date = models.CharField(max_length=50, blank=False, null=True)
     member = models.ForeignKey(AllUser,
                                 default=None,
                                 related_name='jobs_member',

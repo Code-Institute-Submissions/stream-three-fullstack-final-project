@@ -6,7 +6,7 @@ from managecycle.models import Cycles
 class CycleStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
-    comment = models.TextField(max_length=150, blank=True)
+    #comment = models.TextField(max_length=150, blank=True)
     
     class Meta:
         abstract = True

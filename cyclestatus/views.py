@@ -16,9 +16,8 @@ def set_status(status_form):
         elif status_form.cleaned_data['status'] == 'contest':
             approve = False
             contest = True
-        comment = status_form.cleaned_data['comment']
 
-        return approve, contest, comment
+        return approve, contest
 
 ######################## QUOTES VIEWS ###########################################
 
@@ -28,7 +27,9 @@ def set_quote_status(request, username, cycle_id, client_username):
     try:
         quote = Quotes.objects.get(cycle=cycle_id)
     except Quotes.DoesNotExist:
-        messages.error(request, "A quote needs to be uploaded before you can set a status.")
+        messages.error(request, 
+                        "A quote needs to be uploaded before you can set a status.",
+                        extra_tags='quote_message')
         quote = None
     #quote = get_object_or_404(Quotes,cycle=cycle_id)
     if quote != None:
@@ -36,7 +37,6 @@ def set_quote_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = QuoteStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                comment=set_status(status_form)[2],
                                 quote=quote)
             status.save()
             return redirect(reverse('porthole', 
@@ -58,7 +58,9 @@ def set_po_status(request, username, cycle_id, client_username):
     try:
         po = PurchaseOrder.objects.get(cycle=cycle_id)
     except PurchaseOrder.DoesNotExist:
-        messages.error(request, "A PO needs to be uploaded before you can set a status.")
+        messages.error(request, 
+                        "A PO needs to be uploaded before you can set a status.",
+                        extra_tags='po_message')
         po = None
     #po = get_object_or_404(PurchaseOrder,cycle=cycle_id)
     if po != None:
@@ -66,7 +68,6 @@ def set_po_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = POStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                comment=set_status(status_form)[2],
                                 po=po)
             status.save()
             return redirect(reverse('porthole', 
@@ -88,7 +89,9 @@ def set_invoice_status(request, username, cycle_id, client_username):
     try:
         invoice = Invoices.objects.get(cycle=cycle_id)
     except Invoices.DoesNotExist:
-        messages.error(request, "An Invoice needs to be uploaded before you can set a status.")
+        messages.error(request, 
+                        "An Invoice needs to be uploaded before you can set a status.",
+                        extra_tags='invoice_message')
         invoice = None
     #invoice = get_object_or_404(Invoices, cycle=cycle_id)
     if invoice != None:
@@ -96,7 +99,6 @@ def set_invoice_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = InvoicesStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                comment=set_status(status_form)[2],
                                 invoice=invoice)
             status.save()
             return redirect(reverse('porthole', 

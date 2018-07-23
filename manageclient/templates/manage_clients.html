@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Manage Your Clients Here.</h1>
-<p>Logged in as {{ username }}</p>
+<h1>Logged in as {{ username }}</h1>
+{% if clients_count > 1 %}
+<h2>{{ clients_count }} current clients.</h2>
+{% else %}
+<h2>{{ clients_count }} current client.</h2>
+{% endif %}
 <h3>Create a New Client</h3>
 <form method="POST">
     {% csrf_token %}

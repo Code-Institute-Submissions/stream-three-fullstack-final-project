@@ -14,26 +14,27 @@ def get_upload_path(instance, filename):
         if instance.is_quote:
             file_type = 'quote'
     except AttributeError as e:
-        print(e + 'File is not a Quote')
+        print('File is not a Quote: Error: {0}'.format(e))
     
     try:
         if instance.is_po:
             file_type = 'po'
     except AttributeError as e:
-        print(e + 'File is not a PO')
+        print('File is not a PO: Error: {0}'.format(e))
 
     try:
         if instance.is_invoice:
             file_type = 'invoice'
     except AttributeError as e:
-        print(e + 'File is not an Invoice')
+        print('File is not an Invoice: Error: {0}'.format(e))
     
     path ='{0}/{1}/{2}/{4}/{0}_{1}_{2}_{3}_{4}{5}'.format(file_type,
                                                 instance.member,
                                                 instance.client,
-                                                instance.cycle.job_title,
+                                                instance.cycle.job.job_title,
                                                 instance.cycle.id,
                                                 ext) 
+    
     return path
 
 ### BASE MODEL FOR QUOTE, PO, AND INVOICES ###
@@ -41,7 +42,7 @@ class UploadModel(models.Model):
 
     file = models.FileField(upload_to=get_upload_path, blank=False,
             validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_at = models.DateTimeField()
     
     class Meta:
         abstract = True

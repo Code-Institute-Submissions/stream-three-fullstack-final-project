@@ -8,9 +8,10 @@ from accounts.models import AllUser
 def get_all_jobs_for_user(username, user_id):
     try:
         jobs = Jobs.objects.filter(member=user_id)
+        count = Jobs.objects.filter(member=user_id).count
     except Jobs.DoesNotExist:
         jobs = None
-    return jobs
+    return jobs, count
 
 ## Establish if the User has clients. Needed in order to ##
 ## flag in manage_clients template whether a user needs to create ##

@@ -5,11 +5,14 @@
 <p>Fileo Cycle ID: {{ context.cycle_id }}</p>
 <p>Client: {{ context.client.username }}</p>
 <h2>Job Title</h2>
-<h3>{{ context.cycle.job_title }}</h3>
-<p>@{{ context.cycle.location }}</p>
-<h3>Description</h3>
+<h4>Job Number: {{ context.cycle.job.job_number }}</h4>
+<h3>{{ context.cycle.job.job_title }}</h3>
+<p> Start Date: {{ context.cycle.job.start_date }}</p>
+<p> End Date: {{ context.cycle.job.end_date }}</p>
+<p>@{{ context.cycle.job.location }}</p>
+<h3>Cycle Description</h3>
 <P>{{ context.cycle.description }}</P>
-<h3>Job Value</h3>
+<h3>Cycle Value</h3>
 {% if context.quote.cycle_value %}
 <p>{{ context.quote.cycle_value }}</p>
 {% else %}
@@ -32,7 +35,9 @@
         <h4>Approval</h4>
         <div>
             {% for message in messages %}
-            {{message}}
+                {% if 'quote_message' in message.tags %}
+                    {{message}}
+                {% endif %}
             {% endfor %}
             <form action="{% url 'quote_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 {% csrf_token %}
@@ -61,7 +66,9 @@
         <h4>PO Status</h4>
         <div>
             {% for message in messages %}
-            {{message}}
+                {% if 'po_message' in message.tags %}
+                    {{message}}
+                {% endif %}
             {% endfor %}
             <form action="{% url 'po_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>
@@ -90,7 +97,9 @@
         <h4>Invoice Status</h4>
         <div>
             {% for message in messages %}
-            {{message}}
+                {% if 'invoice_message' in message.tags %}
+                        {{message}}
+                {% endif %}
             {% endfor %}
             <form action="{% url 'invoice_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>

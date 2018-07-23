@@ -34,11 +34,13 @@ def manage_clients(request, username):
                             extra_tags="create_client")
             return render(request, 'manage_clients.html', {'new_client': new_client, 
                                                             'username':username,
-                                                            'clients':clients_exist})
+                                                            'clients':clients_exist[0],
+                                                            'clients_count':clients_exist[1]})
 
     return render(request, 'manage_clients.html', {'new_client': new_client, 
                                                     'username':username,
-                                                    'clients':clients_exist})
+                                                    'clients':clients_exist[0],
+                                                    'clients_count':clients_exist[1]})
 
 ## Delete Client from AllUser Model ##
 def delete_client(request, username, client_id):

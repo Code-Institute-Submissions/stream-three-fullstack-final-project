@@ -5,7 +5,7 @@ from .models import QuoteStatus, POStatus, InvoicesStatus
 class StatusForm(forms.Form):
     status = forms.ChoiceField(choices=[('approve','Approve'), ('contest', 'Contest')],
                                  widget=forms.RadioSelect, label='Approve or Contest.')
-    comment = forms.CharField(required=False, max_length=150, 
-                                widget=forms.Textarea,  
-                                label="Leave a comment")
+    #comment = forms.CharField(required=False, max_length=150, 
+                               # widget=forms.Textarea,  
+                               # label="Leave a comment")
 

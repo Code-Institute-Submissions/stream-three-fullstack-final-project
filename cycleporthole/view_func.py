@@ -7,6 +7,8 @@ from .models import Quotes, PurchaseOrder, Invoices
 ## View helper functions ##
 
 ## Class retrieving File Objects based on Cycle ID ##
+## For use in Template to establish if a file has already ##
+## been uploaded for each step ##
 class GetFile:
     
     def __init__(self, cycle):
@@ -35,14 +37,11 @@ class GetFile:
 
 
 ## Get Cycle Info for Porthole View #
-    
 def get_porthole_info(username, cycle_id, client_username):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
-    member = get_object_or_404(AllUser, username=username)
-    client = get_object_or_404(AllUser, username=client_username)
-    porthole_info = {'cycle':cycle,
-                    'member': member, 
-                    'client':client, 
+    porthole_info = {'cycle': cycle,
+                    'member': cycle.member, 
+                    'client': cycle.client, 
                     'quote': GetFile(cycle).get_quote(),
                     'po': GetFile(cycle).get_po(),
                     'invoice': GetFile(cycle).get_invoice()}

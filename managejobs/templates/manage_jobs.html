@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>You are logged in as {{ username }}</h1>
-<p>Manage your jobs here</p>
+{% if jobs_count > 1%}
+<h2>{{ jobs_count }} current jobs.</h2>
+{% else %}
+<h2>{{ jobs_count }} current job.</h2>
+{% endif %}
 <h2>Add Job</h2>
 <form method="POST">
     {% csrf_token %}
