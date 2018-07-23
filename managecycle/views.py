@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.forms.models import model_to_dict
 from .forms import CycleForm
 from .models import Cycles      
 from .view_func import create_cycle
-from .view_func import get_user_cycles
+from .view_func import get_user_cycles, update_cycle
 from accounts.models import AllUser
 from managejobs.view_func import get_all_jobs_for_user
+from managejobs.models import Jobs
 
 ##  Returns Manage Cycles Template with all User Cycles, ##
 ## and a form to create new user cycles ##
@@ -25,6 +27,24 @@ def manage_cycles(request, username):
                             'cycle_form':cycle_form,
                             'cycles': users_cycles,
                             'jobs': jobs})
+
+## Edit Cycle and Redirect to Manage Cycles ##
+def edit_cycle(request, username, cycle_id):
+    cycle = get_object_or_404(Cycles, pk=cycle_id)
+    form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
+                                        'description': cycle.description,
+                                        'jobs': cycle.job })
+    if request.method == 'POST':
+        form = CycleForm(cycle.member.id, request.POST)
+        if form.is_valid():
+            cycle_updated = update_cycle(cycle, form)
+            if cycle_updated:
+                messages.success(request, 
+                                'You have updated cycle with Fileo ID: {0}'.format(cycle.id))
+                return redirect(reverse('manage_cycles', kwargs={'username': username}))                                       
+
+    return render(request, 'edit_cycle.html', {'username': username,
+                                                'form': form })
 
 ## Delete Cycle View, redirects to Manage Cycles View ##
 def delete_cycle(request, username, cycle_id):

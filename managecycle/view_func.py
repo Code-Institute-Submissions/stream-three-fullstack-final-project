@@ -28,3 +28,10 @@ def get_user_cycles(user):
     except Cycles.DoesNotExist:
         users_cycles = None
     return users_cycles
+
+def update_cycle(cycle,form):
+    cycle.cycle_title = form.cleaned_data.get('cycle_title')
+    cycle.cycle_description = form.cleaned_data.get('description')
+    cycle.jobs = form.cleaned_data.get('jobs')
+    cycle.save()
+    return True

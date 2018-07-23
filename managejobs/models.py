@@ -9,10 +9,12 @@ class Jobs(models.Model):
     location = models.CharField(max_length=50, blank=False)
     start_date = models.CharField(max_length=50, blank=False)
     end_date = models.CharField(max_length=50, blank=False)
-    member = models.ForeignKey(AllUser, 
+    member = models.ForeignKey(AllUser,
+                                default=None,
                                 related_name='jobs_member',
                                 on_delete=models.CASCADE)
-    client = models.ForeignKey(AllUser, 
+    client = models.ForeignKey(AllUser,
+                                default=None,
                                 related_name='jobs_client',
                                 on_delete=models.CASCADE)
 

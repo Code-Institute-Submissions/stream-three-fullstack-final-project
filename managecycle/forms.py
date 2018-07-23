@@ -5,20 +5,18 @@ from manageclient.models import MemberClient
 from accounts.models import AllUser
 from managejobs.models import Jobs
 
-
+    
 class CycleForm(forms.Form):
     
     def __init__(self, member, *args, **kwargs):
         super(CycleForm, self).__init__(*args, **kwargs)
         self.member = member
         self.job_choices = Jobs.objects.filter(member=self.member)
-        #print(self.job_choices)
+        print(self.job_choices)
         self.fields['cycle_title'] = forms.CharField(max_length=50)
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)
         self.fields['jobs'] = forms.ModelChoiceField(queryset=self.job_choices,
-                                                    #to_field_name='job_title',
                                                     label='Jobs',
-                                                    initial=0,
-                                                    required=True)
+                                                    )
         self.fields['jobs'].empty_label='Attach a Job'

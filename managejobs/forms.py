@@ -17,7 +17,6 @@ class ParentJobForm(forms.Form):
         self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices,
                                                         to_field_name='client',
                                                         label='Clients',
-                                                        initial=0,
                                                         )
         self.fields['client'].empty_label = "Attach a client"
 

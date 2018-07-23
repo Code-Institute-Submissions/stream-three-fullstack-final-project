@@ -9,7 +9,9 @@
     <button type="submit">Create New Client</button>
 </form>
 {% for message in messages %}
-<p>{{ message }}</p>
+    {% if "create_client" in message.tags %}
+        <p>{{ message }}</p>
+    {% endif %}
 {% endfor %}
 <hr>
 <div>
@@ -31,11 +33,26 @@
         {% else %}
         <p>No Profile saved for this client.</p>
         {% endif %}
-        <form action="{% url 'client_profile' username=username client_id=client.client.id%}">
+        <p>
+            <a href="{% url 'client_profile' username=username client_id=client.client.id%}">Client Profile</a>
+        </p>
+        <!--<form action="{% url 'client_profile' username=username client_id=client.client.id%}">
             {% csrf_token %}
             <button type="submit">Client Profile</button>
-        </form>
-        <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+        </form>-->
+        <!--DO THIS WITH JS INSTEAD OF FROM THE BACKEND TO MITIGATE RELOAD OF PAGE-->
+        {% for message in messages %}
+        {% if "delete_client" in message.tags %}
+            <p>{{ message }}</p>
+            <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}"> 
+                {% csrf_token %}
+                <button type='submit'>Yes</button>
+            </form>
+            <p><a href="{% url 'manage_clients' username=username %}">No</a></p>
+            
+        {% endif %}
+        {% endfor %}
+        <form method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
             {% csrf_token %}
             <button type="submit">Delete Client</button>
         </form>

@@ -26,17 +26,20 @@
 <div>
     {% for cycle in cycles %}
     <div>
+        <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
         <h3>Cycle Title</h3>
         <p>{{ cycle.cycle_title }}</p>
-        <h3>Description</h3>
+        <h3>Cycle Description</h3>
         <p>{{ cycle.description }}</p>
-        <h3>Job</h3>
+        <h3>Job Title </h3>
         <p>{{ cycle.job.job_title }}</p>
         <h3>Client</h3>
-        <p>{{ cycle.client.first_name}} {{ cycle.client.last_name}}</p>
-        <h3>Client Username</h3>
-        <p>{{ cycle.client.username }}</p>
-        <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+        <p><strong>Name:</strong> {{ cycle.client.first_name}} {{ cycle.client.last_name}} 
+        <p><strong>Username:</strong> {{ cycle.client.username }}</p></p>
+        <p><strong>Email:</strong> {{ cycle.client.email }}</p></p>
+        <p>
+            <a href="{% url 'edit_cycle' username=username cycle_id=cycle.id %}">Edit Cycle</a>
+        </p>
         <form method='POST' action="{% url 'delete_cycle' username=username cycle_id=cycle.id %}">
             {% csrf_token %}
         <button type='submit'>Delete Cycle</button>

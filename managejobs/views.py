@@ -31,8 +31,8 @@ def manage_jobs(request, username):
                             client=client)
             new_job.save()
             messages.success(request, 'New Job Created.')
-            return redirect(reverse('manage_jobs', 
-                                    kwargs={'username':username}))             
+            return redirect(reverse('manage_jobs',
+                                kwargs={'username':username}))          
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
                                                 'jobs':jobs,
@@ -52,8 +52,7 @@ def edit_job(request, username, job_id):
                 messages.success(request, 'You have successfully edited Job No: {0}'.format(
                                                             form.cleaned_data.get('job_number')
                                                         ))
-                return redirect(reverse('edit_job', kwargs={'username':username,
-                                                        'job_id': job_id}))
+                return redirect(reverse('manage_jobs', kwargs={'username':username}))
     return render(request, 'edit_job.html', {'username':username,
                                             'form': form,
                                             'job': job })

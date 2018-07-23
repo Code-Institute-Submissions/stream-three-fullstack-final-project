@@ -9,14 +9,14 @@ class Cycles(models.Model):
     member = models.ForeignKey(AllUser, 
                                 related_name='member_cycle', 
                                 on_delete=models.CASCADE,
-                                blank=False)
+                                )
     client = models.ForeignKey(AllUser, 
                                 related_name='client_cycle',
                                 on_delete=models.CASCADE,
-                                blank=False)
+                                )
     job = models.ForeignKey(Jobs, 
                             on_delete=models.CASCADE,
-                            blank=False)
+                            )
 
     def __str__(self):
         return '{0}-{1}'.format(self.cycle_title, self.description)
