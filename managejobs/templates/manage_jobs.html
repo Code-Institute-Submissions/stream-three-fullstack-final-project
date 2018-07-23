@@ -77,15 +77,8 @@
         <p>{{ job.job_title }}</p>
         <h4>Job Number</h4>
         <p>{{ job.job_number }}</p>
-        <h4>Location</h4>
-        <p>{{ job.location }}</p>
-        <h4>Start Date</h4>
-        <p> {{ job.start_date }}</p>
-        <h4>End Date</h4>
-        <p>{{ job.end_date }}</p>
-        <h4>Client</h4>
+        <h4>Attached Client</h4>
         <p>{{ job.client.first_name }} {{ job.client.last_name }}</p>
-        <h4>Client Username</h4>
         <p>{{ job.client.username }}</p>
         <p><a href="{% url 'edit_job' username=username job_id=job.id %}">Update Job</a></p>
         

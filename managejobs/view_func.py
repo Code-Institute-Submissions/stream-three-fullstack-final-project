@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404
 from .models import Jobs
 from manageclient.models import MemberClient
 from accounts.models import AllUser
-## Helper Functions for Manage Jobs views##
+
+## Helper Functions for Manage Jobs views ##
 
 ## Get a QuerySet of all of the Users Jobs ##
 def get_all_jobs_for_user(username, user_id):
@@ -22,6 +23,17 @@ def does_the_user_have_clients(username, user_id):
     except MemberClient.DoesNotExist:
         clients = None
     return clients
+
+## Create Job Helper Function ## 
+def create_job(form, member):
+    client = get_object_or_404(AllUser, 
+                                username=form.cleaned_data.get('client'))
+    new_job = Jobs(job_title=form.cleaned_data.get('job_title'),
+                    job_number=form.cleaned_data.get('job_number'),
+                    member=member,
+                    client=client)
+    new_job.save()
+    return True
 
 ## Update the selected Job, preserving Job Number ##
 def update_job(job, form):

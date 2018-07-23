@@ -10,10 +10,10 @@ class ParentJobForm(forms.Form):
         self.user_id = user_id
         self.client_choices = MemberClient.objects.filter(member=self.user_id)
         self.fields['job_title'] = forms.CharField(max_length=50)
-        self.fields['location'] = forms.CharField(max_length=150,
-                                                    widget=forms.Textarea)
-        self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)
-        self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget)
+        #self.fields['location'] = forms.CharField(#max_length=150,
+                                                   # widget=forms.Textarea)
+        #self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)
+        #self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget)
         self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices,
                                                         to_field_name='client',
                                                         label='Clients',

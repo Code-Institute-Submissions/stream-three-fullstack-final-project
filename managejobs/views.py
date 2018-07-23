@@ -7,31 +7,23 @@ from django.forms.models import model_to_dict
 from .forms import JobsForm, EditJobsForm
 from accounts.forms import AllUser
 from .models import Jobs
-from .view_func import get_all_jobs_for_user, does_the_user_have_clients, update_job
-
+from .view_func import get_all_jobs_for_user, does_the_user_have_clients
+from .view_func import create_job, update_job
 ## Return Manage Jobs Template ##
 ## User can see all jobs and create new ones ##
 def manage_jobs(request, username):
     member = get_object_or_404(AllUser, username=username)
-    user_id = member.pk
+    user_id = member.id
     jobs = get_all_jobs_for_user(username, user_id)
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
     if request.method == 'POST':
         form = JobsForm(user_id, request.POST)
         if form.is_valid():
-            client = get_object_or_404(AllUser, 
-                                        username=form.cleaned_data.get('client'))
-            new_job = Jobs(job_title=form.cleaned_data.get('job_title'),
-                            job_number=form.cleaned_data.get('job_number'),
-                            location=form.cleaned_data.get('location'),
-                            start_date=form.cleaned_data.get('start_date'),
-                            end_date=form.cleaned_data.get('start_date'),
-                            member=member,
-                            client=client)
-            new_job.save()
-            messages.success(request, 'New Job Created.')
-            return redirect(reverse('manage_jobs',
+            job_created = create_job(form, member)
+            if job_created:
+                messages.success(request, 'New Job Created.')
+                return redirect(reverse('manage_jobs',
                                 kwargs={'username':username}))          
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
