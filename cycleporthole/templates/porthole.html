@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Cycle Porthole</h1>
-<p>You are logged in as {{ context.username }}</p>
-<p>Fileo Cycle ID: {{ context.cycle_id }}</p>
-<p>Client: {{ context.client.username }}</p>
+
+<p>You are logged in as {{ context.member.username }}</p>
+<p>Fileo Cycle ID: {{ context.cycle.id }}</p>
+{% if not cycle.cancelled %}
+<p>Status: Active</p>
+{% else %}
+<p>Status: Cancelled</p>
+{% endif %}
+<h2>Client</h2>
+<p>{{ context.cycle.client.username }}</p>
+<p>{{ context.cycle.client.first_name }} {{ context.cycle.client.first_name }}</p>
+<p>{{ context.client_profile.profile.company }}</p>
+<p>{{ context.client_profile.profile.phone }}</p>
 <h2>Job Title</h2>
-<h4>Job Number: {{ context.cycle.job.job_number }}</h4>
 <h3>{{ context.cycle.job.job_title }}</h3>
-<p> Start Date: {{ context.cycle.job.start_date }}</p>
-<p> End Date: {{ context.cycle.job.end_date }}</p>
-<p>@{{ context.cycle.job.location }}</p>
+<h4>Job Number: {{ context.cycle.job.job_number }}</h4>
 <h3>Cycle Description</h3>
-<P>{{ context.cycle.description }}</P>
-<h3>Cycle Value</h3>
+<h4>Location</h4>
+<p>@{{ context.cycle.location }}</p>
+<h4>Description</h4>
+<p>{{ context.cycle.description }}</p>
+<h4>Dates</h4>
+<p> Start Date: {{ context.cycle.start_date }}</p>
+<p> End Date: {{ context.cycle.end_date }}</p>
+<h4>Cycle Value</h4>
 {% if context.quote.cycle_value %}
 <p>{{ context.quote.cycle_value }}</p>
 {% else %}
@@ -22,24 +35,35 @@
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
         {{ context.quote_form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    <form action="{% url 'delete_quote' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+        <button type="submit">Delete Quote</button>
+    </form>
+    <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
         <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <div>
         <h4>Approval</h4>
+        {% if context.quote_status.approve %}
+            <p>Status: Approved</p>
+        {% elif context.quote_status.contest %}
+            <p>Status: Contested</p>
+        {% elif not context.quote_status %}
+            <p>No Status</p>
+        {% endif %}
         <div>
             {% for message in messages %}
                 {% if 'quote_message' in message.tags %}
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'quote_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     {{ context.status_form.as_p }}
@@ -53,24 +77,33 @@
 <div>
     <h3>Upload Your PO</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'po_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'po_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
         {{ context.po_form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    <p>File uploaded at: {{ context.po.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
         <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <div>
         <h4>PO Status</h4>
+        <h4>Approval</h4>
+        {% if context.po_status.approve %}
+            <p>Status: Approved</p>
+        {% elif context.po_status.contest %}
+            <p>Status: Contested</p>
+        {% elif not context.po_status %}
+            <p>No Status</p>
+        {% endif %}
         <div>
             {% for message in messages %}
                 {% if 'po_message' in message.tags %}
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'po_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}
@@ -84,24 +117,32 @@
 <div>
     <h3>Upload Your Invoice</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'invoice_upload' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'invoice_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
         {{ context.invoice_form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Set Status</button>
     </form>
+    <p>File uploaded at: {{ context.invoice.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
         <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
     </ul>
     <div>
         <h4>Invoice Status</h4>
+        {% if context.invoice_status.approve %}
+            <p>Status: Approved</p>
+        {% elif context.invoice_status.contest %}
+            <p>Status: Contested</p>
+        {% elif not context.invoice_status %}
+            <p>No Status</p>
+        {% endif %}
         <div>
             {% for message in messages %}
                 {% if 'invoice_message' in message.tags %}
                         {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'invoice_status' username=context.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}

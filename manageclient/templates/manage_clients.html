@@ -3,7 +3,9 @@
 <h1>Logged in as {{ username }}</h1>
 {% if clients_count > 1 %}
 <h2>{{ clients_count }} current clients.</h2>
-{% else %}
+{% elif clients_count == 0 %}
+<h2>{{ clients_count }} current clients.</h2>
+{% elif clients_count == 1 %}
 <h2>{{ clients_count }} current client.</h2>
 {% endif %}
 <h3>Create a New Client</h3>

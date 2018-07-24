@@ -2,9 +2,11 @@
 {% block content %}
 <h1>You are logged in as {{ username }}</h1>
 {% if cycles_count > 1 %}
-<h2>{{ cycle_count }} current cycles.</h2>
-{% else %}
-<h2>{{ cycle_count }} current cycle.</h2>
+<h2>{{ cycles_count }} current cycles.</h2>
+{% elif cycles_count == 0 %}
+<h2>{{ cycles_count }} current cycles.</h2>
+{% elif cycles_count == 1 %}
+<h2>{{ cycles_count }} current cycle.</h2>
 {% endif %}
 <h2>Add Cycle</h2>
 <form method="POST">

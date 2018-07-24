@@ -25,7 +25,7 @@ def manage_cycles(request, username):
                             {'username':username,
                             'cycle_form':cycle_form,
                             'cycles': users_cycles[0],
-                            'cycle_count': users_cycles[1],
+                            'cycles_count': users_cycles[1],
                             'jobs': jobs})
 
 ## Edit Cycle and Redirect to Manage Cycles ##

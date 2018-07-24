@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>You are logged in as {{ username }}</h1>
-{% if jobs_count > 1%}
+{% if jobs_count > 1 %}
 <h2>{{ jobs_count }} current jobs.</h2>
-{% else %}
+{% elif jobs_count == 0 %}
+<h2>{{ jobs_count }} current jobs.</h2>
+{% elif jobs_count == 1 %}
 <h2>{{ jobs_count }} current job.</h2>
 {% endif %}
 <h2>Add Job</h2>

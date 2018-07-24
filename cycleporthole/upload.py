@@ -43,6 +43,7 @@ class UploadFile:
         po_form = PurchaseOrderForm(self.request.POST, self.request.FILES)
         if po_form.is_valid():
             new_po = PurchaseOrder(file=po_form.cleaned_data['file'],
+                                    uploaded_at=datetime.datetime.now(),
                                     client=self.client,
                                     member=self.member,
                                     cycle=self.cycle)
@@ -64,6 +65,7 @@ class UploadFile:
         invoice_form = InvoiceForm(self.request.POST, self.request.FILES)
         if invoice_form.is_valid():
             new_invoice = Invoices(file=invoice_form.cleaned_data['file'],
+                                    uploaded_at=datetime.datetime.now(),
                                     client=self.client,
                                     member=self.member,
                                     cycle=self.cycle)
