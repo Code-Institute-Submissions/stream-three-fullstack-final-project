@@ -40,5 +40,6 @@ def update_cycle(cycle,form):
     cycle.start_date = form.cleaned_data.get('start_date'),
     cycle.end_date = form.cleaned_data.get('end_date'),
     cycle.jobs = form.cleaned_data.get('jobs')
+    cycle.cancelled = form.cleaned_data.get('cancelled')
     cycle.save()
     return True

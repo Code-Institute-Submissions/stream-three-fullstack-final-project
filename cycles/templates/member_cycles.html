@@ -28,6 +28,12 @@
             <div>
                 <h3>Cycle Title</h3>
                 <p>{{ cycle.cycle_title }}</p>
+                <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+                {% if not cycle.cancelled %}
+                <p>Active</p>
+                {% else %}
+                <p>Cancelled</p>
+                {% endif %}
                 <h3>Description</h3>
                 <p>{{ cycle.description }}</p>
                 <h3>Job</h3>
@@ -36,7 +42,7 @@
                 <p>{{ cycle.client.first_name}} {{ cycle.client.last_name}}</p>
                 <h3>Client Username</h3>
                 <p>{{ cycle.client.username }}</p>
-                <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+                
             </div>
             <form action="{% url 'porthole' username=username cycle_id=cycle.id client_username=cycle.client.username %}">
                 <button type="submit">Go to Cycle</button>

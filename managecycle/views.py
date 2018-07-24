@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.forms.models import model_to_dict
-from .forms import CycleForm
+from .forms import CycleForm, EditCycleForm
 from .models import Cycles      
 from .view_func import create_cycle
 from .view_func import get_user_cycles, update_cycle
@@ -11,7 +11,6 @@ from managejobs.models import Jobs
 
 ##  Returns Manage Cycles Template with all User Cycles, ##
 ## and a form to create new user cycles ##
-
 def manage_cycles(request, username):
     user = get_object_or_404(AllUser, username=username)
     cycle_form = CycleForm(user.pk)
@@ -32,14 +31,15 @@ def manage_cycles(request, username):
 ## Edit Cycle and Redirect to Manage Cycles ##
 def edit_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
-    form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
+    form = EditCycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
                                         'description': cycle.description,
                                         'location': cycle.location,
                                         'start_date': cycle.start_date,
                                         'end_date': cycle.end_date,
-                                        'jobs': cycle.job })
+                                        'jobs': cycle.job,
+                                        'cancelled': cycle.cancelled})
     if request.method == 'POST':
-        form = CycleForm(cycle.member.id, request.POST)
+        form = EditCycleForm(cycle.member.id, request.POST)
         if form.is_valid():
             cycle_updated = update_cycle(cycle, form)
             if cycle_updated:
