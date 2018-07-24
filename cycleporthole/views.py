@@ -16,8 +16,7 @@ def porthole(request, username, cycle_id, client_username):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     profile = get_object_or_404(MemberClient, client=cycle.client.id)
     quote_status = GetStepStatus(cycle).get_quote_status()
-    #print(quote_status.approve)
-    
+
     context = {'member': cycle.member,
                 'client': cycle.client,
                 'client_profile': profile,
@@ -81,11 +80,56 @@ def invoice_upload(request, username, cycle_id, client_username):
                                         'client_username':client_username,
                                         }))
 
+## Delete Quote and Redirect to Porthole ##
 def delete_quote(request, username, cycle_id, client_username):
+    quote = GetFile(cycle_id).get_quote()
+    if quote:
+        quote.delete()
+        messages.success(request, 
+                        'You successfully deleted your Quote.',
+                            extra_tags='quote_delete')
+    else:
+        messages.error(request, 
+                        "You haven't uploaded a file yet. There is nothing to delete.",
+                        extra_tags='quote_delete')
+    return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
 
-    quote = Quotes.objects.get(cycle=cycle_id)
-    quote.delete()
-    messages.success(request, 'You successfully deleted your quote.')
+
+## Delete PO and Redirect to Porthole ##
+def delete_po(request, username, cycle_id, client_username):
+    po = GetFile(cycle_id).get_po()
+    if po:
+        po.delete()
+        messages.success(request, 
+                        'You successfully deleted your Purchase Order.',
+                        extra_tags='po_delete')
+    else:
+        messages.error(request, 
+                        "You haven't uploaded a file yet. There is nothing to delete.",
+                        extra_tags='po_delete')
+    return redirect(reverse('porthole', 
+                                kwargs={'username':username,
+                                        'cycle_id': cycle_id,
+                                        'client_username':client_username,
+                                        }))
+
+
+## Delete Invoice and Redirect to Porthole ##
+def delete_invoice(request, username, cycle_id, client_username):
+    invoice = GetFile(cycle_id).get_invoice()
+    if invoice:
+        invoice.delete()
+        messages.success(request, 
+                        'You successfully deleted your Invoice.',
+                        extra_tags='invoice_delete')
+    else:
+        messages.error(request, 
+                        "You haven't uploaded a file yet. There is nothing to delete.",
+                        extra_tags='invoice_delete')
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id,

@@ -43,6 +43,11 @@
     <form action="{% url 'delete_quote' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         <button type="submit">Delete Quote</button>
     </form>
+    {% for message in messages %}
+        {% if 'quote_delete' in message.tags %}
+            <p>{{message}}</p>
+        {% endif %}
+    {% endfor %}
     <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
@@ -82,6 +87,14 @@
         {{ context.po_form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    <form action="{% url 'delete_po' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+        <button type="submit">Delete PO</button>
+    </form>
+    {% for message in messages %}
+    {% if 'po_delete' in message.tags %}
+        <p>{{message}}</p>
+    {% endif %}
+    {% endfor %}
     <p>File uploaded at: {{ context.po.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
@@ -120,8 +133,16 @@
     <form method="POST" enctype="multipart/form-data" action="{% url 'invoice_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
         {% csrf_token %}
         {{ context.invoice_form.as_p }}
-        <button type="submit">Set Status</button>
+        <button type="submit">Upload</button>
     </form>
+    <form action="{% url 'delete_invoice' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+        <button type="submit">Delete Invoice</button>
+    </form>
+    {% for message in messages %}
+    {% if 'invoice_delete' in message.tags %}
+        <p>{{message}}</p>
+    {% endif %}
+    {% endfor %}
     <p>File uploaded at: {{ context.invoice.uploaded_at }}</p>
     <ul>
         <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
