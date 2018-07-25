@@ -18,8 +18,6 @@ def get_email_details(username, client_username):
                 'member_profile': member_profile}
     return details
 
-
-
 class NotifyClient:
     """Class Sends emails to clients"""
     def __init__(self, **kwargs):
