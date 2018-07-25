@@ -3,7 +3,7 @@ from accounts.models import AllUser
 from profiles.models import Profile
 from profiles.view_func import profile_exists
 from .models import MemberClient
-from notify.notify import NotifyClient
+
 
 ## Create New Client and Client Member Relationship ##  
 def create_client(username, new_client):

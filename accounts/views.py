@@ -4,7 +4,7 @@ from accounts.forms import UserLoginForm
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
-from notify.notify import NotifyMember
+from notify.notify import NewMember
 
 
 def index(request):
@@ -62,7 +62,7 @@ def register(request):
             messages.success(request, 
                             """You have successfully created an account! 
                                 Please go back to the login page and login.""")
-            new_email = NotifyMember(register.cleaned_data['first_name'],
+            new_email = NewMember(register.cleaned_data['first_name'],
                                 register.cleaned_data['email'], 
                                 register.cleaned_data['username'],
                                 )

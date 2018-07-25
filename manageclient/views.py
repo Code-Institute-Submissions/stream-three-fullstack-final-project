@@ -8,7 +8,7 @@ from .models import MemberClient
 from .view_func import create_client #email_client_account_details, 
 from .view_func import get_all_clients_of_user
 from accounts.forms import UserRegisterForm
-from notify.notify import NotifyClient, get_email_details
+from notify.notify import NewClient, get_email_details
 
 ## Create New Client and Write pk of Member and Client to MemberClient Model ##
 def manage_clients(request, username):
@@ -27,7 +27,7 @@ def manage_clients(request, username):
                     kwargs = get_email_details(username, 
                                                 client_username)
 
-                    NotifyClient(**kwargs).client_user_created()
+                    NewClient(**kwargs).client_user_created()
                     messages.success(request, 
                                     "You have successfully created a new client, they have been emailed their credentials!",
                                     extra_tags="create_client")

@@ -72,17 +72,3 @@ class GetStepStatus:
 
         return status
 
-
-## Get Cycle Info for Porthole View #
-#def get_porthole_info(username, cycle_id, client_username):
-    #cycle = get_object_or_404(Cycles, pk=cycle_id)
-    #porthole_info = {'cycle': cycle,
-     #               'member': cycle.member, 
-      #              'client': cycle.client, 
-           #         'po': GetFile(cycle).get_po(),
-          #          'invoice': GetFile(cycle).get_invoice(),
-       #             'quote': GetFile(cycle).get_quote(),
-            #        'quote_status': GetStepStatus(cycle).get_quote_status(),
-             #       'po_status': GetStepStatus(cycle).get_po_status(),
-              #      'invoice_status': GetStepStatus(cycle).get_invoice_status()}
-   # return porthole_info
