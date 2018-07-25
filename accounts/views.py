@@ -4,7 +4,7 @@ from accounts.forms import UserLoginForm
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
-from .notify import NotifyMember
+from notify.notify import NotifyMember
 
 
 def index(request):

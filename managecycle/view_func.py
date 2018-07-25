@@ -33,12 +33,12 @@ def get_user_cycles(user):
         users_cycles = None
     return users_cycles, count
 
-def update_cycle(cycle,form):
+def update_cycle(cycle, form, request):
     cycle.cycle_title = form.cleaned_data.get('cycle_title')
-    cycle.description = form.cleaned_data.get('description')
-    cycle.location = form.cleaned_data.get('location'),
-    cycle.start_date = form.cleaned_data.get('start_date'),
-    cycle.end_date = form.cleaned_data.get('end_date'),
+    cycle.description = form.cleaned_data.get('description')  
+    cycle.location = form.cleaned_data.get('location')
+    cycle.start_date = form.cleaned_data.get('start_date')
+    cycle.end_date = form.cleaned_data.get('end_date')
     cycle.jobs = form.cleaned_data.get('jobs')
     cycle.cancelled = form.cleaned_data.get('cancelled')
     cycle.save()

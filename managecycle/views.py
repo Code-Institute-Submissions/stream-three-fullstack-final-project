@@ -31,6 +31,7 @@ def manage_cycles(request, username):
 ## Edit Cycle and Redirect to Manage Cycles ##
 def edit_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
+    #print(cycle.location)
     form = EditCycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
                                         'description': cycle.description,
                                         'location': cycle.location,
@@ -41,7 +42,8 @@ def edit_cycle(request, username, cycle_id):
     if request.method == 'POST':
         form = EditCycleForm(cycle.member.id, request.POST)
         if form.is_valid():
-            cycle_updated = update_cycle(cycle, form)
+            #print(form.cleaned_data.get('location'))
+            cycle_updated = update_cycle(cycle, form, request)
             if cycle_updated:
                 messages.success(request, 
                                 'You have updated cycle with Fileo ID: {0}'.format(cycle.id))

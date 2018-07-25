@@ -9,6 +9,7 @@ from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 from .upload import UploadFile
 from .view_func import GetFile, GetStepStatus
+from notify.notify import NotifyClient, get_email_details
 ############## VIEWS #################################
 
 ## Returns Porthole Template ##
@@ -40,10 +41,15 @@ def quote_upload(request, username, cycle_id, client_username):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
                             
     if request.method == 'POST':
-        UploadFile(request, 
+        uploaded =  UploadFile(request, 
                     cycle.client, 
                     cycle.member, 
                     cycle).upload_quote()
+        if uploaded:
+            kwargs = get_email_details(username, client_username)
+            kwargs['cycle'] = cycle
+            NotifyClient(**kwargs).new_quote_notification()
+           
         return redirect(reverse('porthole',
                                  kwargs={'username':username,
                                         'cycle_id': cycle.id,

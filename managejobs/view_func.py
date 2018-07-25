@@ -40,9 +40,9 @@ def update_job(job, form):
     client = get_object_or_404(AllUser, 
                             username=form.cleaned_data.get('client'))
     job.job_title = form.cleaned_data.get('job_title')
-    job.location = form.cleaned_data.get('location')
-    job.start_date = form.cleaned_data.get('start_date')
-    job.end_date = form.cleaned_data.get('end_date')
+    #job.location = form.cleaned_data.get('location')
+    #job.start_date = form.cleaned_data.get('start_date')
+    #job.end_date = form.cleaned_data.get('end_date')
     job.client = client
     job.save() 
     return True

@@ -14,14 +14,3 @@ class ProfileForm(forms.Form):
     region = forms.CharField(required=False, label='Region/County')
     post_code = forms.CharField(required=False, label='Post Code')
    
-
-    #class Meta:
-       # model = Profile
-       # fields = ['company',
-                   ## 'position', 
-                   # 'phone',
-                    #'address1',
-                   ## 'address2',
-                    #'address3',
-                    #'post_code',
-                    #]

@@ -3,7 +3,7 @@ from accounts.models import AllUser
 from profiles.models import Profile
 from profiles.view_func import profile_exists
 from .models import MemberClient
-from accounts.notify import NotifyClient
+from notify.notify import NotifyClient
 
 ## Create New Client and Client Member Relationship ##  
 def create_client(username, new_client):
@@ -23,18 +23,18 @@ def create_client(username, new_client):
             return True
 
 ## Email Client Account Details ##
-def email_client_account_details(profile, username, new_client):
-    client_username = new_client.cleaned_data['username']
-    member = get_object_or_404(AllUser, username=username)
-    client = get_object_or_404(AllUser, username=client_username)
-    new_email = NotifyClient(client.email,
-                                    client.first_name, 
-                                    member.first_name,
-                                    client.username,
-                                    profile.company
-                                    )
-    new_email.client_user_created()
-    return True
+#def email_client_account_details(profile, username, new_client):
+   # client_username = new_client.cleaned_data['username']
+   # member = get_object_or_404(AllUser, username=username)
+   # client = get_object_or_404(AllUser, username=client_username)
+   # new_email = NotifyClient(client.email,
+                                  #  client.first_name, 
+                                  #  member.first_name,
+                                 #   client.username,
+                                  #  profile.company
+                                  #  )
+    #new_email.client_user_created()
+   # return True
 
 def get_all_clients_of_user(user_id):
     try: 

@@ -5,10 +5,10 @@ from accounts.models import AllUser
 from profiles.models import Profile
 from profiles.view_func import profile_exists
 from .models import MemberClient
-from .view_func import email_client_account_details, create_client
+from .view_func import create_client #email_client_account_details, 
 from .view_func import get_all_clients_of_user
 from accounts.forms import UserRegisterForm
-from accounts.notify import NotifyClient
+from notify.notify import NotifyClient, get_email_details
 
 ## Create New Client and Write pk of Member and Client to MemberClient Model ##
 def manage_clients(request, username):
@@ -23,7 +23,11 @@ def manage_clients(request, username):
             if new_client.is_valid():
                 client_created = create_client(username, new_client)
                 if client_created:
-                    email_client_account_details(profile, username, new_client) 
+                    client_username = new_client.cleaned_data['username']
+                    kwargs = get_email_details(username, 
+                                                client_username)
+
+                    NotifyClient(**kwargs).client_user_created()
                     messages.success(request, 
                                     "You have successfully created a new client, they have been emailed their credentials!",
                                     extra_tags="create_client")

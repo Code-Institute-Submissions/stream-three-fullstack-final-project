@@ -2,13 +2,17 @@ from django.db import models
 from accounts.models import AllUser
 from managejobs.models import Jobs
 
+
 ## Model to store Cycle Info ##
 class Cycles(models.Model):
     cycle_title = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=150, blank=False)
-    location = models.CharField(max_length=50, blank=False, null=True)
-    start_date = models.CharField(max_length=50, blank=False, null=True)
-    end_date = models.CharField(max_length=50, blank=False, null=True)
+    location = models.CharField(max_length=150, blank=False)
+    start_date = models.CharField(max_length=50, blank=False)
+    end_date = models.CharField(max_length=50, blank=False)
+    #location = models.CharField(max_length=50, blank=False)
+    #start_date = models.CharField(max_length=50, blank=False)
+    #end_date = models.CharField(max_length=50, blank=False)
     member = models.ForeignKey(AllUser, 
                                 related_name='member_cycle', 
                                 on_delete=models.CASCADE,

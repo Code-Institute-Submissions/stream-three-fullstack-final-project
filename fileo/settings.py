@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'managejobs',
     'managecycle',
     'manageclient',
+    'notify',
 ]
 
 MIDDLEWARE = [
