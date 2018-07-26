@@ -50,44 +50,12 @@ def upload(request, username, cycle_id, client_username, step):
               upload.upload_po()
         elif step == 'invoice':
             upload.upload_invoice()
-        print(step)
-    return redirect(reverse('porthole',
-                                kwargs={'username':username,
-                                    'cycle_id': cycle.id,
-                                    'client_username':client_username,
-                                    }))
-
-
-## Called When a PO is uploaded and redirected to Porthole View ##
-#def po_upload(request, username, cycle_id, client_username):
-   # cycle = get_object_or_404(Cycles, pk=cycle_id)
-                            
-   # if request.method == 'POST':
-       # UploadFile(request, 
-                  #  cycle.client, 
-                   # cycle.member, 
-                    #cycle).upload_po()
         
-       # return redirect(reverse('porthole', 
-        #                        kwargs={'username':username,
-         #                               'cycle_id': cycle.id,
-          #                              'client_username':client_username,
-           #                             }))
-
-## Called When an Invoice is uploaded and redirected to Porthole View ##
-#def invoice_upload(request, username, cycle_id, client_username):
- #   cycle = get_object_or_404(Cycles, pk=cycle_id)
-                            
-  #  if request.method == 'POST':
-   #     UploadFile(request, 
-    #                cycle.client, 
-     #               cycle.member,
-      #              cycle).upload_invoice()            
-       # return redirect(reverse('porthole', 
-        #                        kwargs={'username':username,
-         #                               'cycle_id': cycle.id,
-          #                              'client_username':client_username,
-           #                             }))
+        return redirect(reverse('porthole',
+                                    kwargs={'username':username,
+                                        'cycle_id': cycle.id,
+                                        'client_username':client_username,
+                                        }))
 
 ## Send Email Notification of Quote Upload and redirect to Porthole View ##
 def step_notify(request, username, cycle_id, client_username, step):
@@ -122,46 +90,6 @@ def delete_file(request, username, cycle_id, client_username, step):
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
-
-
-    
-
-## Delete PO and Redirect to Porthole ##
-#def delete_po(request, username, cycle_id, client_username):
-#    po = GetFile(cycle_id).get_po()
-#    if po:
-#        po.delete()
-#        messages.success(request, 
-#                        'You successfully deleted your Purchase Order.',
-#                        extra_tags='po_delete')
-#    else:
-#        messages.error(request, 
-#                        "You haven't uploaded a file yet. There is nothing to delete.",
-#                        extra_tags='po_delete')
-#    return redirect(reverse('porthole', 
-#                                        'cycle_id': cycle_id,
-#                                        'client_username':client_username,
-#                                        }))
-###                                kwargs={'username':username,
-
-
-## Delete Invoice and Redirect to Porthole ##
-#def delete_invoice(request, username, cycle_id, client_username):
-#    invoice = GetFile(cycle_id).get_invoice()
- #       invoice.delete()
-#    if invoice:
-#        messages.success(request, 
-#                        'You successfully deleted your Invoice.',
- #                       extra_tags='invoice_delete')
-#    else:
-#        messages.error(request, 
-#                        "You haven't uploaded a file yet. There is nothing to delete.",
-#                        extra_tags='invoice_delete')
-#    return redirect(reverse('porthole', 
-#                                kwargs={'username':username,
-#                                        'cycle_id': cycle_id,
-#                                        'client_username':client_username,
- #                                       }))
 
 
     

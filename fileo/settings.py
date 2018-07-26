@@ -171,3 +171,5 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 #EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 #EMAIL_PORT = 587
+
+MAX_UPLOAD_SIZE = 5242880

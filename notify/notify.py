@@ -45,6 +45,7 @@ class NewClient:
         self.profile = kwargs.get('member_profile')
 
     def client_user_created(self):
+        print(self.client.password)
         subject = 'New Client Account at Fileo.'
         html_message = render_to_string('../templates/emails/client_account_email.html',
                                         {'recipient_email': self.client.email,
@@ -142,7 +143,7 @@ class NewStatusNotify(NewFile):
                                         'file': self.file})
         plain_message = strip_tags(html_message)
         from_email = os.environ.get('EMAIL_ADDRESS')
-        to = [self.client.email]
+        to = [self.member.email]
         send_mail(subject, plain_message, from_email, to, 
                     html_message=html_message,fail_silently=True)
 
