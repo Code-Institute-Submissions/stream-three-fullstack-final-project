@@ -8,7 +8,7 @@ from cyclestatus.models import QuoteStatus
 from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 from .upload import UploadFile
-from .view_func import GetFile, GetStepStatus
+from .view_func import GetFile, GetStepStatus, DeleteFile
 from notify.notify import NewClient, NewFile, get_email_details
 ############## VIEWS #################################
 
@@ -36,118 +36,134 @@ def porthole(request, username, cycle_id, client_username):
 
     return render(request, 'porthole.html', {'context':context})
 
-## Called When a Quote is uploaded and redirected to Porthole View ##
-def quote_upload(request, username, cycle_id, client_username):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
-                            
+## Called when a file is uploaded and redirected to Porthole View ##
+def upload(request, username, cycle_id, client_username, step):
+    cycle = get_object_or_404(Cycles, pk=cycle_id)                      
     if request.method == 'POST':
-        uploaded =  UploadFile(request, 
+        upload = UploadFile(request, 
                     cycle.client, 
                     cycle.member, 
-                    cycle).upload_quote()
-        if uploaded:
-            kwargs = get_email_details(username, client_username)
-            kwargs['cycle'] = cycle
-            NewFile(**kwargs).new_quote_notification()
-           
-        return redirect(reverse('porthole',
-                                 kwargs={'username':username,
-                                        'cycle_id': cycle.id,
-                                        'client_username':client_username,
-                                        }))
+                    cycle)
+        if step == 'quote':
+            upload.upload_quote()
+        elif step == 'po':
+              upload.upload_po()
+        elif step == 'invoice':
+            upload.upload_invoice()
+        print(step)
+    return redirect(reverse('porthole',
+                                kwargs={'username':username,
+                                    'cycle_id': cycle.id,
+                                    'client_username':client_username,
+                                    }))
+
 
 ## Called When a PO is uploaded and redirected to Porthole View ##
-def po_upload(request, username, cycle_id, client_username):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
+#def po_upload(request, username, cycle_id, client_username):
+   # cycle = get_object_or_404(Cycles, pk=cycle_id)
                             
-    if request.method == 'POST':
-        uploaded = UploadFile(request, 
-                    cycle.client, 
-                    cycle.member, 
-                    cycle).upload_po()
-        if uploaded:
-            kwargs = get_email_details(username, client_username)
-            kwargs['cycle'] = cycle
-            NewFile(**kwargs).new_po_notification()
-                
-        return redirect(reverse('porthole', 
-                                kwargs={'username':username,
-                                        'cycle_id': cycle.id,
-                                        'client_username':client_username,
-                                        }))
+   # if request.method == 'POST':
+       # UploadFile(request, 
+                  #  cycle.client, 
+                   # cycle.member, 
+                    #cycle).upload_po()
+        
+       # return redirect(reverse('porthole', 
+        #                        kwargs={'username':username,
+         #                               'cycle_id': cycle.id,
+          #                              'client_username':client_username,
+           #                             }))
 
 ## Called When an Invoice is uploaded and redirected to Porthole View ##
-def invoice_upload(request, username, cycle_id, client_username):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
+#def invoice_upload(request, username, cycle_id, client_username):
+ #   cycle = get_object_or_404(Cycles, pk=cycle_id)
                             
-    if request.method == 'POST':
-        uploaded = UploadFile(request, 
-                    cycle.client, 
-                    cycle.member,
-                    cycle).upload_invoice()
-        if uploaded:
-            kwargs = get_email_details(username, client_username)
-            kwargs['cycle'] = cycle
-            NewFile(**kwargs).new_invoice_notification()
-            
-        return redirect(reverse('porthole', 
+  #  if request.method == 'POST':
+   #     UploadFile(request, 
+    #                cycle.client, 
+     #               cycle.member,
+      #              cycle).upload_invoice()            
+       # return redirect(reverse('porthole', 
+        #                        kwargs={'username':username,
+         #                               'cycle_id': cycle.id,
+          #                              'client_username':client_username,
+           #                             }))
+
+## Send Email Notification of Quote Upload and redirect to Porthole View ##
+def step_notify(request, username, cycle_id, client_username, step):
+    cycle = get_object_or_404(Cycles, pk=cycle_id)
+    kwargs = get_email_details(username, client_username)
+    kwargs['cycle'] = cycle
+    print(step)
+    if step == 'quote':
+        NewFile(**kwargs).new_quote_notification()
+    elif step == 'po':
+        NewFile(**kwargs).new_po_notification()
+    elif step == 'invoice':
+        NewFile(**kwargs).new_invoice_notification()
+
+    return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle.id,
                                         'client_username':client_username,
                                         }))
 
-## Delete Quote and Redirect to Porthole ##
-def delete_quote(request, username, cycle_id, client_username):
-    quote = GetFile(cycle_id).get_quote()
-    if quote:
-        quote.delete()
-        messages.success(request, 
-                        'You successfully deleted your Quote.',
-                            extra_tags='quote_delete')
-    else:
-        messages.error(request, 
-                        "You haven't uploaded a file yet. There is nothing to delete.",
-                        extra_tags='quote_delete')
+## Delete File and Redirect to Porthole ##
+def delete_file(request, username, cycle_id, client_username, step):
+    if step == 'quote':
+        DeleteFile(request, cycle_id).delete_quote()
+    elif step == 'po':
+        DeleteFile(request, cycle_id).delete_po()
+    elif step =='invoice':
+        DeleteFile(request, cycle_id).delete_invoice()
+        
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id,
                                         'client_username':client_username,
                                         }))
 
+
+    
 
 ## Delete PO and Redirect to Porthole ##
-def delete_po(request, username, cycle_id, client_username):
-    po = GetFile(cycle_id).get_po()
-    if po:
-        po.delete()
-        messages.success(request, 
-                        'You successfully deleted your Purchase Order.',
-                        extra_tags='po_delete')
-    else:
-        messages.error(request, 
-                        "You haven't uploaded a file yet. There is nothing to delete.",
-                        extra_tags='po_delete')
-    return redirect(reverse('porthole', 
-                                kwargs={'username':username,
-                                        'cycle_id': cycle_id,
-                                        'client_username':client_username,
-                                        }))
+#def delete_po(request, username, cycle_id, client_username):
+#    po = GetFile(cycle_id).get_po()
+#    if po:
+#        po.delete()
+#        messages.success(request, 
+#                        'You successfully deleted your Purchase Order.',
+#                        extra_tags='po_delete')
+#    else:
+#        messages.error(request, 
+#                        "You haven't uploaded a file yet. There is nothing to delete.",
+#                        extra_tags='po_delete')
+#    return redirect(reverse('porthole', 
+#                                        'cycle_id': cycle_id,
+#                                        'client_username':client_username,
+#                                        }))
+###                                kwargs={'username':username,
 
 
 ## Delete Invoice and Redirect to Porthole ##
-def delete_invoice(request, username, cycle_id, client_username):
-    invoice = GetFile(cycle_id).get_invoice()
-    if invoice:
-        invoice.delete()
-        messages.success(request, 
-                        'You successfully deleted your Invoice.',
-                        extra_tags='invoice_delete')
-    else:
-        messages.error(request, 
-                        "You haven't uploaded a file yet. There is nothing to delete.",
-                        extra_tags='invoice_delete')
-    return redirect(reverse('porthole', 
-                                kwargs={'username':username,
-                                        'cycle_id': cycle_id,
-                                        'client_username':client_username,
-                                        }))
+#def delete_invoice(request, username, cycle_id, client_username):
+#    invoice = GetFile(cycle_id).get_invoice()
+ #       invoice.delete()
+#    if invoice:
+#        messages.success(request, 
+#                        'You successfully deleted your Invoice.',
+ #                       extra_tags='invoice_delete')
+#    else:
+#        messages.error(request, 
+#                        "You haven't uploaded a file yet. There is nothing to delete.",
+#                        extra_tags='invoice_delete')
+#    return redirect(reverse('porthole', 
+#                                kwargs={'username':username,
+#                                        'cycle_id': cycle_id,
+#                                        'client_username':client_username,
+ #                                       }))
+
+
+    
+
+    

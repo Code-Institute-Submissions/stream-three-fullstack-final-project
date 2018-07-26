@@ -35,14 +35,19 @@
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'quote_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
         {% csrf_token %}
         {{ context.quote_form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <form action="{% url 'delete_quote' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    {% if context.quote %}
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
         <button type="submit">Delete Quote</button>
     </form>
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
+        <button type="submit">Notify Client</button>
+    </form>
+    {% endif %}
     {% for message in messages %}
         {% if 'quote_delete' in message.tags %}
             <p>{{message}}</p>
@@ -82,14 +87,19 @@
 <div>
     <h3>Upload Your PO</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'po_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
         {% csrf_token %}
         {{ context.po_form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <form action="{% url 'delete_po' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    {% if context.po %}
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
         <button type="submit">Delete PO</button>
     </form>
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
+        <button type="submit">Notify Client</button>
+    </form>
+    {% endif %}
     {% for message in messages %}
     {% if 'po_delete' in message.tags %}
         <p>{{message}}</p>
@@ -130,14 +140,19 @@
 <div>
     <h3>Upload Your Invoice</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'invoice_upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
         {% csrf_token %}
         {{ context.invoice_form.as_p }}
         <button type="submit">Upload</button>
     </form>
-    <form action="{% url 'delete_invoice' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}">
+    {% if context.invoice %}
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
         <button type="submit">Delete Invoice</button>
     </form>
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
+        <button type="submit">Notify Client</button>
+    </form>
+    {% endif %}
     {% for message in messages %}
     {% if 'invoice_delete' in message.tags %}
         <p>{{message}}</p>

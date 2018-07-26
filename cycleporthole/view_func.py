@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from managecycle.models import Cycles
+from django.contrib import messages
 from accounts.models import AllUser
 from .models import Quotes, PurchaseOrder, Invoices
 from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
@@ -72,3 +73,47 @@ class GetStepStatus:
 
         return status
 
+class DeleteFile:
+    def __init__(self, request, cycle_id):
+        self.request = request
+        self.cycle_id = cycle_id
+
+    def delete_quote(self):
+        quote = GetFile(self.cycle_id).get_quote()
+        if quote:
+            quote.delete()
+            messages.success(self.request, 
+                            'You successfully deleted your Quote.',
+                                extra_tags='quote_delete')
+        else:
+            messages.error(self.request, 
+                            "You haven't uploaded a file yet. There is nothing to delete.",
+                            extra_tags='quote_delete')
+        return True
+
+    def delete_po(self):
+        po = GetFile(self.cycle_id).get_po()
+        if po:
+            po.delete()
+            messages.success(self.request, 
+                            'You successfully deleted your Purchase Order.',
+                            extra_tags='po_delete')
+        else:
+            messages.error(self.request, 
+                            "You haven't uploaded a file yet. There is nothing to delete.",
+                            extra_tags='po_delete')
+        return True
+        
+
+    def delete_invoice(self):
+        invoice = GetFile(self.cycle_id).get_invoice()
+        if invoice:
+            invoice.delete()
+            messages.success(self.request, 
+                            'You successfully deleted your Invoice.',
+                        extra_tags='invoice_delete')
+        else:
+            messages.error(self.request, 
+                            "You haven't uploaded a file yet. There is nothing to delete.",
+                            extra_tags='invoice_delete')
+        return True
