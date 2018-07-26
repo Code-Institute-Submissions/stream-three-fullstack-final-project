@@ -13,6 +13,8 @@ from notify.notify import NewClient, NewFile, get_email_details
 ############## VIEWS #################################
 
 ## Returns Porthole Template ##
+
+### REFACTOR THIS SO THAT FORM VALIDATION ERRORS APPEAR ##
 def porthole(request, username, cycle_id, client_username):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     profile = get_object_or_404(MemberClient, client=cycle.client.id)

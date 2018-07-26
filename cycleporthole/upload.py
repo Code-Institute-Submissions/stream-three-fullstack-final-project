@@ -39,6 +39,8 @@ class UploadFile:
                 
             return True
 
+        
+
     def upload_po(self):
         po_form = PurchaseOrderForm(self.request.POST, self.request.FILES)
         if po_form.is_valid():

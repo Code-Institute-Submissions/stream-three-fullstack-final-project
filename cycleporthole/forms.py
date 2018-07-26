@@ -9,6 +9,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 
 
 ## Upload Form Base Class ##
+
 class UploadForm(ModelForm):
     file = forms.FileField(label='Upload PDF:')
 
@@ -24,16 +25,6 @@ class UploadForm(ModelForm):
             raise forms.ValidationError('Please keep filesize under {0}.'.format(size))
             
         return pdf_file
-
-    #def clean_file(self):
-      #  file = self.cleaned_data['file']
-      #  print(file.size)
-      #  if file.size > settings.MAX_UPLOAD_SIZE:
-         #   print('fileisbigger')
-          #  raise forms.ValidationError('Please keep filesize under {0}.'.format(filesizeformat(settings.MAX_UPLOAD_SIZE)))
-        
-       # return file
-
 
 class QuotesForm(UploadForm):
     cycle_value = MoneyField(min_value=0,
