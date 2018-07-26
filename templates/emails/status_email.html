@@ -1,0 +1,24 @@
+<p>Hi {{ recipient_name }}.</p>
+<br>
+{% if file == 'Quote' %}
+<p>You have been sent this notification because {{ sender_name }} has {{ status }} your Quote.</p>
+{% elif file == 'Purchase Order' %}
+<p>You have been sent this notification because {{ sender_name }} has {{ status }} your Purchase Order.</p>
+{% elif file == 'Invoice' %}
+<p>You have been sent this notification because {{ sender_name }} has {{ status }} your Invoice.</p>
+{% endif %}
+<br>
+<p>Fileo Cycle Details:</p>
+<br>
+<p>Fileo Cycle ID: {{ cycle.id }}</p>
+<p>Job Name: {{ job.job_title }}</p>
+<p>Job Number: {{ job.job_number }}</p>
+<br>
+
+
+<p>Follow the link www.fileo.co.uk to login and proceed to the Cycle Porthole with Fileo Cycle ID: {{ cycle.id }} to proceed.</p>
+<br>
+<p>Regards,</p>
+<br>
+<p>The Fileo Team.</p>
+

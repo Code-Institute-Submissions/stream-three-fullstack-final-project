@@ -57,9 +57,9 @@ class NewClient:
         to = [self.client.email]
         send_mail(subject, plain_message, from_email, to, 
                     html_message=html_message,fail_silently=True)
-        print(self.client.username)
+        
 
-## Notification of New File Uploads ##
+## Notification of New File Uploads, inherits from New Client ##
 class NewFile(NewClient):
     
     def __init__(self, **kwargs):
@@ -117,6 +117,54 @@ class NewFile(NewClient):
                     html_message=html_message,fail_silently=True)
         
 
-
+## Notifications of Status, inherits from NewFile, and NewClient ##
+class NewStatusNotify(NewFile):
+    
+    def __init__(self, **kwargs):
+        super(NewStatusNotify, self).__init__(**kwargs)
+        self.status = kwargs.get('status')
+        self.file = kwargs.get('file')
+    
+    def status_notify_member(self):
         
+        subject = 'Your {0} for {1} has been {2}.'.format(self.file,
+                                                            self.cycle.job.job_title,
+                                                            self.status,)
+        html_message = render_to_string('../templates/emails/status_email.html',
+                                        {'recipient_email': self.member.email,
+                                        'recipient_name' : self.member.first_name,
+                                        'sender_name': self.client.first_name,
+                                        'client_username': self.client.username,
+                                        'member_company': self.profile.company,
+                                        'job': self.cycle.job,
+                                        'cycle': self.cycle,
+                                        'status': self.status,
+                                        'file': self.file})
+        plain_message = strip_tags(html_message)
+        from_email = os.environ.get('EMAIL_ADDRESS')
+        to = [self.client.email]
+        send_mail(subject, plain_message, from_email, to, 
+                    html_message=html_message,fail_silently=True)
+
+    def status_notify_client(self):
+        
+        subject = 'Your {0} for {1} has been {2}.'.format(self.file,
+                                                            self.cycle.job.job_title,
+                                                            self.status,)
+        html_message = render_to_string('../templates/emails/status_email.html',
+                                        {'recipient_email': self.client.email,
+                                        'recipient_name' : self.client.first_name,
+                                        'sender_name': self.member.first_name,
+                                        'client_username': self.client.username,
+                                        'member_company': self.profile.company,
+                                        'job': self.cycle.job,
+                                        'cycle': self.cycle,
+                                        'status': self.status,
+                                        'file': self.file})
+        plain_message = strip_tags(html_message)
+        from_email = os.environ.get('EMAIL_ADDRESS')
+        to = [self.client.email]
+        send_mail(subject, plain_message, from_email, to, 
+                    html_message=html_message,fail_silently=True)
+  
 

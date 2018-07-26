@@ -20,13 +20,17 @@ class QuoteStatus(CycleStatus):
         return "{0}".format(self.quote)
 
 class POStatus(CycleStatus):
-    po = models.OneToOneField(PurchaseOrder)
+    po = models.OneToOneField(PurchaseOrder,
+                                on_delete=models.CASCADE,
+                                primary_key=True)
 
     def __str__(self):
         return "{0}".format(self.po)
 
 class InvoicesStatus(CycleStatus):
-    invoice = models.OneToOneField(Invoices)
+    invoice = models.OneToOneField(Invoices,
+                                    on_delete=models.CASCADE,
+                                    primary_key=True)
 
     def __str__(self):
         return "{0}".format(self.invoice)

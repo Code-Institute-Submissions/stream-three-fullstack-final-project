@@ -1,11 +1,11 @@
 <p>Hi {{ recipient_name }}.</p>
 <br>
 {% if is_quote %}
-<p>{{ sender_name }} from {{ member_company }} has uploaded a new Quote for you to review.</p>
+<p>{{ sender_name }} from {{ member_company }} has sent you this notification because there is a Quote waiting for you to review.</p>
 {% elif is_po %}
-<p>{{ sender_name }} has uploaded a new Purchase Order for you to review.</p>
+<p>{{ sender_name }} has sent you this notification because there is a Purchase Order waiting for you to review.</p>
 {% elif is_invoice %}
-<p>{{ sender_name }} from {{ member_company }} has uploaded a new Invoice for you to review.</p>
+<p>{{ sender_name }} from {{ member_company }} has sent you this notification because there is an Invoice waiting for you to review.</p>
 {% endif %}
 <br>
 <p>Fileo Cycle Details:</p>
