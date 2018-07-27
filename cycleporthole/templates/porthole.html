@@ -35,7 +35,7 @@
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ context.quote_form.as_p }}
         <button type="submit">Submit</button>
@@ -87,8 +87,7 @@
 <div>
     <h3>Upload Your PO</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
-        {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data" >
         {{ context.po_form.as_p }}
         <button type="submit">Submit</button>
     </form>
@@ -140,7 +139,7 @@
 <div>
     <h3>Upload Your Invoice</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" action="{% url 'upload' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ context.invoice_form.as_p }}
         <button type="submit">Upload</button>

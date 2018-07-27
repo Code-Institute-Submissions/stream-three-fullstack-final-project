@@ -1,6 +1,7 @@
 from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
 import datetime
+from django.contrib import messages
 
 ## Class containing methods to push files to Relevant Model ##
 ## If the file model already contains an entry, it is deleted ##
@@ -38,6 +39,8 @@ class UploadFile:
                 print('Quote Saved')
                 
             return True
+        else:
+            return False
 
         
 
@@ -60,6 +63,8 @@ class UploadFile:
             elif not old_po:
                 new_po.save()
                 print('PO Saved')
+        else:
+            
                 
             return True
 

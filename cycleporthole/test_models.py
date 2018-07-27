@@ -1,17 +1,12 @@
+import datetime
 from django.test import TestCase
 from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
 from managecycle.models import Cycles
+from managejobs.models import Jobs
 from djmoney.money import Money
 
-## Test Helper Functions ##
-def create_cycle(member, client):
-    new_cycle = Cycles(job_title='job_title',
-                        location='location',
-                        description='description',
-                        member=member,
-                        client=client)
-    new_cycle.save()
+
 
 class TestCyclePortholeModels(TestCase):
     
@@ -32,10 +27,22 @@ class TestCyclePortholeModels(TestCase):
                                     is_member=False,
                                     is_client=True
                                     )
+        member=AllUser.objects.get(username='test1admin')
+        client=AllUser.objects.get(username='test1client')
+
+        new_job = Jobs(job_title='test job',
+                        job_number='1',
+                        member=member,
+                        client=client)
+        new_job.save()
         new_cycle = Cycles(cycle_title='cycle_title',
                             description='description',
-                            member=AllUser.objects.get(username='test1admin'),
-                            client=AllUser.objects.get(username='test1client'))
+                            location='location',
+                            start_date='2018-01-01',
+                            end_date='2018-01-01',
+                            member=member,
+                            client=client,
+                            job=Jobs.objects.get(member=member))
         new_cycle.save()
 
         self.member = AllUser.objects.get(username='test1admin')
@@ -44,6 +51,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_quotes_model(self):
         new_quote = Quotes(cycle_value=Money(1,'GBP'),
+                            uploaded_at=datetime.datetime.now(),
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle,
@@ -60,6 +68,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_po_model(self):
         new_po = PurchaseOrder(client=self.client,
+                        uploaded_at=datetime.datetime.now(),
                         member=self.member,
                         cycle=self.cycle,
                         is_po=True)
@@ -74,6 +83,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_invoice_model(self):
         new_invoice = Invoices(client=self.client,
+                        uploaded_at=datetime.datetime.now(),        
                         member=self.member,
                         cycle=self.cycle,
                         is_invoice=True)

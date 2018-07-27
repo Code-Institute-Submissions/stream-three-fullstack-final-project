@@ -18,6 +18,7 @@ def manage_cycles(request, username):
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
         create_cycle(user.pk, request.POST, user)
+        
         if create_cycle:
             messages.success(request, "A new cycle has been created")
             return redirect(reverse('manage_cycles', kwargs={'username':user.username}))

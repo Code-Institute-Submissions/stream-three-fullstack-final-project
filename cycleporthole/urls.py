@@ -1,13 +1,13 @@
 from django.conf.urls import url, include
-from .views import porthole, upload, delete_file, step_notify #po_upload, invoice_upload
+from .views import porthole,delete_file, step_notify  #upload,  #po_upload, invoice_upload
 #from .views import delete_quote, delete_po, delete_invoice, step_notify
 
 urlpatterns = [
 
     url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/$', 
                                                     porthole, name='porthole'),
-    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/upload_(?P<step>[\w.@+-]+)$', 
-                                                    upload, name='upload'),
+    #url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/upload_(?P<step>[\w.@+-]+)$', 
+    #                                                upload, name='upload'),
     #url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/po$', 
                                                    # po_upload, name='po_upload'),
     #url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/invoice$', 
