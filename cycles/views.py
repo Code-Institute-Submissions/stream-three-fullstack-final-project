@@ -13,7 +13,12 @@ def member_cycles(request, username):
     user = get_object_or_404(AllUser, username=username)
     users_cycles = get_user_cycles(user)
     is_existing = profile_exists(user.pk)
-        
+
+    all_info = Cycles.objects.select_related('QuotesCycleFK').filter(member=user)
+    #print(all_info)
+    #print(all_info.cycle_value)
+   
+
     return render(request, 'member_cycles.html', 
                             {'username':username,
                             'cycles': users_cycles[0],

@@ -17,10 +17,7 @@ from notify.notify import NewClient, NewFile, get_email_details
 ## Returns Porthole Template ##
 
 def porthole(request, username, cycle_id, client_username):
-    context = get_porthole_context(cycle_id)
-    #cycle = get_object_or_404(Cycles, pk=cycle_id)
-    #profile = get_object_or_404(MemberClient, client=cycle.client.id)
-    #quote_status = 
+    context = get_porthole_context(cycle_id) 
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()
     invoice_form = InvoiceForm()

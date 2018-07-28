@@ -58,7 +58,8 @@ class Quotes(UploadModel):
                             
     client = models.ForeignKey(AllUser,related_name='QuotesUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='QuotesMemberFK', on_delete=models.CASCADE)
-    cycle = models.ForeignKey(Cycles, related_name='QuotesCycleFK', on_delete=models.CASCADE)
+    cycle = models.OneToOneField(Cycles, related_name='QuotesCycleFK', 
+                                on_delete=models.CASCADE, primary_key=True)
     is_quote = models.BooleanField(default=True)
 
 
@@ -70,7 +71,8 @@ class Quotes(UploadModel):
 class PurchaseOrder(UploadModel):
     client = models.ForeignKey(AllUser,related_name='POUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='POMemberFK', on_delete=models.CASCADE)
-    cycle = models.ForeignKey(Cycles, related_name='POCycleFK', on_delete=models.CASCADE)
+    cycle = models.OneToOneField(Cycles, related_name='POCycleFK', 
+                                    on_delete=models.CASCADE, primary_key=True)
     is_po = models.BooleanField(default=True)
 
     def __str__(self):
@@ -81,7 +83,8 @@ class PurchaseOrder(UploadModel):
 class Invoices(UploadModel):
     client = models.ForeignKey(AllUser,related_name='InvoiceUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='InvoiceMemberFK', on_delete=models.CASCADE)
-    cycle = models.ForeignKey(Cycles, related_name='InvoiceCycleFK', on_delete=models.CASCADE)
+    cycle = models.OneToOneField(Cycles, related_name='InvoiceCycleFK', 
+                                on_delete=models.CASCADE, primary_key=True)
     is_invoice = models.BooleanField(default=True)
 
     def __str__(self):
