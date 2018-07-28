@@ -24,6 +24,7 @@ def create_cycle(user_id, request, user):
     else:
         return False
 
+
 ## Get all User Cycles ##
 def get_user_cycles(user):
     try:

@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from managecycle.forms import CycleForm
 from managecycle.models import Cycles      
+from cyclestatus.models import QuoteStatus, InvoicesStatus, POStatus
 from managecycle.view_func import get_user_cycles
 from accounts.models import AllUser
 from manageclient.models import MemberClient 
 from profiles.models import Profile
 from profiles.view_func import profile_exists
+
 
 ## Returns Member Cycles Template with all User Cycles ##
 def member_cycles(request, username):
@@ -14,8 +16,9 @@ def member_cycles(request, username):
     users_cycles = get_user_cycles(user)
     is_existing = profile_exists(user.pk)
 
-    all_info = Cycles.objects.filter(member=user)
-    print(all_info[0].id)
+    all_info = QuoteStatus.objects.filter(cycle__member=user)
+    print(all_info[0].cycle.cycle_title)
+    print(all_info[0].approve)
     #print(all_info.cycle_value)
    
 
