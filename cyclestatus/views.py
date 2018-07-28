@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from .models import Quotes, PurchaseOrder, Invoices
+from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
 from cyclestatus.forms import StatusForm
 from .view_func import set_status, email_status
@@ -22,7 +22,7 @@ def set_quote_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = QuoteStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                quote=quote)
+                                cycle=quote.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 
                          status_form, 'quote')
@@ -54,7 +54,7 @@ def set_po_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = POStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                po=po)
+                                cycle=po.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 
                          status_form, 'po')
@@ -86,7 +86,7 @@ def set_invoice_status(request, username, cycle_id, client_username):
             status_form = StatusForm(request.POST)
             status = InvoicesStatus(approve=set_status(status_form)[0],
                                 contest=set_status(status_form)[1], 
-                                invoice=invoice)
+                                cycle=invoice.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 
                          status_form, 'invoice')

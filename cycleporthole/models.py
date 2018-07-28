@@ -7,6 +7,8 @@ from djmoney.models.validators import MaxMoneyValidator, MinValueValidator
 from accounts.models import AllUser
 from managecycle.models import Cycles
 
+## Determine upload path depending on whether instance is ##
+## a quote, po or invoice ## 
 def get_upload_path(instance, filename):
     ext = os.path.splitext(filename)[1]
     
@@ -34,7 +36,6 @@ def get_upload_path(instance, filename):
                                                 instance.cycle.job.job_title,
                                                 instance.cycle.id,
                                                 ext) 
-    
     return path
 
 ### BASE MODEL FOR QUOTE, PO, AND INVOICES ###

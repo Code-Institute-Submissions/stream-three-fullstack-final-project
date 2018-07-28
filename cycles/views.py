@@ -14,8 +14,8 @@ def member_cycles(request, username):
     users_cycles = get_user_cycles(user)
     is_existing = profile_exists(user.pk)
 
-    all_info = Cycles.objects.select_related('QuotesCycleFK').filter(member=user)
-    #print(all_info)
+    all_info = Cycles.objects.filter(member=user)
+    print(all_info[0].id)
     #print(all_info.cycle_value)
    
 

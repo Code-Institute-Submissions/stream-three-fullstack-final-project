@@ -65,14 +65,14 @@ class GetStepStatus:
     
     def __init__(self, cycle):
         self.cycle = cycle
-        self.quote = GetFile(self.cycle.id).get_quote()
-        self.po = GetFile(self.cycle.id).get_po()
-        self.invoice = GetFile(self.cycle.id).get_invoice()
+        #self.quote = GetFile(self.cycle.id).get_quote()
+        #self.po = GetFile(self.cycle.id).get_po()
+        #self.invoice = GetFile(self.cycle.id).get_invoice()
         
         
     def get_quote_status(self):
         try:
-            status = QuoteStatus.objects.get(quote=self.quote)
+            status = QuoteStatus.objects.get(cycle=self.cycle.id)
         except QuoteStatus.DoesNotExist:
             status = None
         #print(status.approve)
@@ -80,7 +80,7 @@ class GetStepStatus:
 
     def get_po_status(self):
         try:
-            status = POStatus.objects.get(po=self.po)
+            status = POStatus.objects.get(cycle=self.cycle.id)
         except POStatus.DoesNotExist:
             status = None
 
@@ -88,7 +88,7 @@ class GetStepStatus:
 
     def get_invoice_status(self):
         try:
-            status = InvoicesStatus.objects.get(invoice=self.invoice)
+            status = InvoicesStatus.objects.get(cycle=self.cycle.id)
         except InvoicesStatus.DoesNotExist:
             status = None
 

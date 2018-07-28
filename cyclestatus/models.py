@@ -1,42 +1,36 @@
 from django.db import models
-from cycleporthole.models import Quotes, PurchaseOrder, Invoices
+#from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 from managecycle.models import Cycles
 
 ## Models to store Boolean Fields about Approval Statuses of each Cycle Step ##
-"""
-class CycleStatus(models.Model):
-    approve = models.BooleanField(default=False, blank=False)
-    contest = models.BooleanField(default=False, blank=False)
 
-    class Meta:
-        abstract = True
-"""
-       
-class QuoteStatus():
+class QuoteStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
-    cycle = models.OneToOneField(Cycles, 
+    cycle = models.OneToOneField(Cycles,
+                                related_name='quote_status',
                                 on_delete=models.CASCADE, 
                                 primary_key=True)
     def __str__(self):
         return "{0}".format(self.cycle)
 
-class POStatus():
+class POStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
     cycle = models.OneToOneField(Cycles,
-                                on_delete=models.CASCADE,
+                                related_name='po_status', 
+                                on_delete=models.CASCADE, 
                                 primary_key=True)
-
     def __str__(self):
         return "{0}".format(self.cycle)
 
-class InvoicesStatus():
+class InvoicesStatus(models.Model):
     approve = models.BooleanField(default=False, blank=False)
     contest = models.BooleanField(default=False, blank=False)
     cycle = models.OneToOneField(Cycles,
-                                    on_delete=models.CASCADE,
-                                    primary_key=True)
+                                related_name='invoice_status',
+                                on_delete=models.CASCADE, 
+                                primary_key=True)
 
     def __str__(self):
         return "{0}".format(self.cycle)
