@@ -37,7 +37,8 @@
     <img alt='Show image of PDF icon if uploaded'>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ context.quote_form.as_p }}
+        {{ quote_form.as_p }}
+        <input type="hidden" name="file_type" value="quote">
         <button type="submit">Submit</button>
     </form>
     {% if context.quote %}
@@ -87,8 +88,10 @@
 <div>
     <h3>Upload Your PO</h3>
     <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data" >
-        {{ context.po_form.as_p }}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ po_form.as_p }}
+        <input type="hidden" name="file_type" value="po">
         <button type="submit">Submit</button>
     </form>
     {% if context.po %}
@@ -141,7 +144,8 @@
     <img alt='Show image of PDF icon if uploaded'>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ context.invoice_form.as_p }}
+        {{ invoice_form.as_p }}
+        <input type="hidden" name="file_type" value="invoice">
         <button type="submit">Upload</button>
     </form>
     {% if context.invoice %}

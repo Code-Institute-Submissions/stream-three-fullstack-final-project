@@ -18,7 +18,7 @@ class UploadForm(ModelForm):
         try:
             PyPDF2.PdfFileReader(pdf_file)
         except PdfReadError:
-            print('not a PDF')
+            #print('not a PDF')
             raise forms.ValidationError('Please make sure your file is a PDF.')
         
         if pdf_file.size > settings.MAX_UPLOAD_SIZE:
