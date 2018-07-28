@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import ModelForm
-from .models import QuoteStatus, POStatus, InvoicesStatus
 
 class StatusForm(forms.Form):
     status = forms.ChoiceField(choices=[('approve','Approve'), ('contest', 'Contest')],

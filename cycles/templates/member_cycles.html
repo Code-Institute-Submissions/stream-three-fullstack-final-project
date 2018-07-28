@@ -23,28 +23,52 @@
 <div>
     {% if cycles %}
         <hr>
-        {% for cycle in cycles %}
+        {% for item in cycles %}
         <div>
             <div>
                 <h3>Cycle Title</h3>
-                <p>{{ cycle.cycle_title }}</p>
-                <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+                <p>{{ item.cycle.cycle_title }}</p>
+                <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
                 {% if not cycle.cancelled %}
                 <p>Active</p>
                 {% else %}
                 <p>Cancelled</p>
                 {% endif %}
                 <h3>Description</h3>
-                <p>{{ cycle.description }}</p>
+                <p>{{ item.cycle.description }}</p>
                 <h3>Job</h3>
-                <p>{{ cycle.job.job_title }}</p>
+                <p>{{ item.cycle.job.job_title }}</p>
                 <h3>Client</h3>
-                <p>{{ cycle.client.first_name}} {{ cycle.client.last_name}}</p>
+                <p>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
                 <h3>Client Username</h3>
-                <p>{{ cycle.client.username }}</p>
-                
+                <p>{{ item.cycle.client.username }}</p>
+                <hr>
+                {% if item.approve_quote == True %}
+                <p><strong>Quote Status:</strong> Approved</p>
+                {% elif item.contest_quote == True %}
+                <p><strong>Quote Status:</strong> Contesed</p>
+                {% else %}
+                <p><strong>Quote Status:</strong> No Status.</p>
+                {% endif %}
+                <hr>
+                {% if item.approve_po == True %}
+                <p><strong>PO Status:</strong> Approved</p>
+                {% elif item.contest_po == True %}
+                <p><strong>PO Status:</strong> Contesed</p>
+                {% else %}
+                <p><strong>PO Status:</strong> No Status.</p>
+                {% endif %}
+                <hr>
+                {% if item.approve_invoice == True %}
+                <p><strong>Invoice Status:</strong> Approved</p>
+                {% elif item.contest_invoice == True %}
+                <p><strong>Invoice Status:</strong> Contesed</p>
+                {% else %}
+                <p><strong>Invoice Status:</strong> No Status.</p>
+                {% endif %}
             </div>
-            <form action="{% url 'porthole' username=username cycle_id=cycle.id client_username=cycle.client.username %}">
+            <hr>
+            <form action="{% url 'porthole' username=username cycle_id=item.cycle.id client_username=item.cycle.client.username %}">
                 <button type="submit">Go to Cycle</button>
             </form>
         </div>

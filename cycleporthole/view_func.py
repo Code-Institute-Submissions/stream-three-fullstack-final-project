@@ -3,7 +3,7 @@ from managecycle.models import Cycles
 from django.contrib import messages
 from accounts.models import AllUser
 from .models import Quotes, PurchaseOrder, Invoices
-from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
+from cyclestatus.models import CycleStatus
 from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 
@@ -17,14 +17,12 @@ def get_porthole_context(cycle_id):
     context = {'member': cycle.member,
                 'client': cycle.client,
                 'client_profile': profile,
-                'status_form':StatusForm(),
+                'status_form': StatusForm(),
                 'cycle': cycle,
                 'quote': GetFile(cycle).get_quote(),
                 'po': GetFile(cycle).get_po(),
                 'invoice': GetFile(cycle).get_invoice(),
-                'quote_status': GetStepStatus(cycle).get_quote_status(),
-                'po_status': GetStepStatus(cycle).get_po_status(),
-                'invoice_status': GetStepStatus(cycle).get_invoice_status()
+                'cycle_status': GetStepStatus(cycle).get_cycle_status()
                  }
     return context
 
@@ -70,30 +68,30 @@ class GetStepStatus:
         #self.invoice = GetFile(self.cycle.id).get_invoice()
         
         
-    def get_quote_status(self):
+    def get_cycle_status(self):
         try:
-            status = QuoteStatus.objects.get(cycle=self.cycle.id)
-        except QuoteStatus.DoesNotExist:
+            status = CycleStatus.objects.get(cycle=self.cycle.id)
+        except CycleStatus.DoesNotExist:
             status = None
         #print(status.approve)
         return status
-
+"""
     def get_po_status(self):
         try:
-            status = POStatus.objects.get(cycle=self.cycle.id)
-        except POStatus.DoesNotExist:
+            status = CycleStatus.objects.get(cycle=self.cycle.id)
+        except CycleStatus.DoesNotExist:
             status = None
 
         return status
 
     def get_invoice_status(self):
         try:
-            status = InvoicesStatus.objects.get(cycle=self.cycle.id)
-        except InvoicesStatus.DoesNotExist:
+            status = CycleStatus.objects.get(cycle=self.cycle.id)
+        except CycleStatus.DoesNotExist:
             status = None
 
         return status
-
+"""
 class DeleteFile:
     def __init__(self, request, cycle_id):
         self.request = request

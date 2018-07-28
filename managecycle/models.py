@@ -21,9 +21,9 @@ class Cycles(models.Model):
     job = models.ForeignKey(Jobs, 
                             on_delete=models.CASCADE,
                             )
-    cancelled = models.BooleanField(default=False)
-    payment_pending = models.BooleanField(default=False)
-    completed = models.BooleanField(default=False)
+    #cancelled = models.BooleanField(default=False)
+    #payment_pending = models.BooleanField(default=False)
+    #completed = models.BooleanField(default=False)
 
     def __str__(self):
         return '{0}-{1}'.format(self.cycle_title, self.description)

@@ -61,11 +61,11 @@
     </ul>
     <div>
         <h4>Approval</h4>
-        {% if context.quote_status.approve %}
+        {% if context.cycle_status.approve_quote %}
             <p>Status: Approved</p>
-        {% elif context.quote_status.contest %}
+        {% elif context.cycle_status.contest_quote %}
             <p>Status: Contested</p>
-        {% elif not context.quote_status %}
+        {% else %}
             <p>No Status</p>
         {% endif %}
         <div>
@@ -115,11 +115,11 @@
     <div>
         <h4>PO Status</h4>
         <h4>Approval</h4>
-        {% if context.po_status.approve %}
+        {% if context.cycle_status.approve_po %}
             <p>Status: Approved</p>
-        {% elif context.po_status.contest %}
+        {% elif context.cycle_status.contest_po %}
             <p>Status: Contested</p>
-        {% elif not context.po_status %}
+        {% else %}
             <p>No Status</p>
         {% endif %}
         <div>
@@ -168,11 +168,11 @@
     </ul>
     <div>
         <h4>Invoice Status</h4>
-        {% if context.invoice_status.approve %}
+        {% if context.cycle_status.approve_invoice %}
             <p>Status: Approved</p>
-        {% elif context.invoice_status.contest %}
+        {% elif context.invoice_status.contest_invoice %}
             <p>Status: Contested</p>
-        {% elif not context.invoice_status %}
+        {% else %}
             <p>No Status</p>
         {% endif %}
         <div>

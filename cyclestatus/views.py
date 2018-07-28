@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from cycleporthole.models import Quotes, PurchaseOrder, Invoices
-from cyclestatus.models import QuoteStatus, POStatus, InvoicesStatus
+from cyclestatus.models import CycleStatus
 from cyclestatus.forms import StatusForm
 from .view_func import set_status, email_status
 
 ######################## QUOTES VIEWS ###########################################
+
+
 
 ## Set Status of Quote ##
 ## Get Quote by Cycle Id, Save form to Model and Redirect back to Porthole ##
@@ -20,8 +22,8 @@ def set_quote_status(request, username, cycle_id, client_username):
     if quote != None:
         if request.method == 'POST':
             status_form = StatusForm(request.POST)
-            status = QuoteStatus(approve=set_status(status_form)[0],
-                                contest=set_status(status_form)[1], 
+            status = CycleStatus(approve_quote=set_status(status_form)[0],
+                                contest_quote=set_status(status_form)[1], 
                                 cycle=quote.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 
@@ -52,8 +54,8 @@ def set_po_status(request, username, cycle_id, client_username):
     if po != None:
         if request.method == 'POST':
             status_form = StatusForm(request.POST)
-            status = POStatus(approve=set_status(status_form)[0],
-                                contest=set_status(status_form)[1], 
+            status = CycleStatus(approve_po=set_status(status_form)[0],
+                                contest_po=set_status(status_form)[1], 
                                 cycle=po.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 
@@ -84,8 +86,8 @@ def set_invoice_status(request, username, cycle_id, client_username):
     if invoice != None:
         if request.method == 'POST':
             status_form = StatusForm(request.POST)
-            status = InvoicesStatus(approve=set_status(status_form)[0],
-                                contest=set_status(status_form)[1], 
+            status = CycleStatus(approve_invoice=set_status(status_form)[0],
+                                contest_invoice=set_status(status_form)[1], 
                                 cycle=invoice.cycle)
             status.save()
             email_status(username, client_username, cycle_id, 

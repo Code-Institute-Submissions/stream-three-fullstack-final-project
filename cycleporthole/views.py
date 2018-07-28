@@ -5,8 +5,7 @@ from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
 from managecycle.models import Cycles
 from accounts.models import AllUser
-from cyclestatus.models import QuoteStatus
-from cyclestatus.forms import StatusForm
+from cyclestatus.models import CycleStatus
 from manageclient.models import MemberClient
 from .upload import UploadFile
 from .view_func import GetFile, GetStepStatus, DeleteFile, get_porthole_context

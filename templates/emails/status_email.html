@@ -8,8 +8,10 @@
 <p>You have been sent this notification because {{ sender_name }} has {{ status }} your Invoice.</p>
 <br>
 {% endif %}
+{% if file == 'Invoice' %}
 {% if status == 'Approved' %}
 <p>Payment is now pending.</p>
+{% endif %}
 {% endif %}
 <br>
 <p>Fileo Cycle Details:</p>
