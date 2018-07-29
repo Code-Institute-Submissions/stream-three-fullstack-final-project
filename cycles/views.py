@@ -13,7 +13,7 @@ from .view_func import get_searched_cycles
 
 ## Helper Functions/Classes ##
     
-## Returns Member Cycles Template with All or Searched User Cycles ##
+## Returns Member Cycles Template with All Cycles or Searched User Cycles ##
 def member_cycles(request, username):
     user = get_object_or_404(AllUser, username=username)
     is_existing = profile_exists(user.pk)
@@ -39,7 +39,7 @@ def member_cycles(request, username):
 def reset_search(request, username):
     
     return redirect(reverse('member_cycles'), username=username)
-    
+
 ## Returns Client Cycles Template with all Client Cycles ##
 def client_cycles(request, username):
     

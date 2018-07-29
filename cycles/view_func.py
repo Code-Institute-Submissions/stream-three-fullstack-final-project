@@ -1,7 +1,9 @@
 from django.contrib import messages
 from search.search import SearchCycles
 
+## Helper Function/s for Cycles Views ##
 
+## Get Searched Cycles via Search App Class SearchCycles ##
 def get_searched_cycles(request, username):
     kwargs = {'search': request.GET['search'],
             'order': request.GET['order']}
