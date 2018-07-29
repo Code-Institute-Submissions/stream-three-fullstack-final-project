@@ -16,43 +16,59 @@
             <p>You are seeing an empty drop down list because you haven't added any Jobs to your account yet.
                 You must do this before you can create a new job.
             </p>
-            <p>You can follow the link here to Manage Clients.</p>
+            <p>You can follow the link here to Manage Jobs.</p>
             <div>
-                <a href="#">Manage Clients</a>
+                <a href="#">Manage Jobs</a>
             </div>
         {% endif %}
     <button type="submit">Add Cycle</button>
 </form>
 <p>
 {% for message in messages %}
-{{ message }}
+    {% if 'manage_cycle' in message.tags %}
+        {{ message }}
+    {% endif %}
 {% endfor %}
 </p>
 <hr>
 <div>
-    {% for cycle in cycles %}
+    {% for item in cycles %}
     <div>
-        <h4>Fileo Cycle ID: {{ cycle.id }}</h4>
+        <h4>Fileo Cycle ID: {{ item.cycle.cycle.id }}</h4>
         {% if not cycle.cancelled %}
         <p>Active</p>
         {% else %}
         <p>Cancelled</p>
         {% endif %}
         <h3>Cycle Title</h3>
-        <p>{{ cycle.cycle_title }}</p>
+        <p>{{ item.cycle.cycle_title }}</p>
         <h3>Attached Job</h3>
-        <p>{{ cycle.job.job_title }}</p>
-        <p>{{ cycle.job.job_number }}</p>
+        <p>{{ item.cycle.job.job_title }}</p>
+        <p>{{ item.cycle.job.job_number }}</p>
         <h3>Attached Client</h3>
-        <p><strong>Name:</strong> {{ cycle.client.first_name}} {{ cycle.client.last_name}} 
-        <p><strong>Username:</strong> {{ cycle.client.username }}</p></p>
-        <p><strong>Email:</strong> {{ cycle.client.email }}</p></p>
+        <p><strong>Name:</strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}} 
+        <p><strong>Username:</strong> {{ item.cycle.client.username }}</p></p>
+        <p><strong>Email:</strong> {{ item.cycle.client.email }}</p></p>
         <p>
-            <a href="{% url 'edit_cycle' username=username cycle_id=cycle.id %}">Edit Cycle</a>
+            <a href="{% url 'edit_cycle' username=username cycle_id=item.cycle.id %}">Edit Cycle</a>
         </p>
-        <form method='POST' action="{% url 'delete_cycle' username=username cycle_id=cycle.id %}">
+        <form method='POST' action="{% url 'reset_cycle' username=username cycle_id=item.cycle.id %}">
             {% csrf_token %}
-        <button type='submit'>Delete Cycle</button>
+            <button type='submit'>Reset Cycle</button>
+        </form>
+        <form method='POST' action="{% url 'cancel_cycle' username=username cycle_id=item.cycle.id %}">
+            {% csrf_token %}
+            {% if not item.cancelled %}
+            <input type='hidden' name='cancel' value='True'>
+            <button type='submit'>Cancel Cycle</button>
+            {% elif item.cancelled %}
+            <input type='hidden' name='cancel' value='False'>
+            <button type='submit'>Re-instate Cycle</button>
+            {% endif %}
+        </form>
+        <form method='POST' action="{% url 'delete_cycle' username=username cycle_id=item.cycle.id %}">
+            {% csrf_token %}
+            <button type='submit'>Delete Cycle</button>
         </form>
     </div>
     <hr>

@@ -6,11 +6,22 @@ from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 
 ## Receiver writes entry into Status Model's when a new cycle is ##
 ## created.This means a reverse query on Cycles for each user can be ##
-## done in the Cycles View App ##
+## done in the Cycles View App from Cycle Status Model. ##
+## Reciever won't overwrite Statuses if a User Updates Cycle Details. ##
 @receiver(models.signals.post_save, sender=Cycles)
 def set_default_quote_status(sender, instance, **kwargs):
-    CycleStatus(cycle=instance).save()
-    return True
+    ## See if a Status Object Exists ##
+    try:
+        status = CycleStatus.objects.get(cycle=instance)
+    except CycleStatus.DoesNotExist:
+        status = None
+    ## If it doesn't create a new Object ##
+    if not status:
+        new_status = CycleStatus(cycle=instance)
+        new_status.save()
+        return True
+    elif status:
+        return False
     
 ## Receiver to Reset the Approval status of a Quote ##
 ## should a new file be uploaded ##
@@ -60,19 +71,6 @@ def reset_invoice_status(sender, instance, **kwargs):
                                             'contest_invoice'])
     return True
 
-
-#@receiver(models.signals.post_save, sender=CycleStatus)
-#def set_payment_pending_if_invoice_approved(sender, instance, **kwargs):
-    #quote_status = instance.approve_quote
-    #po_status = instance.approve_po
-    #invoice_status = instance.approve_invoice
-
-    #if (quote_status and po_status and invoice_status):
-     #   instance.pending = True
-      #  instance.update(update_fields=['pending'])
-    #else:
-     #   instance.pending = False
-      #  instance.update(update_fields=['pending'])
 
 
 

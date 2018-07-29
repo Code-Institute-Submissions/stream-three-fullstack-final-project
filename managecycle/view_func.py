@@ -3,6 +3,10 @@ from .forms import CycleForm
 from .models import Cycles      
 from accounts.models import AllUser
 from managejobs.models import Jobs
+from cyclestatus.models import CycleStatus
+from cycleporthole.view_func import DeleteFile
+
+## Helper Functions for Views ##
 
 ##  Creates New Cycle, Called By Member Cycle View ##
 ## Get Job Object from Job Table, Get Client from Job Table ##
@@ -27,12 +31,13 @@ def create_cycle(user_id, request, user):
 ## Get all User Cycles ##
 def get_user_cycles(user):
     try:
-        users_cycles = Cycles.objects.filter(member=user)
-        count = Cycles.objects.filter(member=user).count()
+        users_cycles = CycleStatus.objects.filter(cycle__member=user)
+        count = users_cycles.count()
     except Cycles.DoesNotExist:
         users_cycles = None
     return users_cycles, count
 
+## Update Cycle ##
 def update_cycle(cycle, form, request):
     cycle.cycle_title = form.cleaned_data.get('cycle_title')
     cycle.description = form.cleaned_data.get('description')  
@@ -40,6 +45,29 @@ def update_cycle(cycle, form, request):
     cycle.start_date = form.cleaned_data.get('start_date')
     cycle.end_date = form.cleaned_data.get('end_date')
     cycle.jobs = form.cleaned_data.get('jobs')
-    cycle.cancelled = form.cleaned_data.get('cancelled')
-    cycle.save()
+    cycle.save(update_fields=['cycle_title', 'description', 'location',
+                                'start_date', 'end_date', 'job'])
+    return True
+
+## Resets all Statuses for a Cycle ##
+def clear_status(cycle):
+    status = get_object_or_404(CycleStatus, cycle=cycle)
+    status.approve_quote = False
+    status.contest_quote = False
+    status.approve_po = False
+    status.contest_po = False
+    status.approve_invoice = False
+    status.contest_invoice = False
+    status.complete = False
+    status.pending = False
+    status.cancelled = False
+    status.save() ## Signal listening to the Save of this Model will reset 
+    return True
+
+## Deletes all files associated with a Status ##
+def delete_all_files(request, cycle_id):
+    delete_files = DeleteFile(request, cycle_id)
+    delete_files.delete_quote()
+    delete_files.delete_po() 
+    delete_files.delete_invoice()
     return True

@@ -7,8 +7,6 @@ from .view_func import set_status, email_status
 
 ######################## QUOTES VIEWS ###########################################
 
-
-
 ## Set Status of Quote ##
 ## Get Quote by Cycle Id, Save form to Model and Redirect back to Porthole ##
 def set_quote_status(request, username, cycle_id, client_username):
