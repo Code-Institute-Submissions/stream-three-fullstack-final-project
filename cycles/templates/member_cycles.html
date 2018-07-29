@@ -23,15 +23,33 @@
 <h2>Search Your Cycles</h2>
 <p>Search by Job Title, Job Name, Fileo ID, and Client</p>
 <form>
-    <input type="text" name="search">
+    {% if search %}
+    <input type="text" name="search" value="{{ search }}" placeholder="Search" minlength="0" maxlength="50" required>
+    {% elif not search %}
+    <input type="text" name="search" placeholder="Search"  minlength="0" maxlength="50" required>
+    {% endif %}
+    <select name="filter">
+        <option>Active</option>
+        <option>Pending</option>
+        <option>Completed</option>
+        <option>Cancelled</option>  
+    </select>
+    <select name="order">
+        <option>Job Title asc</option>
+        <option>Job Title desc</option>
+        <option>Latest</option>
+        <option>Oldest</option>
+    </select>
     <button type="submit">Search</button>
 </form>
+
 <div>
     {% if cycles %}
         <hr>
         {% for item in cycles %}
         <div>
             <div>
+                <p>created: {{item.cycle.created}}</p>
                 <h3>Cycle Title</h3>
                 <p>{{ item.cycle.cycle_title }}</p>
                 <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>

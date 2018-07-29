@@ -17,7 +17,7 @@ class CycleForm(forms.Form):
         self.fields['description'] = forms.CharField(max_length=150,
                                                     widget=forms.Textarea)
         self.fields['location'] = forms.CharField(max_length=150)                                     
-        self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)
+        self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget)                                        
         self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget)
         self.fields['jobs'] = forms.ModelChoiceField(queryset=self.job_choices,
                                                     label='Jobs',

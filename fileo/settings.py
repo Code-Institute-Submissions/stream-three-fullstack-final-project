@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'managecycle',
     'manageclient',
     'notify',
+    'search',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,7 @@ AUTHENTICATION_BACKENDS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
