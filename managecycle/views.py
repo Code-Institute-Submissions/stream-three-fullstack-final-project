@@ -55,7 +55,6 @@ def edit_cycle(request, username, cycle_id):
 
 ## Delete Cycle View, redirects to Manage Cycles View ##
 def delete_cycle(request, username, cycle_id):
-    ##if request.method == 'POST':
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     cycle.delete()
     messages.success(request, 'You have Deleted the Cycle with Fileo ID: {0}'.format(cycle_id),
