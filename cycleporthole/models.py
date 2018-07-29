@@ -49,14 +49,7 @@ class UploadModel(models.Model):
         abstract = True
 
                                             
-class Quotes(UploadModel):
-    #cycle_value = MoneyField(
-                           # max_digits=11,
-                            #default=0, 
-                            #decimal_places=1, 
-                            #default_currency='GBP'
-                            #)
-                            
+class Quotes(UploadModel):                            
     client = models.ForeignKey(AllUser,related_name='QuotesUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='QuotesMemberFK', on_delete=models.CASCADE)
     cycle = models.OneToOneField(Cycles, related_name='QuotesCycleFK', 

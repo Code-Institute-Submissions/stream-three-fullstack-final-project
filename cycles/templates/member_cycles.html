@@ -20,6 +20,12 @@
     </li>
 </ul>
 <hr>
+<h2>Search Your Cycles</h2>
+<p>Search by Job Title, Job Name, Fileo ID, and Client</p>
+<form>
+    <input type="text" name="search">
+    <button type="submit">Search</button>
+</form>
 <div>
     {% if cycles %}
         <hr>
@@ -29,10 +35,12 @@
                 <h3>Cycle Title</h3>
                 <p>{{ item.cycle.cycle_title }}</p>
                 <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
-                {% if not cycle.cancelled %}
+                {% if not item.cancelled %}
                 <p>Active</p>
-                {% else %}
+                {% elif item.cancelled %}
                 <p>Cancelled</p>
+                {% elif item.pending %}
+                <p>Payment Pending</p>
                 {% endif %}
                 <h3>Description</h3>
                 <p>{{ item.cycle.description }}</p>
