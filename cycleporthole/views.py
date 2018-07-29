@@ -8,14 +8,15 @@ from accounts.models import AllUser
 from cyclestatus.models import CycleStatus
 from manageclient.models import MemberClient
 from .upload import UploadFile
-from .view_func import GetFile, GetStepStatus, DeleteFile, get_porthole_context
+from .view_func import GetFile, CycleStatuses, DeleteFile, get_porthole_context
 from notify.notify import NewClient, NewFile, get_email_details
 ############## VIEWS #################################
 
 
 ## Returns Porthole Template ##
 def porthole(request, username, cycle_id, client_username):
-    context = get_porthole_context(cycle_id)
+    CycleStatuses(cycle_id).set_pending() ## Set Pending Payment Status ##
+    context = get_porthole_context(cycle_id) ## Get Context ##
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()
     invoice_form = InvoiceForm()
@@ -34,7 +35,6 @@ def porthole(request, username, cycle_id, client_username):
         elif request.POST.get('step_type') == 'invoice':
             invoice_form = InvoiceForm(request.POST, request.FILES)
             if invoice_form.is_valid():
-                print('here')
                 upload.upload_invoice(invoice_form)
         return redirect(reverse('porthole', kwargs={'username':username,
                                                     'cycle_id':cycle_id,

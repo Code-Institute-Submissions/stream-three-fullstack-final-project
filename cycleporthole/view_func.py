@@ -22,7 +22,7 @@ def get_porthole_context(cycle_id):
                 'quote': GetFile(cycle).get_quote(),
                 'po': GetFile(cycle).get_po(),
                 'invoice': GetFile(cycle).get_invoice(),
-                'cycle_status': GetStepStatus(cycle).get_cycle_status()
+                'cycle_status': CycleStatuses(cycle).get_cycle_status()
                  }
     return context
 
@@ -59,39 +59,31 @@ class GetFile:
         return invoice
 
 ### Get the Approval Status of Each Cycle Step ###
-class GetStepStatus:
+class CycleStatuses:
     
     def __init__(self, cycle):
-        self.cycle = cycle
-        #self.quote = GetFile(self.cycle.id).get_quote()
-        #self.po = GetFile(self.cycle.id).get_po()
-        #self.invoice = GetFile(self.cycle.id).get_invoice()
-        
+        self.cycle= cycle
+        try:
+            self.cycle_status = CycleStatus.objects.get(cycle=self.cycle)
+        except CycleStatus.DoesNotExist:
+            self.cycle_status = None
         
     def get_cycle_status(self):
-        try:
-            status = CycleStatus.objects.get(cycle=self.cycle.id)
-        except CycleStatus.DoesNotExist:
-            status = None
-        #print(status.approve)
-        return status
-"""
-    def get_po_status(self):
-        try:
-            status = CycleStatus.objects.get(cycle=self.cycle.id)
-        except CycleStatus.DoesNotExist:
-            status = None
+        return self.cycle_status
 
-        return status
+    ## Set Pending Payment Status based on Approval Statuses ##
+    def set_pending(self):
+        if (self.cycle_status.approve_quote and 
+            self.cycle_status.approve_po and 
+            self.cycle_status.approve_invoice):
+            
+            self.cycle_status.pending = True
+            self.cycle_status.save(update_fields=['pending'])
+        else:
+            self.cycle_status.pending = False
+            self.cycle_status.save(update_fields=['pending'])
 
-    def get_invoice_status(self):
-        try:
-            status = CycleStatus.objects.get(cycle=self.cycle.id)
-        except CycleStatus.DoesNotExist:
-            status = None
 
-        return status
-"""
 class DeleteFile:
     def __init__(self, request, cycle_id):
         self.request = request

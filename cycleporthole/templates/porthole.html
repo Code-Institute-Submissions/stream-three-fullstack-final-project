@@ -170,7 +170,7 @@
         <h4>Invoice Status</h4>
         {% if context.cycle_status.approve_invoice %}
             <p>Status: Approved</p>
-        {% elif context.invoice_status.contest_invoice %}
+        {% elif context.cycle_status.contest_invoice %}
             <p>Status: Contested</p>
         {% else %}
             <p>No Status</p>
@@ -189,6 +189,14 @@
                 </fieldset>
             </form>
         </div>
+        <br>
+        {% if context.cycle_status.pending %}
+        <div>
+            <form action="">
+                <button>Payment</button>
+            </form>
+        </div>
+        {% endif %}
     </div>
 </div>
 <hr>
