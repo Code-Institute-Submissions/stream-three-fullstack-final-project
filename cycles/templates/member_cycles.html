@@ -24,25 +24,53 @@
 <p>Search by Job Title, Job Name, Fileo ID, and Client</p>
 <form>
     {% if search %}
-    <input type="text" name="search" value="{{ search }}" placeholder="Search" minlength="0" maxlength="50" required>
-    {% elif not search %}
-    <input type="text" name="search" placeholder="Search"  minlength="0" maxlength="50" required>
-    {% endif %}
-    <select name="filter">
-        <option>Active</option>
-        <option>Pending</option>
-        <option>Completed</option>
-        <option>Cancelled</option>  
+    <input type="text" name="search" value="{{ search.search }}" placeholder="Search" minlength="0" maxlength="50" required>
+    <select name="sort">
+        <option {% if search.sort == 'all' %} selected {% endif %} value="all">All</option>
+        <option {% if search.sort == 'active' %} selected {% endif %} value="active">Active</option>
+        <option {% if search.sort == 'pending' %} selected {% endif %} value="pending">Pending</option>
+        <option {% if search.sort == 'complete' %} selected {% endif %} value="complete">Complete</option>
+        <option {% if search.sort == 'cancelled' %} selected {% endif %} value="cancelled">Cancelled</option>  
     </select>
     <select name="order">
-        <option>Job Title asc</option>
-        <option>Job Title desc</option>
-        <option>Latest</option>
-        <option>Oldest</option>
+        <option {% if search.order == "newest" %} selected {% endif %} value="newest">Newest</option>
+        <option {% if search.order == "oldest" %} selected {% endif %} value="oldest">Oldest</option>
     </select>
+    {% elif not search %}
+    <input type="text" name="search" placeholder="Search"  minlength="0" maxlength="50" required>
+    <select name="sort">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>  
+    </select>
+    <select name="order">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+    </select>
+    {% endif %}
     <button type="submit">Search</button>
 </form>
-
+<br>
+{% if search %}
+<form action="{% url 'reset_search' username=username %}">
+    <button type="submit">Reset Search</button>
+</form>
+{% endif %}
+<hr>
+{% if search %}
+    {% if cycles|length == 0 %}
+        <p>Found {{ cycles|length }} Cycles.</p>
+    {% elif cycles|length == 1 %}
+        <p>Found {{ cycles|length }} Cycle.</p>
+    {% elif cycles|length > 1 %}
+        <p>Found {{ cycles|length }} Cycles.</p>
+    {% endif %}
+{% else %}
+<p>You have a total of {{ cycles|length }} Cycles.</p>
+{% endif %}
+<hr>
 <div>
     {% if cycles %}
         <hr>
@@ -53,12 +81,14 @@
                 <h3>Cycle Title</h3>
                 <p>{{ item.cycle.cycle_title }}</p>
                 <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
-                {% if not item.cancelled %}
-                <p>Active</p>
-                {% elif item.cancelled %}
+                {% if item.cancelled %}
                 <p>Cancelled</p>
                 {% elif item.pending %}
                 <p>Payment Pending</p>
+                {% elif item.complete %}
+                <p>Cycle Complete</p>
+                {% else %}
+                <p>Active</p>
                 {% endif %}
                 <h3>Description</h3>
                 <p>{{ item.cycle.description }}</p>

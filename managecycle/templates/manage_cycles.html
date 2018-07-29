@@ -35,10 +35,12 @@
     {% for item in cycles %}
     <div>
         <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
-        {% if not cycle.cancelled %}
-        <p>Active</p>
-        {% else %}
+        {% if item.cancelled %}
         <p>Cancelled</p>
+        {% elif item.pending %}
+        <p>Pending Pending</p>
+        {% else %}
+        <p>Active</p>
         {% endif %}
         <h3>Cycle Title</h3>
         <p>{{ item.cycle.cycle_title }}</p>
