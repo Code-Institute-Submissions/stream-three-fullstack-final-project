@@ -35,7 +35,7 @@ class SearchCycles:
     def search_cancelled_cycles(self):
         cycles = self.search_all_cycles()
         cycles = cycles.filter(cancelled=True).order_by(self.order_by)
-        return 
+        return cycles
         
     def search_completed_cycles(self):
         cycles = self.search_all_cycles()

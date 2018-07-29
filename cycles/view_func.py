@@ -7,6 +7,7 @@ from search.search import SearchCycles
 def get_searched_cycles(request, username):
     kwargs = {'search': request.GET['search'],
             'order': request.GET['order']}
+    print(request.GET['sort'])
     cycles = SearchCycles(request, username, **kwargs)
     if request.GET['sort'] == 'all':
         users_cycles = cycles.search_all_cycles()
