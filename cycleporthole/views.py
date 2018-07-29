@@ -10,8 +10,8 @@ from manageclient.models import MemberClient
 from .upload import UploadFile
 from .view_func import GetFile, CycleStatuses, DeleteFile, get_porthole_context
 from notify.notify import NewClient, NewFile, get_email_details
-############## VIEWS #################################
 
+############## VIEWS #################################
 
 ## Returns Porthole Template ##
 def porthole(request, username, cycle_id, client_username):
@@ -28,6 +28,9 @@ def porthole(request, username, cycle_id, client_username):
             quote_form = QuotesForm(request.POST, request.FILES)
             if quote_form.is_valid():
                 upload.upload_quote(quote_form)
+                cycle = get_object_or_404(Cycles, pk=cycle_id)
+                cycle.cycle_value = quote_form.cleaned_data.get('cycle_value')
+                cycle.save(update_fields=['cycle_value'])
         elif request.POST.get('step_type') == 'po':
             po_form = PurchaseOrderForm(request.POST, request.FILES)
             if po_form.is_valid():

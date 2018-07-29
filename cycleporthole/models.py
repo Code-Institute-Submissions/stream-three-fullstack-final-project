@@ -50,12 +50,12 @@ class UploadModel(models.Model):
 
                                             
 class Quotes(UploadModel):
-    cycle_value = MoneyField(
-                            max_digits=11,
-                            default=0, 
-                            decimal_places=1, 
-                            default_currency='GBP'
-                            )
+    #cycle_value = MoneyField(
+                           # max_digits=11,
+                            #default=0, 
+                            #decimal_places=1, 
+                            #default_currency='GBP'
+                            #)
                             
     client = models.ForeignKey(AllUser,related_name='QuotesUserFK', on_delete=models.CASCADE)
     member = models.ForeignKey(AllUser, related_name='QuotesMemberFK', on_delete=models.CASCADE)
@@ -67,7 +67,7 @@ class Quotes(UploadModel):
     def __str__(self):
         return "{0} {1} {2} {3} {4}".format(self.uploaded_at,
                                             self.client, self.member, 
-                                            self.cycle, self.cycle_value)
+                                            self.cycle)#, self.cycle_value)
 
 class PurchaseOrder(UploadModel):
     client = models.ForeignKey(AllUser,related_name='POUserFK', on_delete=models.CASCADE)

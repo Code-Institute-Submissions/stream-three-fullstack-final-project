@@ -18,10 +18,10 @@ class UploadFile:
     def upload_quote(self, quote_form):
         new_quote = Quotes(file=quote_form.cleaned_data['file'],
                             uploaded_at=datetime.datetime.now(),
-                            cycle_value=quote_form.cleaned_data['cycle_value'],
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle)
+                            #cycle_value=quote_form.cleaned_data['cycle_value'])
         try:
             old_quote = Quotes.objects.get(cycle=self.cycle)
         except Quotes.DoesNotExist:

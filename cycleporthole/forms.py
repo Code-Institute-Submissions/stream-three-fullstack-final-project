@@ -28,14 +28,12 @@ class UploadForm(ModelForm):
 
 class QuotesForm(UploadForm):
     cycle_value = MoneyField(min_value=0,
-                            currency_choices=[('GBP','Pound Sterling'),
-                                                ('EUR','Euro')]
-                            )
+                            currency_choices=[('GBP','Pound Sterling')])
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'quote'}))
 
     class Meta:
         model = Quotes
-        fields = ['file', 'cycle_value']
+        fields = ['file']
 
 class PurchaseOrderForm(UploadForm):
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'po'}))
