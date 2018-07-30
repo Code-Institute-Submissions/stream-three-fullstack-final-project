@@ -4,11 +4,11 @@ from .views import porthole,delete_file, step_notify  #upload,  #po_upload, invo
 
 urlpatterns = [
 
-    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/$', 
+    url(r'^(?P<username>[\w.@+-]+)/(?P<cycle_id>\d+)/$', 
                                                     porthole, name='porthole'),
-    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/delete_(?P<step>[\w.@+-]+)$', 
+    url(r'^(?P<username>[\w.@+-]+)/(?P<cycle_id>\d+)/delete_(?P<step>[\w.@+-]+)$', 
                                                     delete_file, name='delete'),
-    url(r'^member/(?P<username>[\w.@+-]+)/(?P<client_username>[\w.@+-]+)/(?P<cycle_id>\d+)/notify_(?P<step>[\w.@+-]+)$', 
+    url(r'^(?P<username>[\w.@+-]+)/(?P<cycle_id>\d+)/notify_(?P<step>[\w.@+-]+)$', 
                                                     step_notify, name='step_notify')                                              
                                           
 ]

@@ -1,37 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Cycle Porthole</h1>
-
-<p>You are logged in as {{ context.member.username }}</p>
-<p>Fileo Cycle ID: {{ context.cycle.id }}</p>
-{% if not cycle.cancelled %}
-<p>Status: Active</p>
-{% else %}
-<p>Status: Cancelled</p>
-{% endif %}
-<h2>Client</h2>
-<p>{{ context.cycle.client.username }}</p>
-<p>{{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
-<p>{{ context.client_profile.profile.company }}</p>
-<p>{{ context.client_profile.profile.phone }}</p>
-<h2>Job Title</h2>
-<h3>{{ context.cycle.job.job_title }}</h3>
-<h4>Job Number: {{ context.cycle.job.job_number }}</h4>
-<h3>Cycle Description</h3>
-<h4>Location</h4>
-<p>@{{ context.cycle.location }}</p>
-<h4>Description</h4>
-<p>{{ context.cycle.description }}</p>
-<h4>Dates</h4>
-<p> Start Date: {{ context.cycle.start_date }}</p>
-<p> End Date: {{ context.cycle.end_date }}</p>
-<h4>Cycle Value</h4>
-{% if context.cycle.cycle_value %}
-<p>{{ context.cycle.cycle_value }}</p>
-{% else %}
-<p>Cycle Value not entered yet.</p>
-{% endif %}
-<hr>
+{% include 'porthole_base.html' %}
 <div>
     <h3>Upload Your Quote</h3>
     <img alt='Show image of PDF icon if uploaded'>
@@ -42,10 +11,10 @@
         <button type="submit">Submit</button>
     </form>
     {% if context.quote %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='quote' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
         <button type="submit">Delete Quote</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='quote' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -74,7 +43,7 @@
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
+            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     {{ context.status_form.as_p }}
@@ -95,10 +64,10 @@
         <button type="submit">Submit</button>
     </form>
     {% if context.po %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='po' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
         <button type="submit">Delete PO</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='po' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -128,7 +97,7 @@
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
+            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}
@@ -149,10 +118,10 @@
         <button type="submit">Upload</button>
     </form>
     {% if context.invoice %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='invoice' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
         <button type="submit">Delete Invoice</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='invoice' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -181,7 +150,7 @@
                         {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
+            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}
@@ -192,7 +161,7 @@
         <br>
         {% if context.cycle_status.pending %}
         <div>
-            <form action="{% url 'payment' username=context.member.username client_username=context.client.username cycle_id=context.cycle.id %}">
+            <form action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
                 <button>Payment</button>
             </form>
         </div>

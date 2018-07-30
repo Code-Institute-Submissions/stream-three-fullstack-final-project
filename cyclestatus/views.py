@@ -9,7 +9,7 @@ from .view_func import set_status, email_status
 
 ## Set Status of Quote ##
 ## Get Quote by Cycle Id, Save form to Model and Redirect back to Porthole ##
-def set_quote_status(request, username, cycle_id, client_username):
+def set_quote_status(request, username, cycle_id):
     try:
         quote = Quotes.objects.get(cycle=cycle_id)
     except Quotes.DoesNotExist:
@@ -25,24 +25,22 @@ def set_quote_status(request, username, cycle_id, client_username):
             status.contest_quote = set_status(status_form)[1] 
             status.save(update_fields=['approve_quote', 
                                         'contest_quote'])
-            email_status(username, client_username, cycle_id, 
+            email_status(username, quote.cycle.client.username, cycle_id, 
                          status_form, 'quote')
             return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id,
-                                        'client_username':client_username,
                                         }))
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id,
-                                        'client_username':client_username,
                                         }))
 
 ######################## PO VIEWS ###########################################
 
 ## Set Status of PO ##
 ## Get PO by Cycle Id, Save form to Model and Redirect back to Porthole ##
-def set_po_status(request, username, cycle_id, client_username):
+def set_po_status(request, username, cycle_id):
     try:
         po = PurchaseOrder.objects.get(cycle=cycle_id)
     except PurchaseOrder.DoesNotExist:
@@ -58,24 +56,22 @@ def set_po_status(request, username, cycle_id, client_username):
             status.contest_po = set_status(status_form)[1] 
             status.save(update_fields=['approve_po', 
                                         'contest_po'])
-            email_status(username, client_username, cycle_id, 
+            email_status(username, po.cycle.client.username, cycle_id, 
                          status_form, 'quote')
             return redirect(reverse('porthole', 
                                 kwargs={'username':username,
-                                        'cycle_id': cycle_id,
-                                        'client_username':client_username,
+                                        'cycle_id': cycle_id
                                         }))
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
-                                        'cycle_id': cycle_id,
-                                        'client_username':client_username,
+                                        'cycle_id': cycle_id
                                         }))
 
 ######################## INVOICE VIEWS ###########################################
 
 ## Set Status of Invoice ##
 ## Get Invoice by Cycle Id, Save form to Model and Redirect back to Porthole ##
-def set_invoice_status(request, username, cycle_id, client_username):
+def set_invoice_status(request, username, cycle_id):
     try:
         invoice = Invoices.objects.get(cycle=cycle_id)
     except Invoices.DoesNotExist:
@@ -91,15 +87,13 @@ def set_invoice_status(request, username, cycle_id, client_username):
             status.contest_invoice = set_status(status_form)[1] 
             status.save(update_fields=['approve_invoice', 
                                         'contest_invoice'])
-            email_status(username, client_username, cycle_id, 
+            email_status(username, invoice.cycle.client.username, cycle_id, 
                          status_form, 'quote')
             return redirect(reverse('porthole', 
                                 kwargs={'username':username,
-                                        'cycle_id': cycle_id,
-                                        'client_username':client_username,
+                                        'cycle_id': cycle_id
                                         }))
     return redirect(reverse('porthole', 
                             kwargs={'username':username,
-                                    'cycle_id': cycle_id,
-                                    'client_username':client_username,
+                                    'cycle_id': cycle_id
                                     }))

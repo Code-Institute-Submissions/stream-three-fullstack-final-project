@@ -134,7 +134,7 @@
                 {% endif %}
             </div>
             <hr>
-            <form action="{% url 'porthole' username=user.username cycle_id=item.cycle.id client_username=item.cycle.client.username %}">
+            <form action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                 <button type="submit">Go to Cycle</button>
             </form>
         </div>

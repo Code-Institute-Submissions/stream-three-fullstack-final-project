@@ -4,6 +4,6 @@ from .forms import PaymentForm
 
 
 # Create your views here.
-def payment(request, username, client_username, cycle_id):
+def payment(request, username, cycle_id):
     payment = PaymentForm()
     return render(request, 'payment.html', {'payment_form': payment })
