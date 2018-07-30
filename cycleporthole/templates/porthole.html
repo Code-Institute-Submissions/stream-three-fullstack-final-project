@@ -42,10 +42,10 @@
         <button type="submit">Submit</button>
     </form>
     {% if context.quote %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='quote' %}">
         <button type="submit">Delete Quote</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='quote' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='quote' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -74,7 +74,7 @@
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
                 {% csrf_token %}
                 <fieldset>
                     {{ context.status_form.as_p }}
@@ -95,10 +95,10 @@
         <button type="submit">Submit</button>
     </form>
     {% if context.po %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='po' %}">
         <button type="submit">Delete PO</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='po' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='po' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -128,7 +128,7 @@
                     {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}
@@ -149,10 +149,10 @@
         <button type="submit">Upload</button>
     </form>
     {% if context.invoice %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
+    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='invoice' %}">
         <button type="submit">Delete Invoice</button>
     </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client step='invoice' %}">
+    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username step='invoice' %}">
         <button type="submit">Notify Client</button>
     </form>
     {% endif %}
@@ -181,7 +181,7 @@
                         {{message}}
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client %}" method="POST">
+            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id client_username=context.cycle.client.username %}" method="POST">
                 <fieldset>
                     {% csrf_token %}
                     {{ context.status_form.as_p }}
@@ -192,7 +192,7 @@
         <br>
         {% if context.cycle_status.pending %}
         <div>
-            <form action="">
+            <form action="{% url 'payment' username=context.member.username client_username=context.client.username cycle_id=context.cycle.id %}">
                 <button>Payment</button>
             </form>
         </div>

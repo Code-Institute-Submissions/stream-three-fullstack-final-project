@@ -3,10 +3,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 from accounts.models import AllUser
 
-# Create your models here.
-class Profile(models.Model):
-
-    company = models.CharField(max_length=50)
+## Profile Base Class inherited by Profile Model and Order Model ##
+class ProfileBase(models.Model):
     address1 = models.CharField(max_length=50, blank=True)
     address2 = models.CharField(max_length=50, blank=True)
     city = models.CharField(max_length=50, blank=True)
@@ -14,6 +12,12 @@ class Profile(models.Model):
     post_code = models.CharField(max_length=10, blank=True)
     country = CountryField(null=True)
     phone = PhoneNumberField(blank=True)
+    
+    class Meta:
+        abstract = True
+
+class Profile(ProfileBase):
+    company = models.CharField(max_length=50)
     position = models.CharField(max_length=50)
     user = models.ForeignKey(AllUser,on_delete=models.CASCADE)
 

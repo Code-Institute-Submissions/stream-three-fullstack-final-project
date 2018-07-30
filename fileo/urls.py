@@ -25,6 +25,7 @@ from profiles import urls as urls_profiles
 from cycleporthole import urls as urls_porthole
 from cyclestatus import urls as urls_status
 from managecycle import urls as urls_manage_cycles
+from payment import urls as urls_payment
 from fileo.settings import MEDIA_ROOT
 
 
@@ -41,5 +42,6 @@ urlpatterns = [
     url(r'^profile/', include(urls_manage_jobs)),
     url(r'^porthole/', include(urls_porthole)),
     url(r'^status/', include(urls_status)),
+    url(r'^payment/', include(urls_payment))
 
 ]

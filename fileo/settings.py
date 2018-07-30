@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'manageclient',
     'notify',
     'search',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -173,4 +174,12 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 #EMAIL_PORT = 587
 
+## FILE UPLOAD SETTINGS ##
 MAX_UPLOAD_SIZE = 5242880
+
+#### STRIPE SETTINGS ####
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
+#### MESSAGE STORAGE ####
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
