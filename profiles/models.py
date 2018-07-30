@@ -5,13 +5,13 @@ from accounts.models import AllUser
 
 ## Profile Base Class inherited by Profile Model and Order Model ##
 class ProfileBase(models.Model):
-    address1 = models.CharField(max_length=50, blank=True)
-    address2 = models.CharField(max_length=50, blank=True)
-    city = models.CharField(max_length=50, blank=True)
-    region = models.CharField(max_length=50, blank=True)
-    post_code = models.CharField(max_length=10, blank=True)
-    country = CountryField(null=True)
-    phone = PhoneNumberField(blank=True)
+    address1 = models.CharField(max_length=50, blank=False)
+    address2 = models.CharField(max_length=50, blank=False)
+    city = models.CharField(max_length=50, blank=False)
+    region = models.CharField(max_length=50, blank=False)
+    post_code = models.CharField(max_length=10, blank=False)
+    country = CountryField(default='United Kingdom',blank=False)
+    phone = PhoneNumberField(blank=False)
     
     class Meta:
         abstract = True

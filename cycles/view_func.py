@@ -4,11 +4,11 @@ from search.search import SearchCycles
 ## Helper Function/s for Cycles Views ##
 
 ## Get Searched Cycles via Search App Class SearchCycles ##
-def get_searched_cycles(request, username):
+def get_searched_cycles(request):
     kwargs = {'search': request.GET['search'],
             'order': request.GET['order']}
-    print(request.GET['sort'])
-    cycles = SearchCycles(request, username, **kwargs)
+
+    cycles = SearchCycles(request, **kwargs)
     if request.GET['sort'] == 'all':
         users_cycles = cycles.search_all_cycles()
     elif request.GET['sort'] == 'pending':

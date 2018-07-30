@@ -1,8 +1,4 @@
 {% extends 'base.html'%}
 {% block content %}
-<h1>Logged into Client Cycle Page as {{ username }}</h1>
-{% for message in messages %}
-    {{ message }}
-{% endfor %}
-
+{% include 'cycles_base.html'%}
 {% endblock %}

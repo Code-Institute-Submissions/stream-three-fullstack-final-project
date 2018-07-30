@@ -6,10 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .models import AllUser
 from notify.notify import NewMember
 
-
+## Returns Index.html or redirects to Profiles ## 
+## If already logged in redirect to relevant profile ## 
 def index(request):
-    """Returns Index.html or redirects to Profiles"""
-    """If already logged in redirect to relevant profile"""
     if request.user.is_authenticated:
         if request.user.is_member:
             return redirect(reverse('member_cycles', kwargs={'username':request.user.username}))

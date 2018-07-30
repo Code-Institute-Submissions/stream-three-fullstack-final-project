@@ -5,9 +5,9 @@ from django.db.models import Q
 ## Class for Searching and Filtering Users Cycles ##
 class SearchCycles:
     
-    def __init__(self, request, username, **kwargs):
+    def __init__(self, request, **kwargs):
         self.request = request
-        self.username = username
+        self.user = request.user
         self.query = kwargs.get('search')
         self.order = kwargs.get('order')
 
@@ -17,15 +17,34 @@ class SearchCycles:
         elif self.order == 'oldest':
             self.order_by = 'cycle__created'
 
+    def filter_by_member(self):
+        cycles = CycleStatus.objects.filter(cycle__member__username=self.user.username)
+        return cycles
+
+    def filter_by_client(self):
+        cycles = CycleStatus.objects.filter(cycle__client__username=self.user.username)
+        return cycles
+
     def search_all_cycles(self):
-        cycles = CycleStatus.objects.filter(cycle__member__username=self.username).filter(
-                                            Q(cycle__job__job_title__contains=self.query) | 
-                                            Q(cycle__client__first_name__contains=self.query) | 
-                                            Q(cycle__client__last_name__contains=self.query) | 
-                                            Q(cycle__cycle_title__contains=self.query) | 
-                                            Q(cycle__client__username__contains=self.query) |
-                                            Q(cycle__id__contains=self.query)
-                                            ).order_by(self.order_by)
+        if self.user.is_member:
+            cycles = self.filter_by_member()
+            cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
+                            Q(cycle__client__first_name__contains=self.query) | 
+                            Q(cycle__client__last_name__contains=self.query) | 
+                            Q(cycle__cycle_title__contains=self.query) | 
+                            Q(cycle__client__username__contains=self.query) |
+                            Q(cycle__id__contains=self.query)
+                            ).order_by(self.order_by)
+        elif self.user.is_client:
+            cycles = self.filter_by_client()
+            cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
+                            Q(cycle__client__first_name__contains=self.query) | 
+                            Q(cycle__client__last_name__contains=self.query) | 
+                            Q(cycle__cycle_title__contains=self.query) | 
+                            Q(cycle__client__username__contains=self.query) |
+                            Q(cycle__id__contains=self.query)
+                            ).order_by(self.order_by)
+            
         return cycles
 
     def search_pending_cycles(self):
