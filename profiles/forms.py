@@ -9,10 +9,10 @@ class ProfileForm(forms.Form):
     position = forms.CharField(max_length=50)
     phone = PhoneNumberField(widget=forms.TextInput(),
                             label='Phone Number')
-    address1 = forms.CharField(required=False)
-    address2 = forms.CharField(required=False)
-    city = forms.CharField(required=False, label='City/Town')
-    region = forms.CharField(required=False, label='Region/County')
-    post_code = forms.CharField(required=False, label='Post Code')
-    country = CountryField(blank_label='Select Country', blank=True).formfield()
+    address1 = forms.CharField()
+    address2 = forms.CharField()
+    city = forms.CharField(label='City/Town')
+    region = forms.CharField(label='Region/County')
+    post_code = forms.CharField(label='Post Code')
+    country = CountryField(blank_label='Select Country').formfield()
    
