@@ -2,10 +2,14 @@
 
 <p>You are logged in as {{ user.username }}</p>
 <p>Fileo Cycle ID: {{ context.cycle.id }}</p>
-{% if not cycle.cancelled %}
-<p>Status: Active</p>
-{% else %}
+{% if context.cycle_status.cancelled %}
 <p>Status: Cancelled</p>
+{% elif context.cycle_status.pending %}
+<p>Status: Payment Pending</p>
+{% elif context.cycle_status.complete %}
+<p>Status: Complete</p>
+{% else %}
+<p>Status: Active</p>
 {% endif %}
 <h2>Client</h2>
 <p>{{ context.cycle.client.username }}</p>
