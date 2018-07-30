@@ -15,7 +15,7 @@ from notify.notify import NewClient, NewFile, get_email_details
 
 ## Returns Porthole Template ##
 def porthole(request, username, cycle_id, client_username):
-    CycleStatuses(cycle_id).set_pending() ## Set Pending Payment Status ##
+    CycleStatuses(cycle_id).set_pending() ## Set Pending Payment Status if all steps approved ##
     context = get_porthole_context(cycle_id) ## Get Context ##
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()

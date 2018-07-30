@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404
 
 ## View to Create a Full Member Profile ##
 def member_profile(request, username):
-    user = get_object_or_404(AllUser, username=username)
+    user = request.user
     user_id = user.pk
     is_existing = profile_exists(user_id)
     if is_existing:
@@ -22,11 +22,9 @@ def member_profile(request, username):
         if profile.is_valid():
             if is_existing:
                 edit_profile(profile, is_existing)
-                #messages.success(request,'You have edited your profile.')
                 return redirect(reverse('member_cycles', kwargs={'username':username}))
             else:
                 new_profile(profile, user)
-                #messages.success(request,'You have created your profile.')
                 return redirect(reverse('member_cycles', kwargs={'username':username}))
     
     return render(request, 'member_profile.html', {'username':username, 

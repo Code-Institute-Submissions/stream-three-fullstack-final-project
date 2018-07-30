@@ -9,10 +9,11 @@ from accounts.forms import AllUser
 from .models import Jobs
 from .view_func import get_all_jobs_for_user, does_the_user_have_clients
 from .view_func import create_job, update_job
+
 ## Return Manage Jobs Template ##
 ## User can see all jobs and create new ones ##
 def manage_jobs(request, username):
-    member = get_object_or_404(AllUser, username=username)
+    member = request.user
     user_id = member.id
     jobs = get_all_jobs_for_user(username, user_id)
     clients = does_the_user_have_clients(username, user_id)
@@ -35,10 +36,10 @@ def manage_jobs(request, username):
 ## Edit Job View, Redirect to Manage Jobs ##
 def edit_job(request, username, job_id):
     job = get_object_or_404(Jobs, pk=job_id)
-    user_id = get_object_or_404(AllUser, username=username)
-    form = EditJobsForm(user_id, model_to_dict(job))
+    user = request.user
+    form = EditJobsForm(user, model_to_dict(job))
     if request.method == 'POST':
-        form = EditJobsForm(user_id, request.POST)
+        form = EditJobsForm(user, request.POST)
         if form.is_valid():
             job_updated = update_job(job, form)
             if job_updated:

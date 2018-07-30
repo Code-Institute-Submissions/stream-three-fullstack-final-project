@@ -12,7 +12,7 @@ from notify.notify import NewClient, get_email_details
 
 ## Create New Client and Write pk of Member and Client to MemberClient Model ##
 def manage_clients(request, username):
-    user_id = get_object_or_404(AllUser, username=username).pk
+    user_id = request.user.pk
     clients_exist = get_all_clients_of_user(user_id)
     new_client = UserRegisterForm()
     if request.method == "POST":

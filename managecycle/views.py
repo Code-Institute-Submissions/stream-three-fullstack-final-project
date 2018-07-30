@@ -10,13 +10,12 @@ from managejobs.models import Jobs
 from .models import Cycles  
 from cyclestatus.models import CycleStatus
 
-##  Returns Manage Cycles Template with all User Cycles, ##
+## Returns Manage Cycles Template with all User Cycles, ##
 ## and a form to create new user cycles ##
 def manage_cycles(request, username):
-    user = get_object_or_404(AllUser, username=username)
+    user = request.user
     cycle_form = CycleForm(user.pk)
     users_cycles = get_user_cycles(user)
-
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
         create_cycle(user.pk, request.POST, user)
