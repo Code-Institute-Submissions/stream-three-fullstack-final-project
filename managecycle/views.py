@@ -21,10 +21,10 @@ def manage_cycles(request, username):
         create_cycle(user.pk, request.POST, user)
         if create_cycle:
             messages.success(request, 'A new cycle has been created',
-                            extra_tags='manage_cycle')
-            return redirect(reverse('manage_cycles', kwargs={'username':user.username}))
+                            extra_tags='manage_cycle') 
+            return redirect(reverse('manage_cycles', kwargs={'username':username}))
     return render(request, 'manage_cycles.html', 
-                            {'username':username,
+                            {'username': username,
                             'cycle_form':cycle_form,
                             'cycles': users_cycles[0],
                             'cycles_count': users_cycles[1],
@@ -49,7 +49,7 @@ def edit_cycle(request, username, cycle_id):
                                 extra_tags='manage_cycle')
                 return redirect(reverse('manage_cycles', kwargs={'username': username}))                                       
 
-    return render(request, 'edit_cycle.html', {'username': username,
+    return render(request,'edit_cycle.html', {'username': username,
                                                 'form': form })
 
 ## Delete Cycle View, redirects to Manage Cycles View ##

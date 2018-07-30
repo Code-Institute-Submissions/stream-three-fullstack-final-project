@@ -36,10 +36,9 @@ def manage_jobs(request, username):
 ## Edit Job View, Redirect to Manage Jobs ##
 def edit_job(request, username, job_id):
     job = get_object_or_404(Jobs, pk=job_id)
-    user = request.user
-    form = EditJobsForm(user, model_to_dict(job))
+    form = EditJobsForm(request.user, model_to_dict(job))
     if request.method == 'POST':
-        form = EditJobsForm(user, request.POST)
+        form = EditJobsForm(request.user, request.POST)
         if form.is_valid():
             job_updated = update_job(job, form)
             if job_updated:

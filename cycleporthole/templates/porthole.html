@@ -159,12 +159,14 @@
             </form>
         </div>
         <br>
-        {% if context.cycle_status.pending %}
-        <div>
-            <form action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
-                <button>Payment</button>
-            </form>
-        </div>
+        {% if request.user.is_client %}
+            {% if context.cycle_status.pending %}
+            <div>
+                <form action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
+                    <button>Payment</button>
+                </form>
+            </div>
+            {% endif %}
         {% endif %}
     </div>
 </div>

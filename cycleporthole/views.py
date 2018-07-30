@@ -43,7 +43,6 @@ def porthole(request, username, cycle_id):
                                                     'cycle_id':cycle_id
                                                     }))                                                          
     return render(request, 'porthole.html', {'context':context,
-                                            'user': request.user,
                                             'quote_form': quote_form,
                                             'po_form': po_form,
                                             'invoice_form':invoice_form})
