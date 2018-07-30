@@ -20,6 +20,7 @@ def edit_profile(profile, is_existing):
     is_existing.city = profile.cleaned_data['city']
     is_existing.region = profile.cleaned_data['region']
     is_existing.post_code = profile.cleaned_data['post_code']
+    is_existing.country = profile.cleaned_data['country']
     is_existing.position = profile.cleaned_data['position']
     is_existing.save()
     return True
@@ -35,6 +36,7 @@ def new_profile(profile, user):
                             region=profile.cleaned_data['region'],
                             post_code=profile.cleaned_data['post_code'],
                             position=profile.cleaned_data['position'],
+                            country = profile.cleaned_data['country'],
                             user=user)
     new_profile.save()
     return True

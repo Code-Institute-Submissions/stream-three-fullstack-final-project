@@ -2,6 +2,7 @@ from cyclestatus.models import CycleStatus
 from django.db.models import Q
 
 
+## Class for Searching and Filtering Users Cycles ##
 class SearchCycles:
     
     def __init__(self, request, username, **kwargs):
