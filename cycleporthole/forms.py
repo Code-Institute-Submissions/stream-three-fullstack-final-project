@@ -28,7 +28,7 @@ class UploadForm(ModelForm):
 
 class QuotesForm(UploadForm):
     cycle_value = MoneyField(min_value=0,
-                            max_value = 99999999,
+                            max_value = 999999,
                             currency_choices=[('GBP','Pound Sterling')])
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'quote'}))
 

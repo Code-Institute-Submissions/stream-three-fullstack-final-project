@@ -16,7 +16,7 @@ class Cycles(models.Model):
     start_date = models.CharField(max_length=50, blank=False)
     end_date = models.CharField(max_length=50, blank=False)
     cycle_value = MoneyField(
-                        max_digits=8,
+                        max_digits=11,
                         default=0, 
                         decimal_places=1, 
                         default_currency='GBP'
