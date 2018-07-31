@@ -1,10 +1,22 @@
 {% extends 'base.html'%}
+{% load static %}
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
 {% block content %}
 <h1>Payment</h1>
 <h2>Total: £{{ total }}</h2>
 <form method='POST'>
     {% csrf_token %}
-    {{ payment_form.as_p }}
+    {{ order_form.as_p }}
+    {{ payment_form.as_p}}
+
     <button>Pay</button>
 </form>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Payment, PaymentLineItem
+from .models import Order, OrderLineItem
 # Register your models here.
 
-admin.site.register(Payment)
-admin.site.register(PaymentLineItem)
+admin.site.register(Order)
+admin.site.register(OrderLineItem)

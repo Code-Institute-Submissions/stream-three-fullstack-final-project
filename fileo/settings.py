@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'notify',
     'search',
     'payment',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+#STATICFILES_LOCATION = 'static'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_URL = '/static/'
 
