@@ -1,32 +1,22 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.utils import timezone
-from django.shortcuts import get_object_or_404
 from django.contrib import messages
-from .models import Order, OrderLineItem
-from cyclestatus.models import CycleStatus
+from .models import Order
 from .forms import OrderForm, PaymentForm
 from managecycle.views import Cycles
 from profiles.models import Profile
 from profiles.view_func import profile_exists
-import stripe
 from fileo import settings
+from .view_func import convert_total_for_stripe, save_order
+from .view_func import create_payment, set_status_to_complete
 
-stripe.api_key = settings.STRIPE_SECRET
 
-## Helper Functions/Classes ##
-
-## Convert Total Django-Money Object to int ##
-def convert_total_for_stripe(total):
-    stripe_total = str(total).split(' ')
-    stripe_total = stripe_total[0].split(',')
-    stripe_total = ''.join(stripe_total).split('.')
-    stripe_total = ''.join(stripe_total)
-    stripe_total = stripe_total.split('£')
-    stripe_total = int(''.join(stripe_total))
-    return stripe_total
-    
+## Payment View Populates Order Form with Client Profile information if it exists. ##
+## Order is Saved to Order Model, Charge is Created with Stripe and Cycle Status ##
+## Updated to COMPLETE if Payment is Completed. On Completion Redirects to Payment ##
+## Success View ##.
 
 @login_required
 def payment(request, username, cycle_id):
@@ -44,36 +34,17 @@ def payment(request, username, cycle_id):
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
         payment_form = PaymentForm(request.POST)
-        print(payment_form)
         if order_form.is_valid() and payment_form.is_valid():
-            order = order_form.save(commit=False)
-            order.date = timezone.now()
-            order.save()
-            line_item = OrderLineItem(order=order,
-                                    cycle=cycle)
-            line_item.save()
-            print('here')
-            try:
-                customer = stripe.Charge.create(
-                    amount=stripe_total,
-                    currency = 'GBP',
-                    description = request.user.email,
-                    card = payment_form.cleaned_data['stripe_id']
-                )
-                print('charge')
-            except stripe.error.CardError:
-                messages.error(request,
-                                'Card Error. Check your details and try again.')
-                print('error')
-           
+            save_order(cycle, order_form)
+            customer = create_payment(request, 
+                                        cycle, 
+                                        payment_form, 
+                                        stripe_total)
             if customer.paid:
                 messages.success(request, 'Payment Successful. This Cycle is now Complete.')
-                cycle_status = get_object_or_404(CycleStatus, pk=cycle_id)
-                cycle_status.pending = False
-                cycle_status.cancelled = False
-                cycle_status.complete = True
-                cycle_status.save(update_fields=['pending', 'cancelled', 'complete'])
-
+                set_status_to_complete(cycle)
+                return redirect(reverse('payment_success', kwargs={'username': username,
+                                                                    'cycle_id': cycle_id}))
             else:
                 messages.error(request, 'Apologies, we could not take payment with that card.')
 
@@ -84,3 +55,5 @@ def payment(request, username, cycle_id):
                     'publishable': settings.STRIPE_PUBLISHABLE,
                     'total': total })
 
+def payment_success(request, username, cycle_id):
+    return render(request, 'payment_success.html', {'username': username})
