@@ -1,4 +1,4 @@
-import datetime
+from django.utils import timezone
 from django.test import TestCase
 from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
@@ -51,7 +51,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_quotes_model(self):
         new_quote = Quotes(cycle_value=Money(1,'GBP'),
-                            uploaded_at=datetime.datetime.now(),
+                            uploaded_at=timezone.now(),
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle,
@@ -68,7 +68,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_po_model(self):
         new_po = PurchaseOrder(client=self.client,
-                        uploaded_at=datetime.datetime.now(),
+                        uploaded_at=timezone.now(),
                         member=self.member,
                         cycle=self.cycle,
                         is_po=True)
@@ -83,7 +83,7 @@ class TestCyclePortholeModels(TestCase):
 
     def test_invoice_model(self):
         new_invoice = Invoices(client=self.client,
-                        uploaded_at=datetime.datetime.now(),        
+                        uploaded_at=timezone.now(),        
                         member=self.member,
                         cycle=self.cycle,
                         is_invoice=True)

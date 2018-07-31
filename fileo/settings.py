@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'search',
     'payment',
     'storages',
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE = [

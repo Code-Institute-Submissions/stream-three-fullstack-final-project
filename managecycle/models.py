@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from accounts.models import AllUser
 from managejobs.models import Jobs
@@ -9,14 +9,14 @@ from djmoney.money import Money
 
 ## Model to store Cycle Info ##
 class Cycles(models.Model):
-    created = models.DateTimeField(auto_now_add=datetime.now())
+    created = models.DateTimeField(auto_now_add=timezone.now())
     cycle_title = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=150, blank=False)
     location = models.CharField(max_length=150, blank=False)
     start_date = models.CharField(max_length=50, blank=False)
     end_date = models.CharField(max_length=50, blank=False)
     cycle_value = MoneyField(
-                        max_digits=11,
+                        max_digits=8,
                         default=0, 
                         decimal_places=1, 
                         default_currency='GBP'

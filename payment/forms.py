@@ -4,6 +4,7 @@ from django import forms
 from django_countries.fields import CountryField
 
 class OrderForm(ModelForm):
+
     country = CountryField(blank_label='Select Country').formfield()
     class Meta:
         model = Order
@@ -17,10 +18,12 @@ class OrderForm(ModelForm):
                     'phone']
 
 class PaymentForm(forms.Form):
-    credit_card_number = forms.CharField(label='Credit/Debit Card Number')
-    cvv = forms.CharField(label='Security Code (CVV)')
-    expiry_month = forms.ChoiceField(label='Month', widget=forms.SelectDateWidget)
-    expiry_year = forms.ChoiceField(label='Year', widget=forms.SelectDateWidget)
+    MONTHS = [(i,i) for i in range(1,13)]
+    YEARS = [(i,i) for i in range (2018, 2051)]
+    credit_card_number = forms.CharField(label='Credit/Debit Card Number', required=False)
+    cvv = forms.CharField(label='Security Code (CVV)', required=False)
+    expiry_month = forms.ChoiceField(label='Expiry Month', choices=MONTHS, required=False)
+    expiry_year = forms.ChoiceField(label='Expiry Year', choices=YEARS, required=False)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
 
 

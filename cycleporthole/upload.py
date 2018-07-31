@@ -1,6 +1,6 @@
 from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
 from .models import Quotes, PurchaseOrder, Invoices
-import datetime
+from django.utils import timezone
 from django.contrib import messages
 
 ## Class containing methods to push files to Relevant Model ##
@@ -17,7 +17,7 @@ class UploadFile:
     
     def upload_quote(self, quote_form):
         new_quote = Quotes(file=quote_form.cleaned_data['file'],
-                            uploaded_at=datetime.datetime.now(),
+                            uploaded_at=timezone.now(),
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle)
@@ -36,7 +36,7 @@ class UploadFile:
             
     def upload_po(self, po_form):
         new_po = PurchaseOrder(file=po_form.cleaned_data['file'],
-                                uploaded_at=datetime.datetime.now(),
+                                uploaded_at=timezone.now(),
                                 client=self.client,
                                 member=self.member,
                                 cycle=self.cycle)
@@ -56,7 +56,7 @@ class UploadFile:
 
     def upload_invoice(self, invoice_form):
         new_invoice = Invoices(file=invoice_form.cleaned_data['file'],
-                                uploaded_at=datetime.datetime.now(),
+                                uploaded_at=timezone.now(),
                                 client=self.client,
                                 member=self.member,
                                 cycle=self.cycle)

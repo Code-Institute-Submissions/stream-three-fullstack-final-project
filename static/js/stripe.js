@@ -1,6 +1,7 @@
 $(function() {
-    
+    console.log("here")
     $("#payment-form").submit(function() {
+        
         var form = this;
         var card = {
 
