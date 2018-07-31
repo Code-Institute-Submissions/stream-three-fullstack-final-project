@@ -31,11 +31,12 @@ def create_cycle(user_id, request, user):
 ## Get all User Cycles ##
 def get_user_cycles(user):
     try:
-        users_cycles = CycleStatus.objects.filter(cycle__member=user)
-        count = users_cycles.count()
+        users_cycles = CycleStatus.objects.filter(
+                                                cycle__member=user
+                                                ).order_by('cycle__job__job_title')
     except Cycles.DoesNotExist:
         users_cycles = None
-    return users_cycles, count
+    return users_cycles
 
 ## Update Cycle ##
 def update_cycle(cycle, form, request):

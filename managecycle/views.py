@@ -5,6 +5,7 @@ from .forms import CycleForm#, EditCycleForm
 from managejobs.view_func import get_all_jobs_for_user  
 from .view_func import create_cycle, delete_all_files, clear_status
 from .view_func import get_user_cycles, update_cycle
+from cycleporthole.view_func import CycleStatuses
 from accounts.models import AllUser
 from managejobs.models import Jobs
 from .models import Cycles  
@@ -26,8 +27,8 @@ def manage_cycles(request, username):
     return render(request, 'manage_cycles.html', 
                             {'username': username,
                             'cycle_form':cycle_form,
-                            'cycles': users_cycles[0],
-                            'cycles_count': users_cycles[1],
+                            'cycles': users_cycles,
+                            'cycles_count': users_cycles.count(),
                             'jobs': jobs})
 
 ## Edit Cycle and Redirect to Manage Cycles ##
@@ -61,21 +62,27 @@ def delete_cycle(request, username, cycle_id):
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
 ## Mark a Cycle as cancelled but don't delete ##
+## If Re-instated, see if Each Cycle was Previously Approved ##
+## and Set Status to Pending if this is the case. ##
+
 def cancel_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     status = get_object_or_404(CycleStatus, cycle=cycle)
     if request.POST['cancel'] == 'True':
         status.cancelled = True
+        status.pending = False
         messages.success(request,   
                         'You have Cancelled the Cycle with the Fileo ID: {0}'.format(cycle.id),
                         extra_tags='manage_cycle')
+        status.save(update_fields=['cancelled', 'pending', 'complete'])
     elif request.POST['cancel'] == 'False':
         messages.success(request,   
                         'You have Re-instated the Cycle with the Fileo ID: {0}'.format(cycle.id),
                         extra_tags='manage_cycle')
         status.cancelled = False
-
-    status.save(update_fields=['cancelled'])
+        status.save(update_fields=['cancelled'])
+        CycleStatuses(cycle).set_pending()
+    
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
 ## Reset Cycle Statuses and Delete Associated Files with that Cycle ##

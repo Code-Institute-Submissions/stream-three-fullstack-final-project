@@ -13,23 +13,23 @@ from .view_func import create_job, update_job
 ## Return Manage Jobs Template ##
 ## User can see all jobs and create new ones ##
 def manage_jobs(request, username):
-    member = request.user
-    user_id = member.id
+    #member = request.user
+    user_id = request.user.id
     jobs = get_all_jobs_for_user(username, user_id)
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
     if request.method == 'POST':
         form = JobsForm(user_id, request.POST)
         if form.is_valid():
-            job_created = create_job(form, member)
+            job_created = create_job(form, request.user)
             if job_created:
                 messages.success(request, 'New Job Created.')
                 return redirect(reverse('manage_jobs',
                                 kwargs={'username':username}))          
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
-                                                'jobs':jobs[0],
-                                                'jobs_count': jobs[1],
+                                                'jobs':jobs,
+                                                'jobs_count': jobs.count(),
                                                 'clients':clients })
 
     

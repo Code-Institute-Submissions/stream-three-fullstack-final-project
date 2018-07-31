@@ -8,11 +8,10 @@ from accounts.models import AllUser
 ## Get a QuerySet of all of the Users Jobs ##
 def get_all_jobs_for_user(username, user_id):
     try:
-        jobs = Jobs.objects.filter(member=user_id)
-        count = Jobs.objects.filter(member=user_id).count
+        jobs = Jobs.objects.filter(member=user_id).order_by('job_title')
     except Jobs.DoesNotExist:
         jobs = None
-    return jobs, count
+    return jobs
 
 ## Establish if the User has clients. Needed in order to ##
 ## flag in manage_clients template whether a user needs to create ##
@@ -40,9 +39,6 @@ def update_job(job, form):
     client = get_object_or_404(AllUser, 
                             username=form.cleaned_data.get('client'))
     job.job_title = form.cleaned_data.get('job_title')
-    #job.location = form.cleaned_data.get('location')
-    #job.start_date = form.cleaned_data.get('start_date')
-    #job.end_date = form.cleaned_data.get('end_date')
     job.client = client
     job.save() 
     return True

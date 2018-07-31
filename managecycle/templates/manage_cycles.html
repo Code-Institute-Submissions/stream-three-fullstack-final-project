@@ -38,7 +38,9 @@
         {% if item.cancelled %}
         <p>Cancelled</p>
         {% elif item.pending %}
-        <p>Pending Pending</p>
+        <p>Payment Pending</p>
+        {% elif item.complete %}
+        <p>Cycle Complete</p>
         {% else %}
         <p>Active</p>
         {% endif %}

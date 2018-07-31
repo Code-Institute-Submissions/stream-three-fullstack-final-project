@@ -4,6 +4,10 @@
 <p>Your profile isn't complete yet. You won't be able to use the full Fileo service until completed.</p>
 {% endif %}
 {% endif %}
+<p>Total Value of Completed Cycles: £{{ request.session.complete }}</p>
+<p>Total Value of Pending Cycles: £{{ request.session.pending }}</p>
+<p>Total Value of Active Cycles: £{{ request.session.active }}</p>
+<p>Total Value of Cancelled Cycles: £{{ request.session.cancelled }}</p>
 {% if user.is_member %}
 <ul>
     <li>

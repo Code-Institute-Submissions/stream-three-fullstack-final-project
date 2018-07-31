@@ -2,7 +2,8 @@ from django.db import models
 from profiles.models import ProfileBase
 from managecycle.models import Cycles
 from django.utils import timezone
-## Order model inherits from Profile Base Class ##
+
+## Order model inherits from Profile Base Model ##
 class Order(ProfileBase):
     name_on_card = models.CharField(max_length=50, blank=False)
     date = models.DateField(auto_now_add=timezone.now())

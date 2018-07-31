@@ -22,26 +22,11 @@ def create_client(username, new_client):
             new_member_client.save()
             return True
 
-## Email Client Account Details ##
-#def email_client_account_details(profile, username, new_client):
-   # client_username = new_client.cleaned_data['username']
-   # member = get_object_or_404(AllUser, username=username)
-   # client = get_object_or_404(AllUser, username=client_username)
-   # new_email = NotifyClient(client.email,
-                                  #  client.first_name, 
-                                  #  member.first_name,
-                                 #   client.username,
-                                  #  profile.company
-                                  #  )
-    #new_email.client_user_created()
-   # return True
-
 def get_all_clients_of_user(user_id):
     try: 
-        clients = MemberClient.objects.filter(member=user_id)
-        count = MemberClient.objects.filter(member=user_id).count   
+        clients = MemberClient.objects.filter(member=user_id).order_by('client__last_name') 
     except MemberClient.DoesNotExist:
         clients = None
     
-    return clients, count
+    return clients
 
