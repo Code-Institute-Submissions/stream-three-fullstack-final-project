@@ -12,7 +12,6 @@ from .view_func import get_searched_cycles, SetSessionValues
 from profiles.view_func import profile_exists
 from search.search import SearchCycles
 
-
 ## Returns Member Cycles Template with All Cycles or Searched User Cycles ##
 ## for the user as a Member ##
 def member_cycles(request, username):
@@ -39,6 +38,7 @@ def member_cycles(request, username):
 ## Returns Member Cycles Template with All Cycles or Searched User Cycles ##
 ## for the user as a Client. ##
 def client_cycles(request, username):
+    SetSessionValues(request).set_values()
     users_cycles = CycleStatus.objects.filter(
                                             cycle__client=request.user
                                            ).order_by('-cycle__created')

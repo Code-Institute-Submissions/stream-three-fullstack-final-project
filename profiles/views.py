@@ -19,6 +19,7 @@ def member_profile(request, username):
         profile = ProfileForm()
     if request.method == 'POST':
         profile = ProfileForm(request.POST)
+        print(profile)
         if profile.is_valid():
             if is_existing:
                 edit_profile(profile, is_existing)

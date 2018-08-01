@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.utils import timezone
 from .models import Cycles
 from accounts.models import AllUser
 
@@ -6,35 +7,40 @@ from accounts.models import AllUser
 class TestCyclesModel(TestCase):
     
     def setUp(self):
-        self.create_member = AllUser.objects.create_user(first_name='testadmin',
-                                        last_name='test',
-                                        username='testadmin',
-                                        email='testadmin1@email.com',
-                                        password='password',
-                                        is_member=True,
-                                        is_client=False
-                                        )
-        self.create_client = AllUser.objects.create_user(first_name='testclient',
-                                        last_name='test',
-                                        username='testclient',
-                                        email='testclient@email.com',
-                                        password='password',
-                                        is_member=False,
-                                        is_client=True
-                                        )
+        create_member = AllUser.objects.create_user(first_name='testadmin',
+                                                    last_name='test',
+                                                    username='testadmin',
+                                                    email='testadmin1@email.com',
+                                                    password='password',
+                                                    is_member=True,
+                                                    is_client=False
+                                                    )
+        create_client = AllUser.objects.create_user(first_name='testclient',
+                                                    last_name='test',
+                                                    username='testclient',
+                                                    email='testclient@email.com',
+                                                    password='password',
+                                                    is_member=False,
+                                                    is_client=True
+                                                    )
         
     def test_create_a_cycle(self):
-        
         cycle_title = 'Test Job'
         location = 'Test Location'
         description = 'Description'
         member = AllUser.objects.get(username='testadmin')
         client = AllUser.objects.get(username='testclient')
 
-        new_cycle = Cycles(cycle_title=cycle_title,
+        new_cycle = Cycles(created=timezone.now(),
+                            cycle_title=cycle_title,
                             description=description,
+                            location='London',
+                            start_date='2018-01-01',
+                            end_date='2018-01-01',
+                            cycle_value= ('1.00','GBP')
                             member=member,
-                            client=client)
+                            client=client,
+                            job=)
         new_cycle.save()
         get_cycle=Cycles.objects.get(member=member)
 

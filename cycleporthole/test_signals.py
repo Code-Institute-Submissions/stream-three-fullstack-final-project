@@ -43,20 +43,27 @@ class TestCyclePortholeSignalIsSentOnDelete(TestCase):
                                     is_member=False,
                                     is_client=True
                                     )
-        new_cycle = Cycles(cycle_title='cycle_title',
-                            description='description',
-                            member=AllUser.objects.get(username='test1admin'),
-                            client=AllUser.objects.get(username='test1client'))
-        new_cycle.save()
-
+        
         self.member = AllUser.objects.get(username='test1admin')
         self.client = AllUser.objects.get(username='test1client')
         self.cycle = Cycles.objects.get(cycle_title='cycle_title')
-
+        new_job = Jobs(job_title='test job',
+                        job_number='1',
+                        member=self.member,
+                        client=self.client)
+        new_job.save()
+        new_cycle = Cycles(cycle_title='cycle_title',
+                            description='description',
+                            location='location',
+                            start_date='2018-01-01',
+                            end_date='2018-01-01',
+                            member=member,
+                            client=client,
+                            job=Jobs.objects.get(member=member))
+        new_cycle.save()
 
     def test_signal_sent_when_quote_deleted(self):
-        new_quote = Quotes(cycle_value=Money(1,'GBP'),
-                            client=self.client,
+        new_quote = Quotes(client=self.client,
                             member=self.member,
                             cycle=self.cycle,
                             is_quote=True)

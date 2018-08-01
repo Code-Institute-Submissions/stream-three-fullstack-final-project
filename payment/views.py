@@ -11,6 +11,7 @@ from profiles.view_func import profile_exists
 from fileo import settings
 from .view_func import convert_total_for_stripe, save_order
 from .view_func import create_payment, set_status_to_complete
+from cycles.view_func import SetSessionValues
 
 
 ## Payment View Populates Order Form with Client Profile information if it exists. ##
@@ -56,4 +57,5 @@ def payment(request, username, cycle_id):
                     'total': total })
 
 def payment_success(request, username, cycle_id):
+    SetSessionValues(request).set_values()
     return render(request, 'payment_success.html', {'username': username})

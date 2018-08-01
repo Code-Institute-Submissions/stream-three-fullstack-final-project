@@ -50,8 +50,7 @@ class TestCyclePortholeModels(TestCase):
         self.cycle = Cycles.objects.get(cycle_title='cycle_title')
 
     def test_quotes_model(self):
-        new_quote = Quotes(cycle_value=Money(1,'GBP'),
-                            uploaded_at=timezone.now(),
+        new_quote = Quotes( uploaded_at=timezone.now(),
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle,
@@ -64,7 +63,6 @@ class TestCyclePortholeModels(TestCase):
         self.assertEqual(self.client.username, quote.client.username)
         self.assertEqual(self.cycle.cycle_title, quote.cycle.cycle_title)
         self.assertTrue(quote.is_quote)
-        self.assertEqual(quote.cycle_value, Money(1,'GBP'))
 
     def test_po_model(self):
         new_po = PurchaseOrder(client=self.client,

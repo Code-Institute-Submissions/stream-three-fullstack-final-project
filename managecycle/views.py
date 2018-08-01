@@ -10,10 +10,12 @@ from accounts.models import AllUser
 from managejobs.models import Jobs
 from .models import Cycles  
 from cyclestatus.models import CycleStatus
+from cycles.view_func import SetSessionValues
 
 ## Returns Manage Cycles Template with all User Cycles, ##
 ## and a form to create new user cycles ##
 def manage_cycles(request, username):
+    SetSessionValues(request).set_values()
     user = request.user
     cycle_form = CycleForm(user.pk)
     users_cycles = get_user_cycles(user)
@@ -24,6 +26,7 @@ def manage_cycles(request, username):
             messages.success(request, 'A new cycle has been created',
                             extra_tags='manage_cycle') 
             return redirect(reverse('manage_cycles', kwargs={'username':username}))
+    
     return render(request, 'manage_cycles.html', 
                             {'username': username,
                             'cycle_form':cycle_form,
@@ -59,6 +62,7 @@ def delete_cycle(request, username, cycle_id):
     cycle.delete()
     messages.success(request, 'You have Deleted the Cycle with Fileo ID: {0}'.format(cycle_id),
                     extra_tags='manage_cycle')
+    
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
 ## Mark a Cycle as cancelled but don't delete ##
@@ -82,7 +86,7 @@ def cancel_cycle(request, username, cycle_id):
         status.cancelled = False
         status.save(update_fields=['cancelled'])
         CycleStatuses(cycle).set_pending()
-    
+
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
 ## Reset Cycle Statuses and Delete Associated Files with that Cycle ##
@@ -94,4 +98,5 @@ def reset_cycle(request, username, cycle_id):
     messages.success(request,   
                     'You have Reset the Cycle with the Fileo ID: {0}'.format(cycle.id),
                     extra_tags='manage_cycle')
+
     return redirect(reverse('manage_cycles', kwargs={'username':username}))

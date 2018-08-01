@@ -2,7 +2,7 @@ from django.test import TestCase
 from managecycle.models import Cycles
 from accounts.models import AllUser
 from django.core.files.uploadedfile import SimpleUploadedFile
-from .view_func import get_porthole_info
+from .view_func import get_porthole_context
 from managejobs.models import Jobs
 
 class TestCyclePortholeViews(TestCase):

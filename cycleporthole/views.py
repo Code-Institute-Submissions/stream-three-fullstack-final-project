@@ -9,12 +9,14 @@ from manageclient.models import MemberClient
 from .upload import UploadFile
 from .view_func import GetFile, CycleStatuses, DeleteFile, get_porthole_context
 from notify.notify import NewClient, NewFile, get_email_details
+from cycles.view_func import SetSessionValues
 
 ############## VIEWS #################################
 
 ## Returns Porthole Template ##
 def porthole(request, username, cycle_id):
     CycleStatuses(cycle_id).set_pending() ## Set Pending Payment Status if all steps approved ##
+    SetSessionValues(request).set_values()
     context = get_porthole_context(cycle_id) ## Get Context ##
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()
