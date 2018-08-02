@@ -1,0 +1,111 @@
+@import 'helpers/global_resets';
+@import 'helpers/media_queries';
+@import 'helpers/fonts';
+@import 'helpers/colors';
+@import 'helpers/mixins';
+@import 'partials/buttons';
+
+// FONT STYLES //
+
+// BUTTONS //
+button {
+
+    font-family: $text-font;
+}
+
+// ANCHOR LINKS AS BUTTONS //
+a {
+    font-family: $text-font;
+}
+
+//----------------------------------------------------//
+                    //LOGIN PAGE//
+//---------------------------------------------------//
+
+.bg-color {
+    
+    background-repeat: no-repeat;
+    background-color: $login_bg_color;
+}
+
+
+.fileo-logo {
+
+    //@include flex_row;
+    height: 4rem;
+    width: 15rem;
+
+}
+.fileo-logo__image {
+
+    background: url('../img/Fileo_text_White_HIGH_8%.png');
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+
+}
+
+// LOGIN FORM //
+.login-container { 
+
+    @include flex_column;
+    //height: 100%;
+    position: relative;
+    top: 30%;
+}
+
+.login-form {
+
+    @include flex_column;
+}
+
+.login-form__form {
+
+    @include flex_column;
+    padding-top: 1rem;
+}
+
+.login-form__username,
+.login-form__password {
+
+    height: 1.5rem;
+    width: 17rem;
+    border-radius: .3rem;
+    padding: .3rem;
+    font-size: 1rem;
+}
+
+.login-form__button {
+
+    @include login-button;
+    
+}
+
+.login-form__button:hover {
+
+    cursor: pointer;
+}
+
+// HEADER //
+
+/*.login-header {
+
+    @include flex_row;
+    justify-content: right;
+    margin: 0;
+    height: 3rem;
+}*/
+
+.login-links__signup,
+.login-links__reset-password {
+
+    //@include signup-button;
+    //position: relative;
+    //right: 5rem;
+    @include flex_column;
+    color: $login_signup_color;
+    margin: 1rem;
+
+}
+
+

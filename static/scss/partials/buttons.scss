@@ -1,0 +1,27 @@
+//BUTTONS//
+@import '../helpers/fonts';
+
+
+// SIGN UP BUTTON //
+@mixin signup-button {
+
+    border-radius: .2rem;
+    height: 2rem;
+    background-color: #fff;
+    width: 5rem;
+    
+}
+
+// LOGIN BUTTON //
+
+@mixin login-button {
+
+    height: 2.1rem;
+    border: none;
+    width: 17.5rem;
+    border-radius: .3rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    background-color: #81aeaa;
+    color: #fff;
+}

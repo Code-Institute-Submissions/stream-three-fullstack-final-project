@@ -1,0 +1,21 @@
+// FLEX MIXINS //
+
+//FLEX DIRECTION COLUMN//
+
+@mixin flex_column {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+//FLEX DIRECTION ROW//
+
+@mixin flex_row {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

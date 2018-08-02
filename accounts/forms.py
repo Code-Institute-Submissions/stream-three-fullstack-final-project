@@ -7,8 +7,10 @@ from .models import AllUser
 
 class UserLoginForm(forms.Form):
     """Login form for both Members and Clients"""
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'login__form-username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'login__form-password'}))
+    username = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'login-form__username',
+                                                                        'placeholder': 'Email'}))
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class':'login-form__password',
+                                                                            'placeholder': 'Password'}))
 
     class Meta:
         model = AllUser
