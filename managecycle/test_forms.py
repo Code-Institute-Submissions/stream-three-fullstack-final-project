@@ -1,63 +1,35 @@
 from django.test import TestCase
+from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 from .forms import CycleForm
 from accounts.models import AllUser
 from manageclient.models import MemberClient
 from managejobs.models import Jobs
-
+from fileo.test_models import CreateTestModels
+from .models import Cycles
 
 class TestCycleForm(TestCase):
     
+    def setUp(self):
+        self.new_models = CreateTestModels()
+        self.new_models.create_job()
+        self.new_models.create_cycle()
+    
     def test_cycle_form_is_not_valid(self):
-        AllUser.objects.create_user(first_name='testadmin',
-                                    last_name='test',
-                                    username='testadmin',
-                                    email='testadmin@email.com',
-                                    password='password',
-                                    is_member=True,
-                                    is_client=False
-                                    )
-        user_id = AllUser.objects.get(username='testadmin').pk
+        user_id = AllUser.objects.get(username=self.new_models.member).pk
         new_form = CycleForm(user_id)
 
         self.assertFalse(new_form.is_valid())
            
     def test_cycle_form_is_valid(self):
-        member = AllUser.objects.create_user(first_name='testadmin',
-                                    last_name='test',
-                                    username='testadmin',
-                                    email='testadmin@email.com',
-                                    password='password',
-                                    is_member=True,
-                                    is_client=False
-                                    )
-        client = AllUser.objects.create_user(first_name='testclient',
-                                        last_name='testclient',
-                                        username='testclient',
-                                        email='testclient@email.com',
-                                        password='password',
-                                        is_member=False,
-                                        is_client=True
-                                        )
-       
-        member = get_object_or_404(AllUser, username=member)
-        client = get_object_or_404(AllUser, username=client)
-        new_job = Jobs(job_title='testjob',
-                        job_number='1',
-                        location='testlocation',
-                        start_date='now',
-                        end_date='tomorrow',
-                        member=member,
-                        client=client
-                    )
-        new_job.save()
-
-        user_id = AllUser.objects.get(username='testadmin').pk
-        job = Jobs.objects.get(member=member).pk
-        print(job)
-        new_form = CycleForm(member, {'cycle_title':'testjob',
-                            'description':'testdescription',
-                            'jobs': str(job)})
+        member = self.new_models.get_member()
+        cycle = Cycles.objects.get(member=member)
+        new_form = CycleForm(member, {'cycle_title': cycle.cycle_title,
+                                        'description': cycle.description,
+                                        'location': cycle.location,
+                                        'start_date': cycle.start_date,
+                                        'end_date': cycle.end_date,
+                                        'jobs': cycle.job.pk})
 
         self.assertTrue(new_form.is_valid())
         

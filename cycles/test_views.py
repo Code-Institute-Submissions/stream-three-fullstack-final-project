@@ -1,25 +1,35 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
+from django.contrib.sessions.middleware import SessionMiddleware
 from django.shortcuts import get_object_or_404
 from accounts.models import AllUser
+from fileo.test_models import CreateTestModels
+from cycles.views import member_cycles, client_cycles
 
 
 class TestAccountsViews(TestCase):
     
+    def setUp(self):
+        self.new_models = CreateTestModels()
+        self.factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+
     def test_get_member_cycles(self):
-        AllUser.objects.create_user(first_name='admin',
-                                    last_name='test',
-                                    username='admin',
-                                    email='admin@email.com',
-                                    password='password',
-                                    is_member=True,
-                                    is_client=False
-                                    )
-        page =  self.client.get('/cycles/member/admin/')
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, 'member_cycles.html')
+        request =  self.factory.get('/cycles/member/testadmin/')
+        request.user = self.new_models.member
+       
+        self.middleware.process_request(request)
+        request.session.save()
+        response = member_cycles(request, 'testadmin')
+    
+        self.assertEqual(response.status_code, 200)
 
     def test_get_client_cycles(self):
-        page = self.client.get('/cycles/client/client/')
+        request = self.factory.get('/cycles/client/client/')
+        request.user = self.new_models.client
+        self.middleware.process_request(request)
+        request.session.save()
+        response = client_cycles(request, 'testclient')
 
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, 'client_cycles.html')
+        self.assertEqual(response.status_code, 200)
+     

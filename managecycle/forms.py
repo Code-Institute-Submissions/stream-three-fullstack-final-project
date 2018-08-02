@@ -24,12 +24,4 @@ class CycleForm(forms.Form):
                                                     )
         self.fields['jobs'].empty_label='Attach a Job'
 
-#class EditCycleForm(CycleForm):
-
- #   def __init__(self, member, *args, **kwargs):
-  #      super(EditCycleForm, self).__init__(member, *args, **kwargs)
-   #     self.choices = (('True', 'Cancel'), ('False', 'Active'))
-    #    self.fields['cancelled'] = forms.ChoiceField(choices=self.choices,
-     #                                               widget=forms.RadioSelect,
-      #                                              label='Mark as Cancelled, or still Active.'
-       #                                             )
+                                 

@@ -49,10 +49,6 @@ def porthole(request, username, cycle_id):
                                             'invoice_form':invoice_form})
 
 
-    
-
-
-
 ## Send Email Notification of Quote Upload and redirect to Porthole View ##
 def step_notify(request, username, cycle_id, step):
     cycle = get_object_or_404(Cycles, pk=cycle_id)

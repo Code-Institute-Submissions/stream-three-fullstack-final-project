@@ -1,33 +1,17 @@
 from django.test import TestCase
-from django.shortcuts import get_object_or_404
-from .models import MemberClient
-from accounts.models import AllUser
+from fileo.test_models import CreateTestModels
 
 class TestMemberClient(TestCase):
-    def test_create_an_entry(self):
-        member = 'admin'
-        client = 'client'
-        AllUser.objects.create_user(first_name='test',
-                                        last_name='test',
-                                        username=member,
-                                        email='testmember@email.com',
-                                        password='password',
-                                        is_member=True,
-                                        is_client=False
-                                        )
-        AllUser.objects.create_user(first_name='test',
-                                        last_name='test',
-                                        username=client,
-                                        email='testclient@email.com',
-                                        password='password',
-                                        is_member=False,
-                                        is_client=True
-                                        )
+    
+    def setUp(self):
+        new_models =CreateTestModels()
+        new_models.create_profile()
+        new_models.create_member_client()
+        self.member = new_models.get_member()
+        self.client = new_models.get_client()
+        self.member_client = new_models.get_member_client()
         
-        member = get_object_or_404(AllUser, username=member)
-        client = get_object_or_404(AllUser, username=client)
-        entry = MemberClient(member=member, client=client)
-        entry.save()
 
-        self.assertEqual(member, entry.member)
-        self.assertEqual(client, entry.client)
+    def test_member_client_model(self):
+        self.assertEqual(self.member_client.member, self.member)
+        self.assertEqual(self.member_client.client, self.client)
