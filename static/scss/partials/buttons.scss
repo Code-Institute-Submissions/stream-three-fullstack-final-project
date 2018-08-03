@@ -15,14 +15,19 @@
 
 // LOGIN BUTTON //
 
-@mixin login-button {
+@mixin login-button-mobile {
 
-    height: 2.1rem;
+    height: 1.8rem;
     border: none;
     width: 17.5rem;
     border-radius: .3rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1rem;
     background-color: $login-green;
     color: #fff;
+}
+
+@mixin login-button-desktop-media-query {
+
+    height: 2.1rem;
 }

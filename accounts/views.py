@@ -29,7 +29,7 @@ def index(request):
                     #messages.success(request, 'You are logged in as client!')
                     return redirect(reverse('client_cycles', kwargs={'username': user.username}))
             else:
-                messages.error(request, 'Your credentials are incorrect')
+                messages.error(request, "Oops! We couldn't find you. Try again.")
     else: 
         login_form = UserLoginForm()
     return render(request, 'index.html', {'login_form':login_form})

@@ -1,0 +1,20 @@
+
+
+// LOGIN FORM //
+
+@mixin login-form-mobile {
+
+    height: 1rem;
+    width: 17rem;
+    border-radius: .3rem;
+    padding: .3rem;
+    font-size: 1rem;
+    margin-top: 0rem;
+}
+
+
+@mixin login-form-desktop-media-query {
+
+    height: 1.5rem;
+    
+}

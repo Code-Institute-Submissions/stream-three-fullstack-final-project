@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+{% endblock %}
 {% block content %}
 <body>
    <!-- <header class="login-header">
@@ -26,16 +30,20 @@
                 </div>
                 <div class="login-errors">
                     {% for message in messages %}
-                        <p>{{ message }}</p>
+                        <p class="login-errors__text">{{ message }}</p>
                     {% endfor %}
                 </div>
             </div>
-            <div class="scroll-down">
+            <div id="down-arrow" class="scroll-down">
                 <i class="scroll-down__icon far fa-arrow-alt-circle-down"></i>
             </div>
         </div>
     </div>
-    <div class="login-blurb">
+    
+    <div id="login-blurb" class="login-blurb">
+        <div id="up-arrow" class="scroll-up">
+            <i class="scroll-up__icon far fa-arrow-alt-circle-down"></i>
+        </div>
         <div class="login-blurb__container">
             <div class="logo-f">
                 <div class="logo-f__logo"></div>
