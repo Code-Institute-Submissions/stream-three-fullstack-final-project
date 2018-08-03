@@ -1,5 +1,6 @@
 //BUTTONS//
 @import '../helpers/fonts';
+@import '../helpers/colors';
 
 
 // SIGN UP BUTTON //
@@ -22,6 +23,6 @@
     border-radius: .3rem;
     margin-top: 1rem;
     font-size: 1rem;
-    background-color: #81aeaa;
+    background-color: $login-green;
     color: #fff;
 }

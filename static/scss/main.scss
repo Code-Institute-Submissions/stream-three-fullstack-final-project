@@ -7,14 +7,8 @@
 
 // FONT STYLES //
 
-// BUTTONS //
-button {
+h1,h2,h3,h4,h5,h6,p,a,button {
 
-    font-family: $text-font;
-}
-
-// ANCHOR LINKS AS BUTTONS //
-a {
     font-family: $text-font;
 }
 
@@ -28,12 +22,33 @@ a {
     background-color: $login_bg_color;
 }
 
+.landing-container {
+
+    //height: calc(100% - 3rem);
+    @include flex_column;
+    height:100%;
+    width:100%;
+    position:fixed;
+}
 
 .fileo-logo {
 
     //@include flex_row;
     height: 4rem;
     width: 15rem;
+
+    @include sm-mobile {
+
+        height: 2rem;
+        width: 8rem;
+    }
+
+    @include tablet {
+
+        height: 4rem;
+        width: 15rem;
+
+    }
 
 }
 .fileo-logo__image {
@@ -43,15 +58,29 @@ a {
     width: 100%;
     background-repeat: no-repeat;
 
+    @include sm-mobile {
+
+        background: url('../img/Fileo_text_White_HIGH_4%.png');
+        background-repeat: no-repeat;
+    }
+
+    @include tablet {
+
+        background: url('../img/Fileo_text_White_HIGH_8%.png');
+        background-repeat: no-repeat;
+
+    }
+
 }
 
 // LOGIN FORM //
 .login-container { 
 
     @include flex_column;
+
     //height: 100%;
-    position: relative;
-    top: 30%;
+    //position: relative;
+    //top: 30%;
 }
 
 .login-form {
@@ -63,6 +92,11 @@ a {
 
     @include flex_column;
     padding-top: 1rem;
+
+    @include sm-mobile {
+
+        padding-top: 0rem;
+    }
 }
 
 .login-form__username,
@@ -108,4 +142,135 @@ a {
 
 }
 
+// SCROLL DOWN ICON //
 
+.scroll-down {
+
+    @include flex_column;
+    position: absolute;
+    top: calc(100% - 2rem);
+
+    @include sm-mobile {
+
+        display: none;
+    }
+    @include mobile {
+
+        display:flex;
+    }
+}
+
+.scroll-down__icon {
+
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+// LOGIN-BLURB //
+
+.login-blurb {
+
+    height: 40rem;
+    background-color: $login-green;
+    position:relative;
+    top: 100%;
+    @include flex_column;
+    //justify-content: flex-start
+
+    @include sm-mobile {
+
+        height: 46rem;
+
+    }
+
+    @include tablet {
+
+        height: 100vh;
+    }
+
+}
+
+.login-blurb__container {
+
+    position: relative;
+    //top: 15rem;
+
+    //@include mobile {
+
+    //    top: 10rem;
+   // }
+
+}
+
+.logo-f {
+
+    height: 4rem;
+    width: 100%;
+    @include flex_column;
+    justify-content: top;
+    position: relative;
+    //top: 10rem;
+
+}
+
+.logo-f__logo {
+
+    background: url('../img/F_outline-WHITE_HIGH_8%.png');
+    height: 61px;
+    width: 44px;
+    background-repeat: no-repeat;
+}
+
+.login-blurb__text {
+
+    width: 17rem;
+    @include flex_column;
+}
+
+.login-blurb__text--strong {
+
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.login-blurb__text--light {
+
+    font-size: .9rem;
+}
+.login-blurb__text--strong,
+.login-blurb__text--light {
+
+    text-align: center;
+    color: #fff;
+
+}
+
+.login-blurb__text--large {
+
+    font-size: 1.1rem;
+
+}
+
+.login-blurb__signup {
+
+    @include flex_row;
+    @include login-button;
+    background-color: $login_bg_color;
+
+}
+
+
+.login-blurb__signup-link {
+
+    //@include login-button;
+    color: #fff;
+    width: 100%;
+    height:100%;
+    @include flex_row;
+    //background-color: $login_bg_color;
+}
+
+.login-blurb__signup-link {
+
+    cursor: pointer;
+}

@@ -16,33 +16,53 @@ hr {
 input {
   border: none; }
 
-button {
-  font-family: "Quicksand", sans-serif; }
-
-a {
+h1, h2, h3, h4, h5, h6, p, a, button {
   font-family: "Quicksand", sans-serif; }
 
 .bg-color {
   background-repeat: no-repeat;
   background-color: #3a5864; }
 
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: fixed; }
+
 .fileo-logo {
   height: 4rem;
   width: 15rem; }
+  @media (min-width: 375px) {
+    .fileo-logo {
+      height: 2rem;
+      width: 8rem; } }
+  @media (min-width: 768px) {
+    .fileo-logo {
+      height: 4rem;
+      width: 15rem; } }
 
 .fileo-logo__image {
   background: url("../img/Fileo_text_White_HIGH_8%.png");
   height: 100%;
   width: 100%;
   background-repeat: no-repeat; }
+  @media (min-width: 375px) {
+    .fileo-logo__image {
+      background: url("../img/Fileo_text_White_HIGH_4%.png");
+      background-repeat: no-repeat; } }
+  @media (min-width: 768px) {
+    .fileo-logo__image {
+      background: url("../img/Fileo_text_White_HIGH_8%.png");
+      background-repeat: no-repeat; } }
 
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  position: relative;
-  top: 30%; }
+  align-items: center; }
 
 .login-form {
   display: flex;
@@ -56,6 +76,9 @@ a {
   justify-content: center;
   align-items: center;
   padding-top: 1rem; }
+  @media (min-width: 375px) {
+    .login-form__form {
+      padding-top: 0rem; } }
 
 .login-form__username,
 .login-form__password {
@@ -93,5 +116,107 @@ a {
   align-items: center;
   color: #bbbdbee6;
   margin: 1rem; }
+
+.scroll-down {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: calc(100% - 2rem); }
+  @media (min-width: 375px) {
+    .scroll-down {
+      display: none; } }
+  @media (min-width: 576px) {
+    .scroll-down {
+      display: flex; } }
+
+.scroll-down__icon {
+  font-size: 1.5rem;
+  color: #fff; }
+
+.login-blurb {
+  height: 40rem;
+  background-color: #81aeaa;
+  position: relative;
+  top: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  @media (min-width: 375px) {
+    .login-blurb {
+      height: 46rem; } }
+  @media (min-width: 768px) {
+    .login-blurb {
+      height: 100vh; } }
+
+.login-blurb__container {
+  position: relative; }
+
+.logo-f {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: top;
+  position: relative; }
+
+.logo-f__logo {
+  background: url("../img/F_outline-WHITE_HIGH_8%.png");
+  height: 61px;
+  width: 44px;
+  background-repeat: no-repeat; }
+
+.login-blurb__text {
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.login-blurb__text--strong {
+  font-weight: 700;
+  font-size: 1.5rem; }
+
+.login-blurb__text--light {
+  font-size: .9rem; }
+
+.login-blurb__text--strong,
+.login-blurb__text--light {
+  text-align: center;
+  color: #fff; }
+
+.login-blurb__text--large {
+  font-size: 1.1rem; }
+
+.login-blurb__signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 2.1rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  background-color: #81aeaa;
+  color: #fff;
+  background-color: #3a5864; }
+
+.login-blurb__signup-link {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.login-blurb__signup-link {
+  cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */
