@@ -2,7 +2,7 @@
 (() => {
 
     
-    // FUNCTION ROTATES ARROWS WHEN SCROLLING //
+    // FUNCTION ROTATES ARROW ICON WHEN SCROLLING //
     const rotateUpArrowOnScrollDown = () => {
 
         window.addEventListener('scroll', () => {
@@ -15,20 +15,16 @@
                 upArrow.classList.add('scroll-up--show');
                 downArrow.classList.add('scroll-down--hide');
                
-                
             } else if (window.scrollY < (upArrow.offsetTop + upArrow.offsetHeight)) {
         
                 upArrow.classList.remove('scroll-up--show');
                 downArrow.classList.remove('scroll-down--hide');
-                
-               
-                
+                 
             } 
         });
 
     }
 
-   
     rotateUpArrowOnScrollDown();
 
 })();

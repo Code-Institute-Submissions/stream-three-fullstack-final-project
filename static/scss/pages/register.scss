@@ -13,6 +13,8 @@
     top: 0;
     height: 4rem;
     background-color: $register-bg-color;
+    position: relative;
+    width:100%;
 
     @include tablet {
 
@@ -23,13 +25,16 @@
 .register-heading {
 
     color: #fff;
+    margin-bottom: .5rem;
 }
+
 .register-container {
 
     @include flex_column;
     min-height: calc(100% - 6rem);
-    width:100%;
-    
+    width: 100%;
+    position: relative;
+    //top: 4rem;
 
     @include tablet {
 
@@ -72,22 +77,34 @@
     width: 100%;
     height: 2rem;
     background-color: $login-bg-color;
+    position: relative;
+    //top: calc(100% - 2rem);
 }
 
 .banner__text {
 
     margin: 0;
     text-align: center;
-    color: $login-signup-color;
+    color: #fff;
     font-size: .8rem;
 }
 
 // EXPLAIN SECTION //
-.explain-container{
+.explain-container { 
 
     min-height: 100%;
+    width: 100%;
+   
     @include flex_column;
 }
+
+
+.explain-container--relative {
+
+    position: relative;
+
+}
+
 
 .explain-container--color {
 
@@ -104,12 +121,116 @@
 .step-one-container {
 
     @extend .explain-container;
+    position: relative;
+    top: 100%;
+}
+
+.step-one-container h2,
+.step-two-container h2,
+.step-three-container h2 {
+
+    position: absolute;
+    top: 2rem;
     color: #fff;
-    
+    font-size: 2.5rem;
+    margin: 0 ;
 }
 
 .step-one-container--color {
 
     background-color:$login_green;
 
+}
+
+.step-one,
+.step-two,
+.step-three {
+
+    @include flex_column;
+    
+}
+
+.step-one p,
+.step-two p,
+ {
+
+    color: #fff;
+    font-size: 1.1rem;
+    
+}
+
+.step-three p {
+
+    color: #fff;
+    font-size: 1.5rem;
+
+}
+
+.step-one__clients-icon,
+.step-one__job-icon,
+.step-one__cycle-icon,
+.step-two__cloud-icon,
+.step-two__thumbs-up-icon,
+.step-two__chart-icon
+ {
+
+    color: $register-explain-icons;
+    font-size: 3.5rem;
+    margin: 1rem;
+}
+
+.step-three__stripe-icon {
+
+    color: $register-explain-icons;
+    font-size: 4.5rem;
+    margin: 1rem;
+}
+
+// STEP TWO SECTION //
+
+.step-two-container {
+
+    @extend .explain-container;
+    position: relative;
+    top: 200%;
+
+    //color: #fff; 
+}
+
+.step-two-container--color {
+
+    background-color:$login_green;
+
+}
+
+
+// STEP THREE SECTION //
+
+.step-three-container {
+
+    @extend .explain-container;
+    position: relative;
+    top: 300%;
+
+    //color: #fff; 
+}
+
+.step-three-container--color {
+
+    background-color:$login_green;
+
+}
+
+// FIXED CONTAINERS //
+
+.container--fixed {
+
+    position: fixed;
+    top: 0;
+}
+
+.container--fixed-100 {
+
+    top: 100%;
+    transition: top .4s cubic-bezier(0,.8,.53,1);
 }

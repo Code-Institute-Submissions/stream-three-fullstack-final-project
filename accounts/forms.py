@@ -8,7 +8,7 @@ from .models import AllUser
 class UserLoginForm(forms.Form):
     """Login form for both Members and Clients"""
     username = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'login-form__username',
-                                                                        'placeholder': 'Email'}))
+                                                                        'placeholder': 'Username'}))
     password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class':'login-form__password',
                                                                             'placeholder': 'Password'}))
 
@@ -18,12 +18,29 @@ class UserLoginForm(forms.Form):
 
 class UserRegisterForm(forms.Form):
     
-    first_name = forms.CharField(label='First Name',max_length=30)
-    last_name = forms.CharField(label='Last Name', max_length=30)
-    username = forms.CharField(label='Username', max_length=30)
-    email = forms.EmailField(max_length=254)
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    first_name = forms.CharField(label="", 
+                                max_length=30, 
+                                widget=forms.TextInput(attrs={'class':'register-form__first-name', 
+                                        'placeholder': 'First Name'}))
+    last_name = forms.CharField(label="", 
+                                max_length=30,
+                                widget=forms.TextInput(attrs={'class':'register-form__last-name', 
+                                        'placeholder': 'Last Name'}))
+    username = forms.CharField(label="", 
+                                max_length=30,
+                                widget=forms.TextInput(attrs={'class':'register-form__username', 
+                                        'placeholder': 'Username'}))
+    email = forms.EmailField(label="",
+                                max_length=50,
+                                widget=forms.TextInput(attrs={'class':'register-form__email', 
+                                        'placeholder': 'Email'}))
+    password1 = forms.CharField(label="", 
+                                widget=forms.PasswordInput(attrs={'class':'register-form__password1', 
+                                        'placeholder': 'Password'}))
+
+    password2 = forms.CharField(label="", 
+                                widget=forms.PasswordInput(attrs={'class':'register-form__password2', 
+                                        'placeholder': 'Confirm Password'}))
     
     class Meta:
         model = AllUser

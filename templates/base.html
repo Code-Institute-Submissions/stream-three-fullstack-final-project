@@ -14,15 +14,19 @@
     {% block head_js %}
     {% endblock head_js %}
 </head>
-            
-    <!--<nav>       
-    {% if user.is_authenticated %}
-        <ul>
-            <a href="{% url 'logout' %}">Logout</a>
-        </ul>      
-    {% endif %}
-    </nav>-->
-    {% block content %}
-    {% endblock %}
-
+    <body>
+        {% block header %}
+        {% endblock header %}
+        <!--<nav>       
+        {% if user.is_authenticated %}
+            <ul>
+                <a href="{% url 'logout' %}">Logout</a>
+            </ul>      
+        {% endif %}
+        </nav>-->
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock footer %}
+    </body>
 </html>
