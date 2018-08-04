@@ -31,3 +31,10 @@
 
     height: 2.1rem;
 }
+
+// REGISTER PAGE REGISTER BUTTON //
+
+@mixin register-button-mobile {
+
+    @include login-button-mobile;
+}

@@ -33,13 +33,19 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   position: fixed; }
 
 .fileo-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 2rem;
-  width: 8rem;
-  margin-bottom: .5rem; }
+  width: 8rem; }
   @media (min-width: 768px) {
     .fileo-logo {
       height: 4rem;
       width: 15rem; } }
+
+.fileo-logo--margin {
+  margin-bottom: .5rem; }
 
 .fileo-logo__image {
   background: url("../img/Fileo_text_White_HIGH_4%.png");
@@ -93,7 +99,8 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   margin-top: 0.5rem;
   font-size: 1rem;
   background-color: #81aeaa;
-  color: #fff; }
+  color: #fff;
+  background-color: #81aeaa; }
   @media (min-width: 768px) {
     .login-form__button {
       height: 2.1rem; } }
@@ -115,7 +122,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 
 .login-errors__text {
   color: #f00;
-  margin-top: 0rem; }
+  margin: 0rem; }
 
 .scroll-down {
   display: flex;
@@ -125,7 +132,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   position: absolute;
   top: calc(100% - 2rem);
   opacity: 1;
-  transition: opacity .3s ease-in, transform .2s ease-in; }
+  transition: opacity .4s ease-in, transform .3s ease-in; }
 
 .scroll-down--hide {
   opacity: 0;
@@ -142,7 +149,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   align-items: center;
   opacity: 0;
   position: absolute;
-  top: 1rem;
+  top: .5rem;
   transition: transform .3s ease-in, opacity .4s ease-in; }
 
 .scroll-up--show {
@@ -235,5 +242,105 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 
 .login-blurb__signup-link {
   cursor: pointer; }
+
+.register--bg-color {
+  background-repeat: no-repeat;
+  background-color: #bae2b7; }
+
+.register-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  height: 4rem;
+  background-color: #bae2b7; }
+  @media (min-width: 768px) {
+    .register-header {
+      height: 6rem; } }
+
+.register-heading {
+  color: #fff; }
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100% - 6rem);
+  width: 100%; }
+  @media (min-width: 768px) {
+    .register-container {
+      min-height: calc(100% - 8rem); } }
+
+.register-icon__icon {
+  color: #9ece9a;
+  font-size: 3rem; }
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.register-form__first-name,
+.register-form__last-name,
+.register-form__username,
+.register-form__email,
+.register-form__password1,
+.register-form__password2 {
+  height: 1rem;
+  width: 17rem;
+  border-radius: .3rem;
+  padding: .3rem;
+  font-size: 1rem;
+  margin-top: 0rem; }
+
+.register-form__button {
+  height: 1.8rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  background-color: #81aeaa;
+  color: #fff;
+  background-color: #3a5864;
+  margin-bottom: 6rem; }
+
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  background-color: #3a5864; }
+
+.banner__text {
+  margin: 0;
+  text-align: center;
+  color: #bbbdbee6;
+  font-size: .8rem; }
+
+.explain-container, .step-one-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.explain-container--color {
+  background-color: #3a5864; }
+
+.explain-heading {
+  color: #fff; }
+
+.step-one-container {
+  color: #fff; }
+
+.step-one-container--color {
+  background-color: #81aeaa; }
 
 /*# sourceMappingURL=main.css.map */

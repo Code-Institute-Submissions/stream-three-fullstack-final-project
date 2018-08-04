@@ -18,3 +18,10 @@
     height: 1.5rem;
     
 }
+
+// REGISTER FORM //
+
+@mixin register-form-mobile {
+
+    @include login-form-mobile;
+}

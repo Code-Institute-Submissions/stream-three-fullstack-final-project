@@ -1,0 +1,115 @@
+// REGISTER PAGE //
+
+.register--bg-color {
+    
+    background-repeat: no-repeat;
+    background-color: $register-bg-color;
+}
+
+.register-header {
+
+    @include flex_column;
+    position: relative;
+    top: 0;
+    height: 4rem;
+    background-color: $register-bg-color;
+
+    @include tablet {
+
+        height: 6rem;
+    }
+}
+
+.register-heading {
+
+    color: #fff;
+}
+.register-container {
+
+    @include flex_column;
+    min-height: calc(100% - 6rem);
+    width:100%;
+    
+
+    @include tablet {
+
+        min-height: calc(100% - 8rem);
+    }
+  
+}
+
+.register-icon__icon {
+
+    color: $register-icon-color;
+    font-size: 3rem;
+}
+
+.register-form {
+
+    @include flex_column;
+}
+
+.register-form__first-name,
+.register-form__last-name,
+.register-form__username,
+.register-form__email,
+.register-form__password1,
+.register-form__password2 {
+
+    @include register-form-mobile;
+}
+
+.register-form__button {
+
+    @include register-button-mobile;
+    background-color: $login_bg_color;
+    margin-bottom: 6rem;
+}
+
+.banner {
+
+    @include flex_row;
+    width: 100%;
+    height: 2rem;
+    background-color: $login-bg-color;
+}
+
+.banner__text {
+
+    margin: 0;
+    text-align: center;
+    color: $login-signup-color;
+    font-size: .8rem;
+}
+
+// EXPLAIN SECTION //
+.explain-container{
+
+    min-height: 100%;
+    @include flex_column;
+}
+
+.explain-container--color {
+
+    background-color:$login_bg_color;
+
+}
+.explain-heading {
+
+    color: #fff;
+}
+
+// STEP ONE SECTION //
+
+.step-one-container {
+
+    @extend .explain-container;
+    color: #fff;
+    
+}
+
+.step-one-container--color {
+
+    background-color:$login_green;
+
+}
