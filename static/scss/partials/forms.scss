@@ -1,14 +1,18 @@
-// FORM ERRORS // 
+// FORM ERRORS GLOBAL STYLING // 
 
+.errorlist{
 
+    padding-left: 0;
+}
 
-.errorlist li{
+.errorlist li {
 
     color: $login-error-red;
     font-family: $text-font;
+    font-size: .8rem;
+    text-align: center;
 
 }
-
 
 // LOGIN FORM //
 
@@ -18,14 +22,14 @@
     width: 17rem;
     border-radius: .3rem;
     padding: .3rem;
-    font-size: 1rem;
+    font-size: .8rem;
     margin-top: 0rem;
 }
-
 
 @mixin login-form-desktop-media-query {
 
     height: 1.5rem;
+    font-size: 1rem;
     
 }
 
@@ -37,6 +41,19 @@
 }
 
 @mixin register-form-desktop-media-query {
+
+    height: 1.5rem;
+}
+
+// PASSWORD RESET FORM //
+
+@mixin reset-form-mobile {
+
+    @include login-form-mobile;
+
+}
+
+@mixin reset-form-desktop-media-query {
 
     height: 1.5rem;
 }

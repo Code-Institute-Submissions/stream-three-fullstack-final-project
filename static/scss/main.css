@@ -19,14 +19,19 @@ input {
 ul, ol {
   list-style: none; }
 
+.errorlist {
+  padding-left: 0; }
+
 .errorlist li {
   color: #f00;
-  font-family: "Quicksand", sans-serif; }
+  font-family: "Quicksand", sans-serif;
+  font-size: .8rem;
+  text-align: center; }
 
 h1, h2, h3, h4, h5, h6, p, a, button {
   font-family: "Quicksand", sans-serif; }
 
-.bg-color {
+.login-bg-color {
   background-repeat: no-repeat;
   background-color: #3a5864; }
 
@@ -64,6 +69,10 @@ h1, h2, h3, h4, h5, h6, p, a, button {
       background: url("../img/Fileo_text_White_HIGH_8%.png");
       background-repeat: no-repeat; } }
 
+.fileo-logo__link {
+  height: 100%;
+  width: 100%; }
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -92,12 +101,13 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   width: 17rem;
   border-radius: .3rem;
   padding: .3rem;
-  font-size: 1rem;
+  font-size: .8rem;
   margin-top: 0rem; }
   @media (min-width: 768px) {
     .login-form__username,
     .login-form__password {
-      height: 1.5rem; } }
+      height: 1.5rem;
+      font-size: 1rem; } }
 
 .login-form__button {
   height: 1.8rem;
@@ -252,7 +262,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 
 .register--bg-color {
   background-repeat: no-repeat;
-  background-color: #99c396; }
+  background-color: #81aeaa; }
 
 .register-header {
   display: flex;
@@ -260,7 +270,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   position: relative;
   top: 0;
   height: 4rem;
-  background-color: #99c396;
+  background-color: #81aeaa;
   position: relative;
   width: 100%; }
   @media (min-width: 768px) {
@@ -278,7 +288,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   width: 3rem;
   position: absolute;
   right: 1.5rem;
-  background-color: #81a57e; }
+  background-color: #597b78; }
   @media (min-width: 768px) {
     .register-login {
       border-radius: .2rem;
@@ -318,7 +328,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
       min-height: calc(100% - 8rem); } }
 
 .register-icon__icon {
-  color: #81a57e;
+  color: #597b78;
   font-size: 2rem; }
   @media (min-width: 768px) {
     .register-icon__icon {
@@ -340,7 +350,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   width: 17rem;
   border-radius: .3rem;
   padding: .3rem;
-  font-size: 1rem;
+  font-size: .8rem;
   margin-top: 0rem; }
   @media (min-width: 768px) {
     .register-form__first-name,
@@ -361,6 +371,9 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   color: #fff;
   background-color: #3a5864;
   margin-top: 0rem; }
+
+.register-form__button:hover {
+  cursor: pointer; }
 
 .banner {
   display: flex;
@@ -448,7 +461,7 @@ h1, h2, h3, h4, h5, h6, p, a, button {
       font-size: 3.5rem;
       margin: 1rem; } }
 
-.step-three__stripe-icon {
+.step-three__card-icon {
   color: #597b78;
   font-size: 4.5rem;
   margin: 1rem; }
@@ -523,5 +536,194 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 
 .dummy-register-success-div {
   height: 81.4px; }
+
+.reset-header {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #da964a; }
+
+.reset-login {
+  border-radius: .2rem;
+  height: 1.5rem;
+  width: 3rem;
+  position: absolute;
+  right: 1.5rem;
+  background-color: #c98132; }
+  @media (min-width: 768px) {
+    .reset-login {
+      border-radius: .2rem;
+      height: 2rem;
+      width: 5rem;
+      right: 2.5rem; } }
+
+.reset-login a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: .8rem; }
+
+.reset-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100% - 4rem); }
+
+.fileo-logo-icon {
+  height: 77px;
+  width: 68px; }
+
+.fileo-logo-icon__image {
+  background: url("../img/Fileo_White_25precent.png");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat; }
+
+.reset-form__input,
+.reset-confirm__password1,
+.reset-confirm__password2 {
+  height: 1rem;
+  width: 17rem;
+  border-radius: .3rem;
+  padding: .3rem;
+  font-size: .8rem;
+  margin-top: 0rem; }
+  @media (min-width: 768px) {
+    .reset-form__input,
+    .reset-confirm__password1,
+    .reset-confirm__password2 {
+      height: 1.5rem; } }
+
+.password-reset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 179px;
+  padding-top: .5rem; }
+
+.password-reset__button,
+.reset-confirm__button {
+  height: 1.8rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3a5864; }
+  @media (min-width: 768px) {
+    .password-reset__button,
+    .reset-confirm__button {
+      height: 2.1rem; } }
+
+.password-reset__button:hover {
+  cursor: pointer; }
+
+.reset-bg-color {
+  background-color: #da964a; }
+
+.reset-text {
+  color: #fff;
+  padding: 1rem;
+  border-radius: .2rem; }
+
+.password-reset-success {
+  height: 179px; }
+
+.password-reset-success__text {
+  margin-top: 2rem;
+  background-color: #c98132;
+  color: #fff;
+  width: 18rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: .2rem;
+  font-size: .9rem; }
+
+.reset-rules {
+  width: 18rem;
+  background-color: #c98132;
+  border-radius: .2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem; }
+
+.reset-rules__text {
+  text-align: left;
+  margin: .5rem;
+  color: #fff;
+  font-size: .9rem; }
+
+.reset-rules__heading {
+  text-align: center;
+  color: #fff;
+  font-size: 1rem; }
+
+.reset-confirm__button:hover {
+  cursor: pointer; }
+
+.reset-confirm__errors {
+  padding-left: 0; }
+
+.reset-complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: .5rem;
+  background-color: #c98132;
+  border-radius: .2rem; }
+  @media (min-width: 768px) {
+    .reset-complete {
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      padding: 2.5rem; } }
+
+.reset-complete-login {
+  height: 1.8rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3a5864;
+  margin-bottom: 2rem; }
+  @media (min-width: 768px) {
+    .reset-complete-login {
+      height: 2.1rem;
+      margin-bottom: 0; } }
+
+.reset-complete__text {
+  font-size: 1rem;
+  color: #fff; }
+
+.reset-complete-login__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: .8rem; }
+
+.reset-complete__icon {
+  font-size: 2rem;
+  color: #fff; }
+  @media (min-width: 768px) {
+    .reset-complete__icon {
+      font-size: 3rem; } }
 
 /*# sourceMappingURL=main.css.map */

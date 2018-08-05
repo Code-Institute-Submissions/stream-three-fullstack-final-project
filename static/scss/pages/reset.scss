@@ -1,0 +1,229 @@
+// RESET PASSWORD PAGE STYLES //
+
+.reset-header {
+
+    height: 4rem;
+    width: 100%;
+    @include flex_row;
+    //position: fixed;
+    //right: 1.5rem;
+    background-color: $reset-bg-color;
+}
+
+
+.reset-login {
+
+    @include register-login-button-mobile;
+    position: absolute;
+    right: 1.5rem;    
+    background-color: $reset-login-button-color;
+
+    @include tablet {
+
+        @include register-login-button-desktop;
+        right: 2.5rem;
+    }
+
+}
+
+.reset-login a {
+
+    @include flex_column;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: .8rem;
+}
+
+.reset-container {
+
+    @include flex_column;
+    width: 100%;
+    min-height: calc(100% - 4rem);
+    
+}
+
+.fileo-logo-icon {
+
+    @include fileo-icon-25-percent;
+
+}
+
+.fileo-logo-icon__image {
+
+    background: url('../img/Fileo_White_25precent.png');
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+
+}
+.reset-form__input,
+.reset-confirm__password1,
+.reset-confirm__password2 {
+
+    @include reset-form-mobile;
+
+    @include tablet {
+
+        @include reset-form-desktop-media-query;
+    }
+}
+
+.password-reset {
+
+    @include flex_column;
+    height: 179px;
+    padding-top: .5rem;
+
+}
+
+.password-reset__button,
+.reset-confirm__button {
+
+    @include login-button-mobile;
+    background-color: $login_bg_color;
+
+    @include tablet {
+
+        @include login-button-desktop-media-query;
+    }
+}
+
+.password-reset__button:hover {
+
+    cursor: pointer;
+}
+
+.reset-bg-color {
+
+    background-color: $reset-bg-color;
+}
+
+.reset-text {
+
+    color: #fff;
+    padding: 1rem;
+    border-radius: .2rem;
+    //background-color: $reset-login-button-color;
+
+    
+}
+
+
+// RESET DONE STYLES //
+
+
+.password-reset-success {
+
+    height: 179px;
+}
+.password-reset-success__text {
+
+    margin-top: 2rem;
+    background-color: $reset-login-button-color;
+    color: #fff;
+    width: 18rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: .2rem;
+    font-size: .9rem;
+
+}
+
+// RESET CONFIRM STYLES //
+
+.reset-rules {
+
+    width: 18rem;
+    background-color: $reset-login-button-color;
+    border-radius: .2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+
+}
+.reset-rules__text {
+
+    text-align: left;
+    margin: .5rem;
+    color: #fff;
+    font-size: .9rem;
+}
+
+.reset-rules__heading {
+
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.reset-confirm__button:hover {
+
+    cursor:pointer;
+}
+
+.reset-confirm__errors  {
+
+    padding-left: 0;
+}
+
+// RESET COMPLETE STYLES //
+
+
+.reset-complete {
+
+    @include flex_column;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: .5rem;
+    background-color: $reset-login-button-color;
+    border-radius: .2rem;
+
+    @include tablet {
+
+        margin-top: 2rem;
+        margin-bottom: 2.5rem;
+        padding: 2.5rem;
+    }
+}
+
+.reset-complete-login {
+
+    @include login-button-mobile;
+    background-color: $login_bg_color;
+    margin-bottom: 2rem;
+
+    @include tablet {
+
+        @include login-button-desktop-media-query;
+        margin-bottom: 0;
+        
+    }
+    
+}
+
+.reset-complete__text {
+
+    font-size: 1rem;
+    color: #fff;
+}
+
+.reset-complete-login__link {
+
+    @include flex_column;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: .8rem;
+}
+
+.reset-complete__icon {
+
+    font-size: 2rem;
+    color: #fff;
+
+    @include tablet {
+
+        font-size: 3rem;
+    }
+
+}

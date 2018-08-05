@@ -59,8 +59,7 @@ def register(request):
                                         is_client=False
                                         )
             messages.success(request, 
-                            """You have successfully created an account! 
-                                Please go back to the login page and login.""")
+                            """Account created.""")
             new_email = NewMember(register.cleaned_data['first_name'],
                                 register.cleaned_data['email'], 
                                 register.cleaned_data['username'],

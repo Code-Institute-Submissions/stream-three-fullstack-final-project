@@ -2,8 +2,10 @@
 @import 'helpers/media_queries';
 @import 'helpers/fonts';
 @import 'helpers/colors';
-@import 'helpers/mixins';
+@import 'helpers/flex-mixins';
 @import 'partials/buttons';
 @import 'partials/forms';
+@import 'partials/icons';
 @import 'pages/login.scss';
 @import 'pages/register.scss';
+@import 'pages/reset.scss';

@@ -80,8 +80,6 @@
 
     @include tablet {
 
-       // padding-top: 6rem;
-       // justify-content: center;
         min-height: calc(100% - 8rem);
     }
 }
@@ -124,6 +122,11 @@
     background-color: $login_bg_color;
     margin-top: 0rem;
     //margin-bottom: 2rem;
+}
+
+.register-form__button:hover {
+
+    cursor:pointer;
 }
 
 .banner {
@@ -241,7 +244,7 @@
     }
 }
 
-.step-three__stripe-icon {
+.step-three__card-icon {
 
     color: $register-explain-icons;
     font-size: 4.5rem;

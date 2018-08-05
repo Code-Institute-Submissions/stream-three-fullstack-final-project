@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6,p,a,button {
                     //LOGIN PAGE//
 //---------------------------------------------------//
 
-.bg-color {
+.login-bg-color {
     
     background-repeat: no-repeat;
     background-color: $login_bg_color;
@@ -22,6 +22,8 @@ h1,h2,h3,h4,h5,h6,p,a,button {
     width:100%;
     position:fixed;
 }
+
+// STYLES SHARED WITH PASSWORD RESET AND REGISTER PAGES //
 
 .fileo-logo {
 
@@ -42,6 +44,7 @@ h1,h2,h3,h4,h5,h6,p,a,button {
 
     margin-bottom: .5rem;
 }
+
 .fileo-logo__image {
 
     background: url('../img/Fileo_text_White_HIGH_4%.png');
@@ -57,6 +60,14 @@ h1,h2,h3,h4,h5,h6,p,a,button {
     }
 
 }
+
+.fileo-logo__link {
+
+    height: 100%;
+    width: 100%;
+}
+
+// ----------- END OF STYLE SHARING FOR LOGO ------------------ //
 
 // LOGIN FORM //
 .login-container { 
@@ -85,6 +96,7 @@ h1,h2,h3,h4,h5,h6,p,a,button {
 .login-form__password {
 
     @include login-form-mobile;
+    
 
     @include tablet {
 

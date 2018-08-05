@@ -2,12 +2,12 @@
 {% load static %}
 {% block head_js %}
 <script defer type="text/javascript" src="{% static 'js/login.js' %}"></script>
-{% endblock %}
+{% endblock %}  
 {% block content %}
-    <div class="bg-color landing-container">
+    <div class="login-bg-color landing-container">
         <div class="login-container">
                 <div class="fileo-logo fileo-logo--margin">
-                    <div class="fileo-logo__image" aria-hidden="true"></div>
+                    <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
                 </div>
                 <div class="login-form">
                     <form class="login-form__form" action="{% url 'index' %}" method="POST">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="login-links">
                     <div>
-                        <a class="login-links__signup" href="{% url 'register' %}" aria-hidden>Register</a>
+                        <a class="login-links__signup" href="{% url 'register' %}">Register</a>
                     </div>
                     <div>
                         <a class="login-links__reset-password" href="{% url 'password_reset' %}">Reset Password</a>
