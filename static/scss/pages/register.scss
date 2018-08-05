@@ -8,7 +8,8 @@
 
 .register-header {
 
-    @include flex_column;
+    display: flex;
+    align-items: center;
     position: relative;
     top: 0;
     height: 4rem;
@@ -22,31 +23,79 @@
     }
 }
 
+.register-header__logo--position {
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.register-login {
+
+    @include register-login-button-mobile;
+    position: absolute;
+    right: 1.5rem;
+    //@include flex_column;
+    background-color: $register-icon-color;
+
+    @include tablet {
+
+        @include register-login-button-desktop;
+        right: 2.5rem;
+    }
+}
+
+.register-login__link {
+
+    @include flex_column;
+    //text-align: center;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    font-size: .8rem;
+}
+
 .register-heading {
 
     color: #fff;
-    margin-bottom: .5rem;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    @include tablet {
+
+        margin: 1rem 1rem 0rem 1rem;
+    }
 }
 
 .register-container {
 
     @include flex_column;
+    justify-content: center;
     min-height: calc(100% - 6rem);
     width: 100%;
     position: relative;
+    //top: 0rem;
     //top: 4rem;
 
     @include tablet {
 
+       // padding-top: 6rem;
+       // justify-content: center;
         min-height: calc(100% - 8rem);
     }
-  
 }
 
 .register-icon__icon {
 
     color: $register-icon-color;
-    font-size: 3rem;
+    font-size: 2rem;
+
+    @include tablet {
+
+        font-size: 4rem;
+
+    }
 }
 
 .register-form {
@@ -62,13 +111,19 @@
 .register-form__password2 {
 
     @include register-form-mobile;
+
+    @include tablet {
+
+        @include register-form-desktop-media-query;
+    }
 }
 
 .register-form__button {
 
     @include register-button-mobile;
     background-color: $login_bg_color;
-    margin-bottom: 6rem;
+    margin-top: 0rem;
+    //margin-bottom: 2rem;
 }
 
 .banner {
@@ -162,7 +217,8 @@
 .step-three p {
 
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
 
 }
 
@@ -175,8 +231,14 @@
  {
 
     color: $register-explain-icons;
-    font-size: 3.5rem;
-    margin: 1rem;
+    font-size: 2.5rem;
+    margin: 0rem;
+
+    @include tablet {
+
+        font-size: 3.5rem;
+        margin: 1rem;
+    }
 }
 
 .step-three__stripe-icon {
@@ -233,4 +295,61 @@
 
     top: 100%;
     transition: top .4s cubic-bezier(0,.8,.53,1);
+}
+
+// SUCCESSFUL REGISTRATION MESSAGE //
+
+.register-success {
+
+    @include flex_column;
+    margin-top: 1rem;
+}
+
+.register-success__message {
+
+    color: $register-text;
+    font-size:.8rem;
+    //margin-bottom: .5rem;
+    margin: 0rem;
+}
+
+.register-success__message-container {
+
+    @include flex_row;
+    margin-bottom: .5rem;
+}
+
+
+
+.register-success__message-container div i {
+
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    color: $register-text;
+}
+
+
+.register-success__login {
+
+    @include register-login-button-mobile;
+    background-color: #fff;
+    margin-bottom: 1rem;
+
+    @include tablet {
+
+        @include register-login-button-desktop;
+    }
+}
+.register-success__login-link {
+
+    height: 100%;
+    width: 100%;
+    color: $register-text;
+    @include flex_row;
+    font-size: .8rem; 
+}
+
+.dummy-register-success-div {
+
+    height: 81.4px;
 }

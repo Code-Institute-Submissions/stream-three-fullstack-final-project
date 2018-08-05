@@ -1,3 +1,13 @@
+// FORM ERRORS // 
+
+
+
+.errorlist li{
+
+    color: $login-error-red;
+    font-family: $text-font;
+
+}
 
 
 // LOGIN FORM //
@@ -24,4 +34,9 @@
 @mixin register-form-mobile {
 
     @include login-form-mobile;
+}
+
+@mixin register-form-desktop-media-query {
+
+    height: 1.5rem;
 }

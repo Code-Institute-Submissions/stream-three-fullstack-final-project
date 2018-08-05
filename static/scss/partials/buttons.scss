@@ -3,16 +3,6 @@
 @import '../helpers/colors';
 
 
-// SIGN UP BUTTON //
-@mixin signup-button {
-
-    border-radius: .2rem;
-    height: 2rem;
-    background-color: #fff;
-    width: 5rem;
-    
-}
-
 // LOGIN BUTTON //
 
 @mixin login-button-mobile {
@@ -23,7 +13,6 @@
     border-radius: .3rem;
     margin-top: 0.5rem;
     font-size: 1rem;
-    background-color: $login-green;
     color: #fff;
 }
 
@@ -37,4 +26,25 @@
 @mixin register-button-mobile {
 
     @include login-button-mobile;
+}
+
+
+// REGISTER PAGE LOGIN BUTTON //
+
+@mixin register-login-button-mobile {
+
+    border-radius: .2rem;
+    height: 1.5rem;
+    //background-color: #fff;
+    width: 3rem;
+    
+}
+
+@mixin register-login-button-desktop {
+
+    border-radius: .2rem;
+    height: 2rem;
+    //background-color: #fff;
+    width: 5rem;
+    
 }
