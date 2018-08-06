@@ -1,147 +1,159 @@
-<h1>Logged into Member Cycle Page as {{ user.username }}</h1>
-{% if user.is_member %}
-{% if not profile %}
-<p>Your profile isn't complete yet. You won't be able to use the full Fileo service until completed.</p>
-{% endif %}
-{% endif %}
-<p>Total Value of Completed Cycles: £{{ request.session.complete }}</p>
-<p>Total Value of Pending Cycles: £{{ request.session.pending }}</p>
-<p>Total Value of Active Cycles: £{{ request.session.active }}</p>
-<p>Total Value of Cancelled Cycles: £{{ request.session.cancelled }}</p>
-{% if user.is_member %}
-<ul>
-    <li>
-        <a href="{% url 'member_profile' username=user.username %}">Manage Profile</a>{% if profile %}<span> Completed</span>{% endif %}
-    </li>
-    <li>
-        <a href="{% url 'manage_clients' username=user.username %}">Manage Clients</a>
-    </li>
-    <li>
-        <a href="{% url 'manage_jobs' username=user.username %}">Manage Jobs</a> 
-    </li>
-    <li>
-        <a href="{% url 'manage_cycles' username=user.username %}">Manage Cycles</a>
-    </li>
-</ul>
-<hr>
-{% endif %}
-<h2>Search Your Cycles</h2>
-<p>Search by Job Title, Job Name, Fileo ID, and Client</p>
-<form>
-    {% if search %}
-    <input type="text" name="search" value="{{ search.search }}" placeholder="Search" minlength="0" maxlength="50" required>
-    <select name="sort">
-        <option {% if search.sort == 'all' %} selected {% endif %} value="all">All</option>
-        <option {% if search.sort == 'active' %} selected {% endif %} value="active">Active</option>
-        <option {% if search.sort == 'pending' %} selected {% endif %} value="pending">Pending</option>
-        <option {% if search.sort == 'complete' %} selected {% endif %} value="complete">Complete</option>
-        <option {% if search.sort == 'cancelled' %} selected {% endif %} value="cancelled">Cancelled</option>  
-    </select>
-    <select name="order">
-        <option {% if search.order == "newest" %} selected {% endif %} value="newest">Newest</option>
-        <option {% if search.order == "oldest" %} selected {% endif %} value="oldest">Oldest</option>
-    </select>
-    {% elif not search %}
-    <input type="text" name="search" placeholder="Search"  minlength="0" maxlength="50" required>
-    <select name="sort">
-        <option value="all">All</option>
-        <option value="active">Active</option>
-        <option value="pending">Pending</option>
-        <option value="completed">Completed</option>
-        <option value="cancelled">Cancelled</option>  
-    </select>
-    <select name="order">
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-    </select>
+{% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/cycles.js' %}"></script>
+{% endblock head_js %}
+{% block content %}
+{% include 'header.html' %}
+<div class="cycles-bg-color">
+    <!--<h1>Logged into Member Cycle Page as {{ user.username }}</h1>-->
+    {% if user.is_member %}
+    {% if not profile %}
+    <p>Your profile isn't complete yet. You won't be able to use the full Fileo service until completed.</p>
     {% endif %}
-    <button type="submit">Search</button>
-</form>
-<br>
-{% if search %}
-<form action="{% url 'reset_search' username=user.username %}">
-    <button type="submit">Reset Search</button>
-</form>
-{% endif %}
-<hr>
-{% if search %}
-    {% if cycles|length == 0 %}
-        <p>Found {{ cycles|length }} Cycles.</p>
-    {% elif cycles|length == 1 %}
-        <p>Found {{ cycles|length }} Cycle.</p>
-    {% elif cycles|length > 1 %}
-        <p>Found {{ cycles|length }} Cycles.</p>
     {% endif %}
-{% else %}
-<p>You have a total of {{ cycles|length }} Cycles.</p>
-{% endif %}
-<hr>
-<div>
-    {% if cycles %}
-        <hr>
-        {% for item in cycles %}
-        <div>
+    <!--<p>Total Value of Completed Cycles: £{{ request.session.complete }}</p>
+    <p>Total Value of Pending Cycles: £{{ request.session.pending }}</p>
+    <p>Total Value of Active Cycles: £{{ request.session.active }}</p>
+    <p>Total Value of Cancelled Cycles: £{{ request.session.cancelled }}</p>-->
+
+    <!--<h2>Search Your Cycles</h2>-->
+    <!--<p>Search by Job Title, Job Name, Fileo ID, and Client</p>-->
+    <div class="cycles-search">
+        <form class="cycles-search__form">
+            {% if search %}
+            <input type="text" name="search" value="{{ search.search }}" placeholder="Search" minlength="0" maxlength="50" required>
             <div>
-                <p>created: {{item.cycle.created}}</p>
-                <h3>Cycle Title</h3>
-                <p>{{ item.cycle.cycle_title }}</p>
-                <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
-                {% if item.cancelled %}
-                <p>Cancelled</p>
-                {% elif item.pending %}
-                <p>Payment Pending</p>
-                {% elif item.complete %}
-                <p>Cycle Complete</p>
-                {% else %}
-                <p>Active</p>
-                {% endif %}
-                <h3>Description</h3>
-                <p>{{ item.cycle.description }}</p>
-                <h3>Job</h3>
-                <p>{{ item.cycle.job.job_title }}</p>
-                {% if user.is_member %}
-                <h3>Client</h3>
-                <p>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
-                <h3>Client Username</h3>
-                <p>{{ item.cycle.client.username }}</p>
-                <hr>
-                {% elif user.is_client %}
-                <h3>Member</h3>
-                <p>{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
-                <h3>Member Username</h3>
-                <p>{{ item.cycle.member.username }}</p>
-                <hr>
-                {% endif %}
-                {% if item.approve_quote == True %}
-                <p><strong>Quote Status:</strong> Approved</p>
-                {% elif item.contest_quote == True %}
-                <p><strong>Quote Status:</strong> Contesed</p>
-                {% else %}
-                <p><strong>Quote Status:</strong> No Status.</p>
-                {% endif %}
-                <hr>
-                {% if item.approve_po == True %}
-                <p><strong>PO Status:</strong> Approved</p>
-                {% elif item.contest_po == True %}
-                <p><strong>PO Status:</strong> Contesed</p>
-                {% else %}
-                <p><strong>PO Status:</strong> No Status.</p>
-                {% endif %}
-                <hr>
-                {% if item.approve_invoice == True %}
-                <p><strong>Invoice Status:</strong> Approved</p>
-                {% elif item.contest_invoice == True %}
-                <p><strong>Invoice Status:</strong> Contesed</p>
-                {% else %}
-                <p><strong>Invoice Status:</strong> No Status.</p>
+                <select name="sort">
+                    <option {% if search.sort == 'all' %} selected {% endif %} value="all">All</option>
+                    <option {% if search.sort == 'active' %} selected {% endif %} value="active">Active</option>
+                    <option {% if search.sort == 'pending' %} selected {% endif %} value="pending">Pending</option>
+                    <option {% if search.sort == 'complete' %} selected {% endif %} value="complete">Complete</option>
+                    <option {% if search.sort == 'cancelled' %} selected {% endif %} value="cancelled">Cancelled</option>  
+                </select>
+                <select name="order">
+                    <option {% if search.order == "newest" %} selected {% endif %} value="newest">Newest</option>
+                    <option {% if search.order == "oldest" %} selected {% endif %} value="oldest">Oldest</option>
+                </select>
+            </div>
+                {% elif not search %}
+            <div class="cycles-search__input-wrapper">
+                <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
+                <input class="cycles-search__input" type="text" name="search" placeholder=""  minlength="0" maxlength="50" required>
+            </div>
+            <div class="cycles-search__filters">
+                <div class="cycles-search__filter--styled">
+                    <select name="sort">
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>  
+                    </select>
+                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                </div>
+                <div class="cycles-search__filter--styled">
+                    <select name="order">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                </div>
                 {% endif %}
             </div>
-            <hr>
-            <form action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
-                <button type="submit">Go to Cycle</button>
-            </form>
-        </div>
-        <hr>
-        {% endfor %}
+            <div class="cycles-search__button"><button class="cycle-search__button-button"type="submit">Search</button></div>  
+            
+        </form>
+    </div>
+   <!-- <br>
+    {% if search %}
+    <form action="{% url 'reset_search' username=user.username %}">
+        <button type="submit">Reset Search</button>
+    </form>
     {% endif %}
+    <hr>
+    {% if search %}
+        {% if cycles|length == 0 %}
+            <p>Found {{ cycles|length }} Cycles.</p>
+        {% elif cycles|length == 1 %}
+            <p>Found {{ cycles|length }} Cycle.</p>
+        {% elif cycles|length > 1 %}
+            <p>Found {{ cycles|length }} Cycles.</p>
+        {% endif %}
+    {% else %}
+    <p>You have a total of {{ cycles|length }} Cycles.</p>
+    {% endif %}
+    <hr>
+    <div>
+        {% if cycles %}
+            <hr>
+            {% for item in cycles %}
+            <div>
+                <div>
+                    <p>created: {{item.cycle.created}}</p>
+                    <h3>Cycle Title</h3>
+                    <p>{{ item.cycle.cycle_title }}</p>
+                    <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
+                    {% if item.cancelled %}
+                    <p>Cancelled</p>
+                    {% elif item.pending %}
+                    <p>Payment Pending</p>
+                    {% elif item.complete %}
+                    <p>Cycle Complete</p>
+                    {% else %}
+                    <p>Active</p>
+                    {% endif %}
+                    <h3>Description</h3>
+                    <p>{{ item.cycle.description }}</p>
+                    <h3>Job</h3>
+                    <p>{{ item.cycle.job.job_title }}</p>
+                    {% if user.is_member %}
+                    <h3>Client</h3>
+                    <p>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                    <h3>Client Username</h3>
+                    <p>{{ item.cycle.client.username }}</p>
+                    <hr>
+                    {% elif user.is_client %}
+                    <h3>Member</h3>
+                    <p>{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
+                    <h3>Member Username</h3>
+                    <p>{{ item.cycle.member.username }}</p>
+                    <hr>
+                    {% endif %}
+                    {% if item.approve_quote == True %}
+                    <p><strong>Quote Status:</strong> Approved</p>
+                    {% elif item.contest_quote == True %}
+                    <p><strong>Quote Status:</strong> Contesed</p>
+                    {% else %}
+                    <p><strong>Quote Status:</strong> No Status.</p>
+                    {% endif %}
+                    <hr>
+                    {% if item.approve_po == True %}
+                    <p><strong>PO Status:</strong> Approved</p>
+                    {% elif item.contest_po == True %}
+                    <p><strong>PO Status:</strong> Contesed</p>
+                    {% else %}
+                    <p><strong>PO Status:</strong> No Status.</p>
+                    {% endif %}
+                    <hr>
+                    {% if item.approve_invoice == True %}
+                    <p><strong>Invoice Status:</strong> Approved</p>
+                    {% elif item.contest_invoice == True %}
+                    <p><strong>Invoice Status:</strong> Contesed</p>
+                    {% else %}
+                    <p><strong>Invoice Status:</strong> No Status.</p>
+                    {% endif %}
+                </div>
+                <hr>
+                <form action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
+                    <button type="submit">Go to Cycle</button>
+                </form>
+            </div>
+            <hr>
+            {% endfor %}
+        {% endif %}
+    </div>-->
 </div>
+{% endblock %}

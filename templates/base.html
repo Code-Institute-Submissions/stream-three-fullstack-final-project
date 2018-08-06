@@ -10,20 +10,10 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet"> 
     <link rel="stylesheet" href="{% static 'scss/main.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
     {% block head_js %}
     {% endblock head_js %}
 </head>
     <body>
-        {% block header %}
-        {% endblock header %}
-        <!--<nav>       
-        {% if user.is_authenticated %}
-            <ul>
-                <a href="{% url 'logout' %}">Logout</a>
-            </ul>      
-        {% endif %}
-        </nav>-->
         {% block content %}
         {% endblock %}
         {% block footer %}

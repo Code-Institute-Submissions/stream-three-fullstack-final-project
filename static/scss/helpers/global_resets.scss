@@ -34,3 +34,19 @@ hr {
     list-style: none;
 
  }
+
+ select {
+
+    border: none;
+    //height: 1.6rem;
+    //border-radius: .2rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:transparent;
+ }
+
+ h1,h2,h3,h4,h5,h6,p,a,button,select {
+
+    font-family: $text-font;
+}

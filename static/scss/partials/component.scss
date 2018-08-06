@@ -1,22 +1,26 @@
-// MOBILE MENU BURGER BARS //
 
-// MOBILE MENU ICON //
+// CUSTOM STYLED SELECT BOX //
+@mixin cycle-select-boxes {
 
-@mixin bars-container {
-
-    display: inline-block;
-    //position: absolute;
-    //right: 1.5rem;
-
+    height: 1.6rem;
+    
+    border-radius: .2rem;
+    text-align: center;
+    width: 7rem;
+    margin: .5rem;
+    margin-top: 0;
+    
 }
 
-@mixin bars {
+// CUSTOM STYLED SELECT BOX ARROW  //
+@mixin cycle-select-arrows {
 
-    width: 2rem;
-    height: 0.3rem;
-    background-color: #fff;
-    margin: 0.3rem;
-    transition: .4s;
-    border-radius: 4px;
+    color: #fff;
+    height: 100%;
+    position: relative;
+    right: .5rem;
+    padding-left: .5rem;
+    border-left: 1px solid #bbbdbee6;
+
 
 }

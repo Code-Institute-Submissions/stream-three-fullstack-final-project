@@ -57,3 +57,11 @@
 
     height: 1.5rem;
 }
+
+// CYCLE SEARCH FORM // 
+
+@mixin cycle-search-form-input {
+
+    @include login-form-mobile;
+    width: 13rem;
+}

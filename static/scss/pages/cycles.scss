@@ -1,8 +1,85 @@
 
-
-//-------------------------------//
+// CYCLES TEMPLATE STYLES //
 
 .cycles-bg-color {
 
+    height: 100%;
+    width: 100%;
     background-color:$login-green;
+}
+
+.cycles-search {
+
+    @include flex_column;
+    position: relative; 
+    top: 2rem;
+    height: 9rem;
+}
+.cycles-search__form {
+
+    @include flex_column;
+    height: 5rem;
+}
+
+.cycles-search__filters {
+
+    @include flex_row;
+    margin-top: .5rem;
+    width: 15.1rem;
+
+}
+
+.cycles-search__button {
+
+    @include flex_row;
+}
+
+.cycles-search__input {
+
+    @include cycle-search-form-input;
+
+}
+
+.cycles-search__input-wrapper {
+
+    @include flex_row;
+    border-radius: .2rem;
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.cycles-search__input-wrapper i {
+
+    padding-left: .5rem;
+    color: $login-signup-color;
+}
+
+.cycles-search__magnify {
+    @include flex_column;
+    height:100%;
+}
+.cycles-search__filter--styled{
+
+    @include cycle-select-boxes;
+    @include flex_row;
+    flex-grow:1;
+    background-color: $register-icon-color;
+
+}
+
+.cycles-search__select {
+
+    @include flex_row;
+    width:100%;
+    height:100%;
+    text-align: left;
+    font-size: .8rem;
+    padding-left: .3rem;
+    color: #fff;
+}
+
+.cycles-search__filter--arrow {
+
+    @include cycle-select-arrows;
+    
 }
