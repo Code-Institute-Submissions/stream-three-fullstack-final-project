@@ -13,7 +13,7 @@
     justify-content: space-between;
     background-color: $login_bg_color;
     position:relative;
-    z-index: 1;
+    z-index: 2;
 
 }
 
@@ -100,6 +100,7 @@
     position: relative;
     top: -8rem;
     transition: top .3s $drop-down-bezier;
+    z-index: 1;
 }
 
 .drop-down-menu--show {
@@ -120,11 +121,12 @@
     height: 1.9rem;
     width: 100%;
     @include flex_row;
-    padding: .1rem;
+    padding: .1rem 0 .1rem 0;
     background-color: white;
-    margin-bottom: 1px;
-    border-radius: .2rem;
+    //margin-bottom: 1px;
+    border-bottom-left-radius: .2rem;
     transition: background-color .3s $drop-down-bezier;
+    border-bottom: 1px solid $login-signup-color;
 
 }
 
@@ -132,7 +134,9 @@
 
     @include flex_row;
     width: 100%;
+    height: 100%;
     color: $login_bg_color;
+    font-size: .8rem;
 
 }
 

@@ -4,78 +4,79 @@
 <script defer type="text/javascript" src="{% static 'js/register.js' %}"></script>
 {% endblock head_js %}
 {% block content %}
-<header id="register-header" class="register-header">
-    <div class="fileo-logo register-header__logo--position">
-        <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>  
-    </div>
-    <div class="register-login">
-        <a class="register-login__link" href="{% url 'index' %}">Login</a>
-    </div>
-</header>
-<div id="register" class="register-container register--bg-color">
-    <div class="register-icon">
-        <i class="register-icon__icon far fa-user-circle" aria-hidden="true"></i>
-    </div>
-    <h1 class="register-heading">Join Us.</h1>
-    <div class="register-form">
-        <form class="register-form__form" action="{% url 'register' %}" method="POST">
-            {% csrf_token %}
-            {{ register.as_p }}
-            <button class="register-form__button" type="submit">Register</button>
-        </form>
-    </div>
-    {% if messages %}
-        {% for message in messages %}
-        <div class="register-success">
-            <div class="register-success__message-container">
-                <div><i class="far fa-check-circle"></i></div>
-                <div>
-                    <p class="register-success__message">Account Created.</p>
+<body>
+    <header id="register-header" class="register-header">
+        <div class="fileo-logo register-header__logo--position">
+            <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>  
+        </div>
+        <div class="register-login">
+            <a class="register-login__link" href="{% url 'index' %}">Login</a>
+        </div>
+    </header>
+    <div id="register" class="register-container register--bg-color">
+        <div class="register-icon">
+            <i class="register-icon__icon far fa-user-circle" aria-hidden="true"></i>
+        </div>
+        <h1 class="register-heading">Join Us.</h1>
+        <div class="register-form">
+            <form class="register-form__form" action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                {{ register.as_p }}
+                <button class="register-form__button" type="submit">Register</button>
+            </form>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="register-success">
+                <div class="register-success__message-container">
+                    <div><i class="far fa-check-circle"></i></div>
+                    <div>
+                        <p class="register-success__message">Account Created.</p>
+                    </div>
+                </div>
+                <div class="register-success__login">
+                    <a class="register-success__login-link" href="{% url 'index' %}">Login</a>
                 </div>
             </div>
-            <div class="register-success__login">
-                <a class="register-success__login-link" href="{% url 'index' %}">Login</a>
-            </div>
+            {% endfor %}
+        {% else %}
+            <div class="dummy-register-success-div"></div>
+        {% endif %}
+    </div>
+    <div class="banner">
+        <p class="banner__text">How does it work?</p>
+    </div>
+    <div id="explain" class="explain-container explain-container--color explain-container--relative">
+        <h2 id="explain-text" class="explain-heading">What is Fileo?</h2>
+    </div>
+    <div id="step-one" class="step-one-container step-one-container--color">
+        <!--<h2>1.</h2>-->
+        <div class="step-one">
+            <div><i class="far fa-address-book step-one__clients-icon" aria-hidden="true"></i></div>
+            <p>Manage your clients.</p>
+            <div><i class="fas fa-briefcase step-one__job-icon" aria-hidden="true"></i></div>
+            <p>Manage your jobs.</p>
+            <div><i class="far fa-circle step-one__cycle-icon" aria-hidden="true"></i></div>
+            <p>Manage your payment Cycles.</p>
         </div>
-        {% endfor %}
-    {% else %}
-        <div class="dummy-register-success-div"></div>
-    {% endif %}
-</div>
-<div class="banner">
-    <p class="banner__text">How does it work?</p>
-</div>
-<div id="explain" class="explain-container explain-container--color explain-container--relative">
-    <h2 id="explain-text" class="explain-heading">What is Fileo?</h2>
-</div>
-<div id="step-one" class="step-one-container step-one-container--color">
-    <!--<h2>1.</h2>-->
-    <div class="step-one">
-        <div><i class="far fa-address-book step-one__clients-icon" aria-hidden="true"></i></div>
-        <p>Manage your clients.</p>
-        <div><i class="fas fa-briefcase step-one__job-icon" aria-hidden="true"></i></div>
-        <p>Manage your jobs.</p>
-        <div><i class="far fa-circle step-one__cycle-icon" aria-hidden="true"></i></div>
-        <p>Manage your payment Cycles.</p>
     </div>
-</div>
-<div id="step-two" class="step-two-container step-two-container--color">
-    <!--<h2>2.</h2>-->
-    <div class="step-two">
-        <div><i class="far fa-chart-bar step-two__chart-icon" aria-hidden="true"></i></div>
-        <p>Stay in control.</p>
-        <div><i class="fas fa-cloud-upload-alt step-two__cloud-icon" aria-hidden="true"></i></div>
-        <p>Upload Quotes, PO's and Invoices.</p>
-        <div><i class="far fa-thumbs-up step-two__thumbs-up-icon" aria-hidden="true"></i></i></div>
-        <p>Get approval, and fast.</p>
+    <div id="step-two" class="step-two-container step-two-container--color">
+        <!--<h2>2.</h2>-->
+        <div class="step-two">
+            <div><i class="far fa-chart-bar step-two__chart-icon" aria-hidden="true"></i></div>
+            <p>Stay in control.</p>
+            <div><i class="fas fa-cloud-upload-alt step-two__cloud-icon" aria-hidden="true"></i></div>
+            <p>Upload Quotes, PO's and Invoices.</p>
+            <div><i class="far fa-thumbs-up step-two__thumbs-up-icon" aria-hidden="true"></i></i></div>
+            <p>Get approval, and fast.</p>
+        </div>
     </div>
-</div>
-<div id="step-three" class="step-three-container step-three-container--color">
-   <!-- <h2>3.</h2>-->
-    <div class="step-three">
-        <div><i class="fas fa-credit-card step-three__card-icon" aria-hidden="true"></i></div>
-        <p>Never miss a payment again.</p>
+    <div id="step-three" class="step-three-container step-three-container--color">
+    <!-- <h2>3.</h2>-->
+        <div class="step-three">
+            <div><i class="fas fa-credit-card step-three__card-icon" aria-hidden="true"></i></div>
+            <p>Never miss a payment again.</p>
+        </div>
     </div>
-</div>
-
+</body>
 {% endblock %}

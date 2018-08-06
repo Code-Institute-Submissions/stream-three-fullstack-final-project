@@ -1,9 +1,5 @@
 // FONT STYLES //
 
-h1,h2,h3,h4,h5,h6,p,a,button,select {
-
-    font-family: $text-font;
-}
 
 //----------------------------------------------------//
                     //LOGIN PAGE//
@@ -142,6 +138,12 @@ h1,h2,h3,h4,h5,h6,p,a,button,select {
 
     color: $login-error-red;
     margin: 0rem;
+    font-size: .8rem;
+
+    @include tablet {
+
+        font-size: 1rem;
+    }
 }
 
 // SCROLL DOWN ICON //

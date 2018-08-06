@@ -3,17 +3,19 @@
 
 .cycles-bg-color {
 
-    height: 100%;
+    //height: auto;
     width: 100%;
     background-color:$login-green;
+    
 }
 
+// ------- SEARCH FORM STYLES ------ //
 .cycles-search {
 
     @include flex_column;
-    position: relative; 
-    top: 2rem;
-    height: 9rem;
+    //position: relative; 
+    //top: 2rem;
+    height: 6rem;
 }
 .cycles-search__form {
 
@@ -25,6 +27,7 @@
 
     @include flex_row;
     margin-top: .5rem;
+    margin-bottom: .5rem;
     width: 15.1rem;
 
 }
@@ -76,6 +79,7 @@
     font-size: .8rem;
     padding-left: .3rem;
     color: #fff;
+
 }
 
 .cycles-search__filter--arrow {
@@ -83,3 +87,132 @@
     @include cycle-select-arrows;
     
 }
+
+.cycles-search__button {
+
+    @include register-login-button-mobile;
+    height: 100%;
+    width: 5rem;
+    background-color: $login_bg_color;
+    color: #fff;
+    transition: background-color .2s $drop-down-bezier;
+}
+
+.cycles-search__button:hover {
+
+    cursor: pointer;
+    background-color: $register-icon-color;
+    //color: $nav-icons;
+}
+
+.cycle-reset-container {
+
+    @include flex_row;
+}
+
+
+.cycle-reset-container:hover > a > div {
+
+    background-color: #fff;
+}
+
+.cycle-reset-container:hover > a > div > span,
+.cycle-reset-container:hover > a > div > span > span {
+
+    color: $register-icon-color;
+}
+
+
+
+
+.cycles-search-reset {
+    @include flex_row;
+    background-color: $register-icon-color;
+    padding: .2rem;
+    border-radius: 17px;
+}
+
+.cycles-search-reset span {
+
+    @include flex_row;
+    font-size: .8rem;
+    color: #fff;
+    transition: color .2s $drop-down-bezier;
+    
+}
+
+.cycles-search-reset span span {
+
+   padding-right: .3rem;
+    
+}
+
+.cycles-search-reset span {
+ 
+    font-size: .8rem;
+    color: #fff;
+    transition: color .2s $drop-down-bezier;
+}
+
+
+
+//----------- PROFILE TEXT WARNING STYLES ---------//
+
+.cycles-info {
+
+    @include flex_column;
+    height: 6rem;
+}
+.cycles-info__heading {
+
+    color:#fff;
+    margin: 0rem;
+}
+
+.cycles-info__profile-exp {
+
+    position: relative;
+    top: 1rem;
+   // background-color: $register-icon-color;
+   // border-radius: .2rem;
+
+}
+
+.cycles-profile-exp__text {
+
+    font-size: .8rem;
+    color: $login-error-red;
+    width: 18rem;
+    text-align: center;
+    margin-top: 0rem;
+}
+
+.cycles-info__text {
+
+    font-size: .8rem;
+    color: #fff;
+    width: 18rem;
+    text-align: center;
+    margin-top: 0rem;
+
+}
+
+.hr-cycles {
+
+    @include hr-cycles;
+}
+
+// CYCLES RESULTS SUMMARY //
+
+.cycles-summary {
+
+    @include flex_row;
+}
+
+.cycles-summary p {
+
+    margin: 0;
+    font-size: .8rem;
+    color: #fff;
+}
+
