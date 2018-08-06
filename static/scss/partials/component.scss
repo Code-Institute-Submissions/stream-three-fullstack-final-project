@@ -1,0 +1,22 @@
+// MOBILE MENU BURGER BARS //
+
+// MOBILE MENU ICON //
+
+@mixin bars-container {
+
+    display: inline-block;
+    //position: absolute;
+    //right: 1.5rem;
+
+}
+
+@mixin bars {
+
+    width: 2rem;
+    height: 0.3rem;
+    background-color: #fff;
+    margin: 0.3rem;
+    transition: .4s;
+    border-radius: 4px;
+
+}

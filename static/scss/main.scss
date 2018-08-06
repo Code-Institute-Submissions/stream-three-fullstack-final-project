@@ -3,9 +3,13 @@
 @import 'helpers/fonts';
 @import 'helpers/colors';
 @import 'helpers/flex-mixins';
+@import 'helpers/variables';
 @import 'partials/buttons';
 @import 'partials/forms';
 @import 'partials/icons';
+@import 'partials/component';
+@import 'pages/header.scss';
 @import 'pages/login.scss';
 @import 'pages/register.scss';
 @import 'pages/reset.scss';
+@import 'pages/cycles.scss';
