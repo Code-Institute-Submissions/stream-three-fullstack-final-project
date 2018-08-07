@@ -15,179 +15,196 @@
 
     <!--<h2>Search Your Cycles</h2>-->
     <!--<p>Search by Job Title, Job Name, Fileo ID, and Client</p>-->
-    <div class="cycles-info">
-        <h2 class="cycles-info__heading">Search Your Cycles.</h2>
-        {% if user.is_member %}
-            {% if not profile %}
-            <div class="cycles-info__profile-exp">
-                <p class="cycles-profile-exp__text">Please complete your profile before proceeding.</p>
-            </div>
-            {% else %}
-            <div class="cycles-info__profile-exp">
-                <p class="cycles-info__text">Search your cycles by Job, Fileo ID or Client.</p>
-            </div>
+    <div class="cycles-container">
+        <div class="cycles-info">
+            <h2 class="cycles-info__heading">Search Your Cycles.</h2>
+            {% if user.is_member %}
+                {% if not profile %}
+                <div class="cycles-info__profile-exp">
+                    <p class="cycles-profile-exp__text">Please complete your profile before proceeding.</p>
+                </div>
+                {% else %}
+                <div class="cycles-info__profile-exp">
+                    <p class="cycles-info__text">Search your cycles by Job, Fileo ID or Client.</p>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="cycles-search">
+            <form class="cycles-search__form">
+                {% if search %}
+                <div class="cycles-search__input-wrapper">
+                    <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
+                    <input class="cycles-search__input" type="text" name="search" placeholder=""  value="{{ search.search }}" minlength="0" maxlength="50" required>
+                    <button class="cycles-search__button"type="submit">Search</button> 
+                    <!--<form class="cycles-search-reset" action="{% url 'reset_search' username=user.username %}">-->
+                    <!--</form>-->
+                </div>
+                
+                <div class="cycles-search__filters">
+                    <div class="cycles-search__filter--styled">
+                        <select name="sort">
+                            <option {% if search.sort == 'all' %} selected {% endif %} value="all">All</option>
+                            <option {% if search.sort == 'active' %} selected {% endif %} value="active">Active</option>
+                            <option {% if search.sort == 'pending' %} selected {% endif %} value="pending">Pending</option>
+                            <option {% if search.sort == 'complete' %} selected {% endif %} value="complete">Complete</option>
+                            <option {% if search.sort == 'cancelled' %} selected {% endif %} value="cancelled">Cancelled</option>  
+                        </select>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                    </div>
+                    <div class="cycles-search__filter--styled">
+                        <select name="order">
+                            <option {% if search.order == "newest" %} selected {% endif %} value="newest">Newest</option>
+                            <option {% if search.order == "oldest" %} selected {% endif %} value="oldest">Oldest</option>
+                        </select>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                    </div>
+                </div>
+                {% elif not search %}
+                <div class="cycles-search__input-wrapper">
+                    <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
+                    <input class="cycles-search__input" type="text" name="search" placeholder=""  minlength="0" maxlength="50" required>
+                    <button class="cycles-search__button"type="submit">Search</button> 
+                </div>
+                <div class="cycles-search__filters">
+                    <div class="cycles-search__filter--styled">
+                        <select name="sort">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>  
+                        </select>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                    </div>
+                    <div class="cycles-search__filter--styled">
+                        <select name="order">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
+                    </div>
+                </div>
+                {% endif %} 
+            </form>
+        </div>
+        {% if search %}
+    <div class="cycle-reset-container">
+            <a href="{% url 'reset_search' username=user.username %}" class="cycles-search-reset__button">
+                <div class="cycles-search-reset">
+                    <span><span>"{{ search.search }}"</span><i class="fas fa-times-circle" aria-hiden="true"></i></span>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+        <hr class="hr-cycles">
+        <div class="cycles-summary">
+        {% if search %}
+            {% if cycles|length == 0 %}
+                <p>Found {{ cycles|length }} Cycles matching "{{ search.search }}".</p>
+            {% elif cycles|length == 1 %}
+                <p>Found {{ cycles|length }} Cycle matching "{{ search.search }}".</p>
+            {% elif cycles|length > 1 %}
+                <p>Found {{ cycles|length }} Cycles matching "{{ search.search }}".</p>
+            {% endif %}
+        {% else %}
+            {% if cycles|length == 0 %}
+                <p>You have {{ cycles|length }} Cycles in total.</p>
+            {% elif cycles|length == 1 %}
+                <p>You have {{ cycles|length }} Cycle in total.</p>
+            {% elif cycles|length > 1 %}
+                <p>You have {{ cycles|length }} Cycles in total.</p>
             {% endif %}
         {% endif %}
-    </div>
-    <div class="cycles-search">
-        <form class="cycles-search__form">
-            {% if search %}
-            <div class="cycles-search__input-wrapper">
-                <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
-                <input class="cycles-search__input" type="text" name="search" placeholder=""  value="{{ search.search }}" minlength="0" maxlength="50" required>
-                <button class="cycles-search__button"type="submit">Search</button> 
-                <!--<form class="cycles-search-reset" action="{% url 'reset_search' username=user.username %}">-->
-                <!--</form>-->
-            </div>
-            
-            <div class="cycles-search__filters">
-                <div class="cycles-search__filter--styled">
-                    <select name="sort">
-                        <option {% if search.sort == 'all' %} selected {% endif %} value="all">All</option>
-                        <option {% if search.sort == 'active' %} selected {% endif %} value="active">Active</option>
-                        <option {% if search.sort == 'pending' %} selected {% endif %} value="pending">Pending</option>
-                        <option {% if search.sort == 'complete' %} selected {% endif %} value="complete">Complete</option>
-                        <option {% if search.sort == 'cancelled' %} selected {% endif %} value="cancelled">Cancelled</option>  
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-                <div class="cycles-search__filter--styled">
-                    <select name="order">
-                        <option {% if search.order == "newest" %} selected {% endif %} value="newest">Newest</option>
-                        <option {% if search.order == "oldest" %} selected {% endif %} value="oldest">Oldest</option>
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-            </div>
-            {% elif not search %}
-            <div class="cycles-search__input-wrapper">
-                <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
-                <input class="cycles-search__input" type="text" name="search" placeholder=""  minlength="0" maxlength="50" required>
-                <button class="cycles-search__button"type="submit">Search</button> 
-            </div>
-            <div class="cycles-search__filters">
-                <div class="cycles-search__filter--styled">
-                    <select name="sort">
-                        <option value="all">All</option>
-                        <option value="active">Active</option>
-                        <option value="pending">Pending</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>  
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-                <div class="cycles-search__filter--styled">
-                    <select name="order">
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-            </div>
-            {% endif %} 
-        </form>
-    </div>
-    {% if search %}
-<div class="cycle-reset-container">
-        <a href="{% url 'reset_search' username=user.username %}" class="cycles-search-reset__button">
-            <div class="cycles-search-reset">
-                <span><span>"{{ search.search }}"</span><i class="fas fa-times-circle" aria-hiden="true"></i></span>
-            </div>
-        </a>
-    </div>
-    {% endif %}
-    <hr class="hr-cycles">
-    <div class="cycles-summary">
-    {% if search %}
-        {% if cycles|length == 0 %}
-            <p>Found {{ cycles|length }} Cycles matching "{{ search.search }}".</p>
-        {% elif cycles|length == 1 %}
-            <p>Found {{ cycles|length }} Cycle matching "{{ search.search }}".</p>
-        {% elif cycles|length > 1 %}
-            <p>Found {{ cycles|length }} Cycles matching "{{ search.search }}".</p>
-        {% endif %}
-    {% else %}
-        {% if cycles|length == 0 %}
-            <p>Currently you have {{ cycles|length }} Cycles.</p>
-        {% elif cycles|length == 1 %}
-            <p>Currently you have {{ cycles|length }} Cycle.</p>
-        {% elif cycles|length > 1 %}
-            <p>Currently you have {{ cycles|length }} Cycles.</p>
-        {% endif %}
-    {% endif %}
-    </div>
-    <hr class="hr-cycles">
-    <div>
-        {% if cycles %}
-            {% for item in cycles %}
-           
-                <div class="cycles-results-container">
-                    <div class="cycles-results__row">
-                        <p>created: {{item.cycle.created}}</p>
-                        <h4>Fileo ID: {{ item.cycle.id }}</h4>
+        </div>
+        <hr class="hr-cycles">
+        <div class="cycles-results">
+            {% if cycles %}
+                {% for item in cycles %}
+                    <div class="cycles-results__container">
+                        <div class="cycles-results__overall-status">
+                            {% if item.cancelled %}
+                            <p class="cycles-results__text"><i class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            {% elif item.pending %}
+                            <p class="cycles-results__text"><i class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            {% elif item.complete %}
+                            <p class="cycles-results__text"><i class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            {% else %}
+                            <p class="cycles-results__text"><i class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            {% endif %}
+                        </div>
+                        <div class="cycles-results__row">
+                            <div class="cycles-results__column column-1">
+                                <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> {{item.cycle.created}}</p>
+                            </div>
+                        </div>
+                        <div class="cycles-results__row">
+                            <div class="cycles-results__column column-3">
+                                <h4 class="cycles-results__heading">Cycle</h4>
+                                <p class="cycles-results__text">{{ item.cycle.cycle_title }}</p>
+                            </div>
+                            <div class="cycles-results__column column-3">
+                                <h4 class="cycles-results__heading">Job Name</h4>
+                                <p class="cycles-results__text">{{ item.cycle.job.job_title }}</p>
+                            </div>
+                            <div class="cycles-results__column column-3">
+                                {% if user.is_member %}
+                                    <h4 class="cycles-results__heading">Client</h4>
+                                    <p class="cycles-results__text">{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                                {% elif user.is_client %}
+                                    <h4 class="cycles-results__heading">Member</h4>
+                                    <p class="cycles-results__text">{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
+                                {% endif %}
+                            </div>
+                        </div>                    
+                        <div class="cycles-results__row">
+                            <div class="cycles-results__column column-3 column-icon">
+                                {% if item.approve_quote == True %}
+                                <h4 class="cycles-results__heading">Quote:</h4>
+                                <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% elif item.contest_quote == True %}
+                                <h4 class="cycles-results__heading">Quote:</h4>
+                                <p class="cycles-results__text"><i class="fas fa-times cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% else %}
+                                <h4 class="cycles-results__heading">Quote:</h4>
+                                <p class="cycles-results__text"><i class="fas fa-minus cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% endif %}
+                            </div>
+                            <div class="cycles-results__column column-3 column-icon">
+                                {% if item.approve_po == True %}
+                                <h4 class="cycles-results__heading">PO:</h4> 
+                                <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% elif item.contest_po == True %}
+                                <h4 class="cycles-results__heading">PO:</h4> 
+                                <p class="cycles-results__text"><i class="fas fa-times cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% else %}
+                                <h4 class="cycles-results__heading">PO:</h4> 
+                                <p class="cycles-results__text"><i class="fas fa-minus cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% endif %}   
+                            </div>
+                            <div class="cycles-results__column column-3">
+                                {% if item.approve_invoice == True %}
+                                <h4 class="cycles-results__heading">Invoice:</h4>
+                                <p class="cycles-results__text"> <i class="far fa-thumbs-up cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% elif item.contest_invoice == True %}
+                                <h4 class="cycles-results__heading">Invoice:</h4>
+                                <p class="cycles-results__text"> <i class="fas fa-times cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% else %}
+                                <h4 class="cycles-results__heading">Invoice:</h4>
+                                <p class="cycles-results__text"> <i class="fas fa-minus cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                {% endif %}
+                            </div>  
+                        </div>
+                        <div class="cycles-results__porthole">
+                            <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
+                                <button class="cycles-results__porthole-button" type="submit">Porthole</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="cycles-results__row">
-                        <h3>Cycle Title</h3>
-                        <p>{{ item.cycle.cycle_title }}</p>
-                    </div>
-                    <div class="cycles-results__row">
-                        <h4>Status</h4>
-                        {% if item.cancelled %}
-                        <p>Cancelled</p>
-                        {% elif item.pending %}
-                        <p>Payment Pending</p>
-                        {% elif item.complete %}
-                        <p>Cycle Complete</p>
-                        {% else %}
-                        <p>Active</p>
-                        {% endif %}
-                    </div>
-                    <div class="cycles-results__row">
-                        <h4>Job Name</h4>
-                        <p>{{ item.cycle.job.job_title }}</p>
-                        {% if user.is_member %}
-                            <h4>Client</h4>
-                            <p>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
-                        {% elif user.is_client %}
-                            <h3>Member</h3>
-                            <p>{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
-                        {% endif %}
-                    </div>
-                  
-                    <div class="cycles-results__row">
-                        {% if item.approve_quote == True %}
-                        <p><strong>Quote Status:</strong> Approved</p>
-                        {% elif item.contest_quote == True %}
-                        <p><strong>Quote Status:</strong> Contesed</p>
-                        {% else %}
-                        <p><strong>Quote Status:</strong> No Status.</p>
-                        {% endif %}
-                        
-                        {% if item.approve_po == True %}
-                        <p><strong>PO Status:</strong> Approved</p>
-                        {% elif item.contest_po == True %}
-                        <p><strong>PO Status:</strong> Contesed</p>
-                        {% else %}
-                        <p><strong>PO Status:</strong> No Status.</p>
-                        {% endif %}
-                            
-                        {% if item.approve_invoice == True %}
-                        <p><strong>Invoice Status:</strong> Approved</p>
-                        {% elif item.contest_invoice == True %}
-                        <p><strong>Invoice Status:</strong> Contesed</p>
-                        {% else %}
-                        <p><strong>Invoice Status:</strong> No Status.</p>
-                        {% endif %}
-                    </div>
-                    <hr class="hr-cycles">
-                    <form action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
-                        <button type="submit">Go to Cycle</button>
-                    </form>
-                </div>
-            <hr class="hr-cycles" >
-            {% endfor %}
-        {% endif %}
+                
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-
 </body>
 {% endblock %}

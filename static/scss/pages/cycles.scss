@@ -6,9 +6,17 @@
     //height: auto;
     width: 100%;
     background-color:$login-green;
+    position: relative;
+    z-index:-10;
     
 }
 
+.cycles-container {
+
+    position: relative;
+    top: 4rem;
+    z-index: -1;
+}
 // ------- SEARCH FORM STYLES ------ //
 .cycles-search {
 
@@ -40,6 +48,11 @@
 .cycles-search__input {
 
     @include cycle-search-form-input;
+
+    @include tablet {
+
+        height: 1.5rem;
+    }
 
 }
 
@@ -122,9 +135,6 @@
     color: $register-icon-color;
 }
 
-
-
-
 .cycles-search-reset {
     @include flex_row;
     background-color: $register-icon-color;
@@ -173,8 +183,6 @@
 
     position: relative;
     top: 1rem;
-   // background-color: $register-icon-color;
-   // border-radius: .2rem;
 
 }
 
@@ -218,14 +226,99 @@
 
 // CYCLES RESULTS STYLES //
 
-.cycles-results-container {
+.cycles-results { 
+
+    @include flex_column;
+}
+
+.cycles-results__container {
 
     @include flex_column;
     align-items: flex-start;
+    width:90%;
+    margin: 1rem 0 1rem 0;
+    background-color: $register-icon-color;
+    border-radius: .3rem;
+
+    @include desktop {
+
+        width: 60%;
+    }
 }
 
 .cycles-results__row {
 
     @include flex_row;
-    justify-content: flex-start;
+    //justify-content: flex-start;
+    width: 100%;
+
+}
+
+.cycles-results__column {
+
+    //flex-grow: 1;
+    @include flex_column;
+    align-items: center;
+}
+
+.cycles-results__heading,
+.cycles-results__text {
+
+    font-size: .8rem;
+    color: #fff;
+    margin: .5rem;
+    
+}
+
+.column-3 {
+
+    width: 33.33%;
+}
+
+.column-1 {
+
+    width: 100%;
+}
+
+.cycles-results__step-approval-icons {
+
+    font-size: 1.5rem;
+}
+
+// RESULTS BUTTON STYLES //
+
+.cycles-results__porthole {
+
+    
+    width: 100%;
+}
+
+.cycles-results__porthole-form {
+
+    @include flex_row;
+    //width: 100%;
+}
+
+.cycles-results__porthole-button {
+
+    @include cycle-porthole-button;
+    background-color: $login_bg_color;
+    margin-bottom: 1.5rem;
+    
+}
+
+.cycles-results__porthole-button:hover {
+
+    cursor: pointer;
+}
+
+// OVERALL STATUS ICON STYLES //
+.cycles-results__overall-status {
+
+
+}
+
+.cycles-results__overall-icons {
+
+    font-size: 1rem;
 }

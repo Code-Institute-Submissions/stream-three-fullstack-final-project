@@ -41,7 +41,8 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
 
 .main-header {
   height: 4rem;
-  width: 100%; }
+  width: 100%;
+  position: fixed; }
 
 .main-header__nav {
   height: 100%;
@@ -864,7 +865,14 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
 
 .cycles-bg-color {
   width: 100%;
-  background-color: #81aeaa; }
+  background-color: #81aeaa;
+  position: relative;
+  z-index: -10; }
+
+.cycles-container {
+  position: relative;
+  top: 4rem;
+  z-index: -1; }
 
 .cycles-search {
   display: flex;
@@ -903,6 +911,9 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
   font-size: .8rem;
   margin-top: 0rem;
   width: 11rem; }
+  @media (min-width: 768px) {
+    .cycles-search__input {
+      height: 1.5rem; } }
 
 .cycles-search__input-wrapper {
   display: flex;
@@ -1056,18 +1067,80 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
   font-size: .8rem;
   color: #fff; }
 
-.cycles-results-container {
+.cycles-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.cycles-results__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-items: flex-start; }
+  align-items: flex-start;
+  width: 90%;
+  margin: 1rem 0 1rem 0;
+  background-color: #597b78;
+  border-radius: .3rem; }
+  @media (min-width: 992px) {
+    .cycles-results__container {
+      width: 60%; } }
 
 .cycles-results__row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  justify-content: flex-start; }
+  width: 100%; }
+
+.cycles-results__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center; }
+
+.cycles-results__heading,
+.cycles-results__text {
+  font-size: .8rem;
+  color: #fff;
+  margin: .5rem; }
+
+.column-3 {
+  width: 33.33%; }
+
+.column-1 {
+  width: 100%; }
+
+.cycles-results__step-approval-icons {
+  font-size: 1.5rem; }
+
+.cycles-results__porthole {
+  width: 100%; }
+
+.cycles-results__porthole-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.cycles-results__porthole-button {
+  height: 1.8rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  width: 16rem;
+  background-color: #3a5864;
+  margin-bottom: 1.5rem; }
+
+.cycles-results__porthole-button:hover {
+  cursor: pointer; }
+
+.cycles-results__overall-icons {
+  font-size: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

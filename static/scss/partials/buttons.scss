@@ -50,3 +50,19 @@
     width: 5rem;
     
 }
+
+// CYCLE PORTHOLE BUTTON //
+
+@mixin cycle-porthole-button {
+
+    @include login-button-mobile;
+    width: 16rem;
+}
+
+@mixin cycle-porthole-button-desktop {
+
+    width: 18.1rem;
+    height: 2.6rem;
+}
+
+
