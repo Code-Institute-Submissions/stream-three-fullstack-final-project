@@ -178,6 +178,7 @@
 
     color:#fff;
     margin: 0rem;
+    
 }
 
 .cycles-info__profile-exp {
@@ -276,7 +277,7 @@
 
     //flex-grow: 1;
     @include flex_column;
-    align-items: center;
+    //align-items: flex-start;
     overflow: hidden;
 }
 
@@ -287,17 +288,18 @@
     color: #fff;
     margin: 0 .5rem .5rem .5rem;
     
- 
 }
 
 .column-3 {
 
     width: 33.33%;
+    align-items: center;
 }
 
 .column-1 {
 
     width: 100%;
+    align-items: flex-start;
 }
 
 .cycles-results__step-approval-icons {
@@ -335,6 +337,7 @@
 
 .cycles-results-hr-container {
 
+    @include flex_row;
     width: 100%;
     margin: .5rem 0 .5rem 0;
 
@@ -342,6 +345,7 @@
 
 .cycles-results-hr-container hr {
 
+    width: 100%;
     color: #fff3;;
 }
 
@@ -410,4 +414,29 @@
 
     color: #fff;
     margin-top: 0;
+}
+
+//---------------------------------------//
+
+// MEDIA QUERIES TO HIDE RESULTS DIVS //
+
+// -------------------------------------//
+
+.cycle-results-desktop {
+
+    display: none;
+
+    @include desktop {
+
+        display: flex;
+    }
+}
+
+.cycle-results-mobile {
+
+    @include desktop {
+
+        display: none;
+
+    }
 }

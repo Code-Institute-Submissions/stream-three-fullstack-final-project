@@ -1,0 +1,38 @@
+// PROFILE TEMPLATE STYLES //
+
+.profile-bg-color {
+
+    background-color: $login-green;
+}
+
+.profile-container {
+
+    @include flex_column;
+    position: relative;
+    top: 4rem;
+    
+}
+
+
+.profile-container form {
+
+    @include flex_column;
+}
+
+.profile-container form p {
+
+    margin-top: 0.5rem;
+}
+
+.profile-form__input {
+
+    color: $login_bg_color;
+    
+    @include login-form-mobile;
+    
+        @include tablet {
+    
+            @include login-form-desktop-media-query;
+        }
+    
+}

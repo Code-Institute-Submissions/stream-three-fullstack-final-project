@@ -1,27 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+{% endblock head_js %}
 {% block content %}
-
-<p>Logged in as {{ username }}</p>
-
-{% if not existing %}
-<h1>Create Your Profile</h1>
-<p>Fill in the details below to add one to the system.</p>
-{% else %}
-<h1>Update your Profile</h1>
-{% endif %}
-<form method="POST">  
-    {% csrf_token %}
-    {{ profile_form.as_p }}
-    {% if not existing %}
-        <button type="submit">Create Profile</button>
-    {% else %}
-        <button type="submit">Update Profile</button>
-    {% endif %}
-</form>
-<p>
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-</p>
-
+<body class="profile-bg-color">
+    {% include 'header.html' %}
+    <div class="profile-container">
+        {% if not existing %}
+        <h1>Create Your Profile.</h1>
+        <p>Fill in the details below to add one to the system.</p>
+        {% else %}
+        <h1>Update your Profile.</h1>
+        {% endif %}
+        <form method="POST">  
+            {% csrf_token %}
+            {{ profile_form.as_p }}
+            {% if not existing %}
+                <button type="submit">Create Profile</button>
+            {% else %}
+                <button type="submit">Update Profile</button>
+            {% endif %}
+        </form>
+        <p>
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+        </p>
+    </div> 
+</body>
 {% endblock %}

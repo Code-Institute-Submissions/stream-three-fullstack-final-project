@@ -4,6 +4,8 @@
     height: 4rem;
     width: 100%;
     position: fixed;
+    top: 0;
+    z-index: 5;
    
 }
 
@@ -14,7 +16,7 @@
     justify-content: space-between;
     background-color: $login_bg_color;
     position:relative;
-    z-index: 2;
+    z-index: 5;
 
 }
 

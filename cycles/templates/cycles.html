@@ -17,7 +17,7 @@
     <!--<p>Search by Job Title, Job Name, Fileo ID, and Client</p>-->
     <div class="cycles-container">
         <div class="cycles-info">
-            <h2 class="cycles-info__heading">Search Your Cycles.</h2>
+            <h1 class="cycles-info__heading">Search Your Cycles.</h1>
             {% if user.is_member %}
                 {% if not profile %}
                 <div class="cycles-info__profile-exp">
@@ -164,15 +164,44 @@
                             <p class="cycles-results__text"><i data-id = "active" class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i> Active</p>
                             {% endif %}
                         </div>
-                        <div class="cycles-results__row">
+                        <!--- MOBILE ARRANGEMENT -->
+                        <div class="cycles-results__row cycle-results-mobile">
                             <div class="cycles-results__column column-1">
                                 <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> created on {{item.cycle.created}}</p>
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container">
+                        <div class="cycles-results-hr-container cycle-results-mobile">
                             <hr>
-                        </div>   
-                        <div class="cycles-results__row">
+                        </div> 
+                        <div class="cycles-results__row cycle-results-mobile">
+                            <div class="cycles-results__column column-1">
+                                <p class="cycles-results__text"><strong>Cyle Title:</strong> {{ item.cycle.cycle_title }}</p>
+                            </div>
+                        </div>
+                        <div class="cycles-results-hr-container cycle-results-mobile">
+                            <hr>
+                        </div>
+                        <div class="cycles-results__row cycle-results-mobile">
+                            <div class="cycles-results__column column-1">
+                                <p class="cycles-results__text"><strong>Job Name:</strong> {{ item.cycle.job.job_title }}</p>
+                            </div>
+                        </div>
+                        <div class="cycles-results-hr-container cycle-results-mobile">
+                            <hr>
+                        </div>
+                        <div class="cycles-results__row cycle-results-mobile">
+                            <div class="cycles-results__column column-1">
+                                <p class="cycles-results__text"><strong>Client:</strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                            </div>
+                        </div>
+                        <div class="cycles-results-hr-container cycle-results-mobile">
+                            <hr>
+                        </div>
+                        <!--- DESKTOP ARRANGEMENT -->
+                        <div class="cycles-results-hr-container cycle-results-desktop">
+                            <hr>
+                        </div>
+                        <div class="cycles-results__row cycle-results-desktop">
                             <div class="cycles-results__column column-3">
                                 <h4 class="cycles-results__heading">Cycle</h4>
                                 <p class="cycles-results__text">{{ item.cycle.cycle_title }}</p>
@@ -191,9 +220,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container">
+                        <div class="cycles-results-hr-container cycle-results-desktop">
                             <hr>
-                        </div>            
+                        </div>
+                        <!------------------------------>          
                         <div class="cycles-results__row">
                             <div class="cycles-results__column column-3 column-icon">
                                 {% if item.approve_quote == True %}
