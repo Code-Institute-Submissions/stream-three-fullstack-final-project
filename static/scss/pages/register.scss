@@ -1,10 +1,16 @@
 // REGISTER PAGE //
 
-.register--bg-color {
-    
+.register-body--color {
+
     background-repeat: no-repeat;
     background-color: $register-bg-color;
+
 }
+
+/*.register--bg-color {
+    
+    
+}*/
 
 .register-header {
 
@@ -75,13 +81,17 @@
     min-height: calc(100% - 6rem);
     width: 100%;
     position: relative;
+    
     //top: 0rem;
     //top: 4rem;
 
     @include tablet {
 
         min-height: calc(100% - 8rem);
+       
     }
+
+
 }
 
 .register-icon__icon {

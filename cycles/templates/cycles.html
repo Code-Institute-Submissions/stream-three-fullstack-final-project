@@ -113,31 +113,65 @@
             {% elif cycles|length == 1 %}
                 <p>You have {{ cycles|length }} Cycle in total.</p>
             {% elif cycles|length > 1 %}
-                <p>You have {{ cycles|length }} Cycles in total.</p>
+                <p>You have {{ cycles|length }} Cycles in total. Ordered by newest first.</p>
             {% endif %}
         {% endif %}
         </div>
         <hr class="hr-cycles">
         <div class="cycles-results">
+            {% if not search %}
+                {% if not cycles %}
+                    {% if user.is_member %}
+                    <div class="fileo-explain">
+                        <div class="fileo-explain__heading">
+                            <h3>Getting Started.</h3>
+                        </div>
+                        <div class="fileo-explain__text">
+                            <p>After you have completed your profile.</p>
+                            <p>1. Create your first client.</p>
+                            <p>2. Create a job and attach your client.</p>
+                            <p>3. Create a cycle and attach the job.</p>
+                            <p>Once your cycle has been created it'll appear on this page.</p>
+                            <p>You can then proceed to it's Porthole to manage the cycle.</p>
+                            <p>Enjoy !</p>
+                        </div>
+                    </div>
+                    {% elif user.is_client %}
+                    <div class="fileo-explain">
+                        <div class="fileo-explain__heading">
+                            <h3>Getting Started.</h3>
+                        </div>
+                        <div class="fileo-explain__text">
+                            <p>Your Cycles will start appearing here as and when your Member Account holder creates them for you.</p>
+                            <p>You will be notified when Cycle Steps are waiting for your action, but in the meantime you can check the status of your cycles at any time here.</p>
+                            <p>Enjoy !</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
             {% if cycles %}
                 {% for item in cycles %}
                     <div class="cycles-results__container">
                         <div class="cycles-results__overall-status">
                             {% if item.cancelled %}
-                            <p class="cycles-results__text"><i class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            <p class="cycles-results__text"><i data-id = "cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
                             {% elif item.pending %}
-                            <p class="cycles-results__text"><i class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            <p class="cycles-results__text"><i data-id = "pending" class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Payment Pending</p>
                             {% elif item.complete %}
-                            <p class="cycles-results__text"><i class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            <p class="cycles-results__text"><i data-id = "complete" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
                             {% else %}
-                            <p class="cycles-results__text"><i class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i></p>
+                            <p class="cycles-results__text"><i data-id = "active" class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i> Active</p>
                             {% endif %}
                         </div>
                         <div class="cycles-results__row">
                             <div class="cycles-results__column column-1">
-                                <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> {{item.cycle.created}}</p>
+                                <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> created on {{item.cycle.created}}</p>
                             </div>
                         </div>
+                        <div class="cycles-results-hr-container">
+                            <hr>
+                        </div>   
                         <div class="cycles-results__row">
                             <div class="cycles-results__column column-3">
                                 <h4 class="cycles-results__heading">Cycle</h4>
@@ -156,7 +190,10 @@
                                     <p class="cycles-results__text">{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
                                 {% endif %}
                             </div>
-                        </div>                    
+                        </div>
+                        <div class="cycles-results-hr-container">
+                            <hr>
+                        </div>            
                         <div class="cycles-results__row">
                             <div class="cycles-results__column column-3 column-icon">
                                 {% if item.approve_quote == True %}
@@ -185,7 +222,7 @@
                             <div class="cycles-results__column column-3">
                                 {% if item.approve_invoice == True %}
                                 <h4 class="cycles-results__heading">Invoice:</h4>
-                                <p class="cycles-results__text"> <i class="far fa-thumbs-up cycles-results__step-approval-icons" aria-hidden="true"></i></p>
+                                <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__step-approval-icons" aria-hidden="true"></i></p>
                                 {% elif item.contest_invoice == True %}
                                 <h4 class="cycles-results__heading">Invoice:</h4>
                                 <p class="cycles-results__text"> <i class="fas fa-times cycles-results__step-approval-icons" aria-hidden="true"></i></p>
@@ -195,6 +232,9 @@
                                 {% endif %}
                             </div>  
                         </div>
+                        <div class="cycles-results-hr-container">
+                            <hr>
+                        </div>  
                         <div class="cycles-results__porthole">
                             <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                                 <button class="cycles-results__porthole-button" type="submit">Porthole</button>

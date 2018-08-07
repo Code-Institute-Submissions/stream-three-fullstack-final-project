@@ -23,13 +23,13 @@ def member_cycles(request, username):
     if 'search' in request.GET:
         users_cycles = get_searched_cycles(request)                   
         return render(request,
-                        'member_cycles.html', 
+                        'cycles.html', 
                         {'user':request.user,
                         'cycles': users_cycles,
                         'profile':is_existing,
                         'search': request.GET }) 
     return render(request,
-                    'member_cycles.html', 
+                    'cycles.html', 
                     {'user':request.user,
                     'cycles': users_cycles,
                     'profile':is_existing,
@@ -46,14 +46,14 @@ def client_cycles(request, username):
     if 'search' in request.GET:
         users_cycles = get_searched_cycles(request)
         return render(request,
-                        'member_cycles.html', 
+                        'cycles.html', 
                         {'user':request.user,
                         'cycles': users_cycles,
                         'search': request.GET })
 
     
     return render(request,
-                'client_cycles.html', 
+                'cycles.html', 
                 {'user':request.user,
                 'cycles': users_cycles,
                 'search': None })

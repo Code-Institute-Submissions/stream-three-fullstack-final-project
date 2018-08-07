@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import re
 
 #from phonenumber_field.modelfields import PhoneNumberField
 from .models import AllUser
@@ -53,10 +54,26 @@ class UserRegisterForm(forms.Form):
                     'password2',
                  ]
 
+## credit https://www.geeksforgeeks.org/python-program-check-string-contains-special-character/ ##
+    def check_string(self):
+        regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+
+        if(regex.search(self.cleaned_data.get('username')) == None):
+            return False
+        else:
+            return True
+
     def clean_username(self):
         username = self.cleaned_data.get('username')
+        check_username = self.check_string()
+
+   
         if AllUser.objects.filter(username=username):
             raise forms.ValidationError(u'Username is already taken.')
+        
+        if check_username:
+            raise forms.ValidationError(u"Your username can't contain special characters.")
+        
         return username
      
     def clean_email(self):

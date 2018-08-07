@@ -27,7 +27,7 @@ select {
   appearance: none;
   background: transparent; }
 
-h1, h2, h3, h4, h5, h6, p, a, button, select {
+h1, h2, h3, h4, h5, h6, p, a, button, select, span {
   font-family: "Quicksand", sans-serif; }
 
 .errorlist {
@@ -169,6 +169,42 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
 
 .main-header__dropdown-item:hover {
   background-color: #d6d7d8; }
+
+.header-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 100%;
+  background-color: rgba(89, 123, 120, 0.3);
+  position: relative;
+  top: 4rem;
+  z-index: -1;
+  display: none; }
+  @media (min-width: 768px) {
+    .header-banner {
+      display: flex; } }
+
+.header-banner ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 0;
+  width: 90%; }
+
+.header-banner ul li span,
+.header-banner ul li i {
+  color: #fff; }
+
+.header-banner ul li span {
+  padding-left: .5rem;
+  font-size: .8rem; }
+
+.header-banner ul li i {
+  font-size: 1rem; }
 
 .login-bg-color {
   background-repeat: no-repeat;
@@ -403,10 +439,14 @@ h1, h2, h3, h4, h5, h6, p, a, button, select {
 .login-blurb__signup-link {
   cursor: pointer; }
 
-.register--bg-color {
+.register-body--color {
   background-repeat: no-repeat;
   background-color: #81aeaa; }
 
+/*.register--bg-color {
+    
+    
+}*/
 .register-header {
   display: flex;
   align-items: center;

@@ -172,3 +172,45 @@
     background-color: $drop-down-bg-hover;
 }
 
+.header-banner {
+
+    @include flex_row;
+    height: 2rem;
+    width: 100%;
+    background-color: $banner-color;
+    position: relative;
+    top: 4rem;
+    z-index: -1;
+    display: none;
+
+    @include tablet {
+
+        display: flex;
+    }
+}
+
+.header-banner ul {
+
+    @include flex_row;
+    justify-content: space-evenly;
+    padding-left: 0;
+    width: 90%;
+}
+
+.header-banner ul li span,
+.header-banner ul li i {
+
+    color: #fff;
+}
+
+.header-banner ul li span {
+
+    //display: block;
+    padding-left: .5rem;
+    font-size: .8rem;
+}
+
+.header-banner ul li i {
+
+    font-size: 1rem;
+}
