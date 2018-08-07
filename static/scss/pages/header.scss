@@ -27,6 +27,11 @@
     position: relative;
     left: 1rem;
 
+    @include desktop {
+
+        left: 3.5rem;
+    }
+
 }
 
 .mobile-nav,
@@ -41,6 +46,11 @@
 
     justify-content: space-between;
     width: 9rem;
+
+    @include tablet {
+
+        width: 25rem;
+    }
 }
 
 .mobile-more {
@@ -49,6 +59,11 @@
     right: 1rem;
     transform: rotate(0deg);
     transition: transform .3s $drop-down-bezier;
+
+    @include desktop {
+
+        right: 3.5rem;
+    }
 }
 
 .mobile-more:hover {
@@ -56,7 +71,6 @@
     cursor: pointer;
    
 }
-
 
 .mobile-more--rotate {
 
@@ -107,6 +121,8 @@
     top: -8rem;
     transition: top .3s $drop-down-bezier;
     z-index: 1;
+
+   
 }
 
 .drop-down-menu--show {
@@ -120,6 +136,11 @@
     position: relative;
     right: 0rem;
     margin-top: 0rem;
+
+    @include desktop {
+
+        width: 9rem;
+    }
 }
 
 .main-header__dropdown-item {
