@@ -216,3 +216,16 @@
     color: #fff;
 }
 
+// CYCLES RESULTS STYLES //
+
+.cycles-results-container {
+
+    @include flex_column;
+    align-items: flex-start;
+}
+
+.cycles-results__row {
+
+    @include flex_row;
+    justify-content: flex-start;
+}
