@@ -690,25 +690,14 @@ p, button {
   font-size: .8rem;
   margin: 0rem; }
 
-.register-success__message-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: .5rem; }
-
-.register-success__message-container div i {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-  color: #fff; }
-
 .register-success__login {
   border-radius: .2rem;
   height: 1.5rem;
   border: none;
   width: 3rem;
   background-color: #fff;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  margin-top: 1rem; }
   @media (min-width: 768px) {
     .register-success__login {
       border-radius: .2rem;
@@ -727,7 +716,8 @@ p, button {
   font-size: .8rem; }
 
 .dummy-register-success-div {
-  height: 81.4px; }
+  margin-top: 16px;
+  height: 80.74px; }
 
 .reset-header {
   height: 4rem;
@@ -1384,6 +1374,10 @@ p, button {
   margin-top: 1rem; }
 
 .profile-success-dummy {
-  height: 16.75px; }
+  height: 16.75px;
+  margin: 12.8px 0 12.8px 0; }
+
+.profile-success i {
+  font-size: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

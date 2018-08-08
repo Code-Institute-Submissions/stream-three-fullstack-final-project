@@ -14,7 +14,7 @@
 </div>
 {% if messages %}
     {% for message in messages %}
-        <p class="profile-success"> {{ message }}  <i class="far fa-check-circle" aria-hidden="true"></i></p>
+        <p class="profile-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
     {% endfor %}
 {% else %}
     <div class="profile-success-dummy"></div>

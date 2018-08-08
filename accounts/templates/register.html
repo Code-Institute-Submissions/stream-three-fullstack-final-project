@@ -28,12 +28,7 @@
         {% if messages %}
             {% for message in messages %}
             <div class="register-success">
-                <div class="register-success__message-container">
-                    <div><i class="far fa-check-circle"></i></div>
-                    <div>
-                        <p class="register-success__message">Account Created.</p>
-                    </div>
-                </div>
+                <p class="register-success__message"><i class="far fa-check-circle" aria-hidden="true"></i> Account Created.</p>
                 <div class="register-success__login">
                     <a class="register-success__login-link" href="{% url 'index' %}">Login</a>
                 </div>

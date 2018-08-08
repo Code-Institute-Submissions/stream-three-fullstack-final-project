@@ -47,14 +47,14 @@ def client_profile(request, username, client_id):
             if is_existing:
                 edit_profile(profile, is_existing)
                 add_profile_in_member_client_model(client_id)
-                messages.success(request, 'You have edited the Profile for {0}'.format(client.username))
+                messages.success(request, 'Profile updated.')
                 return redirect(reverse('client_profile', kwargs={'username':username,
                                                                     'client_id':client_id}))
 
             else:
                 new_profile(profile, client)
                 add_profile_in_member_client_model(client_id)
-                messages.success(request, "You have created a new Profile for {0}".format(client.username))
+                messages.success(request, 'Profile created.')
                 return redirect(reverse('client_profile', kwargs={'username':username,
                                                                     'client_id':client_id}))
     return render(request, 'client_profile.html', {'username':username,

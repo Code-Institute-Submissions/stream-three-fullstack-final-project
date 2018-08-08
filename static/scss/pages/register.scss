@@ -326,27 +326,13 @@
     margin: 0rem;
 }
 
-.register-success__message-container {
-
-    @include flex_row;
-    margin-bottom: .5rem;
-}
-
-
-
-.register-success__message-container div i {
-
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
-    color: #fff;
-}
-
 
 .register-success__login {
 
     @include register-login-button-mobile;
     background-color: #fff;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 
     @include tablet {
 
@@ -365,5 +351,6 @@
 
 .dummy-register-success-div {
 
-    height: 81.4px;
+    margin-top: 16px;
+    height: 80.74px;
 }
