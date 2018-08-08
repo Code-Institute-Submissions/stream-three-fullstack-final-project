@@ -3,6 +3,7 @@
 {% block head_js %}
 <script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
 <script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/profile.js' %}"></script>
 {% endblock head_js %}
 {% block content %}
 <body class="profile-bg-color">
@@ -14,15 +15,17 @@
         {% else %}
         <h1>Update your Profile.</h1>
         {% endif %}
-        <form method="POST">  
-            {% csrf_token %}
-            {{ profile_form.as_p }}
-            {% if not existing %}
-                <button type="submit">Create Profile</button>
-            {% else %}
-                <button type="submit">Update Profile</button>
-            {% endif %}
-        </form>
+        <div class="profile-form">
+            <form class="profile-form__form" method="POST">  
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                {% if not existing %}
+                    <button class="profile-form__button" class=""type="submit">Create Profile</button>
+                {% else %}
+                    <button class="profile-form__button" type="submit">Update Profile</button>
+                {% endif %}
+            </form>
+        </div>
         <p>
             {% for message in messages %}
             {{ message }}

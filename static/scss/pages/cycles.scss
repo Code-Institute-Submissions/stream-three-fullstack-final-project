@@ -75,12 +75,12 @@
     @include flex_column;
     height:100%;
 }
-.cycles-search__filter--styled{
 
-    @include cycle-select-boxes;
+.cycle-filter-styled{
+
+    @include select-boxes;
     @include flex_row;
-    flex-grow:1;
-    background-color: $register-icon-color;
+    
 
 }
 
@@ -96,9 +96,9 @@
 
 }
 
-.cycles-search__filter--arrow {
+.cycle-filter-arrow {
 
-    @include cycle-select-arrows;
+    @include select-arrows;
     
 }
 
@@ -300,6 +300,11 @@
 
     width: 100%;
     align-items: flex-start;
+
+    @include desktop {
+
+        align-items: center;
+    }
 }
 
 .cycles-results__step-approval-icons {

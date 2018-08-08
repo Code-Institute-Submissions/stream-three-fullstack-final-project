@@ -1,19 +1,20 @@
 
 // CUSTOM STYLED SELECT BOX //
-@mixin cycle-select-boxes {
+@mixin select-boxes {
 
     height: 1.6rem;
-    
     border-radius: .2rem;
     text-align: center;
     width: 7rem;
     margin: .5rem;
     margin-top: 0;
+    flex-grow:1;
+    background-color: $register-icon-color;
     
 }
 
 // CUSTOM STYLED SELECT BOX ARROW  //
-@mixin cycle-select-arrows {
+@mixin select-arrows {
 
     color: #fff;
     height: 100%;

@@ -36,3 +36,19 @@
         }
     
 }
+
+.profile-filter-styled {
+
+    @include select-boxes;
+    
+}
+
+.profile__select {
+
+    //@extend .cycles-search__select;
+}
+
+.profile-filter-arrow {
+
+    @extend .cycle-filter-arrow;
+}

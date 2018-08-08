@@ -22,16 +22,23 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 }
 
 
-// ADD CLASS TO SELECT BOXES // 
+// ADD CLASS TO SELECT BOX/BOXES // 
 
+// IF SELECT BOXES IS A COLLECTION, DO THE IF, ELSE DO THE ELSE //
 const addClassToSelect = (selectBoxes, _class) => {
 
-    for(let i = 0; i < selectBoxes.length; i++) {
+    if (selectBoxes instanceof HTMLCollection) {
 
-        selectBoxes[i].setAttribute('class', _class);
+        for(let i = 0; i < selectBoxes.length; i++) {
+
+            selectBoxes[i].setAttribute('class', _class);
+        }
+
+    } else {
+
+        selectBoxes.setAttribute('class', _class);
     }
-    
-
+ 
 }
 
 

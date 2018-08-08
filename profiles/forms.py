@@ -48,5 +48,5 @@ class ProfileForm(forms.Form):
                                 widget=forms.TextInput(
                                 attrs={'placeholder':'Post Code',
                                     'class':'profile-form__input'}))
-    country = CountryField(blank_label='Select Country').formfield()
+    country = CountryField(blank_label='Select Country').formfield(label="")
    

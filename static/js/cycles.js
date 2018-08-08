@@ -4,7 +4,7 @@
 
     const cycleStatus = document.getElementsByClassName('cycles-results__container'); 
     const selectBoxes = document.getElementsByTagName('select');
-
+    
 
     // CHANGE THE COLOR OF THE RESULT CONTAINER DIV DEPENDING ON STATUS //
     const bgColorForStatus = (cycleStatus) => {
@@ -17,7 +17,6 @@
                 let statusIcon = statusText.firstElementChild;
                 let status = statusIcon.getAttribute('data-id');
                
-                console.log(statusText);
                 if (status == "cancelled") {
     
                     cycleStatus[i].classList.add('cycle-results__container-cancelled--color');
