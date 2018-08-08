@@ -153,7 +153,7 @@
             {% if cycles %}
                 {% for item in cycles %}
                     <div class="cycles-results__container">
-                        <div class="cycles-results__overall-status">
+                        <div class="cycles-results__row cycles-results__overall-status">
                             {% if item.cancelled %}
                             <p class="cycles-results__text"><i data-id = "cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
                             {% elif item.pending %}
@@ -164,72 +164,59 @@
                             <p class="cycles-results__text"><i data-id = "active" class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i> Active</p>
                             {% endif %}
                         </div>
+                        <hr class="cycles-item-hr">
                         <!--- MOBILE ARRANGEMENT -->
                         <div class="cycles-results__row cycle-results-mobile">
                             <div class="cycles-results__column column-1">
-                                <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> created on {{item.cycle.created}}</p>
+                                <div class="cycles-results__row cycle-results-mobile">
+                                    <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> created on {{item.cycle.created}}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container cycle-results-mobile">
-                            <hr>
-                        </div> 
+                        <hr class="cycles-item-hr cycle-results-mobile">        
                         <div class="cycles-results__row cycle-results-mobile">
                             <div class="cycles-results__column column-1">
                                 <p class="cycles-results__text"><strong>Cyle Title:</strong> {{ item.cycle.cycle_title }}</p>
                             </div>
-                        </div>
-                        <div class="cycles-results-hr-container cycle-results-mobile">
-                            <hr>
-                        </div>
+                        </div> 
+                        <hr class="cycles-item-hr cycle-results-mobile">
                         <div class="cycles-results__row cycle-results-mobile">
                             <div class="cycles-results__column column-1">
                                 <p class="cycles-results__text"><strong>Job Name:</strong> {{ item.cycle.job.job_title }}</p>
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container cycle-results-mobile">
-                            <hr>
-                        </div>
+                        <hr class="cycles-item-hr cycle-results-mobile">
                         <div class="cycles-results__row cycle-results-mobile">
                             <div class="cycles-results__column column-1">
                                 <p class="cycles-results__text"><strong>Client:</strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container cycle-results-mobile">
-                            <hr>
-                        </div>
+                        <hr class="cycles-item-hr cycle-results-mobile">
                         <!--- DESKTOP ARRANGEMENT -->
                         <div class="cycles-results__row cycle-results-desktop">
-                            <div class="cycles-results__column column-1">
+                            <div class="cycles-results__column column-2">
                                 <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }}</strong> created on {{item.cycle.created}}</p>
                             </div>
+                            <div class="cycles-results__column column-2">
+                                <p class="cycles-results__text"><strong>Cyle Title:</strong> {{ item.cycle.cycle_title }}</p>
+                            </div>
                         </div>
-                        <div class="cycles-results-hr-container cycle-results-desktop">
-                            <hr>
-                        </div>
+                        <hr class="cycles-item-hr cycle-results-desktop">
                         <div class="cycles-results__row cycle-results-desktop">
-                            <div class="cycles-results__column column-3">
-                                <h4 class="cycles-results__heading">Cycle</h4>
-                                <p class="cycles-results__text">{{ item.cycle.cycle_title }}</p>
+                            <div class="cycles-results__column column-2">
+                                <p class="cycles-results__text"><strong>Job Name:</strong> {{ item.cycle.job.job_title }}</p>
                             </div>
-                            <div class="cycles-results__column column-3">
-                                <h4 class="cycles-results__heading">Job Name</h4>
-                                <p class="cycles-results__text">{{ item.cycle.job.job_title }}</p>
-                            </div>
-                            <div class="cycles-results__column column-3">
+                            <div class="cycles-results__column column-2">
                                 {% if user.is_member %}
-                                    <h4 class="cycles-results__heading">Client</h4>
-                                    <p class="cycles-results__text">{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                                    <p class="cycles-results__text"><strong>Client:</strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
                                 {% elif user.is_client %}
-                                    <h4 class="cycles-results__heading">Member</h4>
-                                    <p class="cycles-results__text">{{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
+                                    <p class="cycles-results__text"><strong>Member:</strong> {{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="cycles-results-hr-container cycle-results-desktop">
-                            <hr>
-                        </div>
+                        <hr class="cycles-item-hr cycle-results-desktop">
                         <!------------------------------>          
-                        <div class="cycles-results__row">
+                        <div class="cycles-results__row-3">
                             <div class="cycles-results__column column-3 column-icon">
                                 {% if item.approve_quote == True %}
                                 <h4 class="cycles-results__heading">Quote:</h4>
@@ -267,9 +254,9 @@
                                 {% endif %}
                             </div>  
                         </div>
-                        <div class="cycles-results-hr-container">
-                            <hr>
-                        </div>  
+                       
+                        <hr class="cycles-item-hr">
+                        
                         <div class="cycles-results__porthole">
                             <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                                 <button class="cycles-results__porthole-button" type="submit">Porthole</button>

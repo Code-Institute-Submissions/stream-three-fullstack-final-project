@@ -29,13 +29,13 @@ def manage_clients(request, username):
 
                     NewClient(**kwargs).client_user_created()
                     messages.success(request, 
-                                    "You have successfully created a new client, they have been emailed their credentials!",
+                                    "Client created. An email has been sent.",
                                     extra_tags="create_client")
                     return redirect(reverse('manage_clients', kwargs={'username':username}))      
         else:
             messages.error(request, 
-                            "You need to complete your profile before you can create a client account.",
-                            extra_tags="create_client")
+                            "Profile incomplete. You can't create a client yet.",
+                            extra_tags="failed_client")
             return render(request, 'manage_clients.html', {'new_client': new_client, 
                                                             'username':username,
                                                             'clients':clients_exist,
@@ -49,9 +49,10 @@ def manage_clients(request, username):
 ## Delete Client from AllUser Model ##
 def delete_client(request, username, client_id):
     client = get_object_or_404(AllUser, pk=client_id)
-    messages.error(request, 
-                    'Are you sure you want to delete this client?',
-                    extra_tags='delete_client')
+    #messages.error(request, 
+     #               'Are you sure you want to delete this client?',
+      #              extra_tags='delete_client')
+    messages.success(request, 'Client deleted.')
     if request.method =='POST':
         client.delete()
     return redirect(reverse('manage_clients', kwargs={'username': username}))

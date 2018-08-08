@@ -1103,6 +1103,13 @@ p, button {
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px); }
 
+.cycles-item-hr {
+  color: #337f784d;
+  margin: 1rem 0 1rem 0;
+  width: calc(100% - 2.232px);
+  margin: .5rem 0 .5rem 0;
+  color: rgba(37, 37, 37, 0.15); }
+
 .cycles-summary {
   display: flex;
   flex-direction: row;
@@ -1125,7 +1132,7 @@ p, button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-items: flex-start;
+  align-items: center;
   width: 90%;
   margin: 1rem 0 2rem 0;
   background-color: #597b78;
@@ -1148,31 +1155,40 @@ p, button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  width: 90%; }
+
+.cycles-results__row-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%; }
 
 .cycles-results__column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden; }
 
 .cycles-results__heading,
 .cycles-results__text {
   font-size: .8rem;
   color: #fff;
-  margin: 0 .5rem .5rem .5rem; }
+  margin: 0 .5rem 0 .5rem; }
 
-.column-3 {
-  width: 33.33%;
-  align-items: center; }
+/*.column-3 {
 
+    //width: 33.33%;
+    //align-items: center;
+}*/
 .column-1 {
   width: 100%;
   align-items: flex-start; }
   @media (min-width: 992px) {
     .column-1 {
       align-items: center; } }
+
+.column-2 {
+  width: 50%; }
 
 .cycles-results__step-approval-icons {
   font-size: 1.5rem; }
@@ -1205,9 +1221,7 @@ p, button {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: .5rem 0 .5rem 0; }
+  align-items: center; }
 
 .cycles-results-hr-container hr {
   width: 100%;
@@ -1388,12 +1402,15 @@ p, button {
     .profile-form__button {
       height: 2.1rem; } }
 
-.profile-success-dummy {
+.generic-success-dummy {
   height: 16.75px;
   margin: 12.8px 0 12.8px 0; }
 
-.profile-success i {
+.generic-success i {
   font-size: 1rem; }
+
+.generic-success {
+  text-align: center; }
 
 .clients-bg-color {
   background-color: #81aeaa; }
@@ -1452,11 +1469,21 @@ p, button {
     .manage-form__button {
       height: 2.1rem; } }
 
+.manage-items-hr {
+  color: #337f784d;
+  margin: 1rem 0 1rem 0;
+  width: calc(100% - 2.232px);
+  margin: 0rem 0 0rem 0;
+  color: #fff3; }
+
 .manage-hr {
   color: #337f784d;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
   margin: .5rem 0 .5rem 0; }
+
+.manage-hr--added-margin {
+  margin-bottom: 2.5rem; }
 
 .manage-items-container {
   width: 90%; }
@@ -1466,7 +1493,7 @@ p, button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-items: flex-start;
+  align-items: center;
   background-color: #597b78;
   width: 100%;
   border-radius: .3rem;
@@ -1478,7 +1505,10 @@ p, button {
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
-  width: 100%; }
+  width: 90%; }
+
+.manage-item__row--center {
+  justify-content: center; }
 
 .manage-item__column {
   display: flex;
@@ -1488,5 +1518,52 @@ p, button {
 
 .manage-item__column p {
   margin: 0.5rem 0.5rem 0.5rem 0.5rem; }
+
+.manage-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1rem; }
+
+.manage-button__button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
+  width: 7rem;
+  background-color: #3a5864;
+  cursor: pointer; }
+
+#manage-items__text-top {
+  margin-top: 0.5rem; }
+
+.manage-item__button-column {
+  width: 50%; }
+
+.manage-button__button--delete-color {
+  background-color: #cb4747; }
+
+.manage-delete__button--hide {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s cubic-bezier(1, 0.32, 0.32, 0.75);
+  background-color: #90c1bc;
+  padding-left: .9rem;
+  padding-right: .9rem;
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem; }
+
+.manage-delete__button--show {
+  height: 6rem; }
+
+.manage-item__delete-text {
+  color: #384847; }
+
+.manage-button__button--delete-click {
+  background-color: #3a5864; }
 
 /*# sourceMappingURL=main.css.map */

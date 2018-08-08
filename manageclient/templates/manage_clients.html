@@ -17,11 +17,17 @@
                 {{ new_client.as_p }}
                 <button class="manage-form__button"type="submit">Create New Client</button>
             </form>
-            {% for message in messages %}
-                {% if "create_client" in message.tags %}
-                    <p>{{ message }}</p>
-                {% endif %}
-            {% endfor %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "failed_client" in message.tags %}
+                    <p class="generic-success"> <i class="fas fa-times" aria-hidden="true"></i> {{ message }}</p>
+                    {% else %}
+                    <p class="generic-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="generic-success-dummy"></div>
+            {% endif %}
         </div>
         <hr class="manage-hr">
         <div>
@@ -33,26 +39,29 @@
                 <p>You have a total of {{ clients_count }} client.</p>
             {% endif %}
         </div>
-        <hr class="manage-hr">
+        <hr class="manage-hr manage-hr--added-margin">
         <div class="manage-items-container">
             {% for client in clients %}
             <div class="manage-item-container">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                       <p><strong>Client:</strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
+                       <p id="manage-items__text-top"><strong><i class="fas fa-user" aria-hidden="true"></i></strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
                     </div>
                 </div>
+                <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
                         <p><strong><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i></strong> {{ client.client.email}}</p>
                     </div>
                 </div>
+                <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><strong><i class="fas fa-phone manage-item__icon"></i> </strong> {{ client.profile.phone}}</p>
+                        <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No profile.{% endif %}</p>
                     </div>
                 </div>
-                {% if client.profile.company %}
+                <hr class="manage-items-hr">
+                
                 <!--<a href="">more</a>-->
                 <!--<h3>Company</h3>
                 <p>{{client.profile.company}}</p>
@@ -60,21 +69,40 @@
                 <p>{{client.profile.phone}}</p>
                 <h3>Position</h3>
                 <p>{{client.profile.position}}</p>-->
-        
-                <form action="{% url 'client_profile' username=username client_id=client.client.id%}">
-                    {% csrf_token %}
-                    <button type="submit">Create Profile</button>
-                </form>
-                {% else %}
-                <form action="{% url 'client_profile' username=username client_id=client.client.id%}">
-                    {% csrf_token %}
-                    <button type="submit">Edit Profile</button>
-                </form>
-                {% endif %}
+                <div class="manage-item__row">
+                    <div class="manage-item__column manage-item__button-column">
+                        <form class="manage-button" action="{% url 'client_profile' username=username client_id=client.client.id %}">
+                            {% csrf_token %}
+                            {% if client.profile %}
+                            <button class="manage-button__button" type="submit">Edit Profile</button>
+                            {% elif not client.profile %}
+                            <button class="manage-button__button" type="submit">Create Profile</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="manage-item__column manage-item__button-column">
+                        <div class="manage-button">
+                            <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
+                    <div class="manage-item__column ">
+                        <p class="manage-item__delete-text">Are you sure ?</p>
+                        <form class="manage-button" method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+                            {% csrf_token %}
+                            <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes</button>
+                        </form>
+                    </div>
+                </div>
+
+                
+               
                 
                
                 <!--DO THIS WITH JS INSTEAD OF FROM THE BACKEND TO MITIGATE RELOAD OF PAGE-->
-                {% for message in messages %}
+                <!--{% for message in messages %}
                 {% if "delete_client" in message.tags %}
                 <p>{{ message }}</p>
                 <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}"> 
@@ -84,10 +112,10 @@
                 <p><a href="{% url 'manage_clients' username=username %}">No</a></p> 
                 {% endif %}
                 {% endfor %}
-                <!--<form method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+                <form method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
                     {% csrf_token %}
-                    <button type="submit">Delete Client</button>-->
-                </form>
+                    <button type="submit">Delete Client</button>
+                </form>-->
             </div>
             
             {% endfor %}

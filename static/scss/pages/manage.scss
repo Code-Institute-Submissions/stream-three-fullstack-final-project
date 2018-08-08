@@ -70,12 +70,24 @@
 }
 
 
+.manage-items-hr {
+
+    @include hr-cycles;
+    margin: 0rem 0 0rem 0;
+    color:#fff3;
+}
+
 .manage-hr {
 
     @include hr-cycles;
     margin: .5rem 0 .5rem 0;
+
 }
 
+.manage-hr--added-margin {
+
+    margin-bottom: 2.5rem;
+}
 // MANAGE ITEM STYLES // 
 
 .manage-items-container {
@@ -86,7 +98,7 @@
 .manage-item-container {
 
     @include flex-column;
-    align-items: flex-start;
+    align-items: center;
     background-color: $register-icon-color;
     width: 100%;
     border-radius: .3rem;
@@ -97,8 +109,15 @@
 
     @include flex_row;
     justify-content: flex-start;
-    width: 100%;
+    width: 90%;
 }
+
+.manage-item__row--center {
+
+    justify-content: center;
+   
+}
+
 .manage-item__column {
 
     @include flex-column;
@@ -109,4 +128,65 @@
 .manage-item__column p {
 
     margin: $item-card-text-margin;
+}
+
+.manage-button {
+
+    @include flex_row;
+    width:100%;
+    padding-bottom: 1rem;
+}
+.manage-button__button {
+
+    @include login-button-mobile;
+    width: 7rem;
+    background-color: $login_bg_color;
+    cursor: pointer;
+    
+}
+
+#manage-items__text-top {
+
+    margin-top: 0.5rem;
+}
+
+.manage-item__button-column {
+
+    width: 50%;
+    
+}
+
+.manage-button__button--delete-color {
+
+    background-color: $cancelled-color;
+}
+
+// SHOW / HIDE DELETE BUTTON STYLES //
+
+.manage-delete__button--hide {
+
+    height: 0;
+    overflow: hidden; 
+    transition: height .3s $drop-down-bezier;
+    background-color: $manage-item-delete-show-color;
+    padding-left: .9rem;
+    padding-right: .9rem;
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+
+.manage-delete__button--show {
+
+    height: 6rem;
+    
+}
+
+.manage-item__delete-text {
+
+    color: $active-icon-color;
+}
+
+.manage-button__button--delete-click {
+
+    background-color: $login_bg_color;
 }

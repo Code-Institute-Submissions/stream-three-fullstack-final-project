@@ -24,7 +24,7 @@ def create_client(username, new_client):
 
 def get_all_clients_of_user(user_id):
     try: 
-        clients = MemberClient.objects.filter(member=user_id).order_by('client__first_name') 
+        clients = MemberClient.objects.filter(member=user_id).order_by('client__last_name') 
     except MemberClient.DoesNotExist:
         clients = None
     

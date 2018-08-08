@@ -21,6 +21,24 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 
 }
 
+// USED TO CHANGE THE INNER HTML OF AN ELEMENT ON CLICK //
+const insertHTMLonClick = (clickElement, condition, html) => {
+
+    clickElement.addEventListener('click', function() {
+
+        if (this.innerHTML == condition){
+            
+            this.innerHTML = 'Cancel';
+
+        } else {
+
+            this.innerHTML = condition;
+        }
+
+    });
+
+}
+
 
 // ADD CLASS TO HTML COLLECTION OR INDIVIDUAL ELEMENT // 
 
