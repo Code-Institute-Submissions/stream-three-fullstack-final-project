@@ -8,9 +8,9 @@ from .models import AllUser
 
 class UserLoginForm(forms.Form):
     """Login form for both Members and Clients"""
-    username = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'login-form__username',
+    username = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'login-form__input',
                                                                         'placeholder': 'Username'}))
-    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class':'login-form__password',
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class':'login-form__input',
                                                                             'placeholder': 'Password'}))
 
     class Meta:
@@ -19,28 +19,29 @@ class UserLoginForm(forms.Form):
 
 class UserRegisterForm(forms.Form):
     
-    first_name = forms.CharField(label="", 
+    first_name = forms.CharField(label="",
+                                required=True,
                                 max_length=30, 
-                                widget=forms.TextInput(attrs={'class':'register-form__first-name', 
+                                widget=forms.TextInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'First Name'}))
     last_name = forms.CharField(label="", 
                                 max_length=30,
-                                widget=forms.TextInput(attrs={'class':'register-form__last-name', 
+                                widget=forms.TextInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'Last Name'}))
     username = forms.CharField(label="", 
                                 max_length=30,
-                                widget=forms.TextInput(attrs={'class':'register-form__username', 
+                                widget=forms.TextInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'Username'}))
     email = forms.EmailField(label="",
                                 max_length=50,
-                                widget=forms.TextInput(attrs={'class':'register-form__email', 
+                                widget=forms.TextInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'Email'}))
     password1 = forms.CharField(label="", 
-                                widget=forms.PasswordInput(attrs={'class':'register-form__password1', 
+                                widget=forms.PasswordInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'Password'}))
 
     password2 = forms.CharField(label="", 
-                                widget=forms.PasswordInput(attrs={'class':'register-form__password2', 
+                                widget=forms.PasswordInput(attrs={'class':'register-form__input', 
                                         'placeholder': 'Confirm Password'}))
     
     class Meta:
@@ -55,17 +56,39 @@ class UserRegisterForm(forms.Form):
                  ]
 
 ## credit https://www.geeksforgeeks.org/python-program-check-string-contains-special-character/ ##
-    def check_string(self):
+    def check_string(self, _string):
         regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
 
-        if(regex.search(self.cleaned_data.get('username')) == None):
+        if(regex.search(_string) == None):
             return False
         else:
             return True
 
+    def clean_first_name(self): 
+        first_name = self.cleaned_data.get('first_name')
+        check_first_name = self.check_string(first_name)
+
+        if check_first_name:
+            raise forms.ValidationError(u"Your first name can't contain special characters.")
+        elif " " in first_name:
+            raise forms.ValidationError(u"Your first name can't contain spaces.")
+        
+        return first_name.capitalize()
+
+    def clean_last_name(self): 
+        last_name = self.cleaned_data.get('last_name')
+        check_last_name = self.check_string(last_name)
+
+        if check_last_name:
+            raise forms.ValidationError(u"Your last name can't contain special characters.")
+        elif " " in last_name:
+            raise forms.ValidationError(u"Your last name can't contain spaces.")
+
+        return last_name.capitalize() 
+
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        check_username = self.check_string()
+        check_username = self.check_string(username)
 
    
         if AllUser.objects.filter(username=username):

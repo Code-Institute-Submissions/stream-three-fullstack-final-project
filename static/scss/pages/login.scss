@@ -85,11 +85,11 @@
 }
 .login-form__form p {
 
+    
     margin-top: 0.5rem;
 }
 
-.login-form__username,
-.login-form__password {
+.login-form__input {
 
     @include login-form-mobile;
     

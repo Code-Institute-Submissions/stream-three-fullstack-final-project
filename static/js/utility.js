@@ -22,21 +22,20 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 }
 
 
-// ADD CLASS TO SELECT BOX/BOXES // 
+// ADD CLASS TO HTML COLLECTION OR INDIVIDUAL ELEMENT // 
 
-// IF SELECT BOXES IS A COLLECTION, DO THE IF, ELSE DO THE ELSE //
-const addClassToSelect = (selectBoxes, _class) => {
+const addClassToCollection = (collection, _class) => {
 
-    if (selectBoxes instanceof HTMLCollection) {
+    if (collection instanceof HTMLCollection) {
 
-        for(let i = 0; i < selectBoxes.length; i++) {
+        for(let i = 0; i < collection.length; i++) {
 
-            selectBoxes[i].setAttribute('class', _class);
+            collection[i].setAttribute('class', _class);
         }
 
     } else {
 
-        selectBoxes.setAttribute('class', _class);
+        collection.setAttribute('class', _class);
     }
  
 }

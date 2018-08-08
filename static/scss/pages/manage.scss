@@ -1,0 +1,112 @@
+
+// MANAGE CLIENTS, MANAGE JOBS AND MANAGE CYCLES STYLES //
+
+.clients-bg-color {
+
+    background-color:$login-green;
+}
+
+
+.manage-heading {
+
+    margin-bottom: 0rem;
+}
+
+.manage-text {
+
+    margin-bottom: 0.8rem;
+}
+
+.manage-container {
+
+    position: relative;
+    top: 4rem;
+    min-height: calc(100% - 4rem);
+    @include flex-column;
+
+    @include desktop {
+
+        flex-direction: row;
+    }
+}
+
+.manage-form-container {
+
+    @include flex_column;
+    
+}
+.manage-form {
+
+    @include flex-column;
+    background-color: $register-icon-color;
+    border-radius: .3rem;
+    padding: .5rem 0 0rem 0;
+        
+}
+
+.manage-form input {
+
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+.manage-form p {
+
+    margin-top: .5rem;
+}
+
+.manage-form__button {
+
+    
+    @include login-button-mobile;
+    background-color: $login_bg_color;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    @include tablet {
+
+        height: 2.1rem;
+    }
+}
+
+
+.manage-hr {
+
+    @include hr-cycles;
+    margin: .5rem 0 .5rem 0;
+}
+
+// MANAGE ITEM STYLES // 
+
+.manage-items-container {
+
+    width: 90%;
+}
+
+.manage-item-container {
+
+    @include flex-column;
+    align-items: flex-start;
+    background-color: $register-icon-color;
+    width: 100%;
+    border-radius: .3rem;
+    margin: $item-card-margin;
+}
+
+.manage-item__row {
+
+    @include flex_row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.manage-item__column {
+
+    @include flex-column;
+    //align-items: flex-start;
+    
+}
+
+.manage-item__column p {
+
+    margin: $item-card-text-margin;
+}

@@ -7,11 +7,11 @@
 
 @mixin login-button-mobile {
 
-    height: 1.8rem;
+    height: 1.6rem;
     border: none;
     width: 17.5rem;
     border-radius: .3rem;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
     //font-size: 1rem;
     color: #fff;
 }
@@ -19,6 +19,7 @@
 @mixin login-button-desktop-media-query {
 
     height: 2.1rem;
+    margin-top: .5rem;
 }
 
 // REGISTER PAGE REGISTER BUTTON //
@@ -26,6 +27,11 @@
 @mixin register-button-mobile {
 
     @include login-button-mobile;
+}
+
+@mixin register-button-desktop-media-query {
+
+    height: 2.1rem;
 }
 
 

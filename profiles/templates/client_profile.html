@@ -13,11 +13,11 @@
             <i class="fas fa-pen profile-icon__icon" aria-hidden="true"></i>
         </div>
         {% if not existing %}
-        <h1>Create Profile</h1>
-        <p>Fill in the details below to create a profile for {{ client.first_name }} {{ client.last_name}}.</p>
+        <h1 class="profile-title">Create Profile</h1>
+        <p class="profile-text">Fill in the details below to create a profile for {{ client.first_name }} {{ client.last_name}}.</p>
         {% else %}
-        <h1>Update Profile</h1>
-        <p>Change the details below to update the profile for {{ client.first_name }} {{ client.last_name}}</p>
+        <h1 class="profile-title">Update Profile</h1>
+        <p class="profile-text">Change the details below to update the profile for {{ client.first_name }} {{ client.last_name}}</p>
         {% endif %}
         {% include 'profile_base.html' %}   
     </div> 

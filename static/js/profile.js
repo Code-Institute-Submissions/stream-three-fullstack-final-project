@@ -4,7 +4,7 @@
 
     const profileSelect = document.getElementById('id_country');
     // ADD CLASS TO SELECT BOX FOR STYLING //
-    addClassToSelect(profileSelect, 'profile__select');
+    addClassToCollection(profileSelect, 'profile__select');
 
     // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
     profileSelect.parentElement.setAttribute('class', 'profile-filter-styled');

@@ -123,6 +123,8 @@
     top: -8rem;
     transition: top .3s $drop-down-bezier;
     z-index: 1;
+    padding-right:0;
+    margin-right: 0;
 
    
 }
@@ -138,6 +140,7 @@
     position: relative;
     right: 0rem;
     margin-top: 0rem;
+    
 
     @include desktop {
 

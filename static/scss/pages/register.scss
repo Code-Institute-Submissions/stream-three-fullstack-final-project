@@ -111,14 +111,20 @@
     @include flex_column;
 }
 
-.register-form__first-name,
-.register-form__last-name,
-.register-form__username,
-.register-form__email,
-.register-form__password1,
-.register-form__password2 {
+.register-form__form {
+
+    @include flex_column;
+}
+
+.register-form__form p {
+
+    margin-top: .5rem;
+}
+
+.register-form__input {
 
     @include register-form-mobile;
+    
 
     @include tablet {
 
@@ -130,8 +136,12 @@
 
     @include register-button-mobile;
     background-color: $login_bg_color;
-    margin-top: 0rem;
+   
     //margin-bottom: 2rem;
+    @include tablet {
+
+        @include register-button-desktop-media-query;
+    }
 }
 
 .register-form__button:hover {
