@@ -40,6 +40,7 @@
                     <!--<form class="cycles-search-reset" action="{% url 'reset_search' username=user.username %}">-->
                     <!--</form>-->
                 </div>
+                
                 <div class="cycles-search__filters">
                     <div class="cycles-search__filter--styled">
                         <select class="cycles-search__select" name="sort">
@@ -66,7 +67,7 @@
                     <button class="cycles-search__button"type="submit">Search</button> 
                 </div>
                 <div class="cycles-search__filters">
-                    <div class="cycles-search__filter-styled">
+                    <div class="cycles-search__filter--styled">
                         <select class="cycles-search__select" name="sort">
                             <option value="all">All</option>
                             <option value="active">Active</option>
@@ -74,14 +75,14 @@
                             <option value="completed">Completed</option>
                             <option value="cancelled">Cancelled</option>  
                         </select>
-                        <i class="fas fa-sort-down cycles-search__filter-arrow"></i>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
                     </div>
-                    <div class="cycles-search__filter-styled">
+                    <div class="cycles-search__filter--styled">
                         <select class="cycles-search__select" name="order">
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
                         </select>
-                        <i class="fas fa-sort-down cycles-search__filter-arrow"></i>
+                        <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
                     </div>
                 </div>
                 {% endif %} 

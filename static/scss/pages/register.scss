@@ -320,7 +320,7 @@
 
 .register-success__message {
 
-    color: $register-text;
+    //color: $register-text;
     font-size:.8rem;
     //margin-bottom: .5rem;
     margin: 0rem;
@@ -338,7 +338,7 @@
 
     font-size: 1.5rem;
     margin-right: 0.5rem;
-    color: $register-text;
+    color: #fff;
 }
 
 
@@ -357,7 +357,8 @@
 
     height: 100%;
     width: 100%;
-    color: $register-text;
+    color: $register-icon-color;
+
     @include flex_row;
     font-size: .8rem; 
 }

@@ -18,7 +18,7 @@ class ProfileForm(forms.Form):
                                 'class':'profile-form__input'}))
     phone = PhoneNumberField(label="",
                             widget=forms.TextInput(
-                            attrs={'placeholder':'Phone Number inc Country Code',
+                            attrs={'placeholder':'Phone Number inc. Country Code',
                             'class':'profile-form__input'})
                             )
     address1 = forms.CharField(max_length=50,

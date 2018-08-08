@@ -70,9 +70,10 @@ class UserRegisterForm(forms.Form):
    
         if AllUser.objects.filter(username=username):
             raise forms.ValidationError(u'Username is already taken.')
-        
-        if check_username:
+        elif check_username:
             raise forms.ValidationError(u"Your username can't contain special characters.")
+        elif " " in username:
+            raise forms.ValidationError(u"Your username can't contain spaces.")
         
         return username
      

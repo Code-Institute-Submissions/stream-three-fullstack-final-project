@@ -76,17 +76,16 @@
     height:100%;
 }
 
-.cycle-filter-styled{
+.cycles-search__filter--styled{
 
     @include select-boxes;
     @include flex_row;
     
-
 }
 
 .cycles-search__select {
 
-    @include flex_row;
+    //@include flex_row;
     width:100%;
     height:100%;
     text-align: left;
@@ -96,11 +95,12 @@
 
 }
 
-.cycle-filter-arrow {
+.cycles-search__filter--arrow {
 
     @include select-arrows;
     
 }
+
 
 .cycles-search__button {
 

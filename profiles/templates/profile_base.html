@@ -1,1 +1,21 @@
+<!---------PROFILE FORM PARTIAL---->
+<!---INCLUDED IN CLIENT AND MEMBER PROFILE TEMPLATES-->
 
+ <div class="profile-form">
+    <form class="profile-form__form" method="POST">  
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        {% if not existing %}
+            <button class="profile-form__button" class=""type="submit">Create Profile</button>
+        {% else %}
+            <button class="profile-form__button" type="submit">Update Profile</button>
+        {% endif %}
+    </form>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        <p class="profile-success"> {{ message }}  <i class="far fa-check-circle" aria-hidden="true"></i></p>
+    {% endfor %}
+{% else %}
+    <div class="profile-success-dummy"></div>
+{% endif %}

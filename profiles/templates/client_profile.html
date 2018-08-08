@@ -1,29 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/profile.js' %}"></script>
+{% endblock head_js %}
 {% block content %}
-
-<p>Logged in as {{ username }}</p>
-
-{% if not existing %}
-<h1>Create {{ client.username }}'s Profile</h1>
-<p>You haven't created a full profile for <strong>{{ client.username }}</strong> yet. Fill in the details below to update the system.</p>
-{% else %}
-<h1>Update {{ client.username }}'s Profile</h1>
-{% endif %}
-<form method="POST">  
-    {% csrf_token %}
-    {{ profile_form.as_p }}
-    {% if not existing %}
-        <button type="submit">Create Profile</button>
-    {% else %}
-        <button type="submit">Update Profile</button>
-    {% endif %}
-</form>
-<p>
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-</p>
-
-
-
+<body class="profile-bg-color">
+    {% include 'header.html' %}
+    <div class="profile-container">
+        <div class="profile-icon">
+            <i class="fas fa-pen profile-icon__icon" aria-hidden="true"></i>
+        </div>
+        {% if not existing %}
+        <h1>Create Profile</h1>
+        <p>Fill in the details below to create a profile for {{ client.first_name }} {{ client.last_name}}.</p>
+        {% else %}
+        <h1>Update Profile</h1>
+        <p>Change the details below to update the profile for {{ client.first_name }} {{ client.last_name}}</p>
+        {% endif %}
+        {% include 'profile_base.html' %}   
+    </div> 
+</body>
 {% endblock %}

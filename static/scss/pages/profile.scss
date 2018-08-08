@@ -10,6 +10,56 @@
     @include flex_column;
     position: relative;
     top: 4rem;
+    min-height: calc(100% - 4rem);
+
+    @include tablet {
+
+        min-height: calc(100% - 6rem);
+    }
+    
+}
+
+.profile-title {
+
+    @include tablet {
+
+        margin: .5rem 0 .5rem 0;
+    }
+
+    @include large {
+
+        margin: 2rem 0 2rem 0;
+
+    }
+    
+}
+
+.profile-text {
+
+    margin-top:0rem;
+}
+
+.profile-icon {
+
+    display: none; 
+
+    @include tablet {
+
+        display:block;
+    }
+
+  
+}
+
+.profile-icon__icon {
+
+    color: $register-icon-color;
+    font-size: 1.5rem;
+
+    @include large {
+
+        font-size: 2rem;
+    }
     
 }
 
@@ -17,6 +67,18 @@
 .profile-container form {
 
     @include flex_column;
+    background-color: $register-icon-color;
+    border-radius: .3rem;
+    padding: .5rem 0 1rem 0;
+
+    @include tablet {
+
+        width: 26rem;
+        padding: 1rem 0 1.5rem 0;
+
+    }
+
+
 }
 
 .profile-container form p {
@@ -40,15 +102,39 @@
 .profile-filter-styled {
 
     @include select-boxes;
+    @include flex_row;
+    width: 17.6rem;
+    background-color: $active-icon-color;
     
 }
 
 .profile__select {
 
     //@extend .cycles-search__select;
+    width:100%;
+    height:100%;
+    text-align: left;
+    font-size: .8rem;
+    padding-left: .3rem;
+    color: #fff;
+    
 }
 
 .profile-filter-arrow {
 
-    @extend .cycle-filter-arrow;
+    @extend .cycles-search__filter--arrow;
+    @include flex-row;
+}
+
+.profile-form__button {
+
+    @include login-button-mobile;
+    background-color: $login_bg_color;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.profile-success-dummy {
+
+    height: 16.75px;
 }
