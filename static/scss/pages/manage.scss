@@ -41,6 +41,12 @@
 .manage-form-container {
 
     @include flex_column;
+    //width:100%;
+
+   // @include desktop {
+
+        
+    //}
     
 }
 
@@ -100,7 +106,7 @@
 
 .manage-hr--added-margin {
 
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.9rem;
     @include desktop {
 
         margin-bottom: 0rem;
@@ -245,9 +251,9 @@
     margin-bottom: 0rem;
 }
 
-.manage-no-item-container{
+.manage-items-container--no-items {
 
-    
+    justify-content: center;
 }
 .manage-no-items-message p {
 
@@ -268,6 +274,15 @@
 .manage-item__column--center {
 
     align-items: center;
+}
+
+.manage-success {
+
+    width: 17rem;
+    @include desktop {
+
+        width: 20rem;
+    }
 }
 // ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
 
@@ -312,4 +327,11 @@
         display: flex;
     }
 
+}
+
+// -----------------------JOBS/CYCLES PAGE STYLES------------------//
+
+.form-reset-container {
+
+    margin-top: 1rem;
 }

@@ -33,11 +33,11 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 
 }
 
-// USED TO CHANGE THE INNER HTML OF AN ELEMENT ON CLICK //
-const insertHTMLonClick = (clickElement, condition, html) => {
+// USED TO CHANGE THE INNER HTML OF A BUTTON ELEMENTS TO CANCEL ON CLICK //
+const insertCancelOnClick = (clickElement, condition) => {
 
     clickElement.addEventListener('click', function() {
-
+        
         if (this.innerHTML == condition){
             
             this.innerHTML = 'Cancel';
@@ -56,7 +56,7 @@ const insertHTMLonClick = (clickElement, condition, html) => {
 
 const addClassToCollection = (collection, _class) => {
 
-   
+    
     if (collection instanceof HTMLCollection) {
 
         for(let i = 0; i < collection.length; i++) {

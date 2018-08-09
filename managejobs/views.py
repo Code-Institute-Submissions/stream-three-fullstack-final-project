@@ -14,13 +14,12 @@ from .view_func import create_job, update_job
 ## User can see all jobs and create new ones ##
 ## If Update Key in request.POST, render form with inital values ##
 def manage_jobs(request, username):
-    #member = request.user
     user_id = request.user.id
     jobs = get_all_jobs_for_user(username, user_id)
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
     if request.method == 'POST':
-        if request.POST and 'update' in request.POST.keys():
+        if 'update' in request.POST.keys():
             job = get_object_or_404(Jobs, pk=(int(request.POST['job_id'])))
             form = EditJobsForm(request.user, model_to_dict(job))
         else:
@@ -28,7 +27,10 @@ def manage_jobs(request, username):
             if form.is_valid():
                 job_created = create_job(form, request.user)
                 if job_created:
-                    messages.success(request, 'New Job Created.')
+                    if 'updated' in request.POST.keys():
+                        messages.success(request, 'Job updated.')
+                    else:
+                        messages.success(request, 'New Job Created.')
                     return redirect(reverse('manage_jobs',
                                     kwargs={'username':username}))          
     return render(request, 'manage_jobs.html', {'username':username,
@@ -37,24 +39,6 @@ def manage_jobs(request, username):
                                                 'jobs_count': jobs.count(),
                                                 'clients':clients })
 
-    
-## Edit Job View, Redirect to Manage Jobs ##
-#def edit_job(request, username, job_id):
- #   job = get_object_or_404(Jobs, pk=job_id)
-  #  form = EditJobsForm(request.user, model_to_dict(job))
-   # if request.method == 'POST':
-    #    form = EditJobsForm(request.user, request.POST)
-        
-     #   if form.is_valid():
-      #      job_updated = update_job(job, form)
-       #     if job_updated:
-        #        messages.success(request, 'You have successfully edited Job No: {0}'.format(
-         #                                                   form.cleaned_data.get('job_number')
-          #                                              ))
-           #     return redirect(reverse('manage_jobs', kwargs={'username':username}))
-    #return render(request, 'manage_jobs.html', {'username':username,
-     #                                       'form': form,
-      #                                      'job': job })
 
 ## Delete Job View, Redirect to Manage Jobs ##
 def delete_job(request, username, job_id):

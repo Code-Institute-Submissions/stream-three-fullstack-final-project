@@ -7,39 +7,37 @@
 {% endblock head_js %}
 {% block content %}
 {% include 'header.html' %}
-<!--<p>Total Value of Completed Cycles: £{{ request.session.complete }}</p>
-<p>Total Value of Pending Cycles: £{{ request.session.pending }}</p>
-<p>Total Value of Active Cycles: £{{ request.session.active }}</p>
-<p>Total Value of Cancelled Cycles: £{{ request.session.cancelled }}</p>-->
-
-<!--<h2>Search Your Cycles</h2>-->
-<!--<p>Search by Job Title, Job Name, Fileo ID, and Client</p>-->
 <div class="cycles-container">
     <div class="cycles-info">
         <h1 class="cycles-info__heading">Search Your Cycles.</h1>
+        
         {% if user.is_member %}
             {% if not profile %}
             <div class="cycles-info__profile-exp">
                 <p class="cycles-profile-exp__text">Please complete your profile before proceeding.</p>
             </div>
             {% else %}
-            <div class="cycles-info__profile-exp">
-                <p class="cycles-info__text">Search your cycles by Job, Fileo ID or Client.</p>
-            </div>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="cycles-info__profile-exp">
+                    <p class="cycles-info__text">{{message}}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="cycles-info__profile-exp">
+                    <p class="cycles-info__text">Search your cycles by Job, Fileo ID or Client.</p>
+                </div>
+                {% endif %}
             {% endif %}
         {% endif %}
     </div>
     <div class="cycles-search">
         <form class="cycles-search__form">
-            {% if search %}
             <div class="cycles-search__input-wrapper">
                 <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
-                <input class="cycles-search__input" type="text" name="search" placeholder=""  value="{{ search.search }}" minlength="0" maxlength="50" required>
+                <input class="cycles-search__input" type="text" name="search" placeholder=""  {% if search.search %}value="{{ search.search }}"{% endif %} minlength="0" maxlength="50" required>
                 <button class="cycles-search__button"type="submit">Search</button> 
-                <!--<form class="cycles-search-reset" action="{% url 'reset_search' username=user.username %}">-->
-                <!--</form>-->
             </div>
-            
             <div class="cycles-search__filters">
                 <div class="cycles-search__filter--styled">
                     <select class="cycles-search__select" name="sort">
@@ -59,36 +57,10 @@
                     <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
                 </div>
             </div>
-            {% elif not search %}
-            <div class="cycles-search__input-wrapper">
-                <span class="cycles-search__magnify"><i class="fas fa-search " aria-hidden="true"></i></span>
-                <input class="cycles-search__input" type="text" name="search" placeholder=""  minlength="0" maxlength="50" required>
-                <button class="cycles-search__button"type="submit">Search</button> 
-            </div>
-            <div class="cycles-search__filters">
-                <div class="cycles-search__filter--styled">
-                    <select class="cycles-search__select" name="sort">
-                        <option value="all">All</option>
-                        <option value="active">Active</option>
-                        <option value="pending">Pending</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>  
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-                <div class="cycles-search__filter--styled">
-                    <select class="cycles-search__select" name="order">
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                    </select>
-                    <i class="fas fa-sort-down cycles-search__filter--arrow"></i>
-                </div>
-            </div>
-            {% endif %} 
         </form>
     </div>
     {% if search %}
-<div class="cycle-reset-container">
+    <div class="cycle-reset-container">
         <a href="{% url 'reset_search' username=user.username %}" class="cycles-search-reset__button">
             <div class="cycles-search-reset">
                 <span><span>"{{ search.search }}"</span><i class="fas fa-times-circle" aria-hiden="true"></i></span>

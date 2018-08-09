@@ -52,8 +52,9 @@ def delete_client(request, username, client_id):
     #messages.error(request, 
      #               'Are you sure you want to delete this client?',
       #              extra_tags='delete_client')
-    messages.success(request, 'Client deleted.')
+    print(client)
     if request.method =='POST':
         client.delete()
+        messages.success(request, 'Client deleted.')
     return redirect(reverse('manage_clients', kwargs={'username': username}))
 

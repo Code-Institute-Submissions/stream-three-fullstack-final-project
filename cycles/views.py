@@ -21,13 +21,16 @@ def member_cycles(request, username):
                                             cycle__member=request.user
                                            ).order_by('-cycle__created')
     if 'search' in request.GET:
-        users_cycles = get_searched_cycles(request)                   
-        return render(request,
-                        'cycles.html', 
-                        {'user':request.user,
-                        'cycles': users_cycles,
-                        'profile':is_existing,
-                        'search': request.GET }) 
+        if users_cycles:
+            users_cycles = get_searched_cycles(request)                   
+            return render(request,
+                            'cycles.html', 
+                            {'user':request.user,
+                            'cycles': users_cycles,
+                            'profile':is_existing,
+                            'search': request.GET })
+        elif not users_cycles:
+            messages.error(request, 'You have no cycles to search yet.')
     return render(request,
                     'cycles.html', 
                     {'user':request.user,
@@ -42,7 +45,6 @@ def client_cycles(request, username):
     users_cycles = CycleStatus.objects.filter(
                                             cycle__client=request.user
                                            ).order_by('-cycle__created')
-    print(users_cycles)
     if 'search' in request.GET:
         users_cycles = get_searched_cycles(request)
         return render(request,

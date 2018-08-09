@@ -33,29 +33,29 @@
         {% if messages %}
             {% for message in messages %}
                 {% if "failed_client" in message.tags %}
-                <p class="generic-success"> <i class="fas fa-times" aria-hidden="true"></i> {{ message }}</p>
+                <p class="generic-success manage-success"> <i class="fas fa-times" aria-hidden="true"></i> {{ message }}</p>
                 {% else %}
-                <p class="generic-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                <p class="generic-success manage-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
                 {% endif %}
             {% endfor %}
         {% else %}
             <div class="generic-success-dummy"></div>
         {% endif %}
         <!----- MOBILE TOTALS VIEW ---->
-        <hr class="manage-hr manage-total-mobile">
-        <div class="manage-total manage-total-mobile">
-            {% if clients_count > 1 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 0 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 1 %}
-                <p>You have a total of {{ clients_count }} client.</p>
-            {% endif %}
-        </div>
-        <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
-        <!-------------------------->
     </div>
-    <div class="manage-items-container">
+    <hr class="manage-hr manage-total-mobile">
+    <div class="manage-total manage-total-mobile">
+        {% if clients_count > 1 %}
+            <p>You have a total of {{ clients_count }} clients.</p>
+        {% elif clients_count == 0 %}
+            <p>You have a total of {{ clients_count }} clients.</p>
+        {% elif clients_count == 1 %}
+            <p>You have a total of {{ clients_count }} client.</p>
+        {% endif %}
+    </div>
+    <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
+    <!-------------------------->
+    <div class="manage-items-container {% if not clients %} manage-items-container--no-items {% endif %} ">
         {% if clients %}
             {% for client in clients %}
             <div class="manage-item-container">
@@ -90,16 +90,17 @@
                     </div>
                     <div class="manage-item__column manage-item__button-column">
                         <div class="manage-button">
-                            <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
+                            <button data-id="Delete Client" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
                         </div>
                     </div>
                 </div>
                 <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
                     <div class="manage-item__column manage-item__column--center">
                         <p class="manage-item__delete-text">Are you sure ?</p>
-                        <p class="manage-item__delete-text">All jobs and cycles will be deleted too.</p>
-                        <form class="manage-button" method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+                        <p class="manage-item__delete-text">All related jobs and cycles will be deleted too.</p>
+                        <form class="manage-button" method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}">
                             {% csrf_token %}
+                            
                             <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes <i class="fas fa-check" aria-hidden="true"></i></button>
                         </form>
                     </div>
@@ -110,7 +111,7 @@
         <div>
             <i class="fas fa-ban manage-no-item-icon" aria-hidden="true"></i>
         </div>
-        <div class="manage-no-item-container manage-item-container">
+        <div class="manage-item-container ">
             <div class="manage-no-items-message">
                 <p>Your clients will appear here once they are created.</p>
             </div>

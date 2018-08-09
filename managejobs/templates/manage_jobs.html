@@ -46,29 +46,35 @@
                     {{ form.client.label_tag }}
                     {{ form.client }}
                 </p>
+            
             {% if not form.job_title.value %}
             <button class="manage-form__button"type="submit">Add Job</button>
             {% else %}
+            <input type="hidden" name="updated" value="true">
             <button class="manage-form__button"type="submit">Update Job</button>
             {% endif %}
         </form>
-    {% if not clients %}
-        <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
-            You must do this before you can create a new job.
-        </p>
-        <p>You can follow the link here to Manage Clients.</p>
-        <div>
-            <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
-        </div>
-    {% endif %}
     {% if messages %}
         {% for message in messages %}
-        <p class="generic-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+        <p class="generic-success manage-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
         {% endfor %}
+    {% elif form.job_title.value %}
+        <div class="form-reset-container">
+                <a href="{% url 'manage_jobs' username=user.username %}" class="cycles-search-reset__button">
+                    <div class="cycles-search-reset">
+                    <span><span>Clear form</span><i class="fas fa-times-circle" aria-hiden="true"></i></span>
+                </div>
+            </a>
+        </div>
+    {% elif not clients %}
+        <p class="generic-success manage-success">You are seeing an empty drop down list because you have no clients.
+            You must add one before you can create a new job.
+        </p>
+        <p class="generic-success manage-success">You can follow the link <a href="{% url 'manage_clients' username=username %}"><strong>here</strong></a> to Manage Clients.</p>
     {% else %}
         <div class="generic-success-dummy"></div>
     {% endif %}
-</div>
+    </div>
     <!----- MOBILE TOTALS VIEW ---->
     <hr class="manage-hr manage-total-mobile">
     <div class="manage-total manage-total-mobile">
@@ -83,7 +89,7 @@
     <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
     <!-------------------------->
 
-    <div class="manage-items-container">
+    <div class="manage-items-container {% if not clients %} manage-items-container--no-items {% endif %}">
         {% if jobs %}
         {% for job in jobs %}
         <div class="manage-item-container">
@@ -116,7 +122,7 @@
                 </div>
                 <div class="manage-item__column manage-item__button-column">
                     <div class="manage-button">
-                        <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Job</button>
+                        <button data-id="Delete Job" class="manage-button__button manage-button__button--delete-color">Delete Job</button>
                     </div>
                 </div>
             </div>

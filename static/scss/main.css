@@ -9,7 +9,8 @@ html, body {
   width: 100%; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #fff; }
 
 hr {
   margin: 0; }
@@ -1508,7 +1509,7 @@ p, button {
   margin: .5rem 0 .5rem 0; }
 
 .manage-hr--added-margin {
-  margin-bottom: 2.5rem; }
+  margin-bottom: 2.9rem; }
   @media (min-width: 992px) {
     .manage-hr--added-margin {
       margin-bottom: 0rem; } }
@@ -1538,7 +1539,7 @@ p, button {
   background-color: #597b78;
   width: 100%;
   border-radius: .3rem;
-  margin: 1rem 0 2rem 0; }
+  margin: 0rem 0 2.9rem 0; }
 
 .manage-item__row {
   display: flex;
@@ -1620,6 +1621,9 @@ p, button {
 .manage-total-desktop p {
   margin-bottom: 0rem; }
 
+.manage-items-container--no-items {
+  justify-content: center; }
+
 .manage-no-items-message p {
   text-align: center; }
 
@@ -1632,6 +1636,12 @@ p, button {
 
 .manage-item__column--center {
   align-items: center; }
+
+.manage-success {
+  width: 17rem; }
+  @media (min-width: 992px) {
+    .manage-success {
+      width: 20rem; } }
 
 .steps-icon {
   display: none; }
@@ -1660,5 +1670,8 @@ p, button {
   @media (min-width: 992px) {
     .manage-total-desktop {
       display: flex; } }
+
+.form-reset-container {
+  margin-top: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

@@ -4,36 +4,40 @@
 
     const manageClientInput = document.getElementsByClassName('register-form__input');
     const jobsFormInput = document.getElementsByTagName('input');
-    const manageDeleteClientsButtons = document.getElementsByClassName('manage-button__button');
+    const manageDeleteItemButtons = document.getElementsByClassName('manage-button__button');
     const jobsFormSelect = document.getElementById('id_client');
 
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
     // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY addRemoveClassOnClick FUNCTION
     // AND CALL insertHTMLonClick TO ALTER BUTTON DISPLAY
-    const showHideDeleteDiv = (buttons, condition, html) => {
+    const showHideDeleteDiv = (buttons) => {
         for (let i = 0; i < buttons.length; i++) {
 
-            let deleteButton = buttons[i].getAttribute('data-id')
-            
-            if (deleteButton == 'manage-delete') {
-
-                let showDeleteDiv = buttons[i].
+            let deleteButtonDataId = buttons[i].getAttribute('data-id');
+            let showDeleteDiv = buttons[i].
                                         parentElement.
                                         parentElement.
                                         parentElement.
                                         nextElementSibling;
-
-                addRemoveClassOnClick(buttons[i], 
-                                        showDeleteDiv, 
+            addRemoveClassOnClick(buttons[i], 
+                                    showDeleteDiv, 
                                         'manage-delete__button--show' );
-
-                addRemoveClassOnClick(buttons[i], 
-                                        buttons[i], 
-                                        'manage-button__button--delete-click' );
+    
+            addRemoveClassOnClick(buttons[i], 
+                                    buttons[i], 
+                                    'manage-button__button--delete-click' );
+            
+            if (deleteButtonDataId == 'Delete Job') {
                 
-                insertHTMLonClick(buttons[i], condition, html);
+                insertCancelOnClick(buttons[i], deleteButtonDataId);
        
-            }
+            } else if (deleteButtonDataId == 'Delete Client')
+
+                insertCancelOnClick(buttons[i], deleteButtonDataId);
+
+            else if (deleteButtonDataId == 'Delete Cycle')
+
+                insertCancelOnClick(buttons[i], deleteButtonDataId);
 
         }
 
@@ -46,7 +50,7 @@
     }
 
 
-    showHideDeleteDiv(manageDeleteClientsButtons, 'Delete Client', 'Cancel');
+    showHideDeleteDiv(manageDeleteItemButtons);
     addBgColorToBody('body-color');
 
     // JOBS VIEW SPECIFIC //
