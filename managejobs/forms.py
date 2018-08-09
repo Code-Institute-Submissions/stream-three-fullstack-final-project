@@ -12,7 +12,7 @@ class ParentJobForm(forms.Form):
         self.fields['job_title'] = forms.CharField(max_length=20, 
                                                     label="",
                                                     widget=forms.TextInput(
-                                                    attrs={'placeholder':'Job Name'}
+                                                    attrs={'placeholder':'Job Name',}
                                                     ))
         self.fields['client'] = forms.ModelChoiceField(queryset=self.client_choices,
                                                         to_field_name='client',

@@ -1,81 +1,152 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/manage.js' %}"></script>
+{% endblock head_js %}
 {% block content %}
-<h1>You are logged in as {{ username }}</h1>
-{% if cycles_count > 1 %}
-<h2>{{ cycles_count }} current cycles.</h2>
-{% elif cycles_count == 0 %}
-<h2>{{ cycles_count }} current cycles.</h2>
-{% elif cycles_count == 1 %}
-<h2>{{ cycles_count }} current cycle.</h2>
-{% endif %}
-<h2>Add Cycle</h2>
-<form method="POST">
-    {% csrf_token %}
-       {{ cycle_form.as_p }}
-        {% if not jobs %}
-            <p>You are seeing an empty drop down list because you haven't added any Jobs to your account yet.
-                You must do this before you can create a new job.
-            </p>
-            <p>You can follow the link here to Manage Jobs.</p>
-            <div>
-                <a href="#">Manage Jobs</a>
+{% include 'header.html' %}
+<div class="manage-container">
+    <div class="manage-form-container">
+        <div class="steps-icon">
+            <i class="far fa-circle steps-icon__icon" aria-hidden="true"></i>
+        </div>
+        <h1 class="manage-heading">Manage Cycles</h1>
+        <!----- DESKTOP TOTALS VIEW ------>
+        <div class="manage-total manage-total-desktop">
+                {% if cycles_count > 1 %}
+                    <p>You have a total of {{ cycles_count }} cycles.</p>
+                {% elif cycles_count == 0 %}
+                    <p>You have a total of {{ cycles_count }} cycles.</p>
+                {% elif cycles_count == 1 %}
+                    <p>You have a total of {{ clients_count }} cycle.</p>
+                {% endif %}
             </div>
-        {% endif %}
-    <button type="submit">Add Cycle</button>
-</form>
-<p>
-{% for message in messages %}
-    {% if 'manage_cycle' in message.tags %}
-        {{ message }}
-    {% endif %}
-{% endfor %}
-</p>
-<hr>
-<div>
-    {% for item in cycles %}
-    <div>
-        <h4>Fileo Cycle ID: {{ item.cycle.id }}</h4>
-        {% if item.cancelled %}
-        <p>Cancelled</p>
-        {% elif item.pending %}
-        <p>Payment Pending</p>
-        {% elif item.complete %}
-        <p>Cycle Complete</p>
-        {% else %}
-        <p>Active</p>
-        {% endif %}
-        <h3>Cycle Title</h3>
-        <p>{{ item.cycle.cycle_title }}</p>
-        <h3>Attached Job</h3>
-        <p>{{ item.cycle.job.job_title }}</p>
-        <p>{{ item.cycle.job.job_number }}</p>
-        <h3>Attached Client</h3>
-        <p><strong>Name:</strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}} 
-        <p><strong>Username:</strong> {{ item.cycle.client.username }}</p></p>
-        <p><strong>Email:</strong> {{ item.cycle.client.email }}</p></p>
-        <p>
-            <a href="{% url 'edit_cycle' username=username cycle_id=item.cycle.id %}">Edit Cycle</a>
-        </p>
-        <form method='POST' action="{% url 'reset_cycle' username=username cycle_id=item.cycle.id %}">
-            {% csrf_token %}
-            <button type='submit'>Reset Cycle</button>
-        </form>
-        <form method='POST' action="{% url 'cancel_cycle' username=username cycle_id=item.cycle.id %}">
-            {% csrf_token %}
-            {% if not item.cancelled %}
-            <input type='hidden' name='cancel' value='True'>
-            <button type='submit'>Cancel Cycle</button>
-            {% elif item.cancelled %}
-            <input type='hidden' name='cancel' value='False'>
-            <button type='submit'>Re-instate Cycle</button>
+            <!-------------------------------->
+            {% if not form.cycle_title.value %}
+            <p class="manage-text">Create a New Cycle</p>
+            {% else %}
+            <p class="manage-text">Update {{ form.cycle_title.value }}</p>
             {% endif %}
-        </form>
-        <form method='POST' action="{% url 'delete_cycle' username=username cycle_id=item.cycle.id %}">
-            {% csrf_token %}
-            <button type='submit'>Delete Cycle</button>
-        </form>
+            <form class="manage-form" method="POST">
+                {% csrf_token %}
+                    {{ cycle_form.as_p }}
+                
+                {% if not form.job_title.value %}
+                <button class="manage-form__button"type="submit">Add Cycle</button>
+                {% else %}
+                <input type="hidden" name="updated" value="true">
+                <button class="manage-form__button"type="submit">Update Cycle</button>
+                {% endif %}
+            </form>
+        {% if messages %}
+            {% for message in messages %}
+            <p class="generic-success manage-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+            {% endfor %}
+        {% elif form.cycle_title.value %}
+            <div class="form-reset-container">
+                    <a href="{% url 'manage_jobs' username=user.username %}" class="cycles-search-reset__button">
+                        <div class="cycles-search-reset">
+                        <span><span>Clear form</span><i class="fas fa-times-circle" aria-hiden="true"></i></span>
+                    </div>
+                </a>
+            </div>
+        {% elif not jobs %}
+            <p class="generic-success manage-success">You are seeing an empty drop down list because you have no jobs.
+                You must add one before you can create a new cycle.
+            </p>
+            <p class="generic-success manage-success">You can follow the link <a href="{% url 'manage_clients' username=username %}"><strong>here</strong></a> to Manage Jobs.</p>
+        {% else %}
+            <div class="generic-success-dummy"></div>
+        {% endif %}
+        </div>
+        <!----- MOBILE TOTALS VIEW ---->
+        <hr class="manage-hr manage-total-mobile">
+        <div class="manage-total manage-total-mobile">
+            {% if cycles_count > 1 %}
+                <p>You have a total of {{ cycles_count }} cycles.</p>
+            {% elif cycles_count == 0 %}
+                <p>You have a total of {{ cycles_count }} cycles.</p>
+            {% elif cycles_count == 1 %}
+                <p>You have a total of {{ jobs_count }} cycle.</p>
+            {% endif %}
+        </div>
+        <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
+        <!-------------------------->
+        <div class="manage-items-container {% if not clients %} manage-items-container--no-items {% endif %}">
+            {% if cycles %}
+            {% for item in cycles %}
+            <div class="manage-item-container">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p id="manage-items__text-top"><strong><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i></strong> {{ item.cycle.cycle_title }}</p>
+                    </div>
+                </div>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p><strong><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i></strong> {{ item.cycle.job.job_title }}</p>
+                    </div>
+                </div>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p><strong><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> </strong>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                    </div>
+                </div>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column manage-item__button-column">
+                        <form class="manage-button" method="POST" action="{% url 'edit_cycle' username=username cycle_id=item.cycle.id %}">
+                            {% csrf_token %}    
+                            <input type="hidden" name="update" value="true">
+                            <input type="hidden" name="cycle_id" value="{{ item.cycle.id }}">
+                            <button class="manage-button__button" type="submit">Update Cycle</button>
+                        </form>
+                    </div>
+                    <form method='POST' action="{% url 'reset_cycle' username=username cycle_id=item.cycle.id %}">
+                        {% csrf_token %}
+                        <button type='submit'>Reset Cycle</button>
+                    </form>
+                    <form method='POST' action="{% url 'cancel_cycle' username=username cycle_id=item.cycle.id %}">
+                        {% csrf_token %}
+                        {% if not item.cancelled %}
+                        <input type='hidden' name='cancel' value='True'>
+                        <button type='submit'>Cancel Cycle</button>
+                        {% elif item.cancelled %}
+                        <input type='hidden' name='cancel' value='False'>
+                        <button type='submit'>Re-instate Cycle</button>
+                        {% endif %}
+                    </form>
+                    <div class="manage-item__column manage-item__button-column">
+                        <div class="manage-button">
+                            <button data-id="Delete Cycle" class="manage-button__button manage-button__button--delete-color">Delete Cycle</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
+                    <div class="manage-item__column manage-item__column--center">
+                        <p class="manage-item__delete-text">Are you sure ?</p>
+                        <p class="manage-item__delete-text">All related files will be deleted too.</p>
+                        <form class="manage-button" method="POST" action="{% url 'delete_cycle' username=username cycle_id=item.cycle.id %}">
+                            {% csrf_token %}
+                            <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes <i class="fas fa-check" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>
+                <i class="fas fa-ban manage-no-item-icon" aria-hidden="true"></i>
+            </div>
+            <div class="manage-no-item-container manage-item-container">
+                <div class="manage-no-items-message">
+                    <p>Your cycles will appear here once they are created.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
-    <hr>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endblock %}
