@@ -55,6 +55,26 @@ p, button {
   font-size: .8rem;
   text-align: center; }
 
+/*@mixin register-form-mobile {
+
+    @include login-form-mobile;
+}
+
+@mixin register-form-desktop-media-query {
+
+    height: 1.5rem;
+}
+*/
+/*@mixin reset-form-mobile {
+
+    @include login-form-mobile;
+
+}
+
+@mixin reset-form-desktop-media-query {
+
+    height: 1.5rem;
+}*/
 .main-header {
   height: 4rem;
   width: 100%;

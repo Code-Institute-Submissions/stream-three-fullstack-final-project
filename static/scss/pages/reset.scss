@@ -61,11 +61,11 @@
 .reset-confirm__password1,
 .reset-confirm__password2 {
 
-    @include reset-form-mobile;
+    @include login-form-mobile;
 
     @include tablet {
 
-        @include reset-form-desktop-media-query;
+        @include login-form-desktop-media-query;
     }
 }
 

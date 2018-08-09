@@ -123,12 +123,12 @@
 
 .register-form__input {
 
-    @include register-form-mobile;
+    @include login-form-mobile;
     
 
     @include tablet {
 
-        @include register-form-desktop-media-query;
+        @include login-form-desktop-media-query;
     }
 }
 
