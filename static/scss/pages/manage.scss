@@ -110,6 +110,7 @@
 
 .manage-items-container {
 
+    @include flex-column;
     width: 18.6rem;
 
     @include desktop {
@@ -239,6 +240,21 @@
 .manage-total-desktop p {
 
     margin-bottom: 0rem;
+}
+
+.manage-no-item-container{
+
+    
+}
+.manage-no-items-message p {
+
+    text-align: center;
+}
+
+.manage-no-item-icon {
+
+    color: #fff;
+    font-size: 2rem;
 }
 // ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
 

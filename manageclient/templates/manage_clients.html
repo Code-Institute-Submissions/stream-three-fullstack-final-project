@@ -13,6 +13,7 @@
             <i class="fas fa-user-plus steps-icon__icon" aria-hidden="true"></i>
         </div>
         <h1 class="manage-heading">Manage Clients</h1>
+        <!----- DESKTOP TOTALS VIEW ------>
         <div class="manage-total manage-total-desktop">
             {% if clients_count > 1 %}
                 <p>You have a total of {{ clients_count }} clients.</p>
@@ -22,6 +23,7 @@
                 <p>You have a total of {{ clients_count }} client.</p>
             {% endif %}
         </div>
+        <!-------------------------------->
         <p class="manage-text">Create a New Client</p>
         <form class="manage-form" method="POST">
             {% csrf_token %}
@@ -54,86 +56,66 @@
         <!-------------------------->
     </div>
     <div class="manage-items-container">
-        {% for client in clients %}
-        <div class="manage-item-container">
-            <div class="manage-item__row">
-                <div class="manage-item__column">
-                    <p id="manage-items__text-top"><strong><i class="fas fa-user" aria-hidden="true"></i></strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
+        {% if clients %}
+            {% for client in clients %}
+            <div class="manage-item-container">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p id="manage-items__text-top"><strong><i class="fas fa-user" aria-hidden="true"></i></strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
+                    </div>
                 </div>
-            </div>
-            <hr class="manage-items-hr">
-            <div class="manage-item__row">
-                <div class="manage-item__column">
-                    <p><strong><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i></strong> {{ client.client.email}}</p>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p><strong><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i></strong> {{ client.client.email}}</p>
+                    </div>
                 </div>
-            </div>
-            <hr class="manage-items-hr">
-            <div class="manage-item__row">
-                <div class="manage-item__column">
-                    <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column">
+                        <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
+                    </div>
                 </div>
-            </div>
-            <hr class="manage-items-hr">
-            
-            <!--<a href="">more</a>-->
-            <!--<h3>Company</h3>
-            <p>{{client.profile.company}}</p>
-            <h3>Phone Number</h3>
-            <p>{{client.profile.phone}}</p>
-            <h3>Position</h3>
-            <p>{{client.profile.position}}</p>-->
-            <div class="manage-item__row">
-                <div class="manage-item__column manage-item__button-column">
-                    <form class="manage-button" action="{% url 'client_profile' username=username client_id=client.client.id %}">
-                        {% csrf_token %}
-                        {% if client.profile %}
-                        <button class="manage-button__button" type="submit">Edit Profile</button>
-                        {% elif not client.profile %}
-                        <button class="manage-button__button" type="submit">Create Profile</button>
-                        {% endif %}
-                    </form>
+                <hr class="manage-items-hr">
+                <div class="manage-item__row">
+                    <div class="manage-item__column manage-item__button-column">
+                        <form class="manage-button" action="{% url 'client_profile' username=username client_id=client.client.id %}">
+                            {% csrf_token %}
+                            {% if client.profile %}
+                            <button class="manage-button__button" type="submit">Edit Profile</button>
+                            {% elif not client.profile %}
+                            <button class="manage-button__button" type="submit">Create Profile</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="manage-item__column manage-item__button-column">
+                        <div class="manage-button">
+                            <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="manage-item__column manage-item__button-column">
-                    <div class="manage-button">
-                        <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
+                <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
+                    <div class="manage-item__column ">
+                        <p class="manage-item__delete-text">Are you sure ?</p>
+                        <p class="manage-item__delete-text">All jobs and cycles will be deleted too.</p>
+                        <form class="manage-button" method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+                            {% csrf_token %}
+                            <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes</button>
+                        </form>
                     </div>
                 </div>
             </div>
-           <!-- <hr class="manage-items-hr">-->
-            <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
-                <div class="manage-item__column ">
-                    <p class="manage-item__delete-text">Are you sure ?</p>
-                    <p class="manage-item__delete-text">All jobs and cycles will be deleted too.</p>
-                    <form class="manage-button" method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
-                        {% csrf_token %}
-                        <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes</button>
-                    </form>
-                </div>
-            </div>
-
-            
-            
-            
-            
-            <!--DO THIS WITH JS INSTEAD OF FROM THE BACKEND TO MITIGATE RELOAD OF PAGE-->
-            <!--{% for message in messages %}
-            {% if "delete_client" in message.tags %}
-            <p>{{ message }}</p>
-            <form method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}"> 
-                {% csrf_token %}
-                <button class="" type='submit'>Yes</button>
-            </form>
-            <p><a href="{% url 'manage_clients' username=username %}">No</a></p> 
-            {% endif %}
-            {% endfor %}
-            <form method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
-                {% csrf_token %}
-                <button type="submit">Delete Client</button>
-            </form>-->
-        </div>
-        
         {% endfor %}
+        {% else %}
+        <div>
+            <i class="fas fa-times manage-no-item-icon" aria-hidden="true"></i>
+        </div>
+        <div class="manage-no-item-container manage-item-container">
+            <div class="manage-no-items-message">
+                <p>Your clients will appear here once they are created.</p>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
-
 {% endblock %}
