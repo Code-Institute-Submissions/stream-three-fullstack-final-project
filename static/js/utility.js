@@ -56,7 +56,7 @@ const insertHTMLonClick = (clickElement, condition, html) => {
 
 const addClassToCollection = (collection, _class) => {
 
-    console.log(collection);
+   
     if (collection instanceof HTMLCollection) {
 
         for(let i = 0; i < collection.length; i++) {
@@ -73,4 +73,14 @@ const addClassToElement = (_element, _class) => {
 
 }
 
+// ADD STYLES AND ICON TO SELECT BOX //
 
+const addStylesToFormSelect = (select, _class) => {
+
+     // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
+     select.parentElement.setAttribute('class', 'profile-filter-styled');
+    
+     // INSERT ICON INOT SELECT BOX //
+     select.parentElement.insertAdjacentHTML('beforeend',
+                         '<i class="fas fa-sort-down profile-filter-arrow" aria-hidden="true"></i>');
+}

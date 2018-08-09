@@ -1,86 +1,3 @@
-
-<h1>You are logged in as {{ username }}</h1>
-{% if jobs_count > 1 %}
-<h2>{{ jobs_count }} current jobs.</h2>
-{% elif jobs_count == 0 %}
-<h2>{{ jobs_count }} current jobs.</h2>
-{% elif jobs_count == 1 %}
-<h2>{{ jobs_count }} current job.</h2>
-{% endif %}
-<h2>Add Job</h2>
-<form method="POST">
-    {% csrf_token %}
-    <form class="manage-form" method="POST">
-        {% csrf_token %}
-        <div class="fieldWrapper">
-            <p>
-                {{ form.job_title.errors }}
-                {{ form.job_title.label_tag }}
-                {{ form.job_title }}
-            </p>
-        </div>
-        <div class="fieldWrapper">
-           <p>
-               {{ form.job_number.errors }}
-               {{ form.job_number.label_tag }}
-               {{ form.job_number}}
-           </p>
-        <div class="fieldWrapper">
-            <p>
-                {{ form.client.errors }}
-                {{ form.client.label_tag }}
-                {{ form.client }}
-            </p>
-        </div>
-    {% if not clients %}
-        <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
-            You must do this before you can create a new job.
-        </p>
-        <p>You can follow the link here to Manage Clients.</p>
-        <div>
-            <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
-        </div>
-    {% endif %}
-    <button class="manage-form__button"type="submit">Add Job</button>
-</form>
-<p>
-{% for message in messages %}
-{{ message }}
-{% endfor %}
-</p>
-<hr>
-<div>
-    {% if jobs %}
-    {% for job in jobs %}
-    <div>
-        <h3>Job Title </h3>
-        <p>{{ job.job_title }}</p>
-        <h4>Job Number</h4>
-        <p>{{ job.job_number }}</p>
-        <h4>Attached Client</h4>
-        <p>{{ job.client.first_name }} {{ job.client.last_name }}</p>
-        <p>{{ job.client.username }}</p>
-        <p><a href="{% url 'edit_job' username=username job_id=job.id %}">Update Job</a></p>
-        
-        <!--<form method="" action="{% url 'edit_job' username=username job_id=job.id %}">
-            {% csrf_token %}
-            <button type="submit">Edit Job</button>
-        </form>-->
-       
-        <form method = "POST" action="{% url 'delete_job' username=username job_id=job.id %}">
-            {% csrf_token %}
-            <button type="submit">Delete Job</button>
-        </form>
-    </div>
-    <hr>
-    {% endfor %}
-    {% endif %}
-
-</div>
-
-
-<!-------------------------------------------------------------------------------------------------->
-
 {% extends 'base.html' %}
 {% load static %}
 {% block head_js %}
@@ -93,7 +10,7 @@
 <div class="manage-container">
     <div class="manage-form-container">
         <div class="steps-icon">
-            <i class="fas fa-briefcase mobile-nav__icons" aria-hidden="true"></i>
+            <i class="fas fa-briefcase steps-icon__icon" aria-hidden="true"></i>
         </div>
         <h1 class="manage-heading">Manage Jobs</h1>
         <!----- DESKTOP TOTALS VIEW ------>
@@ -107,113 +24,124 @@
             {% endif %}
         </div>
         <!-------------------------------->
+        {% if not form.job_title.value %}
         <p class="manage-text">Create a New Job</p>
-        <form method="POST">
-            {% csrf_token %}
-            <form class="manage-form" method="POST">
-                {% csrf_token %}
-                <div class="fieldWrapper">
-                    <p>
-                        {{ form.job_title.errors }}
-                        {{ form.job_title.label_tag }}
-                        {{ form.job_title }}
-                    </p>
-                </div>
-                <div class="fieldWrapper">
-                    <p>
-                        {{ form.job_number.errors }}
-                        {{ form.job_number.label_tag }}
-                        {{ form.job_number}}
-                    </p>
-                <div class="fieldWrapper">
-                    <p>
-                        {{ form.client.errors }}
-                        {{ form.client.label_tag }}
-                        {{ form.client }}
-                    </p>
-                </div>
-            {% if not clients %}
-                <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
-                    You must do this before you can create a new job.
-                </p>
-                <p>You can follow the link here to Manage Clients.</p>
-                <div>
-                    <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
-                </div>
-            {% endif %}
-            <button class="manage-form__button"type="submit">Add Job</button>
-        </form>
-        {% if messages %}
-            {% for message in messages %}
-            <p class="generic-success"> <i class="fas fa-times" aria-hidden="true"></i> {{ message }}</p>
         {% else %}
-            <div class="generic-success-dummy"></div>
+        <p class="manage-text">Update {{ form.job_title.value }}</p>
         {% endif %}
-        <!----- MOBILE TOTALS VIEW ---->
-        <hr class="manage-hr manage-total-mobile">
-        <div class="manage-total manage-total-mobile">
-            {% if jobs_count > 1 %}
-                <p>You have a total of {{ jobs_count }} jobs.</p>
-            {% elif jobs_count == 0 %}
-                <p>You have a total of {{ jobs_count }} jobs.</p>
-            {% elif jobs_count == 1 %}
-                <p>You have a total of {{ jobs_count }} job.</p>
+        <form class="manage-form" method="POST">
+            {% csrf_token %}
+                <p>
+                    {{ form.job_title.errors }}
+                    {{ form.job_title.label_tag }}
+                    {{ form.job_title }}
+                </p>
+                <p>
+                    {{ form.job_number.errors }}
+                    {{ form.job_number.label_tag }}
+                    {{ form.job_number}}
+                </p>
+                <p>
+                    {{ form.client.errors }}
+                    {{ form.client.label_tag }}
+                    {{ form.client }}
+                </p>
+            {% if not form.job_title.value %}
+            <button class="manage-form__button"type="submit">Add Job</button>
+            {% else %}
+            <button class="manage-form__button"type="submit">Update Job</button>
             {% endif %}
+        </form>
+    {% if not clients %}
+        <p>You are seeing an empty drop down list because you haven't added any clients to your account yet.
+            You must do this before you can create a new job.
+        </p>
+        <p>You can follow the link here to Manage Clients.</p>
+        <div>
+            <a href="{% url 'manage_clients' username=username %}">Manage Clients</a>
         </div>
-        <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
-        <!-------------------------->
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+        <p class="generic-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+        {% endfor %}
+    {% else %}
+        <div class="generic-success-dummy"></div>
+    {% endif %}
+</div>
+    <!----- MOBILE TOTALS VIEW ---->
+    <hr class="manage-hr manage-total-mobile">
+    <div class="manage-total manage-total-mobile">
+        {% if jobs_count > 1 %}
+            <p>You have a total of {{ jobs_count }} jobs.</p>
+        {% elif jobs_count == 0 %}
+            <p>You have a total of {{ jobs_count }} jobs.</p>
+        {% elif jobs_count == 1 %}
+            <p>You have a total of {{ jobs_count }} job.</p>
+        {% endif %}
     </div>
+    <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
+    <!-------------------------->
+
     <div class="manage-items-container">
         {% if jobs %}
-        {% for client in clients %}
+        {% for job in jobs %}
         <div class="manage-item-container">
             <div class="manage-item__row">
                 <div class="manage-item__column">
-                    <p id="manage-items__text-top"><strong><i class="fas fa-user" aria-hidden="true"></i></strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
+                    <p id="manage-items__text-top"><strong><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i></strong> {{ job.job_title }}</p>
                 </div>
             </div>
             <hr class="manage-items-hr">
             <div class="manage-item__row">
                 <div class="manage-item__column">
-                    <p><strong><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i></strong> {{ client.client.email}}</p>
+                    <p><strong><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i></strong> {{ job.job_number }}</p>
                 </div>
             </div>
             <hr class="manage-items-hr">
             <div class="manage-item__row">
                 <div class="manage-item__column">
-                    <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
+                    <p><strong><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> </strong>{{ job.client.first_name}} {{ job.client.last_name }}</p>
                 </div>
             </div>
             <hr class="manage-items-hr">
             <div class="manage-item__row">
                 <div class="manage-item__column manage-item__button-column">
-                    <form class="manage-button" action="{% url 'client_profile' username=username client_id=client.client.id %}">
-                        {% csrf_token %}
-                        {% if client.profile %}
-                        <button class="manage-button__button" type="submit">Edit Profile</button>
-                        {% elif not client.profile %}
-                        <button class="manage-button__button" type="submit">Create Profile</button>
-                        {% endif %}
+                    <form class="manage-button" method="POST" action="{% url 'manage_jobs' username=username  %}"><!--job_id=job.id-->
+                        {% csrf_token %}    
+                        <input type="hidden" name="update" value="true">
+                        <input type="hidden" name="job_id" value="{{ job.id }}">
+                        <button class="manage-button__button" type="submit">Update Job</button>
                     </form>
                 </div>
                 <div class="manage-item__column manage-item__button-column">
                     <div class="manage-button">
-                        <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Client</button>
+                        <button data-id="manage-delete" class="manage-button__button manage-button__button--delete-color">Delete Job</button>
                     </div>
                 </div>
             </div>
             <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
-                <div class="manage-item__column ">
+                <div class="manage-item__column manage-item__column--center">
                     <p class="manage-item__delete-text">Are you sure ?</p>
-                    <p class="manage-item__delete-text">All jobs and cycles will be deleted too.</p>
-                    <form class="manage-button" method="" action="{% url 'delete_client' username=username client_id=client.client.id%}">
+                    <p class="manage-item__delete-text">All related cycles will be deleted too.</p>
+                    <form class="manage-button" method="POST" action="{% url 'delete_job' username=username job_id=job.id %}">
                         {% csrf_token %}
-                        <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes</button>
+                        <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes <i class="fas fa-check" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div>
+            <i class="fas fa-ban manage-no-item-icon" aria-hidden="true"></i>
+        </div>
+        <div class="manage-no-item-container manage-item-container">
+            <div class="manage-no-items-message">
+                <p>Your jobs will appear here once they are created.</p>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

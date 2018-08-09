@@ -111,6 +111,7 @@
 .manage-items-container {
 
     @include flex-column;
+    justify-content: flex-start;
     width: 18.6rem;
 
     @include desktop {
@@ -151,6 +152,8 @@
 .manage-item__column {
 
     @include flex-column;
+    align-items: flex-start;
+    overflow: hidden;
     //align-items: flex-start;
     
 }
@@ -254,7 +257,17 @@
 .manage-no-item-icon {
 
     color: #fff;
-    font-size: 2rem;
+    font-size: 1rem;
+    @include desktop {
+
+        font-size: 2rem;
+    }
+    
+}
+
+.manage-item__column--center {
+
+    align-items: center;
 }
 // ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
 
@@ -281,6 +294,8 @@
 }
 
 .manage-total-mobile {
+
+    @include flex_row;
 
     @include desktop {
 

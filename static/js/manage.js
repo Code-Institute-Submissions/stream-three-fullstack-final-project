@@ -3,7 +3,9 @@
 (() => {
 
     const manageClientInput = document.getElementsByClassName('register-form__input');
+    const jobsFormInput = document.getElementsByTagName('input');
     const manageDeleteClientsButtons = document.getElementsByClassName('manage-button__button');
+    const jobsFormSelect = document.getElementById('id_client');
 
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
     // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY addRemoveClassOnClick FUNCTION
@@ -43,7 +45,13 @@
         manageClientInput[i].setAttribute('required','true');
     }
 
+
     showHideDeleteDiv(manageDeleteClientsButtons, 'Delete Client', 'Cancel');
     addBgColorToBody('body-color');
+
+    // JOBS VIEW SPECIFIC //
+    addClassToElement(jobsFormSelect, 'profile__select');
+    addClassToCollection(jobsFormInput, 'register-form__input');
+    addStylesToFormSelect(jobsFormSelect, 'profile-filter-styled');
     
 })();
