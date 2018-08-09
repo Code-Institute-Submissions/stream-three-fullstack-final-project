@@ -20,7 +20,6 @@
                                         parentElement.
                                         parentElement.
                                         parentElement.
-                                        nextElementSibling.
                                         nextElementSibling;
 
                 addRemoveClassOnClick(buttons[i], 
@@ -46,5 +45,6 @@
     }
 
     showHideDeleteDiv(manageDeleteClientsButtons, 'Delete Client', 'Cancel');
+    addBgColorToBody('body-color');
     
 })();

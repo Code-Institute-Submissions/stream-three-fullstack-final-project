@@ -5,12 +5,14 @@ html {
 
     font-size: 16px;
 }
+
 html, body {
 
     border: 0;
     margin: 0;
     padding: 0;
-    height: 100%
+    height: 100%;
+    width: 100%;
     
 }
 
@@ -64,4 +66,13 @@ p, button{
 
     color: #fff;
     font-size: .8rem;
+}
+
+.body-color {
+
+    //height: auto;
+    //width: 100%;
+    background-color:$login-green;
+    position: relative;
+    z-index:-10;
 }

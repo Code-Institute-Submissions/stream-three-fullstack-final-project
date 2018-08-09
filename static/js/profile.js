@@ -12,5 +12,7 @@
     profileSelect.parentElement.insertAdjacentHTML('beforeend',
                         '<i class="fas fa-sort-down profile-filter-arrow" aria-hidden="true"></i>');
 
+    addBgColorToBody('body-color');
+
 
 })();

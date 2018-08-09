@@ -4,60 +4,58 @@
 <script defer type="text/javascript" src="{% static 'js/login.js' %}"></script>
 {% endblock %}  
 {% block content %}
-<body>
-    <div class="login-bg-color landing-container">
-        <div class="login-container">
-                <div class="fileo-logo fileo-logo--margin">
-                    <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
+<div class="login-bg-color landing-container">
+    <div class="login-container">
+            <div class="fileo-logo fileo-logo--margin">
+                <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
+            </div>
+            <div class="login-form">
+                <form class="login-form__form" action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    {{ login_form.as_p }}
+                    <button class="login-form__button"type="submit">Login</button>
+                </form>
+            </div>
+            <div class="login-links">
+                <div>
+                    <a class="login-links__signup" href="{% url 'register' %}">Register</a>
                 </div>
-                <div class="login-form">
-                    <form class="login-form__form" action="{% url 'index' %}" method="POST">
-                        {% csrf_token %}
-                        {{ login_form.as_p }}
-                        <button class="login-form__button"type="submit">Login</button>
-                    </form>
-                </div>
-                <div class="login-links">
-                    <div>
-                        <a class="login-links__signup" href="{% url 'register' %}">Register</a>
-                    </div>
-                    <div>
-                        <a class="login-links__reset-password" href="{% url 'password_reset' %}">Reset Password</a>
-                    </div>
-                </div>
-                <div class="login-errors">
-                    {% if messages %}
-                        {% for message in messages %}
-                        <p class="login-errors__text">{{ message }}</p>
-                        {% endfor %}
-                    {% else %}
-                        <p></p>
-                    {% endif %}
+                <div>
+                    <a class="login-links__reset-password" href="{% url 'password_reset' %}">Reset Password</a>
                 </div>
             </div>
-            <div id="down-arrow" class="scroll-down">
-                <i class="scroll-down__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
+            <div class="login-errors">
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="login-errors__text">{{ message }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p></p>
+                {% endif %}
+            </div>
+        </div>
+        <div id="down-arrow" class="scroll-down">
+            <i class="scroll-down__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+<div id="login-blurb" class="login-blurb">
+    <div id="up-arrow" class="scroll-up">
+        <i class="scroll-up__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
+    </div>
+    <div class="login-blurb__container">
+        <div class="logo-f">
+            <div class="logo-f__logo" aria-hidden="true"></div>
+        </div>
+        <div class="login-blurb__text">
+            <p class="login-blurb__text--strong">Fileo is on a mission.</p>
+            <p class="login-blurb__text--light">Fed up of trawling your email inbox for that Purchase Order. Ever lost revenue 
+                because you thought you'd sent that Invoice. Difficulty keeping on top of what's owed to you? </p>
+            <p class="login-blurb__text--light login-blurb__text--large">We're here to help.</p>
+            <div class="login-blurb__signup">
+                <a href="{% url 'register' %}" class="login-blurb__signup-link">Register</a>
             </div>
         </div>
     </div>
-    <div id="login-blurb" class="login-blurb">
-        <div id="up-arrow" class="scroll-up">
-            <i class="scroll-up__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
-        </div>
-        <div class="login-blurb__container">
-            <div class="logo-f">
-                <div class="logo-f__logo" aria-hidden="true"></div>
-            </div>
-            <div class="login-blurb__text">
-                <p class="login-blurb__text--strong">Fileo is on a mission.</p>
-                <p class="login-blurb__text--light">Fed up of trawling your email inbox for that Purchase Order. Ever lost revenue 
-                    because you thought you'd sent that Invoice. Difficulty keeping on top of what's owed to you? </p>
-                <p class="login-blurb__text--light login-blurb__text--large">We're here to help.</p>
-                <div class="login-blurb__signup">
-                    <a href="{% url 'register' %}" class="login-blurb__signup-link">Register</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+</div>
 {% endblock %}

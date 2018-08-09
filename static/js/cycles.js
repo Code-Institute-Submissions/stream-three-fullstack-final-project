@@ -50,6 +50,7 @@
 
 
     bgColorForStatus(cycleStatus);
+    addBgColorToBody('body-color');
    // addClassToSelect(selectBoxes, 'cycles-search__select');
  
    

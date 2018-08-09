@@ -5,7 +5,8 @@ html, body {
   border: 0;
   margin: 0;
   padding: 0;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 a {
   text-decoration: none; }
@@ -37,6 +38,11 @@ h1 {
 p, button {
   color: #fff;
   font-size: .8rem; }
+
+.body-color {
+  background-color: #81aeaa;
+  position: relative;
+  z-index: -10; }
 
 .errorlist {
   padding-left: 0; }
@@ -448,10 +454,12 @@ p, button {
 .login-blurb__signup-link {
   cursor: pointer; }
 
-.register-body--color {
-  background-repeat: no-repeat;
-  background-color: #81aeaa; }
+/*.register-body--color {
 
+    background-repeat: no-repeat;
+    background-color: $register-bg-color;
+
+}*/
 /*.register--bg-color {
     
     
@@ -913,12 +921,15 @@ p, button {
     .reset-complete__icon {
       font-size: 3rem; } }
 
-.cycles-bg-color {
-  width: 100%;
-  background-color: #81aeaa;
-  position: relative;
-  z-index: -10; }
+/*.cycles-bg-color {
 
+    //height: auto;
+    width: 100%;
+    //background-color:$login-green;
+    position: relative;
+    z-index:-10;
+    
+}*/
 .cycles-container {
   position: relative;
   top: 4rem;
@@ -1287,9 +1298,10 @@ p, button {
   .cycle-results-mobile {
     display: none; } }
 
-.profile-bg-color {
-  background-color: #81aeaa; }
+/*.profile-bg-color {
 
+    background-color: $login-green;
+}*/
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -1412,9 +1424,10 @@ p, button {
 .generic-success {
   text-align: center; }
 
-.clients-bg-color {
-  background-color: #81aeaa; }
+/*.clients-bg-color {
 
+    background-color:$login-green;
+}*/
 .manage-heading {
   margin-bottom: 0rem; }
 
@@ -1486,7 +1499,7 @@ p, button {
   margin-bottom: 2.5rem; }
 
 .manage-items-container {
-  width: 90%; }
+  width: 18.6rem; }
 
 .manage-item-container {
   display: flex;
@@ -1545,25 +1558,40 @@ p, button {
   width: 50%; }
 
 .manage-button__button--delete-color {
-  background-color: #cb4747; }
+  background-color: #cb4747;
+  transition: background-color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
 
 .manage-delete__button--hide {
   height: 0;
   overflow: hidden;
   transition: height 0.3s cubic-bezier(1, 0.32, 0.32, 0.75);
   background-color: #90c1bc;
-  padding-left: .9rem;
-  padding-right: .9rem;
+  padding-left: 15px;
+  padding-right: 15px;
   border-bottom-left-radius: .3rem;
   border-bottom-right-radius: .3rem; }
 
 .manage-delete__button--show {
-  height: 6rem; }
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 8rem; }
 
 .manage-item__delete-text {
   color: #384847; }
 
 .manage-button__button--delete-click {
-  background-color: #3a5864; }
+  background-color: #d5b25e; }
+
+.manage-total-desktop {
+  display: none; }
+  @media (min-width: 992px) {
+    .manage-total-desktop {
+      display: flex; } }
+
+.manage-total-mobile {
+  display: flex; }
+  @media (min-width: 992px) {
+    .manage-total-mobile {
+      display: none; } }
 
 /*# sourceMappingURL=main.css.map */

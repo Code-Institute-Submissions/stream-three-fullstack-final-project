@@ -1,6 +1,18 @@
 
 // ----- FUNCTIONS AND CLASSES ACCESIBLE BY ALL TEMPLATES ---- //
 
+const addBgColorToBody = (_class) => {
+
+    const body = document.getElementsByTagName('body');
+
+    for (let i = 0; i < body.length; i++) {
+
+        body[i].classList.add('body-color');
+
+    }
+    
+}
+
 // ADD/REMOVE CLASS ON CLICK //
 
 const addRemoveClassOnClick = (clickElement, _element, _class) => {

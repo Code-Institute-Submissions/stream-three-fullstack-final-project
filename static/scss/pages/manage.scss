@@ -1,10 +1,10 @@
 
 // MANAGE CLIENTS, MANAGE JOBS AND MANAGE CYCLES STYLES //
 
-.clients-bg-color {
+/*.clients-bg-color {
 
     background-color:$login-green;
-}
+}*/
 
 
 .manage-heading {
@@ -92,7 +92,7 @@
 
 .manage-items-container {
 
-    width: 90%;
+    width: 18.6rem;
 }
 
 .manage-item-container {
@@ -159,7 +159,10 @@
 .manage-button__button--delete-color {
 
     background-color: $cancelled-color;
+    transition: background-color .3s $drop-down-bezier;
 }
+
+
 
 // SHOW / HIDE DELETE BUTTON STYLES //
 
@@ -169,16 +172,21 @@
     overflow: hidden; 
     transition: height .3s $drop-down-bezier;
     background-color: $manage-item-delete-show-color;
-    padding-left: .9rem;
-    padding-right: .9rem;
+    padding-left: 15px;
+    padding-right: 15px;
     border-bottom-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
+    //display:none;
+    //top: -8rem;
+    //z-index: -1;
 }
 
 .manage-delete__button--show {
 
-    height: 6rem;
-    
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 8rem;
+   
 }
 
 .manage-item__delete-text {
@@ -188,5 +196,28 @@
 
 .manage-button__button--delete-click {
 
-    background-color: $login_bg_color;
+    background-color: $pending-color;
+}
+
+// ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
+
+.manage-total-desktop {
+
+    display: none;
+
+    @include desktop {
+
+        display: flex;
+    }
+}
+
+.manage-total-mobile    {
+
+    display: flex;
+
+    @include desktop {
+
+        display: none;
+    }
+
 }

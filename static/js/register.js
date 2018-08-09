@@ -55,6 +55,7 @@
                             "container--fixed-100");
     
     changeFixedDivText();
+    addBgColorToBody('body-color');
     
 
 })();
