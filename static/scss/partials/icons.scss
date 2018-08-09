@@ -7,7 +7,15 @@
 
 }
 
-@mixin fileo-text-logo {
+@mixin steps-icon-container {
 
-    
+    display: none; 
+
 }
+
+@mixin steps-icons {
+
+        color: $register-icon-color;
+        font-size: 1.5rem;
+    
+    }

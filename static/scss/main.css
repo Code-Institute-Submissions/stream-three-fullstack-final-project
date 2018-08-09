@@ -1336,9 +1336,10 @@ p, button {
 .profile-icon__icon {
   color: #597b78;
   font-size: 1.5rem; }
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     .profile-icon__icon {
-      font-size: 2rem; } }
+      margin-top: 1rem;
+      display: block; } }
 
 .profile-container form {
   display: flex;
@@ -1430,6 +1431,9 @@ p, button {
 }*/
 .manage-heading {
   margin-bottom: 0rem; }
+  @media (min-width: 992px) {
+    .manage-heading {
+      margin-top: .5rem; } }
 
 .manage-text {
   margin-bottom: 0.8rem; }
@@ -1444,7 +1448,10 @@ p, button {
   align-items: center; }
   @media (min-width: 992px) {
     .manage-container {
-      flex-direction: row; } }
+      top: 2rem;
+      height: 44rem;
+      flex-direction: row;
+      justify-content: space-evenly; } }
 
 .manage-form-container {
   display: flex;
@@ -1464,6 +1471,9 @@ p, button {
 .manage-form input {
   margin-left: .5rem;
   margin-right: .5rem; }
+  @media (min-width: 992px) {
+    .manage-form input {
+      width: 20rem; } }
 
 .manage-form p {
   margin-top: .5rem; }
@@ -1497,9 +1507,20 @@ p, button {
 
 .manage-hr--added-margin {
   margin-bottom: 2.5rem; }
+  @media (min-width: 992px) {
+    .manage-hr--added-margin {
+      margin-bottom: 0rem; } }
 
 .manage-items-container {
   width: 18.6rem; }
+  @media (min-width: 992px) {
+    .manage-items-container {
+      height: 30rem;
+      overflow: scroll;
+      width: 25rem;
+      padding: 2rem;
+      border: 1px solid rgba(37, 37, 37, 0.15);
+      border-radius: .3rem; } }
 
 .manage-item-container {
   display: flex;
@@ -1550,6 +1571,9 @@ p, button {
   width: 7rem;
   background-color: #3a5864;
   cursor: pointer; }
+  @media (min-width: 992px) {
+    .manage-button__button {
+      width: 11rem; } }
 
 #manage-items__text-top {
   margin-top: 0.5rem; }
@@ -1570,10 +1594,12 @@ p, button {
   padding-right: 15px;
   border-bottom-left-radius: .3rem;
   border-bottom-right-radius: .3rem; }
+  @media (min-width: 992px) {
+    .manage-delete__button--hide {
+      padding-left: 20px;
+      padding-right: 20px; } }
 
 .manage-delete__button--show {
-  padding-left: 15px;
-  padding-right: 15px;
   height: 8rem; }
 
 .manage-item__delete-text {
@@ -1582,16 +1608,30 @@ p, button {
 .manage-button__button--delete-click {
   background-color: #d5b25e; }
 
+.manage-total-desktop p {
+  margin-bottom: 0rem; }
+
+.steps-icon {
+  display: none; }
+  @media (min-width: 992px) {
+    .steps-icon {
+      display: flex; } }
+
+.steps-icon__icon {
+  color: #597b78;
+  font-size: 1.5rem; }
+  @media (min-width: 992px) {
+    .steps-icon__icon {
+      font-size: 2rem; } }
+
+@media (min-width: 992px) {
+  .manage-total-mobile {
+    display: none; } }
+
 .manage-total-desktop {
   display: none; }
   @media (min-width: 992px) {
     .manage-total-desktop {
       display: flex; } }
-
-.manage-total-mobile {
-  display: flex; }
-  @media (min-width: 992px) {
-    .manage-total-mobile {
-      display: none; } }
 
 /*# sourceMappingURL=main.css.map */

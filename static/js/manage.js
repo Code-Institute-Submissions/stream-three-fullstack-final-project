@@ -5,7 +5,6 @@
     const manageClientInput = document.getElementsByClassName('register-form__input');
     const manageDeleteClientsButtons = document.getElementsByClassName('manage-button__button');
 
-
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
     // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY addRemoveClassOnClick FUNCTION
     // AND CALL insertHTMLonClick TO ALTER BUTTON DISPLAY

@@ -10,6 +10,11 @@
 .manage-heading {
 
     margin-bottom: 0rem;
+
+    @include desktop {
+
+        margin-top: .5rem;
+    }
 }
 
 .manage-text {
@@ -26,7 +31,10 @@
 
     @include desktop {
 
+        top:2rem;
+        height: 44rem;
         flex-direction: row;
+        justify-content: space-evenly;
     }
 }
 
@@ -35,6 +43,7 @@
     @include flex_column;
     
 }
+
 .manage-form {
 
     @include flex-column;
@@ -48,6 +57,11 @@
 
     margin-left: .5rem;
     margin-right: .5rem;
+
+    @include desktop {
+
+        width: 20rem;
+    }
 }
 
 .manage-form p {
@@ -87,12 +101,26 @@
 .manage-hr--added-margin {
 
     margin-bottom: 2.5rem;
+    @include desktop {
+
+        margin-bottom: 0rem;
+    }
 }
 // MANAGE ITEM STYLES // 
 
 .manage-items-container {
 
     width: 18.6rem;
+
+    @include desktop {
+
+        height: 30rem;
+        overflow: scroll;
+        width: 25rem;
+        padding: 2rem;
+        border: 1px solid $hr-items-color;
+        border-radius: .3rem;
+    }
 }
 
 .manage-item-container {
@@ -103,6 +131,7 @@
     width: 100%;
     border-radius: .3rem;
     margin: $item-card-margin;
+   
 }
 
 .manage-item__row {
@@ -142,6 +171,11 @@
     width: 7rem;
     background-color: $login_bg_color;
     cursor: pointer;
+
+    @include desktop {
+
+        width: 11rem;
+    }
     
 }
 
@@ -176,13 +210,17 @@
     padding-right: 15px;
     border-bottom-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
+
+    @include desktop {
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
   
 }
 
 .manage-delete__button--show {
 
-    padding-left: 15px;
-    padding-right: 15px;
     height: 8rem;
    
 }
@@ -197,11 +235,16 @@
     background-color: $pending-color;
 }
 
+
+.manage-total-desktop p {
+
+    margin-bottom: 0rem;
+}
 // ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
 
-.manage-total-desktop {
+.steps-icon {
 
-    display: none;
+    @include steps-icon-container;
 
     @include desktop {
 
@@ -209,13 +252,33 @@
     }
 }
 
-.manage-total-mobile    {
+.steps-icon__icon {
 
-    display: flex;
+    @include steps-icons;
+
+    @include desktop {
+
+        font-size: 2rem;
+
+    }
+
+}
+
+.manage-total-mobile {
 
     @include desktop {
 
         display: none;
+    }
+
+}
+
+.manage-total-desktop {
+
+    display: none;
+    @include desktop {
+
+        display: flex;
     }
 
 }

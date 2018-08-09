@@ -9,7 +9,19 @@
 {% include 'header.html' %}
 <div class="manage-container">
     <div class="manage-form-container">
+        <div class="steps-icon">
+            <i class="fas fa-user-plus steps-icon__icon" aria-hidden="true"></i>
+        </div>
         <h1 class="manage-heading">Manage Clients</h1>
+        <div class="manage-total manage-total-desktop">
+            {% if clients_count > 1 %}
+                <p>You have a total of {{ clients_count }} clients.</p>
+            {% elif clients_count == 0 %}
+                <p>You have a total of {{ clients_count }} clients.</p>
+            {% elif clients_count == 1 %}
+                <p>You have a total of {{ clients_count }} client.</p>
+            {% endif %}
+        </div>
         <p class="manage-text">Create a New Client</p>
         <form class="manage-form" method="POST">
             {% csrf_token %}
@@ -27,19 +39,8 @@
         {% else %}
             <div class="generic-success-dummy"></div>
         {% endif %}
-        <hr class="manage-hr manage-total-desktop">
-        <div class="manage-total manage-total-desktop">
-            {% if clients_count > 1 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 0 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 1 %}
-                <p>You have a total of {{ clients_count }} client.</p>
-            {% endif %}
-        </div>
-        <hr class="manage-hr manage-hr--added-margin manage-total-desktop">
-    </div>
-    <hr class="manage-hr manage-total-mobile">
+        <!----- MOBILE TOTALS VIEW ---->
+        <hr class="manage-hr manage-total-mobile">
         <div class="manage-total manage-total-mobile">
             {% if clients_count > 1 %}
                 <p>You have a total of {{ clients_count }} clients.</p>
@@ -49,7 +50,9 @@
                 <p>You have a total of {{ clients_count }} client.</p>
             {% endif %}
         </div>
-    <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
+        <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
+        <!-------------------------->
+    </div>
     <div class="manage-items-container">
         {% for client in clients %}
         <div class="manage-item-container">
@@ -67,7 +70,7 @@
             <hr class="manage-items-hr">
             <div class="manage-item__row">
                 <div class="manage-item__column">
-                    <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No profile.{% endif %}</p>
+                    <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
                 </div>
             </div>
             <hr class="manage-items-hr">

@@ -43,7 +43,8 @@
 
 .profile-icon {
 
-    display: none; 
+    @include steps-icon-container;
+
 
     @include tablet {
 
@@ -56,14 +57,13 @@
 
 .profile-icon__icon {
 
-    color: $register-icon-color;
-    font-size: 1.5rem;
-
-    @include large {
-
-        font-size: 2rem;
-    }
+    @include steps-icons;
     
+    @include tablet {
+
+        margin-top: 1rem;
+        display:block;
+    }
 }
 
 

@@ -52,22 +52,25 @@ const insertHTMLonClick = (clickElement, condition, html) => {
 }
 
 
-// ADD CLASS TO HTML COLLECTION OR INDIVIDUAL ELEMENT // 
+// ADD CLASS TO HTML COLLECTION // 
 
 const addClassToCollection = (collection, _class) => {
 
+    console.log(collection);
     if (collection instanceof HTMLCollection) {
 
         for(let i = 0; i < collection.length; i++) {
 
-            collection[i].setAttribute('class', _class);
+            collection[i].classList.add(_class);
         }
-
-    } else {
-
-        collection.setAttribute('class', _class);
     }
- 
+}
+
+// ADD CLASS TO ATTRIBUTE TO INDIVIDUAL ELEMENT //
+const addClassToElement = (_element, _class) => {
+
+    _element.setAttribute('class', _class);
+
 }
 
 
