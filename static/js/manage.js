@@ -4,7 +4,7 @@
 
     const manageClientInput = document.getElementsByClassName('register-form__input');
     const jobsFormInput = document.getElementsByTagName('input');
-    const manageDeleteItemButtons = document.getElementsByClassName('manage-button__button');
+    const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
     const jobsFormSelect = document.getElementById('id_client');
 
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
