@@ -1629,9 +1629,11 @@ p, button {
 
 .manage-no-item-icon {
   color: #fff;
-  font-size: 1rem; }
+  font-size: 1rem;
+  margin-bottom: 1rem; }
   @media (min-width: 992px) {
     .manage-no-item-icon {
+      margin-bottom: 2rem;
       font-size: 2rem; } }
 
 .manage-item__column--center {
