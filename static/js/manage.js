@@ -50,12 +50,62 @@
     }
 
 
+
+    //-------------------------------------------------//
+    
+    const selectOneMonth = document.getElementById('id_start_date_month');
+    const selectOneDay = document.getElementById('id_start_date_day');
+    const selectOneYear = document.getElementById('id_start_date_year');
+    const selectTwoMonth = document.getElementById('id_end_date_month');
+    const selectTwoDay = document.getElementById('id_end_date_day');
+    const selectTwoYear = document.getElementById('id_end_date_year');
+    const cyclesFormSelect = document.getElementById('id_jobs');
+    const selectArray = [];
+
+    // POPULATE ARRAY WITH ELEMENTS, COULD NOT GET ELEMENTS BY TAG AS IT //
+    // WOULD PULL IN AN UNWANTED SELECTS //
+    selectArray.push(selectOneMonth, selectOneDay, selectOneYear,
+                    selectTwoMonth, selectTwoDay, selectTwoYear);
+
+
+    // WRAPS DATE SELECTS IN A DIV AND GIVE DIV A CLASS FOR STYLING //
+    const wrapSelectsWithDiv = (selects) => {
+
+        for (let i = 0; i < selects.length; i++) {
+
+            let parent = selects[i].parentElement;
+            parent.insertAdjacentHTML('beforeend', '<div></div>');
+            parent.lastChild.appendChild(selects[i]);
+            addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
+            
+                                               
+
+        }
+    }
+
+    //------------------- FUNCTION CALLS ------------------------------//
+
     showHideDeleteDiv(manageDeleteItemButtons);
     addBgColorToBody('body-color');
 
     // JOBS VIEW SPECIFIC //
-    addClassToElement(jobsFormSelect, 'profile__select');
+    if (jobsFormSelect) {
+
+        addClassToElement(jobsFormSelect, 'profile__select');
+        addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
+    }
+
+    // CYCLES VIEW SPECIFIC //
+
+    if (selectOneMonth) {
+
+        wrapSelectsWithDiv(selectArray);
+        addClassToElement(cyclesFormSelect, 'profile__select');
+        addStylesToSelectParent(cyclesFormSelect, 'profile-filter-styled');
+        
+    }
+    
     addClassToCollection(jobsFormInput, 'register-form__input');
-    addStylesToFormSelect(jobsFormSelect, 'profile-filter-styled');
+    
     
 })();

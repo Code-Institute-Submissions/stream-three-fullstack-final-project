@@ -1501,6 +1501,14 @@ p, button {
 .manage-form p {
   margin-top: .5rem; }
 
+.manage-form textarea {
+  width: 17.34rem;
+  border-radius: .3rem;
+  font-size: .8rem; }
+  @media (min-width: 992px) {
+    .manage-form textarea {
+      width: 20.34rem; } }
+
 .manage-form__button {
   height: 1.6rem;
   border: none;

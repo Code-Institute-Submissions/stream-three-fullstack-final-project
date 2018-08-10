@@ -75,10 +75,11 @@ const addClassToElement = (_element, _class) => {
 
 // ADD STYLES AND ICON TO SELECT BOX //
 
-const addStylesToFormSelect = (select, _class) => {
+const addStylesToSelectParent = (select, _class) => {
 
+    console.log('here');
      // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
-     select.parentElement.setAttribute('class', 'profile-filter-styled');
+     select.parentElement.setAttribute('class', _class);
     
      // INSERT ICON INOT SELECT BOX //
      select.parentElement.insertAdjacentHTML('beforeend',

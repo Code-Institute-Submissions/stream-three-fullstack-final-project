@@ -75,6 +75,17 @@
     margin-top: .5rem;
 }
 
+.manage-form textarea {
+
+    width: 17.34rem;
+    border-radius: .3rem;
+    font-size: .8rem;
+
+    @include desktop {
+
+        width: 20.34rem;
+    }
+}
 .manage-form__button {
 
     

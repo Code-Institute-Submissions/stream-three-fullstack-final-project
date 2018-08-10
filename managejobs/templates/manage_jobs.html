@@ -89,7 +89,7 @@
     <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
     <!-------------------------->
 
-    <div class="manage-items-container {% if not clients %} manage-items-container--no-items {% endif %}">
+    <div class="manage-items-container {% if jobs|length <= 2 %} manage-items-container--no-items {% endif %}">
         {% if jobs %}
         {% for job in jobs %}
         <div class="manage-item-container">
