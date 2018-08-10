@@ -75,17 +75,6 @@
     margin-top: .5rem;
 }
 
-.manage-form textarea {
-
-    width: 17.34rem;
-    border-radius: .3rem;
-    font-size: .8rem;
-
-    @include desktop {
-
-        width: 20.34rem;
-    }
-}
 .manage-form__button {
 
     
@@ -101,7 +90,6 @@
 }
 
 // MANAGE CYCLES SELECT STYLES SPECIFIC //
-
 
 .manage-cycles-form__start-date,
 .manage-cycles-form__end-date {
@@ -137,6 +125,25 @@
 
     color: #fff;
 }
+
+.manage-button__button--cycles-width {
+
+    width: 4rem;
+}
+
+
+.manage-form textarea {
+
+    width: 17.34rem;
+    border-radius: .3rem;
+    font-size: .8rem;
+
+    @include desktop {
+
+        width: 20.34rem;
+    }
+}
+
 // END OF MANAGE CYCLES SELECT STYLES //
 
 .manage-items-hr {
@@ -335,6 +342,7 @@
         width: 20rem;
     }
 }
+
 // ----------------- MEDIA QUERY SHOW/HIDE ELEMENTS ------------------------ //
 
 .steps-icon {

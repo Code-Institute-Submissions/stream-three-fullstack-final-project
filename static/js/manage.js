@@ -43,15 +43,15 @@
             
             if (deleteButtonDataId == 'Delete Job') {
                 
-                insertCancelOnClick(buttons[i], deleteButtonDataId);
+                insertNotSureOnClick(buttons[i], deleteButtonDataId);
        
             } else if (deleteButtonDataId == 'Delete Client')
 
-                insertCancelOnClick(buttons[i], deleteButtonDataId);
+                insertNotSureOnClick(buttons[i], deleteButtonDataId);
 
             else if (deleteButtonDataId == 'Delete Cycle')
 
-                insertCancelOnClick(buttons[i], deleteButtonDataId);
+                insertNotSureOnClick(buttons[i], deleteButtonDataId);
 
         }
 

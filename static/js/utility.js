@@ -34,13 +34,13 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 }
 
 // USED TO CHANGE THE INNER HTML OF A BUTTON ELEMENTS TO CANCEL ON CLICK //
-const insertCancelOnClick = (clickElement, condition) => {
+const insertNotSureOnClick = (clickElement, condition) => {
 
     clickElement.addEventListener('click', function() {
         
         if (this.innerHTML == condition){
             
-            this.innerHTML = 'Cancel';
+            this.innerHTML = 'Not Sure';
 
         } else {
 

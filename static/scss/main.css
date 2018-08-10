@@ -923,15 +923,6 @@ p, button {
     .reset-complete__icon {
       font-size: 3rem; } }
 
-/*.cycles-bg-color {
-
-    //height: auto;
-    width: 100%;
-    //background-color:$login-green;
-    position: relative;
-    z-index:-10;
-    
-}*/
 .cycles-container {
   position: relative;
   top: 4rem;
@@ -1485,14 +1476,6 @@ p, button {
 .manage-form p {
   margin-top: .5rem; }
 
-.manage-form textarea {
-  width: 17.34rem;
-  border-radius: .3rem;
-  font-size: .8rem; }
-  @media (min-width: 992px) {
-    .manage-form textarea {
-      width: 20.34rem; } }
-
 .manage-form__button {
   height: 1.6rem;
   border: none;
@@ -1538,6 +1521,17 @@ p, button {
 
 .manage-cycles-form__date-select select {
   color: #fff; }
+
+.manage-button__button--cycles-width {
+  width: 4rem; }
+
+.manage-form textarea {
+  width: 17.34rem;
+  border-radius: .3rem;
+  font-size: .8rem; }
+  @media (min-width: 992px) {
+    .manage-form textarea {
+      width: 20.34rem; } }
 
 .manage-items-hr {
   color: #337f784d;

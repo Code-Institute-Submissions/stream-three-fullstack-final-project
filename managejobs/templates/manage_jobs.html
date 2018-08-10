@@ -36,6 +36,7 @@
                     {{ form.job_title.label_tag }}
                     {{ form.job_title }}
                 </p>
+                
                 <p>
                     {{ form.job_number.errors }}
                     {{ form.job_number.label_tag }}
@@ -132,7 +133,7 @@
                     <p class="manage-item__delete-text">All related cycles will be deleted too.</p>
                     <form class="manage-button" method="POST" action="{% url 'delete_job' username=username job_id=job.id %}">
                         {% csrf_token %}
-                        <button class="manage-button__button manage-button__button--delete-color" type="submit">Yes <i class="fas fa-check" aria-hidden="true"></i></button>
+                        <button class="manage-button__button manage-button__button--delete-color" type="submit">I'm sure <i class="fas fa-check" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </div>

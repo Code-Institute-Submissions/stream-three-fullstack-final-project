@@ -10,6 +10,7 @@ from cycleporthole.view_func import DeleteFile
 
 ##  Creates New Cycle, Called By Member Cycle View ##
 ## Get Job Object from Job Table, Get Client from Job Table ##
+
 def create_cycle(user_id, request, user):
     new_form = CycleForm(user_id, request)
     if new_form.is_valid():

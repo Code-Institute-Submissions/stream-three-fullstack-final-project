@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from datetime import datetime
 from .forms import CycleForm#, EditCycleForm
 from managejobs.view_func import get_all_jobs_for_user  
 from .view_func import create_cycle, delete_all_files, clear_status
@@ -21,12 +22,27 @@ def manage_cycles(request, username):
     users_cycles = get_user_cycles(user)
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
-        create_cycle(user.pk, request.POST, user)
-        if create_cycle:
-            messages.success(request, 'A new cycle has been created',
-                            extra_tags='manage_cycle') 
+        if 'update' in request.POST.keys():
+            cycle = get_object_or_404(Cycles, pk=(request.POST['cycle_id']))
+            start_date = datetime.strptime(cycle.start_date, '%Y-%m-%d')
+            end_date = datetime.strptime(cycle.end_date, '%Y-%m-%d')
+            cycle_form = CycleForm(cycle.member.id, 
+                            initial={'cycle_title': cycle.cycle_title,
+                            'description': cycle.description,
+                            'location': cycle.location,
+                            'start_date': start_date ,
+                            'end_date': end_date,
+                            'jobs': cycle.job})
+        else:
+            cycle_created = create_cycle(user.pk, request.POST, user)
+            if create_cycle:
+                if 'updated' in request.POST.keys():
+                    messages.success(request, 'Cycle updated.')
+                else:
+                    messages.success(request, 'Cycle created.')
+            
             return redirect(reverse('manage_cycles', kwargs={'username':username}))
-    
+
     return render(request, 'manage_cycles.html', 
                             {'username': username,
                             'cycle_form':cycle_form,
@@ -35,32 +51,32 @@ def manage_cycles(request, username):
                             'jobs': jobs})
 
 ## Edit Cycle and Redirect to Manage Cycles ##
-def edit_cycle(request, username, cycle_id):
-    cycle = get_object_or_404(Cycles, pk=cycle_id)
-    form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
-                                        'description': cycle.description,
-                                        'location': cycle.location,
-                                        'start_date': cycle.start_date,
-                                        'end_date': cycle.end_date,
-                                        'jobs': cycle.job})
-    if request.method == 'POST':
-        form = CycleForm(cycle.member.id, request.POST)
-        if form.is_valid():
-            cycle_updated = update_cycle(cycle, form, request)
-            if cycle_updated:
-                messages.success(request, 
-                                'You have updated cycle with Fileo ID: {0}'.format(cycle.id),
-                                extra_tags='manage_cycle')
-                return redirect(reverse('manage_cycles', kwargs={'username': username}))                                       
+#def edit_cycle(request, username, cycle_id):
+ #   cycle = get_object_or_404(Cycles, pk=cycle_id)
+  #  form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
+   #                                     'description': cycle.description,
+    #                                    'location': cycle.location,
+     #                                   'start_date': cycle.start_date,
+      #                                  'end_date': cycle.end_date,
+       #                                 'jobs': cycle.job})
+#    if request.method == 'POST':
+ #       form = CycleForm(cycle.member.id, request.POST)
+  #      if form.is_valid():
+   #        cycle_updated = update_cycle(cycle, form, request)
+    #        if cycle_updated:
+    #            messages.success(request, 
+     #                           'You have updated cycle with Fileo ID: {0}'.format(cycle.id),
+      #                          extra_tags='manage_cycle')
+       #         return redirect(reverse('manage_cycles', kwargs={'username': username}))                                       
 
-    return render(request,'edit_cycle.html', {'username': username,
-                                                'form': form })
+    #return render(request,'edit_cycle.html', {'username': username,
+     #                                           'form': form })
 
 ## Delete Cycle View, redirects to Manage Cycles View ##
 def delete_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     cycle.delete()
-    messages.success(request, 'You have Deleted the Cycle with Fileo ID: {0}'.format(cycle_id),
+    messages.success(request, 'Cycle deleted.',
                     extra_tags='manage_cycle')
     
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
@@ -76,12 +92,12 @@ def cancel_cycle(request, username, cycle_id):
         status.cancelled = True
         status.pending = False
         messages.success(request,   
-                        'You have Cancelled the Cycle with the Fileo ID: {0}'.format(cycle.id),
+                        'Cycle cancelled.',
                         extra_tags='manage_cycle')
         status.save(update_fields=['cancelled', 'pending', 'complete'])
     elif request.POST['cancel'] == 'False':
         messages.success(request,   
-                        'You have Re-instated the Cycle with the Fileo ID: {0}'.format(cycle.id),
+                        'Cycle re-instated.',
                         extra_tags='manage_cycle')
         status.cancelled = False
         status.save(update_fields=['cancelled'])
@@ -96,7 +112,7 @@ def reset_cycle(request, username, cycle_id):
     clear_status(cycle)
     delete_all_files(request, cycle_id)
     messages.success(request,   
-                    'You have Reset the Cycle with the Fileo ID: {0}'.format(cycle.id),
+                    'Cycle reset',
                     extra_tags='manage_cycle')
 
     return redirect(reverse('manage_cycles', kwargs={'username':username}))

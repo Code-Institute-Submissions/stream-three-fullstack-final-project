@@ -1,5 +1,7 @@
 from django import forms
 from .models import Jobs
+from django.shortcuts import get_object_or_404
+from accounts.models import AllUser
 from django.core.exceptions import ValidationError
 from manageclient.models import MemberClient
 
@@ -31,17 +33,21 @@ class JobsForm(ParentJobForm):
 
     def clean_job_number(self):
         form_job_number = self.cleaned_data.get('job_number')
+        user = get_object_or_404(AllUser, pk=self.user_id)
+        
         try:
             existing_jobs = Jobs.objects.filter(
-                                        member=self.user_id
+                                        member=user
                                         ).filter(
                                         job_number=form_job_number   
                                         )
+            
         except Jobs.DoesNotExist:
             existing_jobs = None
 
         if existing_jobs:
-            raise ValidationError(u'The job number already exists for your company. Make sure it is unique.')
+            print('now here')
+            raise forms.ValidationError(u'Job number already exists for your company.')
       
         return form_job_number
 
