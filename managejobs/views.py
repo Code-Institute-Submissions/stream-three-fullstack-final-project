@@ -23,18 +23,17 @@ def manage_jobs(request, username):
     if request.method == 'POST':
         if 'update' in request.POST.keys(): ## RENDERS FORM WITH DATA FROM MODEL ##
             job = get_object_or_404(Jobs, pk=(int(request.POST['job_id'])))
+            request.session['update_job_id'] = job.id
             form = EditJobsForm(request.user, model_to_dict(job))
         else:
             if 'updated' in request.POST.keys():
                 form = EditJobsForm(request.user, request.POST)
                 if form.is_valid():
-                    try:
-                        job = Jobs.objects.filter(job_number=request.POST['job_number']
-                                                    ).filter(member=request.user)
-                    except Jobs.DoesNotExist:
-                        raise Http404
-                    update_job(job[0], form)
+                    job_id = get_object_or_404(Jobs, pk=request.session['update_job_id'])
+                    update_job(job_id, form)
                     messages.success(request, 'Job updated.')
+                    return redirect(reverse('manage_jobs',
+                                                kwargs={'username':username})) 
             else:
                 form = JobsForm(user_id, request.POST)
                 if form.is_valid():
