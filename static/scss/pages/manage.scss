@@ -100,6 +100,44 @@
     }
 }
 
+// MANAGE CYCLES SELECT STYLES SPECIFIC //
+
+
+.manage-cycles-form__start-date,
+.manage-cycles-form__end-date {
+
+    @include flex_row;
+    justify-content: space-between;
+    height: 1.6rem;
+    width: 16.6rem;
+    padding: 0 .5rem 0 .5rem;
+    background-color: $active-icon-color;
+    border-radius: .3rem;
+    //height:100%;
+    
+}
+
+.manage-cycles-form__start-date label,
+.manage-cycles-form__end-date label {
+
+    @include flex_row;
+    height: 100%;
+    //width: 100%;
+    //background-color: $register-icon-color;
+    padding-right: .5rem;
+}
+
+.manage-cycles-form__date-select {
+
+    @include flex_row;
+    height: 100%;
+}
+
+.manage-cycles-form__date-select select {
+
+    color: #fff;
+}
+// END OF MANAGE CYCLES SELECT STYLES //
 
 .manage-items-hr {
 

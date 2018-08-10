@@ -77,11 +77,26 @@ const addClassToElement = (_element, _class) => {
 
 const addStylesToSelectParent = (select, _class) => {
 
-    console.log('here');
      // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
      select.parentElement.setAttribute('class', _class);
     
-     // INSERT ICON INOT SELECT BOX //
-     select.parentElement.insertAdjacentHTML('beforeend',
-                         '<i class="fas fa-sort-down profile-filter-arrow" aria-hidden="true"></i>');
 }
+
+const addIconToSelect = (select, _class) => {
+
+     // INSERT ICON INTo SELECT BOX //
+     select.parentElement.insertAdjacentHTML('beforeend',
+                         `<i class="fas fa-sort-down ${_class}" aria-hidden="true"></i>`);
+
+}
+
+
+// ADD REQUIRED ATTRIBUTE TO RENDERED INPUT //
+const addRequiredAttribute = (input) => {
+
+    for (let i = 0; i < input.length; i++) {
+
+        input[i].setAttribute('required','true');
+    }
+
+}  
