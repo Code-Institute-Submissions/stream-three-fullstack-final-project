@@ -51,11 +51,11 @@ const insertNotSureOnClick = (clickElement, condition) => {
 
 }
 
-const insertNotSureOnOtherButtonClick = (clickElement, condition, target) => {
+const insertNotSureOnOtherButtonClick = (condition, target) => {
 
-    clickElement.addEventListener('click', function() {
+    
         
-        if (target == condition){
+        if (target.innerHTML == condition){
             console.log('not sure');
             target.innerHTML = 'Not Sure';
 
@@ -64,7 +64,7 @@ const insertNotSureOnOtherButtonClick = (clickElement, condition, target) => {
             target.innerHTML = condition;
         }
 
-    });
+    
 
 }
 

@@ -3,7 +3,7 @@
 (() => {
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
     const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
-    const hiddenDeleteDiv = document.getElementById('manage-show-delete');
+    //const hiddenDeleteDiv = document.getElementById('manage-show-delete');
 
     // SPECIFIC TO CLIENT TEMPLATE //
     const manageClientInput = document.getElementsByClassName('register-form__input');
@@ -20,8 +20,10 @@
     const selectTwoMonth = document.getElementById('id_end_date_month');
     const selectTwoDay = document.getElementById('id_end_date_day');
     const selectTwoYear = document.getElementById('id_end_date_year');
+    const startDateSelectContainer = selectOneMonth.parentElement;
+    const endDateSelectContainer = selectTwoMonth.parentElement;
     const cyclesFormSelect = document.getElementById('id_jobs');
-    const hiddenResetDiv = document.getElementById('manage-show-reset');
+    //const hiddenResetDiv = document.getElementById('manage-show-reset');
     const manageResetItemButtons = document.getElementsByClassName('manage-reset');
     const selectArray = [];
 
@@ -29,25 +31,52 @@
     // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY addRemoveClassOnClick FUNCTION
     // AND CALL insertHTMLonClick TO ALTER BUTTON DISPLAY
 
-    const addRemoveManageButtonClasses = (hiddenDiv, buttons, showClass, clickClass) => {
+    const addRemoveManageButtonClasses = (buttons, showClass, clickClass) => {
 
-        
         for (let i = 0; i < buttons.length; i++) {
 
-            addRemoveClassOnClick(buttons[i], 
-                                    hiddenDiv, 
-                                    showClass);
-    
+            let buttonData = buttons[i].getAttribute('data-id');
+
+            if ( buttonData == 'Delete Cycle' || buttonData == 'Delete Client' || buttonData == 'Delete Job') {
+
+               
+                let hiddenDeleteDiv = buttons[i].
+                                parentElement.
+                                parentElement.
+                                parentElement.
+                                nextElementSibling;
+
+                //console.log(hiddenDeleteDiv);
+                addRemoveClassOnClick(buttons[i], 
+                                        hiddenDeleteDiv, 
+                                        showClass);
+
+            
+            } else if (buttonData = 'Reset Cycle') {
+
+                let hiddenResetDiv = buttons[i].
+                                    parentElement.
+                                    parentElement.
+                                    parentElement.
+                                    nextElementSibling.
+                                    nextElementSibling.
+                                    nextElementSibling;
+
+                
+                addRemoveClassOnClick(buttons[i], 
+                                        hiddenResetDiv, 
+                                        showClass);
+            }
+
             addRemoveClassOnClick(buttons[i], 
                                 buttons[i], 
                                 clickClass);
-
         }
 
     }
 
 
-    const showHideDiv = (buttons) => {
+    const alterButtonInnerHtml = (buttons) => {
 
         for (let i = 0; i < buttons.length; i++) {
 
@@ -63,7 +92,7 @@
 
             } else if (dataId == 'Delete Cycle') {
 
-                
+
                 insertNotSureOnClick(buttons[i], dataId);
 
             } else if (dataId == 'Reset Cycle') {
@@ -88,13 +117,62 @@
         }
     }
 
+    // IF DELETE BUTTON CLICKED, HIDE RESET BUTTON STYLES, IF RESET CLICKED, HIDE DELETE STYLES //
+    const hideOtherButtonStylesOnClick = () => {
+
+        for (let i = 0; i < manageResetItemButtons.length; i++) {
+            
+            manageResetItemButtons[i].addEventListener('click', function() {
+
+                if (manageDeleteItemButtons[i].classList.contains('manage-button__button--delete-click')) {
+                    
+                    const hiddenDeleteDiv = this.
+                                            parentElement.
+                                            parentElement.
+                                            parentElement.
+                                            nextElementSibling.
+                                            nextElementSibling;
+                    
+                
+                    manageDeleteItemButtons[i].classList.remove('manage-button__button--delete-click');
+                    hiddenDeleteDiv.classList.remove('manage-delete__button--show');
+                    insertNotSureOnOtherButtonClick( 'Delete Cycle', 
+                                                    manageDeleteItemButtons[i]);
+
+                }
+            });
+
+            manageDeleteItemButtons[i].addEventListener('click', function() {
+
+                if (manageResetItemButtons[i].classList.contains('manage-button__button--reset-click')) {
+                    
+                    const hiddenResetDiv = this.
+                                            parentElement.
+                                            parentElement.
+                                            parentElement.
+                                            nextElementSibling.
+                                            nextElementSibling;
+                    
+                    manageResetItemButtons[i].classList.remove('manage-button__button--reset-click');
+                    hiddenResetDiv.classList.remove('manage-reset__button--show');
+                    insertNotSureOnOtherButtonClick( 'Reset Cycle', 
+                                                    manageResetItemButtons[i]);
+
+                }
+            });
+
+        }
+
+   } 
+
 
     //------------------- FUNCTION CALLS ------------------------------//
 
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
-    showHideDiv(manageDeleteItemButtons);
+
+    alterButtonInnerHtml(manageDeleteItemButtons);
     addBgColorToBody('body-color');
-    addRemoveManageButtonClasses(hiddenDeleteDiv, 
+    addRemoveManageButtonClasses(
                                 manageDeleteItemButtons,
                                 'manage-delete__button--show',
                                 'manage-button__button--delete-click');
@@ -112,6 +190,7 @@
     // JOBS TEMPLATE SPECIFIC //
     if (jobsFormSelect) {
 
+        // STYLES FOR JOB FORM SELECT //
         addClassToElement(jobsFormSelect, 'profile__select');
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
@@ -121,45 +200,11 @@
 
     // CYCLES TEMPLATE SPECIFIC //
 
-    // RESTRUCTURE DOM SELECT DATES LAYOUT //
     if (selectOneMonth) {
 
-        const startDateSelectContainer = selectOneMonth.parentElement;
-        const endDateSelectContainer = selectTwoMonth.parentElement;
-
         // SELECT AND DE-SELECT DELETE AND RESET BUTTON ELEMENT STYLES //
-        for (let i = 0; i < manageResetItemButtons.length; i++) {
-            
-            manageResetItemButtons[i].addEventListener('click', function() {
+        hideOtherButtonStylesOnClick()
 
-                if (manageDeleteItemButtons[i].classList.contains('manage-button__button--delete-click')) {
-                    
-                    manageDeleteItemButtons[i].classList.remove('manage-button__button--delete-click');
-                    hiddenDeleteDiv.classList.remove('manage-delete__button--show');
-                    insertNotSureOnOtherButtonClick(manageResetItemButtons[i], 
-                                                    'Delete Cycle', 
-                                                    manageDeleteItemButtons[i]);
-
-                }
-            });
-
-            manageDeleteItemButtons[i].addEventListener('click', function() {
-
-                if (manageResetItemButtons[i].classList.contains('manage-button__button--reset-click')) {
-                    
-                    manageResetItemButtons[i].classList.remove('manage-button__button--reset-click');
-                    hiddenResetDiv.classList.remove('manage-reset__button--show');
-                    insertNotSureOnOtherButtonClick(manageDeleteItemButtons[i], 
-                                                    'Reset Cycle', 
-                                                    manageResetItemButtons[i]);
-
-                }
-            });
-
-        }
-
-    // POPULATE ARRAY WITH ELEMENTS, COULD NOT GET ELEMENTS BY TAG OR CLASS AS IT //
-    // WILL PULL IN UNWANTED SELECTS //
         selectArray.push(selectOneMonth, selectOneDay, selectOneYear,
                         selectTwoMonth, selectTwoDay, selectTwoYear);
         
@@ -170,8 +215,8 @@
         addClassToElement(endDateSelectContainer, 'manage-cycles-form__end-date');
         addStylesToSelectParent(cyclesFormSelect, 'profile-filter-styled');
         addIconToSelect(cyclesFormSelect, 'profile-filter-arrow');    
-        showHideDiv(manageResetItemButtons);
-        addRemoveManageButtonClasses(hiddenResetDiv, 
+        alterButtonInnerHtml(manageResetItemButtons);
+        addRemoveManageButtonClasses( 
                                     manageResetItemButtons,
                                     'manage-reset__button--show',
                                     'manage-button__button--reset-click');

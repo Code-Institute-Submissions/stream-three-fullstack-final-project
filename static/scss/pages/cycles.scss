@@ -264,15 +264,18 @@
 
 .cycles-results__row {
 
-    @include flex_row;
-    justify-content: space-between;
+    //@include flex_row;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    //justify-content: space-between;
     width: 90%;
 
 }
 
 .cycles-results__row-3 {
     @include flex_row;
-    justify-content: space-evenly;
+    //justify-content: space-evenly;
     width: 100%;
 }
 
@@ -284,9 +287,11 @@
     overflow: hidden;
 }
 
-.cycles-results__heading,
 .cycles-results__text {
 
+    @include flex_row;
+    justify-content: flex-start;
+    //vertical-align: middle;
     //text-align:center;
     font-size: .8rem;
     color: #fff;
@@ -294,11 +299,11 @@
     
 }
 
-/*.column-3 {
+.column-4 {
 
-    //width: 33.33%;
+    width: 25%;
     //align-items: center;
-}*/
+}
 
 .column-1 {
 
@@ -316,10 +321,10 @@
     width: 50%;
 }
 
-.cycles-results__step-approval-icons {
+/*.cycles-results__step-approval-icons {
 
     font-size: 1.5rem;
-}
+}*/
 
 // RESULTS BUTTON STYLES //
 
@@ -370,8 +375,10 @@
 
 .cycles-results__overall-icons {
 
+    height: 100%;
     font-size: 1rem;
-    
+    margin-right: .5rem;
+    //width: 25%;
 }
 
 .cycle-results__overall-icon-complete--color {

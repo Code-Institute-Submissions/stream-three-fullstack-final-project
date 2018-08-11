@@ -1156,9 +1156,7 @@ p, button {
 .cycles-results__row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  justify-content: space-between;
   width: 90%; }
 
 .cycles-results__row-3 {
@@ -1166,23 +1164,24 @@ p, button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  justify-content: space-evenly;
   width: 100%; }
 
 .cycles-results__column {
   overflow: hidden; }
 
-.cycles-results__heading,
 .cycles-results__text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   font-size: .8rem;
   color: #fff;
   margin: 0 .5rem 0 .5rem; }
 
-/*.column-3 {
+.column-4 {
+  width: 25%; }
 
-    //width: 33.33%;
-    //align-items: center;
-}*/
 .column-1 {
   width: 100%;
   align-items: flex-start; }
@@ -1193,9 +1192,10 @@ p, button {
 .column-2 {
   width: 50%; }
 
-.cycles-results__step-approval-icons {
-  font-size: 1.5rem; }
+/*.cycles-results__step-approval-icons {
 
+    font-size: 1.5rem;
+}*/
 .cycles-results__porthole {
   width: 100%; }
 
@@ -1234,7 +1234,9 @@ p, button {
   margin-top: .5rem; }
 
 .cycles-results__overall-icons {
-  font-size: 1rem; }
+  height: 100%;
+  font-size: 1rem;
+  margin-right: .5rem; }
 
 .cycle-results__overall-icon-complete--color {
   color: #445c31; }
