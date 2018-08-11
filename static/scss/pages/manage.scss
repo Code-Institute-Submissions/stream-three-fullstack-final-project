@@ -1,11 +1,6 @@
 
 // MANAGE CLIENTS, MANAGE JOBS AND MANAGE CYCLES STYLES //
 
-/*.clients-bg-color {
-
-    background-color:$login-green;
-}*/
-
 
 .manage-heading {
 
@@ -25,7 +20,7 @@
 .manage-container {
 
     position: relative;
-    top: 4rem;
+    top: 8rem;
     min-height: calc(100% - 4rem);
     @include flex-column;
 
@@ -41,13 +36,7 @@
 .manage-form-container {
 
     @include flex_column;
-    //width:100%;
 
-   // @include desktop {
-
-        
-    //}
-    
 }
 
 .manage-form {
@@ -89,7 +78,14 @@
     }
 }
 
-// MANAGE CYCLES SELECT STYLES SPECIFIC //
+// MANAGE JOBS FORM INPUT STYLE SPECIFIC //
+
+.manage-form__update-job-number input {
+
+    color: #898d8f;
+}
+
+// MANAGE CYCLES STYLES SPECIFIC //
 
 .manage-cycles-form__start-date,
 .manage-cycles-form__end-date {
@@ -101,7 +97,6 @@
     padding: 0 .5rem 0 .5rem;
     background-color: $active-icon-color;
     border-radius: .3rem;
-    //height:100%;
     
 }
 
@@ -144,7 +139,7 @@
     }
 }
 
-// END OF MANAGE CYCLES SELECT STYLES //
+// END OF MANAGE CYCLES STYLES //
 
 .manage-items-hr {
 
@@ -216,9 +211,17 @@
     @include flex-column;
     align-items: flex-start;
     overflow: hidden;
+    flex-grow: 1;
     //align-items: flex-start;
     
 }
+
+
+.manage-item__column-status p {
+
+    align-self: flex-end;
+}
+
 
 .manage-item__column p {
 
@@ -245,6 +248,12 @@
     
 }
 
+.manage-button__button--cancelled {
+
+    color: $disabled-buttons-text;
+    background-color: $disabled-buttons;
+}
+
 #manage-items__text-top {
 
     margin-top: 0.5rem;
@@ -256,17 +265,25 @@
     
 }
 
-.manage-button__button--delete-color {
+.manage-button__button--delete-color,
+.manage-button__button--reset-color {
 
     background-color: $cancelled-color;
-    transition: background-color .3s $drop-down-bezier;
+    
+}
+
+.manage-button__button--delete-click,
+.manage-button__button--reset-click {
+
+    background-color: $pending-color;
 }
 
 
 
 // SHOW / HIDE DELETE BUTTON STYLES //
 
-.manage-delete__button--hide {
+.manage-delete__button--hide,
+.manage-reset_button--hide {
 
     height: 0;
     overflow: hidden; 
@@ -274,9 +291,7 @@
     background-color: $manage-item-delete-show-color;
     padding-left: 15px;
     padding-right: 15px;
-    border-bottom-left-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-
+    
     @include desktop {
 
         padding-left: 20px;
@@ -285,21 +300,22 @@
   
 }
 
-.manage-delete__button--show {
+.manage-delete__button--show,
+.manage-reset__button--show {
 
     height: 8rem;
+    border-bottom-left-radius: .1rem;
+    border-bottom-right-radius: .1rem;
+
    
 }
 
 .manage-item__delete-text {
 
+    text-align: center;
     color: $active-icon-color;
 }
 
-.manage-button__button--delete-click {
-
-    background-color: $pending-color;
-}
 
 
 .manage-total-desktop p {

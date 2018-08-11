@@ -94,13 +94,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
+                <div id="manage-show-delete" class="manage-item__row manage-item__row--center manage-delete__button--hide">
                     <div class="manage-item__column manage-item__column--center">
                         <p class="manage-item__delete-text">Are you sure ?</p>
                         <p class="manage-item__delete-text">All related jobs and cycles will be deleted too.</p>
                         <form class="manage-button" method="POST" action="{% url 'delete_client' username=username client_id=client.client.id%}">
                             {% csrf_token %}
-                            
                             <button class="manage-button__button manage-button__button--delete-color" type="submit">I'm Sure <i class="fas fa-check" aria-hidden="true"></i></button>
                         </form>
                     </div>

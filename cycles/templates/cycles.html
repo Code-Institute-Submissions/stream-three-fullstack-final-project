@@ -126,13 +126,13 @@
                 <div class="cycles-results__container">
                     <div class="cycles-results__row cycles-results__overall-status">
                         {% if item.cancelled %}
-                        <p class="cycles-results__text"><i data-id = "cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
+                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
                         {% elif item.pending %}
-                        <p class="cycles-results__text"><i data-id = "pending" class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Payment Pending</p>
+                        <p class="cycles-results__text"><i data-id="pending" class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Payment Pending</p>
                         {% elif item.complete %}
-                        <p class="cycles-results__text"><i data-id = "complete" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
+                        <p class="cycles-results__text"><i data-id="complete" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
                         {% else %}
-                        <p class="cycles-results__text"><i data-id = "active" class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i> Active</p>
+                        <p class="cycles-results__text"><i data-id="active" class="fas fa-walking cycles-results__overall-icons" aria-hidden="true"></i> Active</p>
                         {% endif %}
                     </div>
                     <hr class="cycles-item-hr">

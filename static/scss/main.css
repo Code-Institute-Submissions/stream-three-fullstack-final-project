@@ -1174,7 +1174,6 @@ p, button {
 
 .cycles-results__heading,
 .cycles-results__text {
-  text-align: center;
   font-size: .8rem;
   color: #fff;
   margin: 0 .5rem 0 .5rem; }
@@ -1423,10 +1422,6 @@ p, button {
 .generic-success {
   text-align: center; }
 
-/*.clients-bg-color {
-
-    background-color:$login-green;
-}*/
 .manage-heading {
   margin-bottom: 0rem; }
   @media (min-width: 992px) {
@@ -1438,7 +1433,7 @@ p, button {
 
 .manage-container {
   position: relative;
-  top: 4rem;
+  top: 8rem;
   min-height: calc(100% - 4rem);
   display: flex;
   flex-direction: column;
@@ -1489,6 +1484,9 @@ p, button {
   @media (min-width: 768px) {
     .manage-form__button {
       height: 2.1rem; } }
+
+.manage-form__update-job-number input {
+  color: #898d8f; }
 
 .manage-cycles-form__start-date,
 .manage-cycles-form__end-date {
@@ -1596,7 +1594,11 @@ p, button {
   justify-content: center;
   align-items: center;
   align-items: flex-start;
-  overflow: hidden; }
+  overflow: hidden;
+  flex-grow: 1; }
+
+.manage-item__column-status p {
+  align-self: flex-end; }
 
 .manage-item__column p {
   margin: 0.5rem 0.5rem 0.5rem 0.5rem; }
@@ -1623,38 +1625,47 @@ p, button {
     .manage-button__button {
       width: 11rem; } }
 
+.manage-button__button--cancelled {
+  color: #7b7b7b;
+  background-color: #4f7382; }
+
 #manage-items__text-top {
   margin-top: 0.5rem; }
 
 .manage-item__button-column {
   width: 50%; }
 
-.manage-button__button--delete-color {
-  background-color: #cb4747;
-  transition: background-color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
+.manage-button__button--delete-color,
+.manage-button__button--reset-color {
+  background-color: #cb4747; }
 
-.manage-delete__button--hide {
+.manage-button__button--delete-click,
+.manage-button__button--reset-click {
+  background-color: #d5b25e; }
+
+.manage-delete__button--hide,
+.manage-reset_button--hide {
   height: 0;
   overflow: hidden;
   transition: height 0.3s cubic-bezier(1, 0.32, 0.32, 0.75);
   background-color: #90c1bc;
   padding-left: 15px;
-  padding-right: 15px;
-  border-bottom-left-radius: .3rem;
-  border-bottom-right-radius: .3rem; }
+  padding-right: 15px; }
   @media (min-width: 992px) {
-    .manage-delete__button--hide {
+    .manage-delete__button--hide,
+    .manage-reset_button--hide {
       padding-left: 20px;
       padding-right: 20px; } }
 
-.manage-delete__button--show {
-  height: 8rem; }
+.manage-delete__button--show,
+.manage-reset__button--show {
+  height: 8rem;
+  border-bottom-left-radius: .1rem;
+  border-bottom-right-radius: .1rem; }
 
 .manage-item__delete-text {
+  text-align: center;
   color: #384847; }
-
-.manage-button__button--delete-click {
-  background-color: #d5b25e; }
 
 .manage-total-desktop p {
   margin-bottom: 0rem; }

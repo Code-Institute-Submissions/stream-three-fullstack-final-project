@@ -33,7 +33,7 @@
             {% csrf_token %}
             <p>{{ form.job_title }}</p>
             {{ form.job_number.errors }}
-            <p {{ if form.job_title.value }}class="manage-form__update-job-number"{{ endif }}>{{ form.job_number}}</p>
+            <p {% if form.job_title.value %} class="manage-form__update-job-number"{% endif %}>{{ form.job_number}}</p>
             <p>{{ form.client }}</p>
             {% if not form.job_title.value %}
             <button class="manage-form__button"type="submit">Add Job</button>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="manage-item__row manage-item__row--center manage-delete__button--hide">
+            <div id="manage-show-delete" class="manage-item__row manage-item__row--center manage-delete__button--hide">
                 <div class="manage-item__column manage-item__column--center">
                     <p class="manage-item__delete-text">Are you sure ?</p>
                     <p class="manage-item__delete-text">All related cycles will be deleted too.</p>

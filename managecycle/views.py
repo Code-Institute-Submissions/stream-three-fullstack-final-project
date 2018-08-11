@@ -13,35 +13,43 @@ from .models import Cycles
 from cyclestatus.models import CycleStatus
 from cycles.view_func import SetSessionValues
 
-## Returns Manage Cycles Template with all User Cycles, ##
-## and a form to create new user cycles ##
+## Return Manage Cycles Template ##
+## User can see all Cyles and create new ones ##
+## If Update Key in request.POST, render form with inital values ##
+## If Updated in POST request run Update Helper instead of Create Helper ##
 def manage_cycles(request, username):
     SetSessionValues(request).set_values()
     user = request.user
     cycle_form = CycleForm(user.pk)
     users_cycles = get_user_cycles(user)
+    
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
         if 'update' in request.POST.keys():
             cycle = get_object_or_404(Cycles, pk=(request.POST['cycle_id']))
+            request.session['update_cycle_id'] = cycle.id
             start_date = datetime.strptime(cycle.start_date, '%Y-%m-%d')
             end_date = datetime.strptime(cycle.end_date, '%Y-%m-%d')
             cycle_form = CycleForm(cycle.member.id, 
-                            initial={'cycle_title': cycle.cycle_title,
-                            'description': cycle.description,
-                            'location': cycle.location,
-                            'start_date': start_date ,
-                            'end_date': end_date,
-                            'jobs': cycle.job})
+                                    initial={'cycle_title': cycle.cycle_title,
+                                    'description': cycle.description,
+                                    'location': cycle.location,
+                                    'start_date': start_date ,
+                                    'end_date': end_date,
+                                    'jobs': cycle.job})
         else:
-            cycle_created = create_cycle(user.pk, request.POST, user)
-            if create_cycle:
+            cycle_form = CycleForm(user.pk, request.POST)
+            if cycle_form.is_valid():
                 if 'updated' in request.POST.keys():
+                    cycle = get_object_or_404(Cycles, pk=request.session['update_cycle_id'])
+                    update_cycle(cycle, cycle_form)
                     messages.success(request, 'Cycle updated.')
+                    return redirect(reverse('manage_cycles', kwargs={'username':username}))
                 else:
+                    create_cycle(cycle_form, user)
                     messages.success(request, 'Cycle created.')
             
-            return redirect(reverse('manage_cycles', kwargs={'username':username}))
+                    return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
     return render(request, 'manage_cycles.html', 
                             {'username': username,
@@ -91,14 +99,8 @@ def cancel_cycle(request, username, cycle_id):
     if request.POST['cancel'] == 'True':
         status.cancelled = True
         status.pending = False
-        messages.success(request,   
-                        'Cycle cancelled.',
-                        extra_tags='manage_cycle')
         status.save(update_fields=['cancelled', 'pending', 'complete'])
     elif request.POST['cancel'] == 'False':
-        messages.success(request,   
-                        'Cycle re-instated.',
-                        extra_tags='manage_cycle')
         status.cancelled = False
         status.save(update_fields=['cancelled'])
         CycleStatuses(cycle).set_pending()

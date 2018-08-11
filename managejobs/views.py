@@ -21,7 +21,7 @@ def manage_jobs(request, username):
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
     if request.method == 'POST':
-        if 'update' in request.POST.keys(): ## RENDERS FORM WITH DATA FROM MODEL ##
+        if 'update' in request.POST.keys(): 
             job = get_object_or_404(Jobs, pk=(int(request.POST['job_id'])))
             request.session['update_job_id'] = job.id
             form = EditJobsForm(request.user, model_to_dict(job))
@@ -29,8 +29,8 @@ def manage_jobs(request, username):
             if 'updated' in request.POST.keys():
                 form = EditJobsForm(request.user, request.POST)
                 if form.is_valid():
-                    job_id = get_object_or_404(Jobs, pk=request.session['update_job_id'])
-                    update_job(job_id, form)
+                    job = get_object_or_404(Jobs, pk=request.session['update_job_id'])
+                    update_job(job, form)
                     messages.success(request, 'Job updated.')
                     return redirect(reverse('manage_jobs',
                                                 kwargs={'username':username})) 
