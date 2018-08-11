@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import get_object_or_404
 from managecycle.models import Cycles
 from django.contrib import messages
@@ -10,6 +11,11 @@ from manageclient.models import MemberClient
 
 ## View helper functions/classes ##
 
+def convert_dates(date):
+    date = datetime.strptime(date, '%Y-%m-%d')
+    date = '{0}.{1}.{2}'.format(date.day, date.month, date.year)
+    return date
+
 ## Get Context for Porthole View ##
 def get_porthole_context(cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
@@ -19,6 +25,8 @@ def get_porthole_context(cycle_id):
                 'client_profile': profile,
                 'status_form': StatusForm(),
                 'cycle': cycle,
+                'cycle_start': convert_dates(cycle.start_date),
+                'cycle_end': convert_dates(cycle.end_date),
                 'quote': GetFile(cycle).get_quote(),
                 'po': GetFile(cycle).get_po(),
                 'invoice': GetFile(cycle).get_invoice(),

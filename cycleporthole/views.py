@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from .forms import QuotesForm, PurchaseOrderForm, InvoiceForm
-from .models import Quotes, PurchaseOrder, Invoices
+#from .models import Quotes, PurchaseOrder, Invoices
 from managecycle.models import Cycles
-from accounts.models import AllUser
-from cyclestatus.models import CycleStatus
-from manageclient.models import MemberClient
+#from accounts.models import AllUser
+#from cyclestatus.models import CycleStatus
+#from manageclient.models import MemberClient
 from .upload import UploadFile
 from .view_func import GetFile, CycleStatuses, DeleteFile, get_porthole_context
-from notify.notify import NewClient, NewFile, get_email_details
+from notify.notify import NewFile, get_email_details #, #NewClient, 
 from cycles.view_func import SetSessionValues
 
 ############## VIEWS #################################
@@ -17,14 +17,15 @@ from cycles.view_func import SetSessionValues
 def porthole(request, username, cycle_id):
     CycleStatuses(cycle_id).set_pending() ## Set Pending Payment Status if all steps approved ##
     SetSessionValues(request).set_values()
-    context = get_porthole_context(cycle_id) ## Get Context ##
+    context = get_porthole_context(cycle_id) 
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()
     invoice_form = InvoiceForm()
-    if request.method == 'POST': ########################## MEMBER VIEW
+    if request.method == 'POST': 
         upload = UploadFile(context['client'], 
                             context['member'], 
-                            context['cycle'])######################
+                            context['cycle'])
+        ### DEPENDING ON STEP TYPE, UPLOAD TO RELEVANT MODEL ##
         if request.POST.get('step_type') == 'quote':
             quote_form = QuotesForm(request.POST, request.FILES)
             if quote_form.is_valid():
@@ -63,7 +64,7 @@ def step_notify(request, username, cycle_id, step):
 
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,
-                                        'cycle_id': cycle.id,#
+                                        'cycle_id': cycle.id,
                                         }))
 
 ## Delete File and Redirect to Porthole ##

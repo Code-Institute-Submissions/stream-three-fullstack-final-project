@@ -6,19 +6,8 @@
    
     // -------------------------- FUNCTIONS --------------------------- //
 
-    // CHANGE COLOR OF STATUS ICONS DEPENDING ON STATUS //
-    const colorForStatusIcons = (cycleStatus, _class) => {
-
-        for(let i = 0; i < cycleStatus.length; i ++){ 
-            
-            const statusText = cycleStatus[i].firstElementChild;
-            statusText.classList.add(_class);
-            
-        }
-
-    }
-    // CHANGE THE COLOR OF THE RESULT CONTAINER DIV DEPENDING ON STATUS //
-    const bgColorForStatus = (cycleStatus) => {
+    // CHANGE THE COLOR OF THE RESULT CONTAINER DIV AND STATUS ICON DEPENDING ON STATUS, //
+    const colorForStatus = (cycleStatus) => {
 
         if (cycleStatus) {
         
@@ -33,26 +22,29 @@
                                     firstElementChild.
                                     firstElementChild.
                                     getAttribute('data-id');
+
+                const statusText = cycleStatus[i].firstElementChild;
+                
+                //console.log(status);
                
                 if (status == "cancelled") {
                    
                     cycleStatusParent.classList.add('cycle-results__container-cancelled--color');
-                    colorForStatusIcons(cycleStatus, 'cycle-results__overall-icon-cancelled--color');
+                    statusText.classList.add('cycle-results__overall-icon-cancelled--color');
     
                 } else if (status == "pending") {
     
                     cycleStatusParent.classList.add('cycle-results__container-pending--color');
-                    colorForStatusIcons(cycleStatus, 'cycle-results__overall-icon-pending--color');
-    
-
+                    statusText.classList.add('cycle-results__overall-icon-pending--color');
+                   
                 } else if (status == "complete") {
     
                     cycleStatusParent.classList.add('cycle-results__container-complete--color');
-                    colorForStatusIcons(cycleStatus, 'cycle-results__overall-icon-complete--color');
-            
+                    statusText.classList.add('cycle-results__overall-icon-complete--color');
+
                 } else if (status == "active") {
 
-                    colorForStatusIcons(cycleStatus, 'cycle-results__overall-icon-active--color');
+                    statusText.classList.add('cycle-results__overall-icon-active--color');
                 }
                 
             }
@@ -64,7 +56,7 @@
 
     // -------------------- FUNCTION CALLS ----------------------- //
     
-    bgColorForStatus(cycleStatus);
+    colorForStatus(cycleStatus);
     addBgColorToBody('body-color');
 
 })();

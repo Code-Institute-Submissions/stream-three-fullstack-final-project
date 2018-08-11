@@ -80,7 +80,7 @@
             <div class="manage-item-container">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p id="manage-items__text-top"><strong><i class="far fa-circle manage-item__icon" aria-hidden="true"></i></strong> {{ item.cycle.cycle_title }}</p>
+                        <p id="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
                     </div>
                     {% if item.cancelled %}
                     <div class="manage-item__column manage-item__column-status">
@@ -91,13 +91,13 @@
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><strong><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i></strong> {{ item.cycle.job.job_title }}</p>
+                        <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><strong><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> </strong>{{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                        <p><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">

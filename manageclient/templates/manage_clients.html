@@ -61,19 +61,19 @@
             <div class="manage-item-container">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p id="manage-items__text-top"><strong><i class="fas fa-user" aria-hidden="true"></i></strong> {{ client.client.first_name}} {{ client.client.last_name}}</p>
+                        <p id="manage-items__text-top"><i class="fas fa-user" aria-hidden="true"></i> {{ client.client.first_name}} {{ client.client.last_name}}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><strong><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i></strong> {{ client.client.email}}</p>
+                        <p><i class="far fa-envelope manage-item__icon" aria-hidden="true"></i> {{ client.client.email}}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><strong><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> </strong>{% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
+                        <p><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> {% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">

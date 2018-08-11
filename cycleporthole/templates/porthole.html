@@ -1,174 +1,217 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static '/js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/head.js' %}"></script>
+<script defer type="text/javascript" src="{% static '/js/porthole.js' %}"></script>
+{% endblock head_js %}
 {% block content %}
-{% include 'porthole_base.html' %}
-<div>
-    <h3>Upload Your Quote</h3>
-    <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ quote_form.as_p }}
-        <!--<input type="hidden" name="file_type" value="quote">-->
-        <button type="submit">Submit</button>
-    </form>
-    {% if context.quote %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-        <button type="submit">Delete Quote</button>
-    </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-        <button type="submit">Notify Client</button>
-    </form>
+{% include 'header.html' %}
+<div class="porthole-container">
+    <div class="steps-icon">
+        <i class="fas fa-circle steps-icon__icon" aria-hidden="true"></i>
+    </div>
+    <h1>Cycle Porthole</h1>
+    
+    <p><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+    {% if context.cycle_status.cancelled %}
+        <p><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+    {% elif context.cycle_status.pending %}
+        <p class="cycles-results__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+    {% elif context.cycle_status.complete %}
+        <p class="cycles-results__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+    {% else %}
+        <p class="cycles-results__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
     {% endif %}
-    {% for message in messages %}
-        {% if 'quote_delete' in message.tags %}
+
+    
+    <p><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+   
+    <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
+    <p><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+    <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+    <p><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+    <h4>Description</h4>
+    <p>{{ context.cycle.description }}</p>
+    
+    <p><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+    <p><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+    <h4>Cycle Value</h4>
+    {% if context.cycle.cycle_value %}
+    <p>{{ context.cycle.cycle_value }}</p>
+    {% else %}
+    <p>Cycle Value not entered yet.</p>
+    {% endif %}
+    <hr>
+    <div>
+        <h3>Upload Your Quote</h3>
+        <img alt='Show image of PDF icon if uploaded'>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ quote_form.as_p }}
+            <!--<input type="hidden" name="file_type" value="quote">-->
+            <button type="submit">Submit</button>
+        </form>
+        {% if context.quote %}
+        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+            <button type="submit">Delete Quote</button>
+        </form>
+        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+            <button type="submit">Notify Client</button>
+        </form>
+        {% endif %}
+        {% for message in messages %}
+            {% if 'quote_delete' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}
+        {% endfor %}
+        <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
+        <ul>
+            <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
+            <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
+        </ul>
+        <div>
+            <h4>Approval</h4>
+            {% if context.cycle_status.approve_quote %}
+                <p>Status: Approved</p>
+            {% elif context.cycle_status.contest_quote %}
+                <p>Status: Contested</p>
+            {% else %}
+                <p>No Status</p>
+            {% endif %}
+            <div>
+                {% for message in messages %}
+                    {% if 'quote_message' in message.tags %}
+                        {{message}}
+                    {% endif %}
+                {% endfor %}
+                <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                    {% csrf_token %}
+                    <fieldset>
+                        {{ context.status_form.as_p }}
+                        <button type="submit">Submit</button>
+                    </fieldset>
+                </form> 
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h3>Upload Your PO</h3>
+        <img alt='Show image of PDF icon if uploaded'>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ po_form.as_p }}
+            <!--<input type="hidden" name="file_type" value="po">-->
+            <button type="submit">Submit</button>
+        </form>
+        {% if context.po %}
+        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
+            <button type="submit">Delete PO</button>
+        </form>
+        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
+            <button type="submit">Notify Client</button>
+        </form>
+        {% endif %}
+        {% for message in messages %}
+        {% if 'po_delete' in message.tags %}
             <p>{{message}}</p>
         {% endif %}
-    {% endfor %}
-    <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
-    <ul>
-        <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
-        <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
-    </ul>
-    <div>
-        <h4>Approval</h4>
-        {% if context.cycle_status.approve_quote %}
-            <p>Status: Approved</p>
-        {% elif context.cycle_status.contest_quote %}
-            <p>Status: Contested</p>
-        {% else %}
-            <p>No Status</p>
-        {% endif %}
+        {% endfor %}
+        <p>File uploaded at: {{ context.po.uploaded_at }}</p>
+        <ul>
+            <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
+            <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
+        </ul>
         <div>
-            {% for message in messages %}
-                {% if 'quote_message' in message.tags %}
-                    {{message}}
-                {% endif %}
-            {% endfor %}
-            <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                {% csrf_token %}
-                <fieldset>
-                    {{ context.status_form.as_p }}
-                    <button type="submit">Submit</button>
-                </fieldset>
-            </form> 
-        </div>
-    </div>
-</div>
-<hr>
-<div>
-    <h3>Upload Your PO</h3>
-    <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ po_form.as_p }}
-        <!--<input type="hidden" name="file_type" value="po">-->
-        <button type="submit">Submit</button>
-    </form>
-    {% if context.po %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-        <button type="submit">Delete PO</button>
-    </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-        <button type="submit">Notify Client</button>
-    </form>
-    {% endif %}
-    {% for message in messages %}
-    {% if 'po_delete' in message.tags %}
-        <p>{{message}}</p>
-    {% endif %}
-    {% endfor %}
-    <p>File uploaded at: {{ context.po.uploaded_at }}</p>
-    <ul>
-        <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
-        <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
-    </ul>
-    <div>
-        <h4>PO Status</h4>
-        <h4>Approval</h4>
-        {% if context.cycle_status.approve_po %}
-            <p>Status: Approved</p>
-        {% elif context.cycle_status.contest_po %}
-            <p>Status: Contested</p>
-        {% else %}
-            <p>No Status</p>
-        {% endif %}
-        <div>
-            {% for message in messages %}
-                {% if 'po_message' in message.tags %}
-                    {{message}}
-                {% endif %}
-            {% endfor %}
-            <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                <fieldset>
-                    {% csrf_token %}
-                    {{ context.status_form.as_p }}
-                    <button type="submit">Set Status</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
-<hr>
-<div>
-    <h3>Upload Your Invoice</h3>
-    <img alt='Show image of PDF icon if uploaded'>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ invoice_form.as_p }}
-        <!--<input type="hidden" name="file_type" value="invoice">-->
-        <button type="submit">Upload</button>
-    </form>
-    {% if context.invoice %}
-    <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
-        <button type="submit">Delete Invoice</button>
-    </form>
-    <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
-        <button type="submit">Notify Client</button>
-    </form>
-    {% endif %}
-    {% for message in messages %}
-    {% if 'invoice_delete' in message.tags %}
-        <p>{{message}}</p>
-    {% endif %}
-    {% endfor %}
-    <p>File uploaded at: {{ context.invoice.uploaded_at }}</p>
-    <ul>
-        <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
-        <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
-    </ul>
-    <div>
-        <h4>Invoice Status</h4>
-        {% if context.cycle_status.approve_invoice %}
-            <p>Status: Approved</p>
-        {% elif context.cycle_status.contest_invoice %}
-            <p>Status: Contested</p>
-        {% else %}
-            <p>No Status</p>
-        {% endif %}
-        <div>
-            {% for message in messages %}
-                {% if 'invoice_message' in message.tags %}
-                        {{message}}
-                {% endif %}
-            {% endfor %}
-            <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                <fieldset>
-                    {% csrf_token %}
-                    {{ context.status_form.as_p }}
-                    <button type="submit">Set Status</button>
-                </fieldset>
-            </form>
-        </div>
-        <br>
-        {% if request.user.is_client %}
-            {% if context.cycle_status.pending %}
+            <h4>PO Status</h4>
+            <h4>Approval</h4>
+            {% if context.cycle_status.approve_po %}
+                <p>Status: Approved</p>
+            {% elif context.cycle_status.contest_po %}
+                <p>Status: Contested</p>
+            {% else %}
+                <p>No Status</p>
+            {% endif %}
             <div>
-                <form action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
-                    <button>Payment</button>
+                {% for message in messages %}
+                    {% if 'po_message' in message.tags %}
+                        {{message}}
+                    {% endif %}
+                {% endfor %}
+                <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                    <fieldset>
+                        {% csrf_token %}
+                        {{ context.status_form.as_p }}
+                        <button type="submit">Set Status</button>
+                    </fieldset>
                 </form>
             </div>
-            {% endif %}
-        {% endif %}
+        </div>
     </div>
+    <hr>
+    <div>
+        <h3>Upload Your Invoice</h3>
+        <img alt='Show image of PDF icon if uploaded'>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ invoice_form.as_p }}
+            <!--<input type="hidden" name="file_type" value="invoice">-->
+            <button type="submit">Upload</button>
+        </form>
+        {% if context.invoice %}
+        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
+            <button type="submit">Delete Invoice</button>
+        </form>
+        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
+            <button type="submit">Notify Client</button>
+        </form>
+        {% endif %}
+        {% for message in messages %}
+        {% if 'invoice_delete' in message.tags %}
+            <p>{{message}}</p>
+        {% endif %}
+        {% endfor %}
+        <p>File uploaded at: {{ context.invoice.uploaded_at }}</p>
+        <ul>
+            <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
+            <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
+        </ul>
+        <div>
+            <h4>Invoice Status</h4>
+            {% if context.cycle_status.approve_invoice %}
+                <p>Status: Approved</p>
+            {% elif context.cycle_status.contest_invoice %}
+                <p>Status: Contested</p>
+            {% else %}
+                <p>No Status</p>
+            {% endif %}
+            <div>
+                {% for message in messages %}
+                    {% if 'invoice_message' in message.tags %}
+                            {{message}}
+                    {% endif %}
+                {% endfor %}
+                <form action="{% url 'invoice_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                    <fieldset>
+                        {% csrf_token %}
+                        {{ context.status_form.as_p }}
+                        <button type="submit">Set Status</button>
+                    </fieldset>
+                </form>
+            </div>
+            <br>
+            {% if request.user.is_client %}
+                {% if context.cycle_status.pending %}
+                <div>
+                    <form action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
+                        <button>Payment</button>
+                    </form>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <hr>
 </div>
-<hr>
 {% endblock %}
