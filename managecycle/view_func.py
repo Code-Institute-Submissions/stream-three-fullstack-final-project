@@ -5,6 +5,7 @@ from accounts.models import AllUser
 from managejobs.models import Jobs
 from cyclestatus.models import CycleStatus
 from cycleporthole.view_func import DeleteFile
+from django.utils import timezone
 
 ## Helper Functions for Views ##
 
@@ -14,14 +15,15 @@ from cycleporthole.view_func import DeleteFile
 def create_cycle(form, user):
     job = form.cleaned_data.get('jobs')
     client = get_object_or_404(Jobs, pk=job.id).client
-    cycle = Cycles(cycle_title=form.cleaned_data.get('cycle_title'),
-                        description=form.cleaned_data.get('description'),
-                        location=form.cleaned_data.get('location'),
-                        start_date=form.cleaned_data.get('start_date'),
-                        end_date=form.cleaned_data.get('end_date'),
-                        member=user,
-                        client=client,
-                        job=job)
+    cycle = Cycles( created=timezone.now(),
+                    cycle_title=form.cleaned_data.get('cycle_title'),
+                    description=form.cleaned_data.get('description'),
+                    location=form.cleaned_data.get('location'),
+                    start_date=form.cleaned_data.get('start_date'),
+                    end_date=form.cleaned_data.get('end_date'),
+                    member=user,
+                    client=client,
+                    job=job)
     cycle.save()
     return True
    

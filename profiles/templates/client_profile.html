@@ -7,7 +7,7 @@
 {% endblock head_js %}
 {% block content %}
 {% include 'header.html' %}
-<div class="profile-container">
+<section class="profile-container">
     <div class="profile-icon">
         <i class="fas fa-pen profile-icon__icon" aria-hidden="true"></i>
     </div>
@@ -19,5 +19,5 @@
     <p class="profile-text">Change the details below to update the profile for {{ client.first_name }} {{ client.last_name}}</p>
     {% endif %}
     {% include 'profile_base.html' %}   
-</div> 
+</section> 
 {% endblock %}

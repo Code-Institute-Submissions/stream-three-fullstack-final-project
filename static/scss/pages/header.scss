@@ -36,15 +36,15 @@
 
 }
 
-.mobile-nav,
-.mobile-more {
+.nav,
+.more {
  
    @include flex_row;
    padding-left: 0;
 
 }
 
-.mobile-nav {
+.nav {
 
     justify-content: space-between;
     width: 9rem;
@@ -55,7 +55,7 @@
     }
 }
 
-.mobile-more {
+.more {
 
     position: relative;
     right: 1rem;
@@ -68,18 +68,18 @@
     }
 }
 
-.mobile-more:hover {
+.more:hover {
     
     cursor: pointer;
    
 }
 
-.mobile-more--rotate {
+.more--rotate {
 
     transform: rotate(-90deg);
 }
 
-.mobile-more__icon {
+.more__icon {
 
     font-size: .5rem;
     padding: .1rem;
@@ -87,29 +87,29 @@
     transition: color .2s $drop-down-bezier;
 }
 
-.mobile-more:hover > li > i {
+.more:hover > li > i {
 
     color: #fff;
 }
 
-.mobile-more--clicked-color {
+.more--clicked-color {
 
     color: #fff;
 }
 
-.mobile-nav__icons {
+.nav__icons {
 
     font-size: 1.2rem;
     color: $nav-icons;
     transition: color .2s $drop-down-bezier;
 }
 
-.mobile-nav__icons:hover {
+.nav__icons:hover {
 
     color: #fff;
 }
 
-.mobile-nav__icons--clicked {
+.nav__icons--clicked {
 
     color: #fff;
 }

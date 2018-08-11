@@ -1,19 +1,19 @@
 <!-- MAIN HEADER PARTIAL -->
 <header class="main-header">
-    <nav class="main-header__nav">
+    <nav id="nav" class="main-header__nav">
         <a href="{% url 'index' %}"><div class="main-header__logo" alt="Fileo Logo"></div></a>
         {% if user.is_member %}
-        <ul class="mobile-nav">
+        <ul class="nav">
             <!--<li><a href="{% url 'member_profile' username=user.username %}"><i class="far fa-user-circle"></i></a></li>-->
-            <li><a href="{% url 'manage_clients' username=user.username %}"><i class="fas fa-user-plus mobile-nav__icons" aria-hidden="true"></i></a></li>
-            <li><a href="{% url 'manage_jobs' username=user.username %}"><i class="fas fa-briefcase mobile-nav__icons" aria-hidden="true"></i></a> </li>
-            <li><a href="{% url 'manage_cycles' username=user.username %}"><i class="far fa-circle mobile-nav__icons" aria-hidden="true"></i></a></li>
+            <li><a href="{% url 'manage_clients' username=user.username %}"><i class="fas fa-user-plus nav__icons" aria-hidden="true"></i></a></li>
+            <li><a href="{% url 'manage_jobs' username=user.username %}"><i class="fas fa-briefcase nav__icons" aria-hidden="true"></i></a> </li>
+            <li><a href="{% url 'manage_cycles' username=user.username %}"><i class="far fa-circle nav__icons" aria-hidden="true"></i></a></li>
         </ul>
         {% endif %}
-        <ul id="drop-down-icon" class="mobile-more">
-            <li><i class="fas fa-circle mobile-more__icon" aria-hidden="true"></i></li>
-            <li><i class="fas fa-circle mobile-more__icon" aria-hidden="true"></i></li>
-            <li><i class="fas fa-circle mobile-more__icon" aria-hidden="true"></i></li>
+        <ul id="drop-down-icon" class="more">
+            <li><i class="fas fa-circle more__icon" aria-hidden="true"></i></li>
+            <li><i class="fas fa-circle more__icon" aria-hidden="true"></i></li>
+            <li><i class="fas fa-circle more__icon" aria-hidden="true"></i></li>
         </ul>
     </nav>
     <div id="drop-down-menu" class="main-header__dropdown">

@@ -7,7 +7,7 @@ const addBgColorToBody = (_class) => {
 
     for (let i = 0; i < body.length; i++) {
 
-        body[i].classList.add('body-color');
+        body[i].classList.add(_class);
 
     }
     
@@ -83,11 +83,16 @@ const addClassToCollection = (collection, _class) => {
     }
 }
 
-// ADD CLASS TO ATTRIBUTE TO INDIVIDUAL ELEMENT //
+// ADD CLASS ATTRIBUTE TO INDIVIDUAL ELEMENT //
 const addClassToElement = (_element, _class) => {
 
     _element.setAttribute('class', _class);
 
+}
+
+const addClassToClassList = (_element, _class) => {
+
+    _element.classList.add(_class);
 }
 
 // ADD STYLES AND ICON TO SELECT BOX //

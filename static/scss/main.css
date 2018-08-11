@@ -84,57 +84,57 @@ p, button {
     .main-header__logo {
       left: 3.5rem; } }
 
-.mobile-nav,
-.mobile-more {
+.nav,
+.more {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-left: 0; }
 
-.mobile-nav {
+.nav {
   justify-content: space-between;
   width: 9rem; }
   @media (min-width: 768px) {
-    .mobile-nav {
+    .nav {
       width: 25rem; } }
 
-.mobile-more {
+.more {
   position: relative;
   right: 1rem;
   transform: rotate(0deg);
   transition: transform 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
   @media (min-width: 992px) {
-    .mobile-more {
+    .more {
       right: 3.5rem; } }
 
-.mobile-more:hover {
+.more:hover {
   cursor: pointer; }
 
-.mobile-more--rotate {
+.more--rotate {
   transform: rotate(-90deg); }
 
-.mobile-more__icon {
+.more__icon {
   font-size: .5rem;
   padding: .1rem;
   color: #1e3038;
   transition: color 0.2s cubic-bezier(1, 0.32, 0.32, 0.75); }
 
-.mobile-more:hover > li > i {
+.more:hover > li > i {
   color: #fff; }
 
-.mobile-more--clicked-color {
+.more--clicked-color {
   color: #fff; }
 
-.mobile-nav__icons {
+.nav__icons {
   font-size: 1.2rem;
   color: #1e3038;
   transition: color 0.2s cubic-bezier(1, 0.32, 0.32, 0.75); }
 
-.mobile-nav__icons:hover {
+.nav__icons:hover {
   color: #fff; }
 
-.mobile-nav__icons--clicked {
+.nav__icons--clicked {
   color: #fff; }
 
 .main-header__dropdown {
@@ -1465,7 +1465,7 @@ p, button {
   align-items: center;
   padding-bottom: 1rem; }
 
-.manage-form {
+.manage-form, .porthole-details {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1474,14 +1474,14 @@ p, button {
   border-radius: .3rem;
   padding: .5rem 0 0rem 0; }
   @media (min-width: 768px) {
-    .manage-form {
+    .manage-form, .porthole-details {
       width: 26rem; } }
 
-.manage-form input {
+.manage-form input, .porthole-details input {
   margin-left: .5rem;
   margin-right: .5rem; }
 
-.manage-form p {
+.manage-form p, .porthole-details p {
   margin-top: .5rem; }
 
 .manage-form__button {
@@ -1542,12 +1542,12 @@ p, button {
 .manage-button__button--cycles-width {
   width: 4rem; }
 
-.manage-form textarea {
+.manage-form textarea, .porthole-details textarea {
   width: 17.34rem;
   border-radius: .3rem;
   font-size: .8rem; }
   @media (min-width: 992px) {
-    .manage-form textarea {
+    .manage-form textarea, .porthole-details textarea {
       width: 20.34rem; } }
 
 .manage-items-hr {
@@ -1740,5 +1740,17 @@ p, button {
 
 .form-reset-container {
   margin-top: 1rem; }
+
+.porthole-bg-color {
+  background-color: #3a5864; }
+
+.porthole-nav {
+  background-color: #81aeaa; }
+
+.porthole-details {
+  width: 18.6rem; }
+  @media (min-width: 992px) {
+    .porthole-details {
+      width: 25rem; } }
 
 /*# sourceMappingURL=main.css.map */

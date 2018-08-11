@@ -8,7 +8,7 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="manage-container">
-    <div class="manage-form-container">
+    <section class="manage-form-container">
         <div class="steps-icon">
             <i class="fas fa-user-plus steps-icon__icon" aria-hidden="true"></i>
         </div>
@@ -42,9 +42,9 @@
             <div class="generic-success-dummy"></div>
         {% endif %}
         <!----- MOBILE TOTALS VIEW ---->
-    </div>
+    </section>
     <hr class="manage-hr manage-total-mobile">
-    <div class="manage-total manage-total-mobile">
+    <section class="manage-total manage-total-mobile">
         {% if clients_count > 1 %}
             <p>You have a total of {{ clients_count }} clients.</p>
         {% elif clients_count == 0 %}
@@ -52,10 +52,10 @@
         {% elif clients_count == 1 %}
             <p>You have a total of {{ clients_count }} client.</p>
         {% endif %}
-    </div>
+    </section>
     <hr class="manage-hr manage-hr--added-margin manage-total-mobile">
     <!-------------------------->
-    <div class="manage-items-container {% if clients|length <= 2 %} manage-items-container--no-items {% endif %} ">
+    <section class="manage-items-container {% if clients|length <= 2 %} manage-items-container--no-items {% endif %} ">
         {% if clients %}
             {% for client in clients %}
             <div class="manage-item-container">
@@ -116,6 +116,6 @@
             </div>
         </div>
         {% endif %}
-    </div>
+    </section>
 </div>
 {% endblock %}

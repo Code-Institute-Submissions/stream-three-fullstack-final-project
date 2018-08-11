@@ -4,7 +4,7 @@
 <script defer type="text/javascript" src="{% static 'js/login.js' %}"></script>
 {% endblock %}  
 {% block content %}
-<div class="login-bg-color landing-container">
+<section class="login-bg-color landing-container">
     <div class="login-container">
             <div class="fileo-logo fileo-logo--margin">
                 <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
@@ -38,8 +38,8 @@
             <i class="scroll-down__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
         </div>
     </div>
-</div>
-<div id="login-blurb" class="login-blurb">
+</section>
+<section id="login-blurb" class="login-blurb">
     <div id="up-arrow" class="scroll-up">
         <i class="scroll-up__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
     </div>
@@ -57,5 +57,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

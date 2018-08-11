@@ -8,40 +8,66 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="porthole-container">
-    <div class="steps-icon">
-        <i class="fas fa-circle steps-icon__icon" aria-hidden="true"></i>
-    </div>
-    <h1>Cycle Porthole</h1>
-    
-    <p><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
-    {% if context.cycle_status.cancelled %}
-        <p><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
-    {% elif context.cycle_status.pending %}
-        <p class="cycles-results__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
-    {% elif context.cycle_status.complete %}
-        <p class="cycles-results__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
-    {% else %}
-        <p class="cycles-results__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
-    {% endif %}
-
-    
-    <p><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
-   
-    <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
-    <p><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
-    <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
-    <p><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
-    <h4>Description</h4>
-    <p>{{ context.cycle.description }}</p>
-    
-    <p><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
-    <p><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
-    <h4>Cycle Value</h4>
-    {% if context.cycle.cycle_value %}
-    <p>{{ context.cycle.cycle_value }}</p>
-    {% else %}
-    <p>Cycle Value not entered yet.</p>
-    {% endif %}
+        <div class="steps-icon">
+            <i class="fas fa-circle steps-icon__icon" aria-hidden="true"></i>
+        </div>
+        <h1>Cycle Porthole</h1>
+    <section class="porthole-details">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+                <div class="porthole-details__column">
+                    {% if context.cycle_status.cancelled %}
+                        <p><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+                    {% elif context.cycle_status.pending %}
+                        <p><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+                    {% elif context.cycle_status.complete %}
+                        <p><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+                    {% else %}
+                        <p><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div> 
+        <hr class="manage-items-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+            </div>
+        </div>
+        <hr class="manage-items-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
+                <p><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+            </div>
+        </div>
+        <hr class="manage-items-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+                <p><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+                <p>{{ context.cycle.description }}</p>
+            </div>
+        </div>
+        <hr class="manage-items-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+                <p><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+            </div>
+        </div>
+        <hr class="manage-items-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                {% if context.cycle.cycle_value %}
+                <p>{{ context.cycle.cycle_value }}</p>
+                {% else %}
+                <p>Cycle Value not entered yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
     <hr>
     <div>
         <h3>Upload Your Quote</h3>

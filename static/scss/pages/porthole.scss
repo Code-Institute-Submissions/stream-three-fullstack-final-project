@@ -1,6 +1,26 @@
 // -------------- PORTHOLE TEMPLATE STYLES ------------------- //
+.porthole-bg-color {
+
+    background-color: $login_bg_color;
+}
+
+.porthole-nav {
+
+    background-color: $login-green;
+}
 
 .porthole-container {
 
     @extend .manage-container;
+}
+
+.porthole-details {
+
+    @extend .manage-form;
+    width: 18.6rem;
+    @include desktop {
+
+        width: 25rem;
+    }
+
 }
