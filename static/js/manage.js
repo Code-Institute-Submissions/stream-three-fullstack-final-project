@@ -202,7 +202,7 @@
 
         const startDateSelectContainer = selectOneMonth.parentElement;
         const endDateSelectContainer = selectTwoMonth.parentElement;
-        
+            
         // SELECT AND DE-SELECT DELETE AND RESET BUTTON ELEMENT STYLES //
         hideOtherButtonStylesOnClick()
 

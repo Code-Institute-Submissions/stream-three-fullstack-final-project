@@ -313,7 +313,6 @@ p, button {
   @media (min-width: 768px) {
     .login-form__button {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem; } }
 
 .login-form__button:hover {
@@ -444,7 +443,6 @@ p, button {
   @media (min-width: 768px) {
     .login-blurb__signup {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem; } }
 
 .login-blurb__signup-link {
@@ -827,7 +825,6 @@ p, button {
     .password-reset__button,
     .reset-confirm__button {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem; } }
 
 .password-reset__button:hover {
@@ -906,7 +903,6 @@ p, button {
   @media (min-width: 768px) {
     .reset-complete-login {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem;
       margin-bottom: 0; } }
 
@@ -1423,7 +1419,6 @@ p, button {
   @media (min-width: 768px) {
     .profile-form__button {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem; } }
 
 .generic-success-dummy {
@@ -1498,7 +1493,6 @@ p, button {
   @media (min-width: 768px) {
     .manage-form__button {
       height: 2.1rem;
-      margin-top: .5rem;
       width: 20.1rem; } }
 
 .manage-form__update-job-number input {
