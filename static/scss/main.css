@@ -299,7 +299,8 @@ p, button {
   margin-top: 0rem; }
   @media (min-width: 768px) {
     .login-form__input {
-      height: 1.5rem; } }
+      height: 1.5rem;
+      width: 19.6rem; } }
 
 .login-form__button {
   height: 1.6rem;
@@ -312,7 +313,8 @@ p, button {
   @media (min-width: 768px) {
     .login-form__button {
       height: 2.1rem;
-      margin-top: .5rem; } }
+      margin-top: .5rem;
+      width: 20.1rem; } }
 
 .login-form__button:hover {
   cursor: pointer; }
@@ -442,7 +444,8 @@ p, button {
   @media (min-width: 768px) {
     .login-blurb__signup {
       height: 2.1rem;
-      margin-top: .5rem; } }
+      margin-top: .5rem;
+      width: 20.1rem; } }
 
 .login-blurb__signup-link {
   color: #fff;
@@ -562,7 +565,8 @@ p, button {
   margin-top: 0rem; }
   @media (min-width: 768px) {
     .register-form__input {
-      height: 1.5rem; } }
+      height: 1.5rem;
+      width: 19.6rem; } }
 
 .register-form__button {
   height: 1.6rem;
@@ -574,7 +578,8 @@ p, button {
   background-color: #3a5864; }
   @media (min-width: 768px) {
     .register-form__button {
-      height: 2.1rem; } }
+      height: 2.1rem;
+      width: 20.1rem; } }
 
 .register-form__button:hover {
   cursor: pointer; }
@@ -798,7 +803,8 @@ p, button {
     .reset-form__input,
     .reset-confirm__password1,
     .reset-confirm__password2 {
-      height: 1.5rem; } }
+      height: 1.5rem;
+      width: 19.6rem; } }
 
 .password-reset {
   display: flex;
@@ -821,7 +827,8 @@ p, button {
     .password-reset__button,
     .reset-confirm__button {
       height: 2.1rem;
-      margin-top: .5rem; } }
+      margin-top: .5rem;
+      width: 20.1rem; } }
 
 .password-reset__button:hover {
   cursor: pointer; }
@@ -900,6 +907,7 @@ p, button {
     .reset-complete-login {
       height: 2.1rem;
       margin-top: .5rem;
+      width: 20.1rem;
       margin-bottom: 0; } }
 
 .reset-complete__text {
@@ -1361,7 +1369,8 @@ p, button {
   margin-top: 0rem; }
   @media (min-width: 768px) {
     .profile-form__input {
-      height: 1.5rem; } }
+      height: 1.5rem;
+      width: 19.6rem; } }
 
 .profile-filter-styled {
   height: 1.6rem;
@@ -1380,7 +1389,8 @@ p, button {
   margin-bottom: .8rem; }
   @media (min-width: 768px) {
     .profile-filter-styled {
-      height: 2.1rem; } }
+      height: 2.1rem;
+      width: 20.1rem; } }
 
 .profile__select {
   width: 100%;
@@ -1412,7 +1422,9 @@ p, button {
   cursor: pointer; }
   @media (min-width: 768px) {
     .profile-form__button {
-      height: 2.1rem; } }
+      height: 2.1rem;
+      margin-top: .5rem;
+      width: 20.1rem; } }
 
 .generic-success-dummy {
   height: 16.75px;
@@ -1435,16 +1447,15 @@ p, button {
 
 .manage-container {
   position: relative;
-  top: 8rem;
-  min-height: calc(100% - 4rem);
+  top: 6rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
   @media (min-width: 992px) {
     .manage-container {
-      top: 2rem;
-      height: 44rem;
+      top: 8rem;
       flex-direction: row;
       justify-content: space-evenly; } }
 
@@ -1452,7 +1463,8 @@ p, button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  padding-bottom: 1rem; }
 
 .manage-form {
   display: flex;
@@ -1462,13 +1474,13 @@ p, button {
   background-color: #597b78;
   border-radius: .3rem;
   padding: .5rem 0 0rem 0; }
+  @media (min-width: 768px) {
+    .manage-form {
+      width: 26rem; } }
 
 .manage-form input {
   margin-left: .5rem;
   margin-right: .5rem; }
-  @media (min-width: 992px) {
-    .manage-form input {
-      width: 20rem; } }
 
 .manage-form p {
   margin-top: .5rem; }
@@ -1485,7 +1497,9 @@ p, button {
   cursor: pointer; }
   @media (min-width: 768px) {
     .manage-form__button {
-      height: 2.1rem; } }
+      height: 2.1rem;
+      margin-top: .5rem;
+      width: 20.1rem; } }
 
 .manage-form__update-job-number input {
   color: #898d8f; }
@@ -1502,6 +1516,11 @@ p, button {
   padding: 0 .5rem 0 .5rem;
   background-color: #384847;
   border-radius: .3rem; }
+  @media (min-width: 768px) {
+    .manage-cycles-form__start-date,
+    .manage-cycles-form__end-date {
+      height: 2.1rem;
+      width: 19.1rem; } }
 
 .manage-cycles-form__start-date label,
 .manage-cycles-form__end-date label {
@@ -1547,7 +1566,7 @@ p, button {
   margin: .5rem 0 .5rem 0; }
 
 .manage-hr--added-margin {
-  margin-bottom: 2.9rem; }
+  margin-bottom: 3.9rem; }
   @media (min-width: 992px) {
     .manage-hr--added-margin {
       margin-bottom: 0rem; } }
@@ -1697,10 +1716,7 @@ p, button {
       width: 20rem; } }
 
 .steps-icon {
-  display: none; }
-  @media (min-width: 992px) {
-    .steps-icon {
-      display: flex; } }
+  display: flex; }
 
 .steps-icon__icon {
   color: #597b78;

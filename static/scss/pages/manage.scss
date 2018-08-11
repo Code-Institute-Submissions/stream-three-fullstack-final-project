@@ -20,14 +20,15 @@
 .manage-container {
 
     position: relative;
-    top: 8rem;
-    min-height: calc(100% - 4rem);
+    top: 6rem;
+    padding-bottom: 4rem;
+    //min-height: calc(100% - 4rem);
     @include flex-column;
 
     @include desktop {
 
-        top:2rem;
-        height: 44rem;
+        top: 8rem;
+        //height: 44rem;
         flex-direction: row;
         justify-content: space-evenly;
     }
@@ -36,6 +37,7 @@
 .manage-form-container {
 
     @include flex_column;
+    padding-bottom: 1rem;
 
 }
 
@@ -45,6 +47,11 @@
     background-color: $register-icon-color;
     border-radius: .3rem;
     padding: .5rem 0 0rem 0;
+
+    @include tablet {
+
+        width: 26rem;
+    }
         
 }
 
@@ -53,10 +60,6 @@
     margin-left: .5rem;
     margin-right: .5rem;
 
-    @include desktop {
-
-        width: 20rem;
-    }
 }
 
 .manage-form p {
@@ -74,7 +77,7 @@
 
     @include tablet {
 
-        height: 2.1rem;
+        @include login-button-desktop-media-query;
     }
 }
 
@@ -97,6 +100,12 @@
     padding: 0 .5rem 0 .5rem;
     background-color: $active-icon-color;
     border-radius: .3rem;
+
+    @include tablet {
+
+        height: 2.1rem;
+        width: 19.1rem;
+    }
     
 }
 
@@ -157,7 +166,7 @@
 
 .manage-hr--added-margin {
 
-    margin-bottom: 2.9rem;
+    margin-bottom: 3.9rem;
     @include desktop {
 
         margin-bottom: 0rem;
@@ -170,6 +179,7 @@
     @include flex-column;
     justify-content: flex-start;
     width: 18.6rem;
+    //padding-bottom: 2rem;
 
     @include desktop {
 
@@ -363,12 +373,10 @@
 
 .steps-icon {
 
-    @include steps-icon-container;
+    //@include steps-icon-container;
 
-    @include desktop {
-
-        display: flex;
-    }
+    display: flex;
+    
 }
 
 .steps-icon__icon {

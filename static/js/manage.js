@@ -20,8 +20,6 @@
     const selectTwoMonth = document.getElementById('id_end_date_month');
     const selectTwoDay = document.getElementById('id_end_date_day');
     const selectTwoYear = document.getElementById('id_end_date_year');
-    const startDateSelectContainer = selectOneMonth.parentElement;
-    const endDateSelectContainer = selectTwoMonth.parentElement;
     const cyclesFormSelect = document.getElementById('id_jobs');
     //const hiddenResetDiv = document.getElementById('manage-show-reset');
     const manageResetItemButtons = document.getElementsByClassName('manage-reset');
@@ -202,6 +200,9 @@
 
     if (selectOneMonth) {
 
+        const startDateSelectContainer = selectOneMonth.parentElement;
+        const endDateSelectContainer = selectTwoMonth.parentElement;
+        
         // SELECT AND DE-SELECT DELETE AND RESET BUTTON ELEMENT STYLES //
         hideOtherButtonStylesOnClick()
 
