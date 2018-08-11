@@ -65,6 +65,11 @@ def clear_status(cycle):
     status.save() ## Signal listening to the Save of this Model will reset 
     return True
 
+def clear_value(cycle):
+    cycle.cycle_value = 0
+    cycle.save(update_fields=['cycle_value'])
+    return True
+    
 ## Deletes all files associated with a Status ##
 def delete_all_files(request, cycle_id):
     delete_files = DeleteFile(request, cycle_id)

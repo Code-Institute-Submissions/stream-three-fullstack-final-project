@@ -5,7 +5,7 @@ from datetime import datetime
 from .forms import CycleForm#, EditCycleForm
 from managejobs.view_func import get_all_jobs_for_user  
 from .view_func import create_cycle, delete_all_files, clear_status
-from .view_func import get_user_cycles, update_cycle
+from .view_func import get_user_cycles, update_cycle, clear_value
 from cycleporthole.view_func import CycleStatuses
 from accounts.models import AllUser
 from managejobs.models import Jobs
@@ -43,11 +43,11 @@ def manage_cycles(request, username):
                 if 'updated' in request.POST.keys():
                     cycle = get_object_or_404(Cycles, pk=request.session['update_cycle_id'])
                     update_cycle(cycle, cycle_form)
-                    messages.success(request, 'Cycle updated.')
+                    messages.success(request, 'Cycle updated.', extra_tags='manage_cycle')
                     return redirect(reverse('manage_cycles', kwargs={'username':username}))
                 else:
                     create_cycle(cycle_form, user)
-                    messages.success(request, 'Cycle created.')
+                    messages.success(request, 'Cycle created.', extra_tags='manage_cycle')
             
                     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
@@ -112,6 +112,7 @@ def cancel_cycle(request, username, cycle_id):
 def reset_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     clear_status(cycle)
+    clear_value(cycle)
     delete_all_files(request, cycle_id)
     messages.success(request,   
                     'Cycle reset',

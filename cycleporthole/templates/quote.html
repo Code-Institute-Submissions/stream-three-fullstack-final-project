@@ -1,0 +1,63 @@
+<section>
+    {% if request.user.is_member %}
+    <div class="quote-upload-container">
+        <h3>Upload Your Quote</h3>
+        <img alt='Show image of PDF icon if uploaded'>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ quote_form.as_p }}
+            <!--<input type="hidden" name="file_type" value="quote">-->
+            <button type="submit">Submit</button>
+        </form>
+    {% if context.quote %}
+        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+            <button type="submit">Delete Quote</button>
+        </form>
+        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+            <button type="submit">Notify Client</button>
+        </form>
+    </div>
+        {% endif %}
+        {% for message in messages %}
+            {% if 'quote_delete' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
+    <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
+    <ul>
+        <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
+        <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
+    </ul>
+    <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
+    <div>
+        <h4>Approval</h4>
+        {% if context.cycle_status.approve_quote %}
+            <p>Status: Approved</p>
+        {% elif context.cycle_status.contest_quote %}
+            <p>Status: Contested</p>
+        {% else %}
+            <p>No Status</p>
+        {% endif %}
+    </div>
+        
+    <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
+    <div>
+        {% for message in messages %}
+            {% if 'quote_message' in message.tags %}
+                {{message}}
+            {% endif %}
+        {% endfor %}
+        {% if request.user.is_client %}
+        <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                {{ context.status_form.as_p }}
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form> 
+        {% endif %}
+    </div>
+    
+</section>

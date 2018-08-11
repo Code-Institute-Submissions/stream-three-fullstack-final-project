@@ -1174,6 +1174,7 @@ p, button {
   overflow: hidden; }
 
 .cycles-results__text {
+  word-wrap: break-word;
   margin: 0 .5rem 0 .5rem; }
 
 /*.column-icon p {
@@ -1465,7 +1466,7 @@ p, button {
   align-items: center;
   padding-bottom: 1rem; }
 
-.manage-form, .porthole-details {
+.manage-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1474,14 +1475,14 @@ p, button {
   border-radius: .3rem;
   padding: .5rem 0 0rem 0; }
   @media (min-width: 768px) {
-    .manage-form, .porthole-details {
+    .manage-form {
       width: 26rem; } }
 
-.manage-form input, .porthole-details input {
+.manage-form input {
   margin-left: .5rem;
   margin-right: .5rem; }
 
-.manage-form p, .porthole-details p {
+.manage-form p {
   margin-top: .5rem; }
 
 .manage-form__button {
@@ -1542,15 +1543,15 @@ p, button {
 .manage-button__button--cycles-width {
   width: 4rem; }
 
-.manage-form textarea, .porthole-details textarea {
+.manage-form textarea {
   width: 17.34rem;
   border-radius: .3rem;
   font-size: .8rem; }
   @media (min-width: 992px) {
-    .manage-form textarea, .porthole-details textarea {
+    .manage-form textarea {
       width: 20.34rem; } }
 
-.manage-items-hr {
+.manage-items-hr, .porthole-details-hr {
   color: #337f784d;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
@@ -1713,14 +1714,14 @@ p, button {
     .manage-success {
       width: 20rem; } }
 
-.steps-icon {
+.steps-icon, .porthole-icon {
   display: flex; }
 
-.steps-icon__icon {
+.steps-icon__icon, .porthole-icon__icon {
   color: #597b78;
   font-size: 1.5rem; }
   @media (min-width: 992px) {
-    .steps-icon__icon {
+    .steps-icon__icon, .porthole-icon__icon {
       font-size: 2rem; } }
 
 .manage-total-mobile {
@@ -1744,13 +1745,51 @@ p, button {
 .porthole-bg-color {
   background-color: #3a5864; }
 
+.porthole-icon__icon {
+  color: #1e3038; }
+
+.porthole-heading,
+.porthole-details__text {
+  color: #1e3038; }
+
+.porthole-details__text {
+  word-wrap: break-word;
+  width: 100%; }
+
 .porthole-nav {
   background-color: #81aeaa; }
 
 .porthole-details {
-  width: 18.6rem; }
+  width: 18.6rem;
+  border-radius: .3rem;
+  background-color: #81aeaa;
+  margin-bottom: 4rem; }
   @media (min-width: 992px) {
     .porthole-details {
       width: 25rem; } }
+
+.porthole-details__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  position: relative;
+  left: 5%; }
+
+.porthole-details__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.porthole-details-hr {
+  color: rgba(58, 88, 100, 0.15); }
+
+.quote-upload-container {
+  background-color: #1e3038;
+  border-radius: .3rem;
+  width: 18.6rem; }
 
 /*# sourceMappingURL=main.css.map */

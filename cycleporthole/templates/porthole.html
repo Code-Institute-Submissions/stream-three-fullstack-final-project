@@ -8,120 +8,79 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="porthole-container">
-        <div class="steps-icon">
-            <i class="fas fa-circle steps-icon__icon" aria-hidden="true"></i>
+        <div class="porthole-icon">
+            <i class="fas fa-circle porthole-icon__icon" aria-hidden="true"></i>
         </div>
-        <h1>Cycle Porthole</h1>
+        <h1 class="porthole-heading">Cycle Porthole</h1>
+    <!--- CYCLE PORTHOLE DETAILS -->
     <section class="porthole-details">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
-                <div class="porthole-details__column">
-                    {% if context.cycle_status.cancelled %}
-                        <p><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
-                    {% elif context.cycle_status.pending %}
-                        <p><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
-                    {% elif context.cycle_status.complete %}
-                        <p><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
-                    {% else %}
-                        <p><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
-                    {% endif %}
-                </div>
+                <p class="porthole-details__text"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+            </div>
+            <div class="porthole-details__column">
+                {% if context.cycle_status.cancelled %}
+                    <p class="porthole-details__text"><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+                {% elif context.cycle_status.pending %}
+                    <p class="porthole-details__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+                {% elif context.cycle_status.complete %}
+                    <p class="porthole-details__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+                {% else %}
+                    <p class="porthole-details__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
+                {% endif %}
             </div>
         </div> 
-        <hr class="manage-items-hr">
+        <hr class="porthole-details-hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+                <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
             </div>
         </div>
-        <hr class="manage-items-hr">
+        <hr class="porthole-details-hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
-                <p><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+                <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
+                <p class="porthole-details__text"><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
             </div>
         </div>
-        <hr class="manage-items-hr">
+        <hr class="porthole-details-hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
-                <p><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
-                <p>{{ context.cycle.description }}</p>
-            </div>
+                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+            </div>  
         </div>
-        <hr class="manage-items-hr">
+        <hr class="porthole-details-hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
-                <p><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+                <p class="porthole-details__text">{{ context.cycle.description }}</p>
             </div>
         </div>
-        <hr class="manage-items-hr">
+        <hr class="porthole-details-hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+            </div>
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+            </div>
+        </div>
+        <hr class="porthole-details-hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 {% if context.cycle.cycle_value %}
-                <p>{{ context.cycle.cycle_value }}</p>
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
                 {% else %}
-                <p>Cycle Value not entered yet.</p>
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> Cycle Value not entered yet.</p>
                 {% endif %}
             </div>
         </div>
     </section>
+    <hr class="porthole-details-hr">
+    <!------ QUOTE UPLOAD FOR MEMBER ONLY -->
+    {% include 'quote.html' %}
     <hr>
-    <div>
-        <h3>Upload Your Quote</h3>
-        <img alt='Show image of PDF icon if uploaded'>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ quote_form.as_p }}
-            <!--<input type="hidden" name="file_type" value="quote">-->
-            <button type="submit">Submit</button>
-        </form>
-        {% if context.quote %}
-        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-            <button type="submit">Delete Quote</button>
-        </form>
-        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-            <button type="submit">Notify Client</button>
-        </form>
-        {% endif %}
-        {% for message in messages %}
-            {% if 'quote_delete' in message.tags %}
-                <p>{{message}}</p>
-            {% endif %}
-        {% endfor %}
-        <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
-        <ul>
-            <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
-            <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
-        </ul>
-        <div>
-            <h4>Approval</h4>
-            {% if context.cycle_status.approve_quote %}
-                <p>Status: Approved</p>
-            {% elif context.cycle_status.contest_quote %}
-                <p>Status: Contested</p>
-            {% else %}
-                <p>No Status</p>
-            {% endif %}
-            <div>
-                {% for message in messages %}
-                    {% if 'quote_message' in message.tags %}
-                        {{message}}
-                    {% endif %}
-                {% endfor %}
-                <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                    {% csrf_token %}
-                    <fieldset>
-                        {{ context.status_form.as_p }}
-                        <button type="submit">Submit</button>
-                    </fieldset>
-                </form> 
-            </div>
-        </div>
-    </div>
-    <hr>
+    <!-------- VIEWABLE BY CLIENT ONLY -------------->
     <div>
         <h3>Upload Your PO</h3>
         <img alt='Show image of PDF icon if uploaded'>
@@ -132,23 +91,25 @@
             <button type="submit">Submit</button>
         </form>
         {% if context.po %}
-        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-            <button type="submit">Delete PO</button>
-        </form>
-        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-            <button type="submit">Notify Client</button>
-        </form>
+            <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
+                <button type="submit">Delete PO</button>
+            </form>
+            <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
+                <button type="submit">Notify Member</button>
+            </form>
         {% endif %}
         {% for message in messages %}
         {% if 'po_delete' in message.tags %}
             <p>{{message}}</p>
         {% endif %}
         {% endfor %}
+        <!------ VIEWABLE BY MEMBER AND CLIENT -------------->
         <p>File uploaded at: {{ context.po.uploaded_at }}</p>
         <ul>
             <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
             <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
         </ul>
+         <!------ VIEWABLE BY MEMBER AND CLIENT -------------->
         <div>
             <h4>PO Status</h4>
             <h4>Approval</h4>
@@ -160,6 +121,7 @@
                 <p>No Status</p>
             {% endif %}
             <div>
+        <!---------- VIEWABLE BY MEMBER ONLY -------------------->
                 {% for message in messages %}
                     {% if 'po_message' in message.tags %}
                         {{message}}
@@ -174,8 +136,9 @@
                 </form>
             </div>
         </div>
-    </div>
+    </section>
     <hr>
+    <!--------VIEWABLE BY MEMBER ONLY ------------------>
     <div>
         <h3>Upload Your Invoice</h3>
         <img alt='Show image of PDF icon if uploaded'>
@@ -198,11 +161,13 @@
             <p>{{message}}</p>
         {% endif %}
         {% endfor %}
+        <!-------- VIEWABLE BY BOTH MEMBER AND CLIENT -------------->
         <p>File uploaded at: {{ context.invoice.uploaded_at }}</p>
         <ul>
             <li><a href="{{ context.invoice.file.url }}" download>Download File</a></li>
             <li><a href="{{ context.invoice.file.url }}" target="_blank">View in Browser</a></li> 
         </ul>
+        <!-------- VIEWABLE BY BOTH MEMBER AND CLIENT -------------->
         <div>
             <h4>Invoice Status</h4>
             {% if context.cycle_status.approve_invoice %}
@@ -212,6 +177,7 @@
             {% else %}
                 <p>No Status</p>
             {% endif %}
+        <!-------- VIEWABLE BY CLIENT ONLY -------------------------->
             <div>
                 {% for message in messages %}
                     {% if 'invoice_message' in message.tags %}
@@ -237,7 +203,7 @@
                 {% endif %}
             {% endif %}
         </div>
-    </div>
+    </section>
     <hr>
 </div>
 {% endblock %}

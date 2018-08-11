@@ -4,6 +4,30 @@
     background-color: $login_bg_color;
 }
 
+.porthole-icon {
+
+    @extend .steps-icon;
+}
+
+.porthole-icon__icon {
+
+    @extend .steps-icon__icon;
+    color: $nav-icons;
+}
+
+.porthole-heading,
+.porthole-details__text {
+
+    color: $nav-icons;
+   
+}
+
+.porthole-details__text {
+
+    word-wrap: break-word;
+    width: 100%;
+}
+
 .porthole-nav {
 
     background-color: $login-green;
@@ -16,11 +40,53 @@
 
 .porthole-details {
 
-    @extend .manage-form;
+    //@extend .manage-form;
     width: 18.6rem;
+    border-radius: .3rem;
+    background-color: $login-green;
+    margin-bottom: 4rem;
+
     @include desktop {
 
         width: 25rem;
     }
+
+}
+
+.porthole-details__row {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    position: relative;
+    left: 5%;
+}
+
+.porthole-details__column {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.porthole-details-hr {
+
+    @extend .manage-items-hr;
+    color: $porthole-items-hr-color;
+}
+
+// ---------------- QUOTE UPLOAD STYLES -------------------------- //
+
+.quote-upload-container {
+
+    background-color: #1e3038;
+    border-radius: .3rem;
+    width: 18.6rem;
 
 }

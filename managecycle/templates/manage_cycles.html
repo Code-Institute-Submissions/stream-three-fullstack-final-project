@@ -40,9 +40,11 @@
                 <button class="manage-form__button"type="submit">Update Cycle</button>
                 {% endif %}
             </form>
-        {% if messages %}
+       {% if messages %}
             {% for message in messages %}
+                {% if 'manage_cycle' in message.tags %}
             <p class="generic-success manage-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                {% endif %}
             {% endfor %}
         {% elif cycle_form.cycle_title.value %}
             <div class="form-reset-container">
