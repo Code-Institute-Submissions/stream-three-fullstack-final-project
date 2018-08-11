@@ -1,36 +1,53 @@
-<section>
+<section class="file-container">
     {% if request.user.is_member %}
-    <div class="quote-upload-container">
-        <h3>Upload Your Quote</h3>
-        <img alt='Show image of PDF icon if uploaded'>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ quote_form.as_p }}
-            <!--<input type="hidden" name="file_type" value="quote">-->
-            <button type="submit">Submit</button>
-        </form>
-    {% if context.quote %}
-        <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-            <button type="submit">Delete Quote</button>
-        </form>
-        <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-            <button type="submit">Notify Client</button>
-        </form>
-    </div>
-        {% endif %}
-        {% for message in messages %}
-            {% if 'quote_delete' in message.tags %}
-                <p>{{message}}</p>
-            {% endif %}
-        {% endfor %}
+    <h2 class="porthole-heading">Upload Your Quote</h2>
+    {% elif request.user.is_client %}
+    <h2 class="porthole-heading">View Your Quote</h2>
     {% endif %}
+    
+    <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
+    
+    <div class="quote-upload-container">
+        {% if context.quote %}
+        <div class="uploaded-icon">
+            <a href="{{ context.quote.file.url }}" target="_blank">
+                <div class="uploaded-icon__icon"></div>
+            </a>
+            <p>Click to view.</p>
+        </div>
+        {% else %}
+        <div class="uploaded-icon">
+            <i class="fas fa-times no-file-icon" aria-hidden="true"></i>
+            <p>No file yet.</p>
+        </div>
+        {% endif %}
+        {% if request.user.is_member %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ quote_form.as_p }}
+                <!--<input type="hidden" name="file_type" value="quote">-->
+                <button type="submit">Submit</button>
+            </form>
+            {% if context.quote %}
+                <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+                    <button type="submit">Delete Quote</button>
+                </form>
+                <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
+                    <button type="submit">Notify Client</button>
+                </form>
+            {% endif %}
+    </div>
+            {% for message in messages %}
+                {% if 'quote_delete' in message.tags %}
+                    <p>{{message}}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    
         <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
-    <ul>
-        <li><a href="{{ context.quote.file.url }}" download="">Download File</a></li>
-        <li><a href="{{ context.quote.file.url }}" target="_blank">View in Browser</a></li> 
-    </ul>
-    <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
+    <!------ VIEWABLE BY  CLIENT ------>
+    {% if request.user.is_client %}
     <div>
         <h4>Approval</h4>
         {% if context.cycle_status.approve_quote %}
@@ -43,13 +60,13 @@
     </div>
         
     <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
+    
     <div>
         {% for message in messages %}
             {% if 'quote_message' in message.tags %}
                 {{message}}
             {% endif %}
         {% endfor %}
-        {% if request.user.is_client %}
         <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
             {% csrf_token %}
             <fieldset>
@@ -57,7 +74,7 @@
                 <button type="submit">Submit</button>
             </fieldset>
         </form> 
-        {% endif %}
+        
     </div>
-    
+    {% endif %}   
 </section>

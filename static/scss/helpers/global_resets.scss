@@ -33,6 +33,14 @@ hr {
    
  }
 
+ input[type=number] {
+
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+   
+ }
+
 
  ul, ol{
 

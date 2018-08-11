@@ -10,7 +10,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 
 ## Upload Form Base Class ##
 class UploadForm(ModelForm):
-    file = forms.FileField(label='Upload PDF:')
+    file = forms.FileField(label='')
     
     def clean_file(self):
         pdf_file = self.cleaned_data['file']
@@ -24,12 +24,13 @@ class UploadForm(ModelForm):
             size = filesizeformat(settings.MAX_UPLOAD_SIZE)
             raise forms.ValidationError('Please keep filesize under {0}.'.format(size))
             
-        return pdf_file
+        return pdf_file 
 
 class QuotesForm(UploadForm):
     cycle_value = MoneyField(min_value=0,
                             max_value = 999999,
-                            currency_choices=[('GBP','Pound Sterling')])
+                            currency_choices=[('GBP','Pound Sterling')],
+                            label='')
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'quote'}))
 
     class Meta:

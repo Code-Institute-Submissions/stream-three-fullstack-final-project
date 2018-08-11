@@ -20,6 +20,11 @@ input {
   box-shadow: none;
   color: #26404a; }
 
+input[type=number] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield; }
+
 ul, ol {
   list-style: none; }
 
@@ -1787,9 +1792,43 @@ p, button {
 .porthole-details-hr {
   color: rgba(58, 88, 100, 0.15); }
 
+.uploaded-icon__icon {
+  background: url("../img/Fileo_White_33precent.png");
+  height: 102px;
+  width: 91px;
+  background-repeat: no-repeat;
+  margin-top: 1rem; }
+
+.file-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 .quote-upload-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #1e3038;
   border-radius: .3rem;
   width: 18.6rem; }
+
+.uploaded-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 10rem;
+  margin: 1rem;
+  background-color: #3a5864;
+  border-radius: .3rem; }
+
+input[type=file] {
+  color: #fff; }
+
+.no-file-icon {
+  color: #fff; }
 
 /*# sourceMappingURL=main.css.map */

@@ -81,12 +81,48 @@
     color: $porthole-items-hr-color;
 }
 
+.uploaded-icon__icon {
+
+    background: url('../img/Fileo_White_33precent.png');
+    height: 102px;
+    width: 91px;
+    background-repeat: no-repeat;
+    margin-top: 1rem;
+  //  position: relative;
+   // left: 1rem;
+}
 // ---------------- QUOTE UPLOAD STYLES -------------------------- //
+
+.file-container {
+
+    @include flex-column;
+}
 
 .quote-upload-container {
 
+    @include flex-column;
     background-color: #1e3038;
     border-radius: .3rem;
     width: 18.6rem;
+}
 
+.uploaded-icon {
+
+    @include flex_column;
+    //position: relative;
+    width: 90%;
+    height: 10rem;
+    margin: 1rem;
+    background-color: #3a5864;
+    border-radius: .3rem;
+}
+
+input[type=file] {
+
+    color: #fff;
+}
+
+.no-file-icon {
+
+    color: #fff;
 }
