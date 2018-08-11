@@ -126,3 +126,19 @@ input[type=file] {
 
     color: #fff;
 }
+
+#id_cycle_value_0 {
+
+    @include login-form-mobile;
+}
+
+.upload-form {
+
+    @include flex-column;
+
+}
+
+.upload-form__button {
+
+    @extend .manage-form__button;
+}

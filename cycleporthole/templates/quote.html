@@ -22,12 +22,17 @@
         </div>
         {% endif %}
         {% if request.user.is_member %}
-            <form method="POST" enctype="multipart/form-data">
+       
+            <form class="upload-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ quote_form.as_p }}
+                <div class=browse-button>
+                    <input class="browse-button__button" type="button" value="Browse..."/>
+                </div>
                 <!--<input type="hidden" name="file_type" value="quote">-->
-                <button type="submit">Submit</button>
+                <button class="upload-form__button" type="submit">Submit</button>
             </form>
+        
             {% if context.quote %}
                 <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
                     <button type="submit">Delete Quote</button>

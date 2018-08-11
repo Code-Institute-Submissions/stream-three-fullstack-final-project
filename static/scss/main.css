@@ -1490,7 +1490,7 @@ p, button {
 .manage-form p {
   margin-top: .5rem; }
 
-.manage-form__button {
+.manage-form__button, .upload-form__button {
   height: 1.6rem;
   border: none;
   width: 17.5rem;
@@ -1501,7 +1501,7 @@ p, button {
   margin-bottom: 1rem;
   cursor: pointer; }
   @media (min-width: 768px) {
-    .manage-form__button {
+    .manage-form__button, .upload-form__button {
       height: 2.1rem;
       width: 20.1rem; } }
 
@@ -1830,5 +1830,19 @@ input[type=file] {
 
 .no-file-icon {
   color: #fff; }
+
+#id_cycle_value_0 {
+  height: 1rem;
+  width: 17rem;
+  border-radius: .3rem;
+  padding: .3rem;
+  font-size: .8rem;
+  margin-top: 0rem; }
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 /*# sourceMappingURL=main.css.map */

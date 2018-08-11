@@ -88,6 +88,9 @@
             {% csrf_token %}
             {{ po_form.as_p }}
             <!--<input type="hidden" name="file_type" value="po">-->
+            <div class=browse-button>
+                <input class="browse-button__button" type="button" value="Browse..."/>
+            </div>
             <button type="submit">Submit</button>
         </form>
         {% if context.po %}
@@ -146,6 +149,9 @@
             {% csrf_token %}
             {{ invoice_form.as_p }}
             <!--<input type="hidden" name="file_type" value="invoice">-->
+            <div class=browse-button>
+                <input class="browse-button__button" type="button" value="Browse..."/>
+            </div>
             <button type="submit">Upload</button>
         </form>
         {% if context.invoice %}
