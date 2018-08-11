@@ -1,12 +1,10 @@
-<section class="file-container">
+<section class="quote-file-container">
     {% if request.user.is_member %}
-    <h2 class="porthole-heading">Upload Your Quote</h2>
+    <h2 class="porthole-upload-heading">Upload Your Quote</h2>
     {% elif request.user.is_client %}
-    <h2 class="porthole-heading">View Your Quote</h2>
+    <h2 class="porthole-upload-heading">View Your Quote</h2>
     {% endif %}
-    
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
-    
     <div class="quote-upload-container">
         {% if context.quote %}
         <div class="uploaded-icon">
@@ -22,35 +20,36 @@
         </div>
         {% endif %}
         {% if request.user.is_member %}
-       
-            <form class="upload-form" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ quote_form.as_p }}
-                <div class=browse-button>
-                    <input class="browse-button__button" type="button" value="Browse..."/>
-                </div>
-                <!--<input type="hidden" name="file_type" value="quote">-->
-                <button class="upload-form__button" type="submit">Submit</button>
-            </form>
-        
-            {% if context.quote %}
-                <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-                    <button type="submit">Delete Quote</button>
-                </form>
-                <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">
-                    <button type="submit">Notify Client</button>
-                </form>
-            {% endif %}
+        <form class="upload-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ quote_form.as_p }}
+            <button class="upload-form__browse-button" type="button"/>Browse Files</button>
+            <!--<input type="hidden" name="file_type" value="quote">-->
+            <button class="upload-form__button" type="submit">Upload</button>
+        </form>
     </div>
-            {% for message in messages %}
-                {% if 'quote_delete' in message.tags %}
-                    <p>{{message}}</p>
-                {% endif %}
-            {% endfor %}
+    <div class="file-action">
+        {% if context.quote %}
+        <div>
+            <a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a>
+        </div>
+        <div>
+            <a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a>
+        </div>
         {% endif %}
-    
+    </div>
+    <div>
+        {% for message in messages %}
+            {% if 'quote_delete' in message.tags %}
+                <p>{{message}}</p>
+            {% endif %}
+        {% endfor %}   
+    </div>
+        {% endif %}
         <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
-    <p>File uploaded at: {{ context.quote.uploaded_at }}</p>
+    {% if context.quote %}
+    <p>File uploaded at {{ context.quote.uploaded_at }}</p>
+    {% endif %}
     <!------ VIEWABLE BY  CLIENT ------>
     {% if request.user.is_client %}
     <div>

@@ -6,7 +6,9 @@
     const input = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');
     const valueInput = document.getElementById('id_cycle_value_0');
-    const browseButtons = document.getElementsByClassName('browse-button__button');
+    const browseButtons = document.getElementsByClassName('upload-form__browse-button');
+    
+
 
     // GET INPUTS BY FILE INPUT TYPE //
     const getFileInput = (input) => {
@@ -65,7 +67,7 @@
 
      // TRIGGER HIDDEN UNSTYLED BROWSE BUTTON ON CLICK OF STYLED BUTTON //
     const onBrowseButtonClickTriggerHiddenButton = (browseButtons) => {
-        console.log(browseButtons);
+        //console.log(browseButtons);
         for (i = 0; i < browseButtons.length; i++) {
 
             browseButtons[i].addEventListener('click', () => {
@@ -91,6 +93,14 @@
 
     // HIDE THOSE ELEMENTS // 
     hideUploadFields(uploadFields);
+
+    for(let  i =0; i < uploadFields.length; i++) {
+
+        uploadFields[i].onchange = function() {
+
+            console.log(this.value);
+        }
+    }
 
     // TRIGGER HIDDEN DJANGO GENERATED FORM BROWSE BUTTON //
     onBrowseButtonClickTriggerHiddenButton(browseButtons);
