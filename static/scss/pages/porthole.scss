@@ -12,10 +12,20 @@
 .porthole-icon__icon {
 
     @extend .steps-icon__icon;
-    color: $nav-icons;
+    color:  #1e3038;
 }
 
-.porthole-heading,
+.porthole-heading {
+
+    color:  #1e3038;
+    //margin-top: 2rem;
+}
+
+.porthole-upload-heading {
+
+    color: #1e3038;
+}
+
 .porthole-details__text {
 
     color: $nav-icons;
@@ -91,11 +101,14 @@
   //  position: relative;
    // left: 1rem;
 }
+
 // ---------------- QUOTE UPLOAD STYLES -------------------------- //
 
-.file-container {
+.quote-file-container {
 
     @include flex-column;
+    background-color: $login-green;
+    width: 100%;
 }
 
 .quote-upload-container {
@@ -141,4 +154,34 @@ input[type=file] {
 .upload-form__button {
 
     @extend .manage-form__button;
+    background-color: $login-green;
+}
+
+.upload-form__browse-button {
+
+    @include login-button-mobile;
+    background-color: $login_bg_color;
+
+   
+}
+
+//.upload-form__browse-button:hover {
+
+  //  cursor: pointer;
+//}
+
+.file-action {
+
+    @include flex_column;
+}
+
+.file-action a {
+
+    transition: color .3s $drop-down-bezier;
+}
+
+.file-action a:hover {
+
+    cursor: pointer;
+    color: $login-signup-color;
 }

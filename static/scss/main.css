@@ -42,7 +42,7 @@ h1 {
   font-size: 1.5rem;
   color: #fff; }
 
-p, button {
+p, button, a {
   color: #fff;
   font-size: .8rem; }
 
@@ -1753,7 +1753,12 @@ p, button {
 .porthole-icon__icon {
   color: #1e3038; }
 
-.porthole-heading,
+.porthole-heading {
+  color: #1e3038; }
+
+.porthole-upload-heading {
+  color: #1e3038; }
+
 .porthole-details__text {
   color: #1e3038; }
 
@@ -1799,11 +1804,13 @@ p, button {
   background-repeat: no-repeat;
   margin-top: 1rem; }
 
-.file-container {
+.quote-file-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-color: #81aeaa;
+  width: 100%; }
 
 .quote-upload-container {
   display: flex;
@@ -1844,5 +1851,30 @@ input[type=file] {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+
+.upload-form__button {
+  background-color: #81aeaa; }
+
+.upload-form__browse-button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
+  background-color: #3a5864; }
+
+.file-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.file-action a {
+  transition: color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
+
+.file-action a:hover {
+  cursor: pointer;
+  color: #bbbdbee6; }
 
 /*# sourceMappingURL=main.css.map */
