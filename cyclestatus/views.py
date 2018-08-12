@@ -57,7 +57,7 @@ def set_po_status(request, username, cycle_id):
             status.save(update_fields=['approve_po', 
                                         'contest_po'])
             email_status(username, po.cycle.client.username, cycle_id, 
-                         status_form, 'quote')
+                         status_form, 'po')
             return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id
@@ -72,6 +72,7 @@ def set_po_status(request, username, cycle_id):
 ## Set Status of Invoice ##
 ## Get Invoice by Cycle Id, Save form to Model and Redirect back to Porthole ##
 def set_invoice_status(request, username, cycle_id):
+    print('here');
     try:
         invoice = Invoices.objects.get(cycle=cycle_id)
     except Invoices.DoesNotExist:
@@ -88,7 +89,7 @@ def set_invoice_status(request, username, cycle_id):
             status.save(update_fields=['approve_invoice', 
                                         'contest_invoice'])
             email_status(username, invoice.cycle.client.username, cycle_id, 
-                         status_form, 'quote')
+                         status_form, 'invoice')
             return redirect(reverse('porthole', 
                                 kwargs={'username':username,
                                         'cycle_id': cycle_id

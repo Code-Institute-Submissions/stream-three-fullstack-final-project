@@ -1,15 +1,8 @@
 <!-- PO STEP PARTIAL -->
 
-<section class="file-container {% if context.cycle_status.approve_quote %} file-container--padding {% endif %}">
-    {% if request.user.is_client %}
-        {% if not context.po %}
-        <h2 class="porthole-upload-heading">Upload Your PO</h2>
-        {% else %}
-        <h2 class="porthole-upload-heading">View Your PO</h2>
-        {% endif %}
-    {% elif request.user.is_member %}
-        <h2 class="porthole-upload-heading">View Your PO</h2>
-    {% endif %}
+<section class="file-container {% if context.cycle_status.approve_po %} file-container--padding {% endif %}">
+    <h2 class="porthole-upload-heading">PO</h2>
+
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     
@@ -24,12 +17,16 @@
                 <p class="porthole-status"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
             {% endif %}
         </div>
+        {% elif not context.po %}
+            <div class="dummy-approval"></div>
+        {% endif %}
+        {% if context.po %}
         <div class="uploaded-icon">
             <a href="{{ context.po.file.url }}" target="_blank">
                 <div class="uploaded-icon__icon"></div>
             </a>
             <!--<p class="uploaded-icon__file-name">Click to view </p>-->
-            <p>File uploaded on {{ context.quote.uploaded_at }}</p>
+            <p>File uploaded on {{ context.po.uploaded_at }}</p>
         </div>
         {% else %}
         <div class="uploaded-icon">
@@ -44,7 +41,7 @@
             {% csrf_token %}
             {{ po_form.as_p }}
             {% for message in messages %}
-                {% if 'purchase_order_upload_error' in message.tags %}
+                {% if 'step2_upload_error' in message.tags %}
                 <p class="generic-success manage-success porthole-error">{{ message }}</p>
                 {% endif %}
             {% endfor %}
@@ -54,8 +51,26 @@
         </form>
         {% endif %}
         {% endif %}
+    {% if request.user.is_member %}
+    {% if not context.cycle_status.approve_po %}
+    <div class="file-approval">
+        {% for message in messages %}
+            {% if 'po_message' in message.tags %}
+                <p class="generic-success manage-success porthole-error">{{message}}</p>
+            {% endif %}
+        {% endfor %}
+        
+        {% if not context.cycle_status.approve_po and not context.cycle_status.contest_po %}
+            <form class="file-approval__form" action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                {% csrf_token %}
+                    {{ context.status_form.as_p }}
+                <button class="file-approval__button" type="submit">Submit</button>
+            </form>
+        {% endif %}    
     </div>
-    
+    {% endif %}
+    {% endif %}   
+    </div>
     <!---- VIEWABLE BY CLIENT ONLY ---->
     {% if request.user.is_client %}
     {% if not context.cycle_status.approve_po %}
@@ -88,24 +103,6 @@
     {% endif %}
 
     <!-------- VIEWABLE BY MEMBER ONLY ---------------------->
-    {% if request.user.is_member %}
-    {% if not context.cycle_status.approve_po %}
-    <div class="file-approval">
-        {% for message in messages %}
-            {% if 'po_message' in message.tags %}
-                <p class="generic-success manage-success porthole-error">{{message}}</p>
-            {% endif %}
-        {% endfor %}
-        
-        {% if not context.cycle_status.approve_po and not context.cycle_status.contest_po %}
-            <form class="file-approval__form" action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                {% csrf_token %}
-                    {{ context.status_form.as_p }}
-                <button class="file-approval__button" type="submit">Submit</button>
-            </form>
-        {% endif %}    
-    </div>
-    {% endif %}
-    {% endif %}   
+    
 </section>
 

@@ -85,6 +85,7 @@ class NewFile(NewClient):
                     html_message=html_message,fail_silently=True)
 
     def new_po_notification(self):
+        print('here')
         subject = 'New Quote in your Client Porthole.'
         html_message = render_to_string('../templates/emails/new_file_email.html',
                                         {'recipient_email': self.member.email,

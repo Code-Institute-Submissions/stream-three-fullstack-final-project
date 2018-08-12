@@ -44,7 +44,7 @@ def porthole(request, username, cycle_id):
                 if not po_uploaded:
                     messages.error(request, 
                                     "You can't upload a PO until there is an approved Quote.",
-                                    extra_tags='purchase_order_upload_error')
+                                    extra_tags='step2_upload_error')
                 return redirect(reverse('porthole', kwargs={'username':username,
                                                 'cycle_id':cycle_id
                                                 }))        
@@ -55,7 +55,7 @@ def porthole(request, username, cycle_id):
                 if not invoice_uploaded:    
                     messages.error(request, 
                                     "You can't upload an Invoice until there is an approved PO.",
-                                    extra_tags='invoice_upload_error')
+                                    extra_tags='step3_upload_error')
                 return redirect(reverse('porthole', kwargs={'username':username,
                                                             'cycle_id':cycle_id
                                                             }))                                                          
@@ -65,7 +65,7 @@ def porthole(request, username, cycle_id):
                                             'invoice_form':invoice_form,})
 
 
-## Send Email Notification of Quote Upload and redirect to Porthole View ##
+## Send Email Notification of Upload and redirect to Porthole View ##
 def step_notify(request, username, cycle_id, step):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     kwargs = get_email_details(username, cycle.client.username)
@@ -80,8 +80,6 @@ def step_notify(request, username, cycle_id, step):
     elif step == 'invoice':
         NewFile(**kwargs).new_invoice_notification()
         messages.success(request, message , extra_tags='invoice')
-
-    
 
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,

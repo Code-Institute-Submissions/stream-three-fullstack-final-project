@@ -1757,17 +1757,49 @@ p, button, a {
 .porthole-bg-color {
   background-color: #3a5864; }
 
+.all-steps-container {
+  background-color: #81aeaa;
+  width: 100%; }
+  @media (min-width: 992px) {
+    .all-steps-container {
+      display: flex;
+      align-items: flex-start;
+      height: 100vh; } }
+
+.porthole-container {
+  padding-bottom: 0rem; }
+  @media (min-width: 768px) {
+    .porthole-container {
+      top: 6rem; } }
+  @media (min-width: 992px) {
+    .porthole-container {
+      flex-direction: column; } }
+
 .porthole-details-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; }
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 6rem);
+    /*@include desktop {
+
+        display: none;
+    }*/ }
+  @media (min-width: 768px) {
+    .porthole-details-container {
+      justify-content: center;
+      position: relative; } }
 
 .porthole-icon__icon {
-  color: #1e3038; }
+  color: #81aeaa; }
 
 .porthole-heading {
-  color: #1e3038;
+  color: #81aeaa;
+  text-align: center; }
+
+.porthole-blurb {
+  word-wrap: break-word;
+  width: 17rem;
   text-align: center; }
 
 .porthole-upload-heading {
@@ -1785,12 +1817,15 @@ p, button, a {
   background-color: #81aeaa; }
 
 .porthole-details {
+  display: flex;
+  flex-direction: column;
   width: 18.6rem;
   border-radius: .3rem;
   background-color: #81aeaa;
   margin-bottom: 4rem; }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .porthole-details {
+      height: 32rem;
       width: 25rem; } }
 
 .porthole-details__row {
@@ -1800,6 +1835,9 @@ p, button, a {
   width: 90%;
   position: relative;
   left: 5%; }
+  @media (min-width: 768px) {
+    .porthole-details__row {
+      flex-grow: 1; } }
 
 .porthole-details__column {
   display: flex;
@@ -1811,6 +1849,10 @@ p, button, a {
 
 .porthole-details-hr {
   color: rgba(58, 88, 100, 0.15); }
+
+@media (min-width: 992px) {
+  .steps-hr {
+    display: none; } }
 
 .uploaded-icon__icon {
   background: url("../img/Fileo_White_33precent.png");
@@ -1825,7 +1867,11 @@ p, button, a {
   justify-content: center;
   align-items: center;
   background-color: #81aeaa;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 1rem; }
+  @media (min-width: 992px) {
+    .file-container {
+      margin: 10rem 2rem 0 2rem; } }
 
 .file-container--padding {
   padding-bottom: 3rem; }
@@ -1833,11 +1879,17 @@ p, button, a {
 .quote-upload-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: #1e3038;
   border-radius: .3rem;
   width: 18.6rem; }
+  @media (min-width: 992px) {
+    .quote-upload-container {
+      min-height: 435px;
+      width: 21.6rem; } }
+
+.dummy-approval {
+  height: 1.8rem; }
 
 .quote-upload-container--margin {
   margin-bottom: 2rem; }
@@ -1853,16 +1905,12 @@ p, button, a {
   background-color: #3a5864;
   border-radius: .3rem; }
 
+@media (min-width: 992px) {
+  .uploaded-icon-invoice {
+    margin-bottom: 4.6rem; } }
+
 .no-file-icon {
   color: #fff; }
-
-#id_cycle_value_0 {
-  height: 1rem;
-  width: 17rem;
-  border-radius: .3rem;
-  padding: .3rem;
-  font-size: .8rem;
-  margin-top: 0rem; }
 
 .upload-form {
   display: flex;
@@ -1883,12 +1931,35 @@ p, button, a {
   color: #fff;
   background-color: #3a5864;
   margin: .5rem 0 .8rem 0; }
+  @media (min-width: 992px) {
+    .upload-form__browse-button, .file-approval__button {
+      height: 2.1rem;
+      width: 20.1rem; } }
 
 .upload-form__browse-button:hover, .file-approval__button:hover {
   cursor: pointer; }
 
 .upload-form p {
   margin: .5rem 0 .8rem 0; }
+  @media (min-width: 992px) {
+    .upload-form p {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%; } }
+
+.upload-form p input {
+  height: 1rem;
+  width: 17rem;
+  border-radius: .3rem;
+  padding: .3rem;
+  font-size: .8rem;
+  margin-top: 0rem; }
+  @media (min-width: 768px) {
+    .upload-form p input {
+      height: 1.5rem;
+      width: 19.6rem; } }
 
 .file-action {
   display: flex;
@@ -1942,5 +2013,32 @@ p, button, a {
 
 .porthole-error {
   color: #f00; }
+
+.payment-pending {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem; }
+
+.payment-pending__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.payment-pending__button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
+  background-color: #597b78; }
+
+.payment-pending p {
+  width: 18.6rem;
+  word-wrap: break-word;
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

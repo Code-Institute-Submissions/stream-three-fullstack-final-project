@@ -1,0 +1,75 @@
+    <!------  DETAILS PARTIAL -------->
+<section class="porthole-details mobile-porthole-details">
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+        </div>
+        <div class="porthole-details__column">
+            {% if context.cycle_status.cancelled %}
+                <p class="porthole-details__text"><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+            {% elif context.cycle_status.pending %}
+                <p class="porthole-details__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+            {% elif context.cycle_status.complete %}
+                <p class="porthole-details__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+            {% else %}
+                <p class="porthole-details__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
+            {% endif %}
+        </div>
+    </div> 
+    <hr class="porthole-details-hr">
+    <!-----CLIENT------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            {% if request.user.is_member %}
+            <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+            {% else %}
+            <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.member.first_name }} {{ context.cycle.member.last_name }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <hr class="porthole-details-hr">
+    <!-----JOB------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
+            <p class="porthole-details__text"><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+        </div>
+    </div>
+    <hr class="porthole-details-hr">
+    <!-----CYCLE------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+            <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+        </div>  
+    </div>
+    <hr class="porthole-details-hr">
+    <!-----DESCRIPTION------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+        </div>
+    </div>
+    <hr class="porthole-details-hr">
+    <!-----CYCLE DATES------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+        </div>
+        <div class="porthole-details__column">
+            <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+        </div>
+    </div>
+    <hr class="porthole-details-hr">
+    <!-----CYCLE VALUE------>
+    <div class="porthole-details__row">
+        <div class="porthole-details__column">
+            {% if context.cycle.cycle_value %}
+            <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
+            {% else %}
+            <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> Value not entered yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</section>

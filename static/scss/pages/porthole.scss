@@ -4,9 +4,55 @@
     background-color: $login_bg_color;
 }
 
+.all-steps-container {
+
+    background-color: $login-green;
+    width:100%;
+
+    @include desktop {
+
+        display: flex;
+        align-items: flex-start;
+        height: 100vh;
+    }
+}
+
+
+.porthole-container {
+
+    @extend .manage-container;
+    padding-bottom: 0rem;
+    
+    @include tablet {
+
+        top: 6rem;
+    }
+
+    @include desktop {
+
+        flex-direction:column;
+    }
+}
+
 .porthole-details-container {
 
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 6rem);
+
+    @include tablet {
+
+        justify-content: center;
+        position: relative;
+       // top: -6rem;
+    }
+
+    /*@include desktop {
+
+        display: none;
+    }*/
 }
 
 .porthole-icon {
@@ -17,14 +63,22 @@
 .porthole-icon__icon {
 
     @extend .steps-icon__icon;
-    color:  #1e3038;
+    color: $login-green;
 }
 
 .porthole-heading {
 
-    color:  #1e3038;
+    color:  $login-green;
     text-align: center;
     //margin-top: 2rem;
+    
+}
+
+.porthole-blurb {
+
+    word-wrap: break-word;
+    width: 17rem;
+    text-align: center;
 }
 
 .porthole-upload-heading {
@@ -50,21 +104,20 @@
     background-color: $login-green;
 }
 
-.porthole-container {
-
-    @extend .manage-container;
-}
 
 .porthole-details {
 
     //@extend .manage-form;
+    display: flex;
+    flex-direction: column;
     width: 18.6rem;
     border-radius: .3rem;
     background-color: $login-green;
     margin-bottom: 4rem;
 
-    @include desktop {
+    @include tablet {
 
+        height: 32rem;
         width: 25rem;
     }
 
@@ -78,6 +131,11 @@
     width: 90%;
     position: relative;
     left: 5%;
+
+    @include tablet {
+
+        flex-grow: 1;
+    }
 }
 
 .porthole-details__column {
@@ -96,8 +154,18 @@
 
     @extend .manage-items-hr;
     color: $porthole-items-hr-color;
+
+   
 }
 
+.steps-hr {
+
+    @include desktop {
+
+        display: none;
+    }
+
+}
 .uploaded-icon__icon {
 
     background: url('../img/Fileo_White_33precent.png');
@@ -105,8 +173,7 @@
     width: 91px;
     background-repeat: no-repeat;
     margin-top: 1rem;
-  //  position: relative;
-   // left: 1rem;
+
 }
 
 // ---------------- QUOTE UPLOAD STYLES -------------------------- //
@@ -116,6 +183,13 @@
     @include flex-column;
     background-color: $login-green;
     width: 100%;
+    margin-bottom: 1rem;
+
+    @include desktop {
+
+        margin: 10rem 2rem 0 2rem;
+
+    }
 }
 
 .file-container--padding {
@@ -126,18 +200,34 @@
 
 .quote-upload-container {
 
-    @include flex-column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #1e3038;
     border-radius: .3rem;
     width: 18.6rem;
+
+    @include desktop {
+
+        min-height: 435px;
+        width: 21.6rem;
+    }
     
+}
+
+.dummy-approval {
+
+    height: 1.8rem
 }
 
 // DYNAMIC CLASS ONLY ADDED WHEN FILE APPROVED
 .quote-upload-container--margin {
 
     margin-bottom: 2rem;
+
 }
+
+
 
 .uploaded-icon {
 
@@ -150,15 +240,19 @@
     border-radius: .3rem;
 }
 
+.uploaded-icon-invoice {
+
+    @include desktop {
+
+        margin-bottom: 4.6rem;
+    }
+}
+
 .no-file-icon {
 
     color: #fff;
 }
 
-#id_cycle_value_0 {
-
-    @include login-form-mobile;
-}
 
 .upload-form {
 
@@ -179,6 +273,10 @@
     background-color: $login_bg_color;
     margin: .5rem 0 .8rem 0;
 
+    @include desktop {
+
+        @include login-button-desktop-media-query;
+    }
    
 }
 
@@ -190,6 +288,23 @@
 .upload-form p {
 
     margin: .5rem 0 .8rem 0;
+
+    @include desktop {
+
+        @include flex_row;
+        width: 100%;
+
+    }
+}
+
+.upload-form p input {
+
+    @include login-form-mobile;
+
+    @include tablet {
+
+        @include login-form-desktop-media-query;
+    }
 }
 
 .file-action {
@@ -223,6 +338,11 @@
     margin-top: 2rem;
     @include flex-column;
 
+    @include desktop {
+
+        //margin-bottom: 3.6rem;
+        //margin-top: 0rem;
+    }
 
 }
 
@@ -265,3 +385,33 @@
 
     color: $login-error-red;
 }
+
+.payment-pending {
+
+    @include flex_column;
+    margin-bottom: 2rem;
+
+}
+
+.payment-pending__form {
+
+    @include flex_column;
+}
+
+.payment-pending__button {
+
+    @include login-button-mobile;
+    background-color: $register-icon-color;
+
+}
+
+.payment-pending p {
+
+    width: 18.6rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+// -------------- HIDE/SHOW PORTHOLE DETAILS MEDIA QUERY ------------------- //
+
+
