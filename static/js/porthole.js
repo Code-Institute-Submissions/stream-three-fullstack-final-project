@@ -39,7 +39,6 @@
     }
 
     // HIDE UPLOAD FIELDS TO REPLACE WITH CUSTOM STYLED UPLOAD FIELDS //
-
     const hideUploadFields = (uploadFields) => {
        
 
@@ -67,17 +66,48 @@
 
      // TRIGGER HIDDEN UNSTYLED BROWSE BUTTON ON CLICK OF STYLED BUTTON //
     const onBrowseButtonClickTriggerHiddenButton = (browseButtons) => {
-        //console.log(browseButtons);
-        for (i = 0; i < browseButtons.length; i++) {
+        
+        for (let i = 0; i < browseButtons.length; i++) {
 
+            
             browseButtons[i].addEventListener('click', () => {
-
+                
+                console.log(`upload-${i}`);
+                
                 document.getElementById(`upload-${i}`).click();
 
             });
         }
 
     }
+
+    const setNameOfButtonToFile = (uploadFields, browseButtons) => {
+
+        for (let i = 0; i < uploadFields.length; i++) {
+
+            uploadFields[i].onchange = function () {
+                
+                let stripValue = this.value.toString().replace(/.*(\/|\\)/, " ").substring(0, 15);
+
+                if(stripValue) {
+
+                    let buttonHTML = `<i class="far fa-file"></i> ${stripValue}. . .`;
+                    browseButtons[i].innerHTML = buttonHTML;
+
+                } else {
+
+                    let buttonHTML = `<i class="far fa-file"></i> File attached.`;
+                    browseButtons[i].innerHTML = buttonHTML;
+                }
+                
+                
+                
+            }
+        }
+    }
+
+    
+
 
     //----------------------------- FUNCTION CALLS ------------------------// 
 
@@ -90,20 +120,20 @@
     const poUpload = document.getElementById('upload-1');
     const invoiceUpload = document.getElementById('upload-2');
     const uploadFields = [quoteUpload, poUpload, invoiceUpload];
-
-    // HIDE THOSE ELEMENTS // 
-    hideUploadFields(uploadFields);
-
-    for(let  i =0; i < uploadFields.length; i++) {
-
-        uploadFields[i].onchange = function() {
-
-            console.log(this.value);
-        }
-    }
+   
+       
+ 
 
     // TRIGGER HIDDEN DJANGO GENERATED FORM BROWSE BUTTON //
     onBrowseButtonClickTriggerHiddenButton(browseButtons);
+
+    // SET CUSTOM UPLOAD BUTTON TO FILE NAME //
+    setNameOfButtonToFile(uploadFields, browseButtons);
+
+    // HIDE THOSE ELEMENTS // 
+    hideUploadFields(uploadFields);
+    //getNameOfFile(quoteUpload);
+ 
 
     // STYLE UPLOAD FORM //
     addPlaceHolderToValueInput(valueInput);

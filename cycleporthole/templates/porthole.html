@@ -31,12 +31,14 @@
             </div>
         </div> 
         <hr class="porthole-details-hr">
+        <!-----CLIENT------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
             </div>
         </div>
         <hr class="porthole-details-hr">
+        <!-----JOB------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
@@ -44,6 +46,7 @@
             </div>
         </div>
         <hr class="porthole-details-hr">
+         <!-----CYCLE------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
@@ -51,12 +54,14 @@
             </div>  
         </div>
         <hr class="porthole-details-hr">
+        <!-----DESCRIPTION------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p class="porthole-details__text">{{ context.cycle.description }}</p>
+                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
             </div>
         </div>
         <hr class="porthole-details-hr">
+        <!-----CYCLE DATES------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
@@ -66,6 +71,7 @@
             </div>
         </div>
         <hr class="porthole-details-hr">
+        <!-----CYCLE VALUE------>
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 {% if context.cycle.cycle_value %}
