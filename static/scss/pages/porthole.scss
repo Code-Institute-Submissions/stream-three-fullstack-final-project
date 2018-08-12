@@ -23,6 +23,7 @@
 .porthole-heading {
 
     color:  #1e3038;
+    text-align: center;
     //margin-top: 2rem;
 }
 
@@ -110,14 +111,14 @@
 
 // ---------------- QUOTE UPLOAD STYLES -------------------------- //
 
-.quote-file-container {
+.file-container {
 
     @include flex-column;
     background-color: $login-green;
     width: 100%;
 }
 
-.quote-file-container--padding {
+.file-container--padding {
 
     padding-bottom: 3rem;
 }
@@ -260,3 +261,7 @@
     color: $nav-icons;
 }
 
+.porthole-error {
+
+    color: $login-error-red;
+}

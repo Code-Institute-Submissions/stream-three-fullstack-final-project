@@ -40,7 +40,7 @@ class QuotesForm(UploadForm):
 
 class PurchaseOrderForm(UploadForm):
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'po'}))
-                                                            
+                                   
     class Meta:
         model = PurchaseOrder
         fields = ['file']

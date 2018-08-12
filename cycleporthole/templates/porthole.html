@@ -87,67 +87,8 @@
     <hr class="porthole-details-hr">
     <!------ QUOTE UPLOAD FOR MEMBER ONLY -->
     {% include 'quote.html' %}
-    <hr>
     <!-------- VIEWABLE BY CLIENT ONLY -------------->
-    <div>
-        <h3>Upload Your PO</h3>
-        <img alt='Show image of PDF icon if uploaded'>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ po_form.as_p }}
-            <!--<input type="hidden" name="file_type" value="po">-->
-      
-            <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
-            <!--<input type="hidden" name="file_type" value="quote">-->
-            <button id="po-submit__button" class="upload-form__button" type="submit">Upload</button>
-        </form>
-        {% if context.po %}
-            <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-                <button type="submit">Delete PO</button>
-            </form>
-            <form action="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">
-                <button type="submit">Notify Member</button>
-            </form>
-        {% endif %}
-        {% for message in messages %}
-        {% if 'po_delete' in message.tags %}
-            <p>{{message}}</p>
-        {% endif %}
-        {% endfor %}
-        <!------ VIEWABLE BY MEMBER AND CLIENT -------------->
-        <p>File uploaded at: {{ context.po.uploaded_at }}</p>
-        <ul>
-            <li><a href="{{ context.po.file.url }}" download>Download File</a></li>
-            <li><a href="{{ context.po.file.url }}" target="_blank">View in Browser</a></li> 
-        </ul>
-         <!------ VIEWABLE BY MEMBER AND CLIENT -------------->
-        <div>
-            <h4>PO Status</h4>
-            <h4>Approval</h4>
-            {% if context.cycle_status.approve_po %}
-                <p>Status: Approved</p>
-            {% elif context.cycle_status.contest_po %}
-                <p>Status: Contested</p>
-            {% else %}
-                <p>No Status</p>
-            {% endif %}
-            <div>
-        <!---------- VIEWABLE BY MEMBER ONLY -------------------->
-                {% for message in messages %}
-                    {% if 'po_message' in message.tags %}
-                        {{message}}
-                    {% endif %}
-                {% endfor %}
-                <form action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                    <fieldset>
-                        {% csrf_token %}
-                        {{ context.status_form.as_p }}
-                        <button type="submit">Set Status</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </section>
+    {% include 'po.html' %}
     <hr>
     <!--------VIEWABLE BY MEMBER ONLY ------------------>
     <div>

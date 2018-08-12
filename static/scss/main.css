@@ -1767,7 +1767,8 @@ p, button, a {
   color: #1e3038; }
 
 .porthole-heading {
-  color: #1e3038; }
+  color: #1e3038;
+  text-align: center; }
 
 .porthole-upload-heading {
   margin: 2rem 0 2rem 0;
@@ -1818,7 +1819,7 @@ p, button, a {
   background-repeat: no-repeat;
   margin-top: 1rem; }
 
-.quote-file-container {
+.file-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1826,7 +1827,7 @@ p, button, a {
   background-color: #81aeaa;
   width: 100%; }
 
-.quote-file-container--padding {
+.file-container--padding {
   padding-bottom: 3rem; }
 
 .quote-upload-container {
@@ -1938,5 +1939,8 @@ p, button, a {
 .porthole-success {
   margin-top: .5rem;
   color: #1e3038; }
+
+.porthole-error {
+  color: #f00; }
 
 /*# sourceMappingURL=main.css.map */
