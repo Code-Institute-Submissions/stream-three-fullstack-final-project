@@ -1826,6 +1826,9 @@ p, button, a {
   background-color: #81aeaa;
   width: 100%; }
 
+.quote-file-container--padding {
+  padding-bottom: 3rem; }
+
 .quote-upload-container {
   display: flex;
   flex-direction: column;
@@ -1834,6 +1837,9 @@ p, button, a {
   background-color: #1e3038;
   border-radius: .3rem;
   width: 18.6rem; }
+
+.quote-upload-container--margin {
+  margin-bottom: 2rem; }
 
 .uploaded-icon {
   display: flex;
@@ -1905,6 +1911,7 @@ p, button, a {
   width: 18.6rem;
   border-radius: .3rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1923,5 +1930,13 @@ p, button, a {
   justify-content: center;
   align-items: center;
   padding-left: 0rem; }
+
+.porthole-status,
+.porthole-status i {
+  margin-bottom: 0; }
+
+.porthole-success {
+  margin-top: .5rem;
+  color: #1e3038; }
 
 /*# sourceMappingURL=main.css.map */

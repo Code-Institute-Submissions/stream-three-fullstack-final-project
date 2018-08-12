@@ -91,26 +91,3 @@ def reset_invoice_status_on_save(sender, instance, **kwargs):
     reset_invoice_status(instance)
     return True
   
-    
-## Receiver to Reset the Approval status of a Quote ##
-## should a file be deleted ##
-@receiver(models.signals.post_delete, sender=Quotes)
-def reset_quote_status_on_quote_delete(sender, instance, **kwargs):
-    reset_quote_status(instance)
-    return True
-    
-
-## Receiver to Reset the Approval status of a PO ##
-## should a file be deleted ##
-@receiver(models.signals.post_delete, sender=PurchaseOrder)
-def reset_po_status_on_po_delete(sender, instance, **kwargs):
-    reset_po_status(instance)
-    return True
-
-
-## Receiver to Reset the Approval status of an Invoice ##
-## should a file be deleted ##
-@receiver(models.signals.post_delete, sender=PurchaseOrder)
-def reset_invoice_status_on_invoice_delete(sender, instance, **kwargs):
-    reset_invoice_status(instance)
-    return True

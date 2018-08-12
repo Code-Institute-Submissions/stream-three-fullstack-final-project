@@ -117,12 +117,25 @@
     width: 100%;
 }
 
+.quote-file-container--padding {
+
+    padding-bottom: 3rem;
+}
+
+
 .quote-upload-container {
 
     @include flex-column;
     background-color: #1e3038;
     border-radius: .3rem;
     width: 18.6rem;
+    
+}
+
+// DYNAMIC CLASS ONLY ADDED WHEN FILE APPROVED
+.quote-upload-container--margin {
+
+    margin-bottom: 2rem;
 }
 
 .uploaded-icon {
@@ -206,7 +219,9 @@
     width: 18.6rem;
     border-radius: .3rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
     @include flex-column;
+
 
 }
 
@@ -231,3 +246,17 @@
 
     @extend .upload-form__browse-button;
 }
+
+.porthole-status,
+.porthole-status i {
+
+    //color: $nav-icons;
+    margin-bottom: 0;
+}
+
+.porthole-success {
+
+    margin-top: .5rem;
+    color: $nav-icons;
+}
+
