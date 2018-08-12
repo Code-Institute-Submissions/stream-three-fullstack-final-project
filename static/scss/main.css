@@ -1441,6 +1441,13 @@ p, button, a {
 .generic-success {
   text-align: center; }
 
+.file-action p {
+  margin: .5rem 0 0 0; }
+
+.file-action {
+  height: 72.35px;
+  margin-bottom: 1rem; }
+
 .manage-heading {
   margin-bottom: 0rem; }
   @media (min-width: 992px) {
@@ -1750,6 +1757,12 @@ p, button, a {
 .porthole-bg-color {
   background-color: #3a5864; }
 
+.porthole-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 .porthole-icon__icon {
   color: #1e3038; }
 
@@ -1757,6 +1770,7 @@ p, button, a {
   color: #1e3038; }
 
 .porthole-upload-heading {
+  margin: 2rem 0 2rem 0;
   color: #1e3038; }
 
 .porthole-details__text {
@@ -1827,13 +1841,10 @@ p, button, a {
   justify-content: center;
   align-items: center;
   width: 90%;
-  height: 10rem;
+  min-height: 209px;
   margin: 1rem;
   background-color: #3a5864;
   border-radius: .3rem; }
-
-input[type=file] {
-  color: #fff; }
 
 .no-file-icon {
   color: #fff; }
@@ -1853,16 +1864,24 @@ input[type=file] {
   align-items: center; }
 
 .upload-form__button {
-  background-color: #81aeaa; }
+  background-color: #81aeaa;
+  margin: .5rem 0 .8rem 0; }
 
-.upload-form__browse-button {
+.upload-form__browse-button, .file-approval__button {
   height: 1.6rem;
   border: none;
   width: 17.5rem;
   border-radius: .3rem;
   margin-top: .5rem;
   color: #fff;
-  background-color: #3a5864; }
+  background-color: #3a5864;
+  margin: .5rem 0 .8rem 0; }
+
+.upload-form__browse-button:hover, .file-approval__button:hover {
+  cursor: pointer; }
+
+.upload-form p {
+  margin: .5rem 0 .8rem 0; }
 
 .file-action {
   display: flex;
@@ -1876,5 +1895,33 @@ input[type=file] {
 .file-action a:hover {
   cursor: pointer;
   color: #bbbdbee6; }
+
+.uploaded-icon__file-name {
+  margin-top: 1rem;
+  text-align: center; }
+
+.file-approval {
+  background-color: #1e3038;
+  width: 18.6rem;
+  border-radius: .3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.file-approval ul li {
+  color: #fff;
+  display: inline; }
+
+.file-approval ul li label {
+  font-size: .8rem; }
+
+.file-approval ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0rem; }
 
 /*# sourceMappingURL=main.css.map */

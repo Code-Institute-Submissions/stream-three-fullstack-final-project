@@ -62,7 +62,7 @@ def clear_status(cycle):
     status.complete = False
     status.pending = False
     status.cancelled = False
-    status.save() ## Signal listening to the Save of this Model will reset 
+    status.save() ## Signal listening to the Save of this Model will reset ##
     return True
 
 def clear_value(cycle):

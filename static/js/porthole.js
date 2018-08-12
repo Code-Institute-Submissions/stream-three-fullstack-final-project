@@ -45,6 +45,7 @@
         for (i = 0; i < uploadFields.length; i++) {
 
             uploadFields[i].style.display='none';
+            uploadFields[i].parentElement.style.display='none';
         }
     }
 
@@ -119,24 +120,56 @@
     const quoteUpload = document.getElementById('upload-0');
     const poUpload = document.getElementById('upload-1');
     const invoiceUpload = document.getElementById('upload-2');
-    const uploadFields = [quoteUpload, poUpload, invoiceUpload];
-   
+    let uploadFields = [];
+
+            
+    if (quoteUpload) {
+
+        uploadFields.push(quoteUpload);
+
+    }  
+    
+    if (poUpload) {
+
+        uploadFields.push(poUpload);
+
+    } 
+    
+    if (invoiceUpload) {
+
+        uploadFields.push(invoiceUpload);
+
+    }
        
- 
+    console.log(quoteUpload);
+    console.log(poUpload);
+    console.log(invoiceUpload);
+    console.log(uploadFields);
+
 
     // TRIGGER HIDDEN DJANGO GENERATED FORM BROWSE BUTTON //
     onBrowseButtonClickTriggerHiddenButton(browseButtons);
 
+    
     // SET CUSTOM UPLOAD BUTTON TO FILE NAME //
     setNameOfButtonToFile(uploadFields, browseButtons);
 
     // HIDE THOSE ELEMENTS // 
     hideUploadFields(uploadFields);
     //getNameOfFile(quoteUpload);
+   
+
  
 
     // STYLE UPLOAD FORM //
-    addPlaceHolderToValueInput(valueInput);
+    // VARIABLE VALUE INPUT ONLY EXISTS IN MEMBER TEMPLATE //
+    // CHECK IF IT EXISTS BEFORE EXECUTING // 
+    if(valueInput) {
+
+        addPlaceHolderToValueInput(valueInput);
+
+    }
+    
     hideSelects(selects);
 
     // BODY AND NAV STYLES //

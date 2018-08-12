@@ -9,6 +9,7 @@ from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 
 
+
 ## View helper functions/classes ##
 
 def convert_dates(date):
@@ -103,11 +104,11 @@ class DeleteFile:
             quote.delete()
             messages.success(self.request, 
                             'You successfully deleted your Quote.',
-                                extra_tags='quote_delete')
+                                extra_tags='quote')
         else:
             messages.error(self.request, 
                             "You haven't uploaded a file yet. There is nothing to delete.",
-                            extra_tags='quote_delete')
+                            extra_tags='quote')
         return True
 
     def delete_po(self):
@@ -116,11 +117,11 @@ class DeleteFile:
             po.delete()
             messages.success(self.request, 
                             'You successfully deleted your Purchase Order.',
-                            extra_tags='po_delete')
+                            extra_tags='po')
         else:
             messages.error(self.request, 
                             "You haven't uploaded a file yet. There is nothing to delete.",
-                            extra_tags='po_delete')
+                            extra_tags='po')
         return True
         
 
@@ -130,9 +131,9 @@ class DeleteFile:
             invoice.delete()
             messages.success(self.request, 
                             'You successfully deleted your Invoice.',
-                        extra_tags='invoice_delete')
+                        extra_tags='invoice')
         else:
             messages.error(self.request, 
                             "You haven't uploaded a file yet. There is nothing to delete.",
-                            extra_tags='invoice_delete')
+                            extra_tags='invoice')
         return True

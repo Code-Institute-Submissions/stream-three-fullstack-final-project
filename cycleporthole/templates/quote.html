@@ -11,7 +11,8 @@
             <a href="{{ context.quote.file.url }}" target="_blank">
                 <div class="uploaded-icon__icon"></div>
             </a>
-            <p>Click to view.</p>
+            <!--<p class="uploaded-icon__file-name">Click to view </p>-->
+            <p>File uploaded on {{ context.quote.uploaded_at }}</p>
         </div>
         {% else %}
         <div class="uploaded-icon">
@@ -28,57 +29,59 @@
             <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
         </form>
     </div>
+     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     <div class="file-action">
         {% if context.quote %}
-        <div>
+        <p>
             <a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a>
-        </div>
-        <div>
+        </p>
+        <p>
             <a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a>
-        </div>
-        {% endif %}
-    </div>
-    <div>
-        {% for message in messages %}
-            {% if 'quote_delete' in message.tags %}
-                <p>{{message}}</p>
+        </p>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'quote' in message.tags %}
+                    <p class="generic-success manage-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                    {% endif %}
+                {% endfor %} 
             {% endif %}
-        {% endfor %}   
-    </div>
-        {% endif %}
-        <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
-    {% if context.quote %}
-    <p>File uploaded at {{ context.quote.uploaded_at }}</p>
-    {% endif %}
-    <!------ VIEWABLE BY  CLIENT ------>
-    {% if request.user.is_client %}
-    <div>
-        <h4>Approval</h4>
-        {% if context.cycle_status.approve_quote %}
-            <p>Status: Approved</p>
-        {% elif context.cycle_status.contest_quote %}
-            <p>Status: Contested</p>
         {% else %}
-            <p>No Status</p>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'quote' in message.tags %}
+                    <p class="generic-success manage-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                    {% endif %}
+                {% endfor %} 
+            {% endif %}
+        {% endif %}
+        {% endif %}
+    </div>        
+    <!------ VIEWABLE BY CLIENT ------>
+    <div>
+        {% if context.cycle_status.approve_quote %}
+            <p><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>
+        {% elif context.cycle_status.contest_quote %}
+            <p><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
+        {% else %}
+            <p><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
         {% endif %}
     </div>
-        
+   
     <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
-    
-    <div>
+    {% if request.user.is_client %}
+    <div class="file-approval">
         {% for message in messages %}
             {% if 'quote_message' in message.tags %}
                 {{message}}
             {% endif %}
         {% endfor %}
-        <form action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+    {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
+        <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
             {% csrf_token %}
-            <fieldset>
                 {{ context.status_form.as_p }}
-                <button type="submit">Submit</button>
-            </fieldset>
-        </form> 
-        
+            <button class="file-approval__button" type="submit">Submit</button>
+        </form>    
     </div>
+    {% endif %}
     {% endif %}   
 </section>

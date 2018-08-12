@@ -4,6 +4,11 @@
     background-color: $login_bg_color;
 }
 
+.porthole-details-container {
+
+    @include flex_column;
+}
+
 .porthole-icon {
 
     @extend .steps-icon;
@@ -23,6 +28,7 @@
 
 .porthole-upload-heading {
 
+    margin: 2rem 0 2rem 0;
     color: #1e3038;
 }
 
@@ -124,15 +130,10 @@
     @include flex_column;
     //position: relative;
     width: 90%;
-    height: 10rem;
+    min-height: 209px;
     margin: 1rem;
     background-color: #3a5864;
     border-radius: .3rem;
-}
-
-input[type=file] {
-
-    color: #fff;
 }
 
 .no-file-icon {
@@ -155,20 +156,27 @@ input[type=file] {
 
     @extend .manage-form__button;
     background-color: $login-green;
+    margin: .5rem 0 .8rem 0;
 }
 
 .upload-form__browse-button {
 
     @include login-button-mobile;
     background-color: $login_bg_color;
+    margin: .5rem 0 .8rem 0;
 
    
 }
 
-//.upload-form__browse-button:hover {
+.upload-form__browse-button:hover {
 
-  //  cursor: pointer;
-//}
+  cursor: pointer;
+}
+
+.upload-form p {
+
+    margin: .5rem 0 .8rem 0;
+}
 
 .file-action {
 
@@ -184,4 +192,42 @@ input[type=file] {
 
     cursor: pointer;
     color: $login-signup-color;
+}
+
+.uploaded-icon__file-name {
+
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.file-approval {
+
+    background-color: $nav-icons;
+    width: 18.6rem;
+    border-radius: .3rem;
+    margin-bottom: 2rem;
+    @include flex-column;
+
+}
+
+.file-approval ul li {
+
+    color: #fff;
+    display: inline;
+}
+
+.file-approval ul li label {
+
+    font-size: .8rem;
+}
+
+.file-approval ul {
+
+    @include flex_row;
+    padding-left: 0rem;
+}
+
+.file-approval__button {
+
+    @extend .upload-form__browse-button;
 }

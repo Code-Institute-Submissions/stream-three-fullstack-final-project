@@ -21,6 +21,7 @@ def porthole(request, username, cycle_id):
     quote_form = QuotesForm()
     po_form = PurchaseOrderForm()
     invoice_form = InvoiceForm()
+   
     if request.method == 'POST': 
         upload = UploadFile(context['client'], 
                             context['member'], 
@@ -47,7 +48,7 @@ def porthole(request, username, cycle_id):
     return render(request, 'porthole.html', {'context':context,
                                             'quote_form': quote_form,
                                             'po_form': po_form,
-                                            'invoice_form':invoice_form})
+                                            'invoice_form':invoice_form,})
 
 
 ## Send Email Notification of Quote Upload and redirect to Porthole View ##
@@ -55,12 +56,19 @@ def step_notify(request, username, cycle_id, step):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     kwargs = get_email_details(username, cycle.client.username)
     kwargs['cycle'] = cycle
+    message = 'Client notified.'
     if step == 'quote':
         NewFile(**kwargs).new_quote_notification()
+        print('here')
+        messages.success(request, message , extra_tags='quote')
     elif step == 'po':
         NewFile(**kwargs).new_po_notification()
+        messages.success(request, message , extra_tags='po')
     elif step == 'invoice':
         NewFile(**kwargs).new_invoice_notification()
+        messages.success(request, message , extra_tags='invoice')
+
+    
 
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,

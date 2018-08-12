@@ -8,79 +8,81 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="porthole-container">
+    <section class="porthole-details-container">
         <div class="porthole-icon">
             <i class="fas fa-circle porthole-icon__icon" aria-hidden="true"></i>
         </div>
         <h1 class="porthole-heading">Cycle Porthole</h1>
-    <!--- CYCLE PORTHOLE DETAILS -->
-    <section class="porthole-details">
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+        <!--- CYCLE PORTHOLE DETAILS -->
+        <section class="porthole-details">
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+                </div>
+                <div class="porthole-details__column">
+                    {% if context.cycle_status.cancelled %}
+                        <p class="porthole-details__text"><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+                    {% elif context.cycle_status.pending %}
+                        <p class="porthole-details__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+                    {% elif context.cycle_status.complete %}
+                        <p class="porthole-details__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+                    {% else %}
+                        <p class="porthole-details__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
+                    {% endif %}
+                </div>
+            </div> 
+            <hr class="porthole-details-hr">
+            <!-----CLIENT------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+                </div>
             </div>
-            <div class="porthole-details__column">
-                {% if context.cycle_status.cancelled %}
-                    <p class="porthole-details__text"><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
-                {% elif context.cycle_status.pending %}
-                    <p class="porthole-details__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
-                {% elif context.cycle_status.complete %}
-                    <p class="porthole-details__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
-                {% else %}
-                    <p class="porthole-details__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
-                {% endif %}
+            <hr class="porthole-details-hr">
+            <!-----JOB------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
+                    <p class="porthole-details__text"><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+                </div>
             </div>
-        </div> 
-        <hr class="porthole-details-hr">
-        <!-----CLIENT------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="fas fa-user" aria-hidden="true"></i> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+            <hr class="porthole-details-hr">
+            <!-----CYCLE------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+                    <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+                </div>  
             </div>
-        </div>
-        <hr class="porthole-details-hr">
-        <!-----JOB------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
-                <p class="porthole-details__text"><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
+            <hr class="porthole-details-hr">
+            <!-----DESCRIPTION------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+                </div>
             </div>
-        </div>
-        <hr class="porthole-details-hr">
-         <!-----CYCLE------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
-                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
-            </div>  
-        </div>
-        <hr class="porthole-details-hr">
-        <!-----DESCRIPTION------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+            <hr class="porthole-details-hr">
+            <!-----CYCLE DATES------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+                </div>
+                <div class="porthole-details__column">
+                    <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+                </div>
             </div>
-        </div>
-        <hr class="porthole-details-hr">
-        <!-----CYCLE DATES------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+            <hr class="porthole-details-hr">
+            <!-----CYCLE VALUE------>
+            <div class="porthole-details__row">
+                <div class="porthole-details__column">
+                    {% if context.cycle.cycle_value %}
+                    <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
+                    {% else %}
+                    <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> Cycle Value not entered yet.</p>
+                    {% endif %}
+                </div>
             </div>
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
-            </div>
-        </div>
-        <hr class="porthole-details-hr">
-        <!-----CYCLE VALUE------>
-        <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                {% if context.cycle.cycle_value %}
-                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
-                {% else %}
-                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> Cycle Value not entered yet.</p>
-                {% endif %}
-            </div>
-        </div>
+        </section>
     </section>
     <hr class="porthole-details-hr">
     <!------ QUOTE UPLOAD FOR MEMBER ONLY -->
@@ -95,9 +97,9 @@
             {{ po_form.as_p }}
             <!--<input type="hidden" name="file_type" value="po">-->
       
-            <input class="upload-form__browse-button" type="button" value="Browse..."/>
-          
-            <button type="submit">Submit</button>
+            <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
+            <!--<input type="hidden" name="file_type" value="quote">-->
+            <button id="po-submit__button" class="upload-form__button" type="submit">Upload</button>
         </form>
         {% if context.po %}
             <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">
@@ -156,9 +158,9 @@
             {{ invoice_form.as_p }}
             <!--<input type="hidden" name="file_type" value="invoice">-->
             
-            <input class="upload-form__browse-button" type="button" value="Browse..."/>
-            
-            <button type="submit">Upload</button>
+            <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
+            <!--<input type="hidden" name="file_type" value="quote">-->
+            <button id="invoice-submit__button" class="upload-form__button" type="submit">Upload</button>
         </form>
         {% if context.invoice %}
         <form action="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">
