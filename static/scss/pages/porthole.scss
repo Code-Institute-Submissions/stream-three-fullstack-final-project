@@ -22,16 +22,17 @@
 
     @extend .manage-container;
     padding-bottom: 0rem;
+    top: 0;
     
-    @include tablet {
+    /*@include tablet {
 
         top: 6rem;
-    }
+    }*/
 
-    @include desktop {
+    /*@include desktop {
 
-        flex-direction:column;
-    }
+        flex-direction: column;
+    }*/
 }
 
 .porthole-details-container {
@@ -183,13 +184,13 @@
     @include flex-column;
     background-color: $login-green;
     width: 100%;
-    //margin-bottom: 1rem;
 
-    //@include desktop {
+    @include desktop {
+        
+        margin: 10rem 2rem 0 2rem;
 
-    margin: 10rem 2rem 0 2rem;
+    }
 
-    //}
 }
 
 .file-container--padding {
@@ -205,13 +206,14 @@
     align-items: center;
     background-color: #1e3038;
     border-radius: .3rem;
-    //width: 18.6rem;
-
-    //@include desktop {
-
+    width: 18.6rem;
     min-height: 435px;
-    width: 21.6rem;
-    //}
+
+    @include tablet {
+
+        width: 21.6rem;
+
+    }
     
 }
 
@@ -276,6 +278,7 @@
 .upload-form {
 
     @include flex-column;
+    margin-top: .5rem;
    
 }
 
@@ -289,7 +292,13 @@
 
     @extend .manage-form__button;
     background-color: $login-green;
-    margin: .5rem 0 1.4rem 0;
+    margin-bottom: .8rem;
+    @include desktop {
+
+        margin: .5rem 0 1.4rem 0;
+
+    }
+   
 }
 
 .upload-form__browse-button {
@@ -313,7 +322,7 @@
 .upload-form p {
 
     margin: .5rem 0 .8rem 0;
-    width:17rem;
+    //width: 17rem;
 
     @include desktop {
 
