@@ -6,7 +6,7 @@
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     
-    <div class="quote-upload-container">
+    <div class="upload-container">
         {% if context.po %}
         <div>
             {% if context.cycle_status.approve_po %}
@@ -21,7 +21,7 @@
             <div class="dummy-approval"></div>
         {% endif %}
         {% if context.po %}
-        <div class="uploaded-icon">
+        <div class="uploaded-icon uploaded-icon--extra-margin">
             <a href="{{ context.po.file.url }}" target="_blank">
                 <div class="uploaded-icon__icon"></div>
             </a>
@@ -29,46 +29,54 @@
             <p>File uploaded on {{ context.po.uploaded_at }}</p>
         </div>
         {% else %}
-        <div class="uploaded-icon">
+        <div class="uploaded-icon uploaded-icon--extra-margin">
             <i class="fas fa-times no-file-icon" aria-hidden="true"></i>
             <p>No file yet.</p>
         </div>
         {% endif %}
         <!---- VIEWABLE BY CLIENT ONLY ---->
         {% if request.user.is_client %}
+            {% if not context.cycle_status.approve_po %}
+            <form class="upload-form upload-form-no-value" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ po_form.as_p }}
+                {% for message in messages %}
+                    {% if 'step2_upload_error' in message.tags %}
+                    <p class="generic-success manage-success porthole-error">{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+                <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
+                <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
+            </form>
+            {% else %}
+            <div class="upload-step-congrats">
+                <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
+            </div>
+            {% endif %}
+        {% endif %}
+    <!---- VIEWABLE BY MEMBER ONLY ---->
+    {% if request.user.is_member %}
         {% if not context.cycle_status.approve_po %}
-        <form class="upload-form" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ po_form.as_p }}
+        <div class="file-approval">
             {% for message in messages %}
-                {% if 'step2_upload_error' in message.tags %}
-                <p class="generic-success manage-success porthole-error">{{ message }}</p>
+                {% if 'po_message' in message.tags %}
+                    <p class="generic-success manage-success porthole-error">{{message}}</p>
                 {% endif %}
             {% endfor %}
-            <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
-            <!--<input type="hidden" name="file_type" value="quote">-->
-            <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
-        </form>
+            
+            {% if not context.cycle_status.approve_po and not context.cycle_status.contest_po %}
+                <form class="file-approval__form" action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                    {% csrf_token %}
+                        {{ context.status_form.as_p }}
+                    <button class="file-approval__button" type="submit">Submit</button>
+                </form>
+            {% endif %}    
+        </div>
+        {% else %}
+        <div class="upload-step-congrats">
+            <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
+        </div>
         {% endif %}
-        {% endif %}
-    {% if request.user.is_member %}
-    {% if not context.cycle_status.approve_po %}
-    <div class="file-approval">
-        {% for message in messages %}
-            {% if 'po_message' in message.tags %}
-                <p class="generic-success manage-success porthole-error">{{message}}</p>
-            {% endif %}
-        {% endfor %}
-        
-        {% if not context.cycle_status.approve_po and not context.cycle_status.contest_po %}
-            <form class="file-approval__form" action="{% url 'po_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                {% csrf_token %}
-                    {{ context.status_form.as_p }}
-                <button class="file-approval__button" type="submit">Submit</button>
-            </form>
-        {% endif %}    
-    </div>
-    {% endif %}
     {% endif %}   
     </div>
     <!---- VIEWABLE BY CLIENT ONLY ---->

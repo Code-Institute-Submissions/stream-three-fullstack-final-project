@@ -27,16 +27,7 @@
     <hr class="porthole-details-hr steps-hr">
     <!----INVOICE PARTIAL---->
     {% include 'invoice.html' %}
-    {% if request.user.is_client %}
-        {% if context.cycle_status.pending %}
-        <div class="payment-pending">
-            <p>Please proceed to payment when you are ready.</p>
-            <form class="payment-pending__form" action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
-                <button class="payment-pending__button"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay</button>
-            </form>
-        </div>
-        {% endif %}
-    {% endif %}
+   
     </section>
     
 </div>

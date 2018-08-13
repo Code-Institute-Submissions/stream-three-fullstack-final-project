@@ -198,7 +198,7 @@
 }
 
 
-.quote-upload-container {
+.upload-container {
 
     display: flex;
     flex-direction: column;
@@ -209,15 +209,16 @@
 
     //@include desktop {
 
-        height: 435px;
-        width: 21.6rem;
+    min-height: 435px;
+    width: 21.6rem;
     //}
     
 }
 
 .dummy-approval {
 
-    height: 1.8rem
+    height: 2.6rem;
+   // margin-bottom: 0.5rem;
 }
 
 // DYNAMIC CLASS ONLY ADDED WHEN FILE APPROVED
@@ -235,18 +236,36 @@
     //position: relative;
     width: 90%;
     min-height: 209px;
-    margin: 1rem;
+    margin: 0 1rem 1rem 1rem;
     background-color: #3a5864;
     border-radius: .3rem;
 }
 
-.uploaded-icon-invoice {
+/*.uploaded-icon--extra-margin {
 
-    @include desktop {
+    margin-bottom: 1.5rem;
+    margin-top: 2.8rem;
+}
+
+.upload-po--extra-margin {
+
+    margin-top: 2.8rem;
+}
+
+.upload-invoice--extra-margin {
+
+    margin-top: 3.4rem;
+
+}
+
+/*.uploaded-icon-invoice {
+
+    //@include desktop {
 
         margin-bottom: 4.6rem;
-    }
-}
+   // }
+}*/
+
 
 .no-file-icon {
 
@@ -257,6 +276,12 @@
 .upload-form {
 
     @include flex-column;
+   
+}
+
+.upload-form-no-value {
+
+    margin-top: 3.4rem;
 
 }
 
@@ -264,7 +289,7 @@
 
     @extend .manage-form__button;
     background-color: $login-green;
-    margin: .5rem 0 .8rem 0;
+    margin: .5rem 0 1.4rem 0;
 }
 
 .upload-form__browse-button {
@@ -288,11 +313,12 @@
 .upload-form p {
 
     margin: .5rem 0 .8rem 0;
+    width:17rem;
 
     @include desktop {
 
         @include flex_row;
-        width: 100%;
+        width: 20.1rem;
 
     }
 }
@@ -331,14 +357,14 @@
 
 .file-approval {
 
-    background-color: $nav-icons;
+    //background-color: $nav-icons;
     width: 18.6rem;
     border-radius: .3rem;
     //margin-bottom: 2rem;
     //margin-top: 3.6rem;
     @include flex-column;
     margin-bottom: .4rem;
-    margin-top: 3.6rem;
+    margin-top: 3.1rem;
     
 
 }
@@ -362,10 +388,11 @@
     //@include flex_row;
    
     padding-left: 0rem;
-    margin-top: 0rem;
+    
     background-color: $login_bg_color;
     @include login-button-mobile;
-    margin-bottom: .6rem;
+    margin-bottom: 0rem;
+    margin-top: 0rem;
     display:flex;
     flex-direction:row;
     justify-content: center;
@@ -389,7 +416,7 @@
 .porthole-status i {
 
     //color: $nav-icons;
-    margin-bottom: 0;
+    margin: 0.4rem .4rem;
 }
 
 .porthole-success {
@@ -401,6 +428,30 @@
 .porthole-error {
 
     color: $login-error-red;
+    width: 17rem;
+}
+
+.upload-step-congrats {
+
+    //margin-top: 1rem;
+    @include flex-column;
+    width: 17rem;
+
+    @include tablet {
+
+        width: 20.1rem;
+    }
+}
+
+.upload-step-congrats p i {
+
+    font-size: 2rem;
+}
+
+.upload-step-congrats p {
+
+
+    text-align: center;
 }
 
 .payment-pending {
@@ -418,7 +469,21 @@
 .payment-pending__button {
 
     @include login-button-mobile;
-    background-color: $register-icon-color;
+    background-color: $login-green;
+
+
+    @include tablet {
+
+        
+        @include login-button-desktop-media-query;
+        margin-top: 1rem;
+    }
+
+}
+
+.payment-pending__button:hover {
+
+    cursor: pointer;
 
 }
 

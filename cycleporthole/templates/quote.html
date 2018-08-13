@@ -3,7 +3,7 @@
     <h2 class="porthole-upload-heading">Quote</h2>
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
-    <div class="quote-upload-container">
+    <div class="upload-container">
         {% if context.quote %}
         <div>
             {% if context.cycle_status.approve_quote %}
@@ -34,34 +34,41 @@
         {% endif %}
         <!---- VIEWABLE BY MEMBER ONLY ---->
         {% if request.user.is_member %}
-        {% if not context.cycle_status.approve_quote %}
-        <form class="upload-form" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ quote_form.as_p }}
-            <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
-            <!--<input type="hidden" name="file_type" value="quote">-->
-            <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
-        </form>
-        {% endif %}
-        {% endif %}
-            <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
-        {% if request.user.is_client %}
-        {% if not context.cycle_status.approve_quote %}
-        <div class="file-approval">
-            {% for message in messages %}
-                {% if 'quote_message' in message.tags %}
-                    <p class="generic-success manage-success porthole-error">{{message}}</p>
-                {% endif %}
-            {% endfor %}
-            {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
-            <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+            {% if not context.cycle_status.approve_quote %}
+            <form class="upload-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                    {{ context.status_form.as_p }}
-                <button class="file-approval__button" type="submit">Submit</button>
+                {{ quote_form.as_p }}
+                <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
+                <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
             </form>
-            {% endif %}    
-        </div>
+            {% else %}
+            <div class="upload-step-congrats">
+                <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
+            </div>
+            {% endif %}
         {% endif %}
+        <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
+        {% if request.user.is_client %}
+            {% if not context.cycle_status.approve_quote %}
+            <div class="file-approval">
+                {% for message in messages %}
+                    {% if 'quote_message' in message.tags %}
+                        <p class="generic-success manage-success porthole-error">{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+                {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
+                <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                    {% csrf_token %}
+                        {{ context.status_form.as_p }}
+                    <button class="file-approval__button" type="submit">Submit</button>
+                </form>
+                {% endif %}    
+            </div>
+            {% else %}
+            <div class="upload-step-congrats">
+                <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
+            </div>
+            {% endif %}
         {% endif %}   
     </div>
     <!---- VIEWABLE BY MEMBER ONLY ---->
@@ -94,6 +101,4 @@
     </div>
     {% endif %}
     {% endif %}
-
-  
 </section>

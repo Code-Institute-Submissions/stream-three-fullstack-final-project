@@ -80,11 +80,12 @@ class CycleStatuses:
     def get_cycle_status(self):
         return self.cycle_status
 
-    ## Set Pending Payment Status based on Approval Statuses ##
+    ## Set Pending Payment Status based on Step Approval Statuses ##
     def set_pending(self):
         if (self.cycle_status.approve_quote and 
             self.cycle_status.approve_po and 
-            self.cycle_status.approve_invoice):
+            self.cycle_status.approve_invoice and not
+            self.cycle_status.complete):
             
             self.cycle_status.pending = True
             self.cycle_status.save(update_fields=['pending'])

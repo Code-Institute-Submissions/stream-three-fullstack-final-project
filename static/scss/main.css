@@ -1873,17 +1873,17 @@ p, button, a {
 .file-container--padding {
   padding-bottom: 3rem; }
 
-.quote-upload-container {
+.upload-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #1e3038;
   border-radius: .3rem;
-  height: 435px;
+  min-height: 435px;
   width: 21.6rem; }
 
 .dummy-approval {
-  height: 1.8rem; }
+  height: 2.6rem; }
 
 .quote-upload-container--margin {
   margin-bottom: 2rem; }
@@ -1895,14 +1895,34 @@ p, button, a {
   align-items: center;
   width: 90%;
   min-height: 209px;
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
   background-color: #3a5864;
   border-radius: .3rem; }
 
-@media (min-width: 992px) {
-  .uploaded-icon-invoice {
-    margin-bottom: 4.6rem; } }
+/*.uploaded-icon--extra-margin {
 
+    margin-bottom: 1.5rem;
+    margin-top: 2.8rem;
+}
+
+.upload-po--extra-margin {
+
+    margin-top: 2.8rem;
+}
+
+.upload-invoice--extra-margin {
+
+    margin-top: 3.4rem;
+
+}
+
+/*.uploaded-icon-invoice {
+
+    //@include desktop {
+
+        margin-bottom: 4.6rem;
+   // }
+}*/
 .no-file-icon {
   color: #fff; }
 
@@ -1912,9 +1932,12 @@ p, button, a {
   justify-content: center;
   align-items: center; }
 
+.upload-form-no-value {
+  margin-top: 3.4rem; }
+
 .upload-form__button {
   background-color: #81aeaa;
-  margin: .5rem 0 .8rem 0; }
+  margin: .5rem 0 1.4rem 0; }
 
 .upload-form__browse-button, .file-approval__button {
   height: 1.6rem;
@@ -1934,14 +1957,15 @@ p, button, a {
   cursor: pointer; }
 
 .upload-form p {
-  margin: .5rem 0 .8rem 0; }
+  margin: .5rem 0 .8rem 0;
+  width: 17rem; }
   @media (min-width: 992px) {
     .upload-form p {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      width: 100%; } }
+      width: 20.1rem; } }
 
 .upload-form p input {
   height: 1rem;
@@ -1973,7 +1997,6 @@ p, button, a {
   text-align: center; }
 
 .file-approval {
-  background-color: #1e3038;
   width: 18.6rem;
   border-radius: .3rem;
   display: flex;
@@ -1981,7 +2004,7 @@ p, button, a {
   justify-content: center;
   align-items: center;
   margin-bottom: .4rem;
-  margin-top: 3.6rem; }
+  margin-top: 3.1rem; }
 
 .file-approval ul li {
   color: #fff;
@@ -1992,7 +2015,6 @@ p, button, a {
 
 .file-approval ul {
   padding-left: 0rem;
-  margin-top: 0rem;
   background-color: #3a5864;
   height: 1.6rem;
   border: none;
@@ -2000,7 +2022,8 @@ p, button, a {
   border-radius: .3rem;
   margin-top: .5rem;
   color: #fff;
-  margin-bottom: .6rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2015,14 +2038,31 @@ p, button, a {
 
 .porthole-status,
 .porthole-status i {
-  margin-bottom: 0; }
+  margin: 0.4rem .4rem; }
 
 .porthole-success {
   margin-top: .5rem;
   color: #1e3038; }
 
 .porthole-error {
-  color: #f00; }
+  color: #f00;
+  width: 17rem; }
+
+.upload-step-congrats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 17rem; }
+  @media (min-width: 768px) {
+    .upload-step-congrats {
+      width: 20.1rem; } }
+
+.upload-step-congrats p i {
+  font-size: 2rem; }
+
+.upload-step-congrats p {
+  text-align: center; }
 
 .payment-pending {
   display: flex;
@@ -2044,7 +2084,15 @@ p, button, a {
   border-radius: .3rem;
   margin-top: .5rem;
   color: #fff;
-  background-color: #597b78; }
+  background-color: #81aeaa; }
+  @media (min-width: 768px) {
+    .payment-pending__button {
+      height: 2.1rem;
+      width: 20.1rem;
+      margin-top: 1rem; } }
+
+.payment-pending__button:hover {
+  cursor: pointer; }
 
 .payment-pending p {
   width: 18.6rem;
