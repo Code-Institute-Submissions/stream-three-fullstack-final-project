@@ -176,20 +176,20 @@
 
 }
 
-// ---------------- QUOTE UPLOAD STYLES -------------------------- //
+// ---------------- UPLOAD STYLES -------------------------- //
 
 .file-container {
 
     @include flex-column;
     background-color: $login-green;
     width: 100%;
-    margin-bottom: 1rem;
+    //margin-bottom: 1rem;
 
-    @include desktop {
+    //@include desktop {
 
-        margin: 10rem 2rem 0 2rem;
+    margin: 10rem 2rem 0 2rem;
 
-    }
+    //}
 }
 
 .file-container--padding {
@@ -205,13 +205,13 @@
     align-items: center;
     background-color: #1e3038;
     border-radius: .3rem;
-    width: 18.6rem;
+    //width: 18.6rem;
 
-    @include desktop {
+    //@include desktop {
 
-        min-height: 435px;
+        height: 435px;
         width: 21.6rem;
-    }
+    //}
     
 }
 
@@ -334,17 +334,16 @@
     background-color: $nav-icons;
     width: 18.6rem;
     border-radius: .3rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    //margin-bottom: 2rem;
+    //margin-top: 3.6rem;
     @include flex-column;
-
-    @include desktop {
-
-        //margin-bottom: 3.6rem;
-        //margin-top: 0rem;
-    }
+    margin-bottom: .4rem;
+    margin-top: 3.6rem;
+    
 
 }
+
+
 
 .file-approval ul li {
 
@@ -357,15 +356,33 @@
     font-size: .8rem;
 }
 
+
 .file-approval ul {
 
-    @include flex_row;
+    //@include flex_row;
+   
     padding-left: 0rem;
+    margin-top: 0rem;
+    background-color: $login_bg_color;
+    @include login-button-mobile;
+    margin-bottom: .6rem;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+   // width:100%;
+
+    @include tablet {
+
+        @include login-button-desktop-media-query;
+    }
+
 }
 
 .file-approval__button {
 
     @extend .upload-form__browse-button;
+    background-color: $login-green;
 }
 
 .porthole-status,

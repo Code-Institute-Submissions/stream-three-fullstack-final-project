@@ -1868,10 +1868,7 @@ p, button, a {
   align-items: center;
   background-color: #81aeaa;
   width: 100%;
-  margin-bottom: 1rem; }
-  @media (min-width: 992px) {
-    .file-container {
-      margin: 10rem 2rem 0 2rem; } }
+  margin: 10rem 2rem 0 2rem; }
 
 .file-container--padding {
   padding-bottom: 3rem; }
@@ -1882,11 +1879,8 @@ p, button, a {
   align-items: center;
   background-color: #1e3038;
   border-radius: .3rem;
-  width: 18.6rem; }
-  @media (min-width: 992px) {
-    .quote-upload-container {
-      min-height: 435px;
-      width: 21.6rem; } }
+  height: 435px;
+  width: 21.6rem; }
 
 .dummy-approval {
   height: 1.8rem; }
@@ -1982,12 +1976,12 @@ p, button, a {
   background-color: #1e3038;
   width: 18.6rem;
   border-radius: .3rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-bottom: .4rem;
+  margin-top: 3.6rem; }
 
 .file-approval ul li {
   color: #fff;
@@ -1997,11 +1991,27 @@ p, button, a {
   font-size: .8rem; }
 
 .file-approval ul {
+  padding-left: 0rem;
+  margin-top: 0rem;
+  background-color: #3a5864;
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
+  margin-bottom: .6rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  padding-left: 0rem; }
+  align-items: center; }
+  @media (min-width: 768px) {
+    .file-approval ul {
+      height: 2.1rem;
+      width: 20.1rem; } }
+
+.file-approval__button {
+  background-color: #81aeaa; }
 
 .porthole-status,
 .porthole-status i {
