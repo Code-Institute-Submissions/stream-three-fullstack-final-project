@@ -854,8 +854,7 @@ p, button, a {
   width: 18rem;
   text-align: center;
   padding: 0.5rem;
-  border-radius: .3rem;
-  font-size: .9rem; }
+  border-radius: .3rem; }
 
 .reset-rules {
   width: 280px;
@@ -867,8 +866,7 @@ p, button, a {
 .reset-rules__text {
   text-align: left;
   margin: .5rem;
-  color: #fff;
-  font-size: .9rem; }
+  color: #fff; }
 
 .reset-rules__heading {
   text-align: center;
@@ -913,7 +911,6 @@ p, button, a {
       margin-bottom: 0; } }
 
 .reset-complete__text {
-  font-size: 1rem;
   color: #fff; }
 
 .reset-complete-login__link {
@@ -931,7 +928,7 @@ p, button, a {
   color: #fff; }
   @media (min-width: 768px) {
     .reset-complete__icon {
-      font-size: 3rem; } }
+      font-size: 2.5rem; } }
 
 .cycles-container {
   position: relative;
@@ -2106,8 +2103,12 @@ p, button, a {
   color: #1e3038; }
 
 .porthole-error {
-  color: #f00;
-  width: 17rem; }
+  width: 14rem;
+  text-align: center;
+  color: #f00; }
+  @media (min-width: 992px) {
+    .porthole-error {
+      width: 15rem; } }
 
 .upload-step-congrats {
   display: flex;
@@ -2176,5 +2177,14 @@ p, button, a {
     .porthole-details-container-desktop,
     .upload-step-congrats-desktop {
       display: flex; } }
+
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.payment-bg-color {
+  background-color: #3a5864; }
 
 /*# sourceMappingURL=main.css.map */

@@ -15,10 +15,5 @@
         addRemoveClassOnClick(dropDownIcon, moreIcons[i], "more--clicked-color");
 
     }
-
-    /*for (let i = 0; i < navIcons.length; i++) {
-
-        addRemoveClassOnClick(navIcons[i], navIcons[i], "mobile-nav__icons--clicked");
-    }*/
     
 })();

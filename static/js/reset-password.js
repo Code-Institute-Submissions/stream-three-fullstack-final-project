@@ -1,5 +1,5 @@
             // SCRIPTS FOR PASSWORD RESET //
-// ADDS PLACEHOLDER AND CLASSES TO INPUT FOR STYLING//
+// ADDS PLACEHOLDER AND CLASSES TO INPUT FOR STYLING //
 
 (() => {
     const emailInput = document.getElementById("id_email");
@@ -25,5 +25,6 @@
         setAttributeOfInput(newPassword2, "placeholder", "Confirm Password");
     }
 
+    addBgColorToBody('reset-bg-color');
 
 })();

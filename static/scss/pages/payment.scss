@@ -1,0 +1,11 @@
+// PAYMENT STYLES //
+
+.payment-container {
+
+    @include flex-column;
+}
+
+.payment-bg-color {
+
+    background-color: $login_bg_color;
+}

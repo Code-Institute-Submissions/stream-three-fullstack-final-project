@@ -3,7 +3,6 @@
 (() => {
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
     const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
-    //const hiddenDeleteDiv = document.getElementById('manage-show-delete');
 
     // SPECIFIC TO CLIENT TEMPLATE //
     const manageClientInput = document.getElementsByClassName('register-form__input');

@@ -29,12 +29,7 @@
     </div>
     <hr class="porthole-details-hr">
     <!-----JOB------>
-    <div class="porthole-details__row">
-        <div class="porthole-details__column">
-            <p class="porthole-details__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_title }}</p>
-            <p class="porthole-details__text"><i class="fas fa-hashtag manage-item__icon" aria-hidden="true"></i> {{ context.cycle.job.job_number }}</p>
-        </div>
-    </div>
+   
     <hr class="porthole-details-hr">
     <!-----CYCLE------>
     <div class="porthole-details__row">
@@ -52,25 +47,10 @@
     </div>
     <hr class="porthole-details-hr">
     <!-----CYCLE DATES------>
-    <div class="porthole-details__row">
-        <div class="porthole-details__column">
-            <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
-        </div>
-        <div class="porthole-details__column">
-            <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
-        </div>
-    </div>
+    
     <hr class="porthole-details-hr">
     <!-----CYCLE VALUE------>
-    <div class="porthole-details__row">
-        <div class="porthole-details__column">
-            {% if context.cycle.cycle_value %}
-            <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
-            {% else %}
-            <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> Value not entered yet.</p>
-            {% endif %}
-        </div>
-    </div>
+   
 
 </section>
 

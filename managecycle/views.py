@@ -23,7 +23,7 @@ def manage_cycles(request, username):
     cycle_form = CycleForm(user.pk)
     users_cycles = users_cycles = CycleStatus.objects.filter(
                                                 cycle__member=user
-                                                ).order_by('-cycle__cycle_title')
+                                                ).order_by('-   cycle__cycle_title')
     
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':

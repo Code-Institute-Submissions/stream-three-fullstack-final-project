@@ -126,7 +126,7 @@
     text-align: center;
     padding: 0.5rem;
     border-radius: .3rem;
-    font-size: .9rem;
+    //font-size: .9rem;
 
 }
 
@@ -146,7 +146,7 @@
     text-align: left;
     margin: .5rem;
     color: #fff;
-    font-size: .9rem;
+    //font-size: .9rem;
 }
 
 .reset-rules__heading {
@@ -203,7 +203,7 @@
 
 .reset-complete__text {
 
-    font-size: 1rem;
+    //font-size: 1rem;
     color: #fff;
 }
 
@@ -223,7 +223,7 @@
 
     @include tablet {
 
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
 }

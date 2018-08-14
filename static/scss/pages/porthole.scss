@@ -513,8 +513,15 @@
 
 .porthole-error {
 
+    width: 14rem;
+    text-align: center;
     color: $login-error-red;
-    width: 17rem;
+
+    @include desktop {
+
+        width: 15rem;
+    }
+    
 }
 
 .upload-step-congrats {
