@@ -8,27 +8,94 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="porthole-container">
-    <!--<div class="porthole-details-wrapper">-->
-    <!--<section class="porthole-details-container">
-        <div class="porthole-icon">
-            <i class="fas fa-circle porthole-icon__icon" aria-hidden="true"></i>
+    <!----------MOBILE------------------>
+    <section class="porthole-details-container porthole-details-container-mobile">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <h1 class="porthole-details__heading">Cycle Porthole</h1>
+                <p class="porthole-details__text porthole-details__id"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+            </div>
         </div>
-        <h1 class="porthole-heading">Cycle Porthole</h1>
-        <p class="porthole-blurb">Manage your cycle, keep track of your files and send notifications.</p>
-        <!--- CYCLE PORTHOLE DETAILS 
-           
-    </section>-->
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column porthole-details--description">
+                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+            </div>  
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+            </div>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+            </div>
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+            </div>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                {% if context.cycle.cycle_value %}
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
+                {% else %}
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> tbc.</p>
+                {% endif %}
+            </div>
+        </div>
+        <hr class="porthole-details__hr">
+    </section>
+    <!---------------------------DESKTOP-------------------------->
+    <section class="porthole-details-container porthole-details-container-desktop">
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                <h1 class="porthole-details__heading">Cycle Porthole</h1>
+            </div>
+            <div class="porthole-details__column">
+                <p class="porthole-details__text porthole-details__id"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
+            </div>
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+            </div>
+            <div class="porthole-details__column">
+                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+            </div>
+            <div class="porthole-details__column porthole-details--description">
+                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+            </div>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i>  Until: {{ context.cycle_end }}</p>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column">
+                {% if context.cycle.cycle_value %}
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true" ></i> {{ context.cycle.cycle_value }}</p>
+                {% else %}
+                <p class="porthole-details__text"><i class="fas fa-pound-sign" aria-hidden="true"></i> tbc.</p>
+                {% endif %}
+            </div>
+        </div>
+        <hr class="porthole-details__hr">
+    </section>
     <section class="all-steps-container">
     <!----QUOTE PARTIAL---->
-    {% include 'quote.html' %}
-    <hr class="porthole-details-hr steps-hr">
-    <!----PO PARTIAL---->
-    {% include 'po.html' %}
-    <hr class="porthole-details-hr steps-hr">
+        {% include 'quote.html' %}
+       
+        <!----PO PARTIAL---->
+        {% include 'po.html' %}
+       
     <!----INVOICE PARTIAL---->
-    {% include 'invoice.html' %}
-   
+        {% include 'invoice.html' %}
     </section>
-    
 </div>
 {% endblock %}

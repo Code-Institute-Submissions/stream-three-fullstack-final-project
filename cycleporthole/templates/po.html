@@ -1,11 +1,9 @@
 <!-- PO STEP PARTIAL -->
-
-<section class="file-container {% if context.cycle_status.approve_po %} file-container--padding {% endif %}">
+<section class="file-container">
     <h2 class="porthole-upload-heading">PO</h2>
 
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
-    
     <div class="upload-container">
         {% if context.po %}
         <div>
@@ -81,36 +79,21 @@
     </div>
     <!---- VIEWABLE BY CLIENT ONLY ---->
     {% if request.user.is_client %}
-    {% if not context.cycle_status.approve_po %}
-    <div class="file-action">
-        {% if context.po %}
-        <p>
-            <a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">Delete PO</a>
-        </p>
-        <p>
-            <a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">Notify Member</a>
-        </p>
-        {% if messages %}
-            {% for message in messages %}
-                {% if 'po' in message.tags %}
-                <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+        {% if not context.cycle_status.approve_po %}
+        <div class="file-action">
+            {% if context.po %}
+                <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">Delete PO</a></p>
+                <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">Notify Member</a></p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if 'po' in message.tags %}
+                        <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                        {% endif %}
+                    {% endfor %} 
                 {% endif %}
-            {% endfor %} 
-        {% endif %}
-        {% else %}
-            {% if messages %}
-                {% for message in messages %}
-                    {% if 'po' in message.tags %}
-                    <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
-                    {% endif %}
-                {% endfor %} 
             {% endif %}
-        {% endif %} 
-    </div>
-    {% endif %}
-    {% endif %}
-
-    <!-------- VIEWABLE BY MEMBER ONLY ---------------------->
-    
+        </div>
+        {% endif %}
+    {% endif %}    
 </section>
 

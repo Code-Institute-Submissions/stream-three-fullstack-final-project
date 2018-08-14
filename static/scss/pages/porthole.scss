@@ -1,103 +1,73 @@
 // -------------- PORTHOLE TEMPLATE STYLES ------------------- //
 .porthole-bg-color {
 
-    background-color: $login_bg_color;
+    background-color: $login_green;
 }
 
-.all-steps-container {
+.porthole-container {
 
-    background-color: $login-green;
-    width:100%;
+    position: relative;
+    top: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    @include desktop {
+
+        
+    }
+
+}
+
+
+.all-steps-container {
 
     @include desktop {
 
         display: flex;
+        flex-direction: row;
         align-items: flex-start;
-        height: 100vh;
-    }
-}
-
-
-.porthole-container {
-
-    @extend .manage-container;
-    padding-bottom: 0rem;
-    top: 0;
+        margin-bottom: 6rem;
+        width: 100%;
+        //justify-content: space-around;
     
-    /*@include tablet {
+    }
 
-        top: 6rem;
-    }*/
 
-    /*@include desktop {
-
-        flex-direction: column;
-    }*/
 }
 
 .porthole-details-container {
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: calc(100vh - 6rem);
+    @include mobile {
 
-    @include tablet {
-
-        justify-content: center;
-        position: relative;
-       // top: -6rem;
+        width: 25rem;
     }
 
-    /*@include desktop {
+    @include desktop {
 
-        display: none;
-    }*/
+        width: 100%;
+    }
+
 }
 
-.porthole-icon {
 
-    @extend .steps-icon;
-}
 
-.porthole-icon__icon {
-
-    @extend .steps-icon__icon;
-    color: $login-green;
-}
-
-.porthole-heading {
-
-    color:  $login-green;
-    text-align: center;
-    //margin-top: 2rem;
-    
-}
-
-.porthole-blurb {
-
-    word-wrap: break-word;
-    width: 17rem;
-    text-align: center;
-}
-
-.porthole-upload-heading {
-
-    margin: 2rem 0 2rem 0;
-    color: #1e3038;
-}
-
-.porthole-details__text {
+.porthole-details__heading {
 
     color: $nav-icons;
-   
-}
+    margin-bottom: 0rem;
 
-.porthole-details__text {
+    @include desktop {
 
-    word-wrap: break-word;
-    width: 100%;
+        margin-top: 0rem;
+    }
+    //width: 50%;
 }
 
 .porthole-nav {
@@ -105,38 +75,53 @@
     background-color: $login-green;
 }
 
+.porthole-details__text {
 
-.porthole-details {
-
-    //@extend .manage-form;
-    display: flex;
-    flex-direction: column;
-    width: 18.6rem;
-    border-radius: .3rem;
-    background-color: $login-green;
-    margin-bottom: 4rem;
-
-    @include tablet {
-
-        height: 32rem;
-        width: 25rem;
-    }
-
+    color: $nav-icons;
+    word-wrap: break-word;
+    width: 100%;
+   
 }
+
+.porthole-details__date i {
+
+    color: $nav-icons;
+}
+
+.porthole-details__date {
+
+    color: $nav-icons;
+    margin-right: .5rem;
+}
+
+.porthole-details__id {
+
+    //width:50%;
+}
+
 
 .porthole-details__row {
 
     display: flex;
     flex-direction: row;
-    align-items: center;
-    width: 90%;
-    position: relative;
-    left: 5%;
+    align-items: baseline;
+    width: 80%;
 
     @include tablet {
 
-        flex-grow: 1;
+        width: 90%;
     }
+    @include large {
+
+        width: 80%;
+    }
+   // position: relative;
+    //left: 5%;
+
+    //@include tablet {
+
+       // flex-grow: 1;
+    //}
 }
 
 .porthole-details__column {
@@ -146,12 +131,30 @@
     justify-content: center;
     //align-items: center;
     align-items: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
+    //flex-wrap: wrap;
+    flex-grow: 1;
+    margin-right: .5rem;
 
 }
 
-.porthole-details-hr {
+.porthole-details--description {
+
+    max-width: 17rem;
+
+    @include desktop {
+
+        max-width: 22rem;
+    }
+    @include large {
+
+        max-width: 35rem;
+        //flex-grow: 0;
+    }
+    
+
+}
+
+.porthole-details__hr {
 
     @extend .manage-items-hr;
     color: $porthole-items-hr-color;
@@ -161,12 +164,14 @@
 
 .steps-hr {
 
+    //-top: 5.5rem;
     @include desktop {
 
         display: none;
     }
 
 }
+
 .uploaded-icon__icon {
 
     background: url('../img/Fileo_White_33precent.png');
@@ -179,24 +184,43 @@
 
 // ---------------- UPLOAD STYLES -------------------------- //
 
+.porthole-upload-heading {
+
+    margin: 2rem 0 2rem 0;
+    color: #1e3038;
+}
+
 .file-container {
 
     @include flex-column;
     background-color: $login-green;
     width: 100%;
+   // padding-bottom: 5.6rem;
 
     @include desktop {
         
-        margin: 10rem 2rem 0 2rem;
+        margin: 0rem 2rem 0 2rem;
 
     }
 
 }
 
-.file-container--padding {
+.invoice-file-container--padding {
 
-    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+
+    @include desktop {
+
+        margin-bottom: 0;
+    }
 }
+
+
+
+/*.file-container-po--padding {
+
+    padding-bottom: 5.6rem;
+}*/
 
 
 .upload-container {
@@ -211,8 +235,13 @@
 
     @include tablet {
 
-        width: 21.6rem;
+        width: 16.6rem;
 
+    }
+
+    @include large {
+
+        width: 21.6rem;
     }
     
 }
@@ -229,8 +258,6 @@
     margin-bottom: 2rem;
 
 }
-
-
 
 .uploaded-icon {
 
@@ -278,7 +305,7 @@
 .upload-form {
 
     @include flex-column;
-    margin-top: .5rem;
+    //margin-top: .5rem;
    
 }
 
@@ -290,13 +317,20 @@
 
 .upload-form__button {
 
-    @extend .manage-form__button;
+    @include login-button-mobile;
     background-color: $login-green;
     margin-bottom: .8rem;
-    @include desktop {
 
-        margin: .5rem 0 1.4rem 0;
+    @include tablet {
 
+        width: 15.6rem;
+        height: 2.1rem;
+    }
+
+    @include large {
+
+        //margin: .5rem 0 1.4rem 0;
+        @include login-button-desktop-media-query;
     }
    
 }
@@ -307,7 +341,14 @@
     background-color: $login_bg_color;
     margin: .5rem 0 .8rem 0;
 
-    @include desktop {
+
+    @include tablet {
+
+        width: 15.6rem;
+        height: 2.1rem;
+    }
+
+    @include large {
 
         @include login-button-desktop-media-query;
     }
@@ -337,6 +378,12 @@
     @include login-form-mobile;
 
     @include tablet {
+
+        width: 15rem;
+        height: 1.5rem;
+    }
+
+    @include large {
 
         @include login-form-desktop-media-query;
     }
@@ -375,10 +422,21 @@
     margin-bottom: .4rem;
     margin-top: 3.1rem;
     
-
 }
 
+.file-approval__form {
 
+    @include tablet {
+        
+        width: 15.6rem;
+
+    }
+
+    @include large {
+
+        width: 20.1rem;
+    }
+}
 
 .file-approval ul li {
 
@@ -408,7 +466,13 @@
     align-items: center;
    // width:100%;
 
-    @include tablet {
+    @include tablet {   
+
+        height:2.1rem;
+        width: 15.6rem;
+    }
+    
+    @include large {
 
         @include login-button-desktop-media-query;
     }
@@ -417,8 +481,14 @@
 
 .file-approval__button {
 
-    @extend .upload-form__browse-button;
+    @include login-button-mobile;
     background-color: $login-green;
+
+    @include tablet {
+
+        height: 2.1rem;
+        width: 100%;
+    }
 }
 
 .porthole-status,
@@ -483,9 +553,15 @@
 
     @include tablet {
 
-        
-        @include login-button-desktop-media-query;
+        width: 15.6rem;
+        height: 2.1rem;
+        //@include login-button-desktop-media-query;
         margin-top: 1rem;
+    }
+
+    @include large {
+
+        @include login-button-desktop-media-query;
     }
 
 }
@@ -503,6 +579,25 @@
     text-align: center;
 }
 
-// -------------- HIDE/SHOW PORTHOLE DETAILS MEDIA QUERY ------------------- //
+// -------------- HIDE/SHOW PORTHOLE DETAILS MEDIA QUERIES ------------------- //
 
+
+.porthole-details-container-mobile {
+
+    @include desktop {
+
+        display: none;
+    }
+}
+
+.porthole-details-container-desktop {
+
+    display: none;
+
+    @include desktop {
+
+        display: flex;
+
+    }
+}
 

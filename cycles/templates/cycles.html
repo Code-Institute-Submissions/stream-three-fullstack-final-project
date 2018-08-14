@@ -17,12 +17,12 @@
             </div>
             {% else %}
                 {% if messages %}
-                {% for message in messages %}
-                <div class="cycles-info__profile-exp">
-                    <p class="cycles-info__text">{{message}}</p>
-                </div>
-                {% endfor %}
-                {% else %}
+                    {% for message in messages %}
+                        <div class="cycles-info__profile-exp">
+                            <p class="generic-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                        </div>
+                    {% endfor %}
+            {% else %}
                 <div class="cycles-info__profile-exp">
                     <p class="cycles-info__text">Search your cycles by Job, Fileo ID or Client.</p>
                 </div>
@@ -135,34 +135,6 @@
                             <p class="cycles-results__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
                             {% endif %}
                         </div>
-                        <!--- TABLET AND UP ONLY ARRANGEMENT -->
-                       <!-- <div class="cycles-results__column column-4 column-icon cycle-results-tablet">
-                            {% if item.approve_quote == True %}
-                            <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Quote</p>
-                            {% elif item.contest_quote == True %} 
-                            <p class="cycles-results__text"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Quote</p>
-                            {% else %}
-                            <p class="cycles-results__text"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i> Quote</p>
-                            {% endif %}
-                        </div>
-                        <div class="cycles-results__column column-4 column-icon cycle-results-tablet">
-                            {% if item.approve_po == True %} 
-                            <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> PO</p>
-                            {% elif item.contest_po == True %} 
-                            <p class="cycles-results__text"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> PO</p>
-                            {% else %} 
-                            <p class="cycles-results__text"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i> PO</p>
-                            {% endif %}   
-                        </div>
-                        <div class="cycles-results__column column-4 column-icon cycle-results-tablet">
-                            {% if item.approve_invoice == True %}
-                            <p class="cycles-results__text"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Invoice</p>
-                            {% elif item.contest_invoice == True %}
-                            <p class="cycles-results__text"> <i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Invoice</p>
-                            {% else %}
-                            <p class="cycles-results__text"> <i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i> Invoice</p>
-                            {% endif %}
-                        </div> -->
                     </div>
                     <hr class="cycles-item-hr">
                     <!--- MOBILE ARRANGEMENT -->

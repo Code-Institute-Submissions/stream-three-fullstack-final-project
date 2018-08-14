@@ -3,6 +3,7 @@
 (() => {
 
     const nav = document.getElementById('nav');
+    const headerBanner = document.getElementById('header-banner');
     const input = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');
     const valueInput = document.getElementById('id_cycle_value_0');
@@ -82,6 +83,7 @@
 
     }
 
+    // SET NAME OF UPLOAD BUTTON TO FILE NAME ON CHANGE //
     const setNameOfButtonToFile = (uploadFields, browseButtons) => {
 
         for (let i = 0; i < uploadFields.length; i++) {
@@ -101,14 +103,9 @@
                     browseButtons[i].innerHTML = buttonHTML;
                 }
                 
-                
-                
             }
         }
     }
-
-    
-
 
     //----------------------------- FUNCTION CALLS ------------------------// 
 
@@ -122,7 +119,10 @@
     const invoiceUpload = document.getElementById('upload-2');
     let uploadFields = [];
 
-            
+    // PUSH UPLOAD ELEMENTS TO ARRAY FOR USE IN BELOW FUNCTION CALLS. //
+    // DEPENDING ON WHETHER THE USER IS A MEMBER OR CLIENT //
+    // THEY WILL SEE A DIFFERENT NUMBER OF FILE UPLOAD BUTTONS.//
+    // THE IF CONDITIONS MAKE SURE A NULL VALUE ISN'T PUSHED TO THE ARRAY.       
     if (quoteUpload) {
 
         uploadFields.push(quoteUpload);
@@ -140,12 +140,6 @@
         uploadFields.push(invoiceUpload);
 
     }
-       
-    console.log(quoteUpload);
-    console.log(poUpload);
-    console.log(invoiceUpload);
-    console.log(uploadFields);
-
 
     // TRIGGER HIDDEN DJANGO GENERATED FORM BROWSE BUTTON //
     onBrowseButtonClickTriggerHiddenButton(browseButtons);
@@ -156,13 +150,9 @@
 
     // HIDE THOSE ELEMENTS // 
     hideUploadFields(uploadFields);
-    //getNameOfFile(quoteUpload);
-   
-
- 
 
     // STYLE UPLOAD FORM //
-    // VARIABLE VALUE INPUT ONLY EXISTS IN MEMBER TEMPLATE //
+    // THE VARIABLE 'VALUEINPUT' ONLY EXISTS IN MEMBER TEMPLATE //
     // CHECK IF IT EXISTS BEFORE EXECUTING // 
     if(valueInput) {
 
@@ -175,6 +165,6 @@
     // BODY AND NAV STYLES //
     addClassToClassList(nav, 'porthole-nav');
     addBgColorToBody('porthole-bg-color');
-
+    headerBanner.style.display = 'none';
 
 })();

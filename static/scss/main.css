@@ -1457,7 +1457,7 @@ p, button, a {
 .manage-text {
   margin-bottom: 0.8rem; }
 
-.manage-container, .porthole-container {
+.manage-container {
   position: relative;
   top: 6rem;
   padding-bottom: 4rem;
@@ -1466,7 +1466,7 @@ p, button, a {
   justify-content: center;
   align-items: center; }
   @media (min-width: 992px) {
-    .manage-container, .porthole-container {
+    .manage-container {
       top: 8rem;
       flex-direction: row;
       justify-content: space-evenly; } }
@@ -1497,7 +1497,7 @@ p, button, a {
 .manage-form p {
   margin-top: .5rem; }
 
-.manage-form__button, .upload-form__button {
+.manage-form__button {
   height: 1.6rem;
   border: none;
   width: 17.5rem;
@@ -1508,7 +1508,7 @@ p, button, a {
   margin-bottom: 1rem;
   cursor: pointer; }
   @media (min-width: 768px) {
-    .manage-form__button, .upload-form__button {
+    .manage-form__button {
       height: 2.1rem;
       width: 20.1rem; } }
 
@@ -1563,7 +1563,7 @@ p, button, a {
     .manage-form textarea {
       width: 20.34rem; } }
 
-.manage-items-hr, .porthole-details-hr {
+.manage-items-hr, .porthole-details__hr {
   color: #337f784d;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
@@ -1661,8 +1661,12 @@ p, button, a {
   color: #7b7b7b;
   background-color: #4f7382; }
 
-#manage-items__text-top {
-  margin-top: 0.5rem; }
+.manage-items__text-top {
+  margin-top: 0.5rem;
+  transition: color 0.2s cubic-bezier(1, 0.32, 0.32, 0.75); }
+
+.manage-items__text-top:hover {
+  color: #bab5b5; }
 
 .manage-item__button-column {
   width: 50%; }
@@ -1726,14 +1730,14 @@ p, button, a {
     .manage-success {
       width: 20rem; } }
 
-.steps-icon, .porthole-icon {
+.steps-icon {
   display: flex; }
 
-.steps-icon__icon, .porthole-icon__icon {
+.steps-icon__icon {
   color: #597b78;
   font-size: 1.5rem; }
   @media (min-width: 992px) {
-    .steps-icon__icon, .porthole-icon__icon {
+    .steps-icon__icon {
       font-size: 2rem; } }
 
 .manage-total-mobile {
@@ -1755,102 +1759,89 @@ p, button, a {
   margin-top: 1rem; }
 
 .porthole-bg-color {
-  background-color: #3a5864; }
-
-.all-steps-container {
-  background-color: #81aeaa;
-  width: 100%; }
-  @media (min-width: 992px) {
-    .all-steps-container {
-      display: flex;
-      align-items: flex-start;
-      height: 100vh; } }
+  background-color: #81aeaa; }
 
 .porthole-container {
-  padding-bottom: 0rem;
-  top: 0;
-    /*@include tablet {
+  position: relative;
+  top: 4rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex; }
 
-        top: 6rem;
-    }*/
-    /*@include desktop {
-
-        flex-direction: column;
-    }*/ }
+@media (min-width: 992px) {
+  .all-steps-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 6rem;
+    width: 100%; } }
 
 .porthole-details-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  min-height: calc(100vh - 6rem);
-    /*@include desktop {
-
-        display: none;
-    }*/ }
-  @media (min-width: 768px) {
-    .porthole-details-container {
-      justify-content: center;
-      position: relative; } }
-
-.porthole-icon__icon {
-  color: #81aeaa; }
-
-.porthole-heading {
-  color: #81aeaa;
-  text-align: center; }
-
-.porthole-blurb {
-  word-wrap: break-word;
-  width: 17rem;
-  text-align: center; }
-
-.porthole-upload-heading {
-  margin: 2rem 0 2rem 0;
-  color: #1e3038; }
-
-.porthole-details__text {
-  color: #1e3038; }
-
-.porthole-details__text {
-  word-wrap: break-word;
   width: 100%; }
+  @media (min-width: 576px) {
+    .porthole-details-container {
+      width: 25rem; } }
+  @media (min-width: 992px) {
+    .porthole-details-container {
+      width: 100%; } }
+
+.porthole-details__heading {
+  color: #1e3038;
+  margin-bottom: 0rem; }
+  @media (min-width: 992px) {
+    .porthole-details__heading {
+      margin-top: 0rem; } }
 
 .porthole-nav {
   background-color: #81aeaa; }
 
-.porthole-details {
-  display: flex;
-  flex-direction: column;
-  width: 18.6rem;
-  border-radius: .3rem;
-  background-color: #81aeaa;
-  margin-bottom: 4rem; }
-  @media (min-width: 768px) {
-    .porthole-details {
-      height: 32rem;
-      width: 25rem; } }
+.porthole-details__text {
+  color: #1e3038;
+  word-wrap: break-word;
+  width: 100%; }
+
+.porthole-details__date i {
+  color: #1e3038; }
+
+.porthole-details__date {
+  color: #1e3038;
+  margin-right: .5rem; }
 
 .porthole-details__row {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  width: 90%;
-  position: relative;
-  left: 5%; }
+  align-items: baseline;
+  width: 80%; }
   @media (min-width: 768px) {
     .porthole-details__row {
-      flex-grow: 1; } }
+      width: 90%; } }
+  @media (min-width: 1200px) {
+    .porthole-details__row {
+      width: 80%; } }
 
 .porthole-details__column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
-  width: 100%; }
+  flex-grow: 1;
+  margin-right: .5rem; }
 
-.porthole-details-hr {
+.porthole-details--description {
+  max-width: 17rem; }
+  @media (min-width: 992px) {
+    .porthole-details--description {
+      max-width: 22rem; } }
+  @media (min-width: 1200px) {
+    .porthole-details--description {
+      max-width: 35rem; } }
+
+.porthole-details__hr {
   color: rgba(58, 88, 100, 0.15); }
 
 @media (min-width: 992px) {
@@ -1864,6 +1855,10 @@ p, button, a {
   background-repeat: no-repeat;
   margin-top: 1rem; }
 
+.porthole-upload-heading {
+  margin: 2rem 0 2rem 0;
+  color: #1e3038; }
+
 .file-container {
   display: flex;
   flex-direction: column;
@@ -1873,11 +1868,18 @@ p, button, a {
   width: 100%; }
   @media (min-width: 992px) {
     .file-container {
-      margin: 10rem 2rem 0 2rem; } }
+      margin: 0rem 2rem 0 2rem; } }
 
-.file-container--padding {
-  padding-bottom: 3rem; }
+.invoice-file-container--padding {
+  margin-bottom: 3rem; }
+  @media (min-width: 992px) {
+    .invoice-file-container--padding {
+      margin-bottom: 0; } }
 
+/*.file-container-po--padding {
+
+    padding-bottom: 5.6rem;
+}*/
 .upload-container {
   display: flex;
   flex-direction: column;
@@ -1887,6 +1889,9 @@ p, button, a {
   width: 18.6rem;
   min-height: 435px; }
   @media (min-width: 768px) {
+    .upload-container {
+      width: 16.6rem; } }
+  @media (min-width: 1200px) {
     .upload-container {
       width: 21.6rem; } }
 
@@ -1938,20 +1943,30 @@ p, button, a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-top: .5rem; }
+  align-items: center; }
 
 .upload-form-no-value {
   margin-top: 3.4rem; }
 
 .upload-form__button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
   background-color: #81aeaa;
   margin-bottom: .8rem; }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .upload-form__button {
-      margin: .5rem 0 1.4rem 0; } }
+      width: 15.6rem;
+      height: 2.1rem; } }
+  @media (min-width: 1200px) {
+    .upload-form__button {
+      height: 2.1rem;
+      width: 20.1rem; } }
 
-.upload-form__browse-button, .file-approval__button {
+.upload-form__browse-button {
   height: 1.6rem;
   border: none;
   width: 17.5rem;
@@ -1960,12 +1975,16 @@ p, button, a {
   color: #fff;
   background-color: #3a5864;
   margin: .5rem 0 .8rem 0; }
-  @media (min-width: 992px) {
-    .upload-form__browse-button, .file-approval__button {
+  @media (min-width: 768px) {
+    .upload-form__browse-button {
+      width: 15.6rem;
+      height: 2.1rem; } }
+  @media (min-width: 1200px) {
+    .upload-form__browse-button {
       height: 2.1rem;
       width: 20.1rem; } }
 
-.upload-form__browse-button:hover, .file-approval__button:hover {
+.upload-form__browse-button:hover {
   cursor: pointer; }
 
 .upload-form p {
@@ -1986,6 +2005,10 @@ p, button, a {
   font-size: .8rem;
   margin-top: 0rem; }
   @media (min-width: 768px) {
+    .upload-form p input {
+      width: 15rem;
+      height: 1.5rem; } }
+  @media (min-width: 1200px) {
     .upload-form p input {
       height: 1.5rem;
       width: 19.6rem; } }
@@ -2017,6 +2040,13 @@ p, button, a {
   margin-bottom: .4rem;
   margin-top: 3.1rem; }
 
+@media (min-width: 768px) {
+  .file-approval__form {
+    width: 15.6rem; } }
+@media (min-width: 1200px) {
+  .file-approval__form {
+    width: 20.1rem; } }
+
 .file-approval ul li {
   color: #fff;
   display: inline; }
@@ -2042,10 +2072,24 @@ p, button, a {
   @media (min-width: 768px) {
     .file-approval ul {
       height: 2.1rem;
+      width: 15.6rem; } }
+  @media (min-width: 1200px) {
+    .file-approval ul {
+      height: 2.1rem;
       width: 20.1rem; } }
 
 .file-approval__button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
   background-color: #81aeaa; }
+  @media (min-width: 768px) {
+    .file-approval__button {
+      height: 2.1rem;
+      width: 100%; } }
 
 .porthole-status,
 .porthole-status i {
@@ -2098,9 +2142,13 @@ p, button, a {
   background-color: #81aeaa; }
   @media (min-width: 768px) {
     .payment-pending__button {
+      width: 15.6rem;
       height: 2.1rem;
-      width: 20.1rem;
       margin-top: 1rem; } }
+  @media (min-width: 1200px) {
+    .payment-pending__button {
+      height: 2.1rem;
+      width: 20.1rem; } }
 
 .payment-pending__button:hover {
   cursor: pointer; }
@@ -2109,5 +2157,15 @@ p, button, a {
   width: 18.6rem;
   word-wrap: break-word;
   text-align: center; }
+
+@media (min-width: 992px) {
+  .porthole-details-container-mobile {
+    display: none; } }
+
+.porthole-details-container-desktop {
+  display: none; }
+  @media (min-width: 992px) {
+    .porthole-details-container-desktop {
+      display: flex; } }
 
 /*# sourceMappingURL=main.css.map */

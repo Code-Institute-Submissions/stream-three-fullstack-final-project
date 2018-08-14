@@ -73,32 +73,30 @@
     </div>
     <!---- VIEWABLE BY MEMBER ONLY ---->
     {% if request.user.is_member %}
-    {% if not context.cycle_status.approve_quote %}
-    <div class="file-action">
-        {% if context.quote %}
-        <p>
-            <a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a>
-        </p>
-        <p>
-            <a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a>
-        </p>
-        {% if messages %}
-            {% for message in messages %}
-                {% if 'quote' in message.tags %}
-                <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
-                {% endif %}
-            {% endfor %} 
-        {% endif %}
-        {% else %}
-            {% if messages %}
-                {% for message in messages %}
-                    {% if 'quote' in message.tags %}
-                    <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+        {% if not context.cycle_status.approve_quote %}
+            {% if context.quote %}
+                <div class="file-action">
+                    <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a></p>
+                    <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a></p>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'quote' in message.tags %}
+                            <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                            {% endif %}
+                        {% endfor %} 
                     {% endif %}
-                {% endfor %} 
+                </div>
+            {% else %}
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'quote' in message.tags %}
+                            <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                            {% endif %}
+                        {% endfor %} 
+                    {% endif %}
+                </div> 
             {% endif %}
-        {% endif %} 
-    </div>
-    {% endif %}
+        {% endif %}
     {% endif %}
 </section>

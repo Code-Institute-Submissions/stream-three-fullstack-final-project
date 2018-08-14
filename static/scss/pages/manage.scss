@@ -264,9 +264,15 @@
     background-color: $disabled-buttons;
 }
 
-#manage-items__text-top {
+.manage-items__text-top {
 
     margin-top: 0.5rem;
+    transition: color .2s $drop-down-bezier;
+}
+
+.manage-items__text-top:hover {
+
+    color: #bab5b5;
 }
 
 .manage-item__button-column {

@@ -17,7 +17,7 @@
     </nav>
     <div id="drop-down-menu" class="main-header__dropdown">
         <ul>
-            <li class="main-header__dropdown-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="main-header__dropdown-item"><a href="{% url 'index' %}">Cycles</a></li>
             {% if user.is_member %}
             <li class="main-header__dropdown-item"><a href="{% url 'member_profile' username=user.username %}">Profile</i></a></li>
             {% endif %}
@@ -25,7 +25,7 @@
         </ul>
     </div>
 </header>
-<div class="header-banner">
+<div id="header-banner" class="header-banner">
     <ul>
         <li><i class="fas fas fa-check-circle" aria-hidden="true"></i><span> £{{ request.session.complete }}</span></li>
         <li><i class="far fa-clock" aria-hidden="true"></i><span> £{{ request.session.pending }}</span></li>

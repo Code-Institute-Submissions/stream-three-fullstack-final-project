@@ -23,11 +23,11 @@ def member_profile(request, username):
             if is_existing:
                 edit_profile(profile, is_existing)
                 messages.success(request, 'Profile updated.')
-                return redirect(reverse('member_profile', kwargs={'username':username}))
+                return redirect(reverse('member_cycles', kwargs={'username':username}))
             else:
                 new_profile(profile, user)
                 messages.success(request, 'Profile created.')
-                return redirect(reverse('member_profile', kwargs={'username':username}))
+                return redirect(reverse('member_cycles', kwargs={'username':username}))
     
     return render(request, 'member_profile.html', {'username':username, 
                                                     'profile_form':profile,
@@ -48,15 +48,14 @@ def client_profile(request, username, client_id):
                 edit_profile(profile, is_existing)
                 add_profile_in_member_client_model(client_id)
                 messages.success(request, 'Profile updated.')
-                return redirect(reverse('client_profile', kwargs={'username':username,
-                                                                    'client_id':client_id}))
+                return redirect(reverse('manage_clients', kwargs={'username':username}))
 
             else:
                 new_profile(profile, client)
                 add_profile_in_member_client_model(client_id)
                 messages.success(request, 'Profile created.')
-                return redirect(reverse('client_profile', kwargs={'username':username,
-                                                                    'client_id':client_id}))
+                return redirect(reverse('manage_clients', kwargs={'username':username}))
+
     return render(request, 'client_profile.html', {'username':username,
                                                     'profile_form':profile,
                                                     'client':client,

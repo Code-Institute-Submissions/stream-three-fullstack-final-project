@@ -1,5 +1,5 @@
 <!-- INVOICE STEP PARTIAL -->
-<section class="file-container {% if context.cycle_status.approve_invoice %} file-container--padding {% endif %}">
+<section class="file-container invoice-file-container--padding ">
     <h2 class="porthole-upload-heading">Invoice</h2>
     <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
     <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
@@ -77,7 +77,7 @@
             {% else %}
             {% if context.cycle_status.pending %}
                 <div class="payment-pending">
-                        <p>Please proceed to payment when you are ready.</p>
+                        <p>Please proceed to payment.</p>
                         <form class="payment-pending__form" action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
                             <button class="payment-pending__button"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay</button>
                         </form>
@@ -92,33 +92,21 @@
     </div>
     <!---- VIEWABLE BY MEMBER ONLY ---->
     {% if request.user.is_member %}
-    {% if not context.cycle_status.approve_invoice %}
-    <div class="file-action">
-        {% if context.invoice %}
-        <p>
-            <a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Delete Invoice</a>
-        </p>
-        <p>
-            <a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Notify Member</a>
-        </p>
-        {% if messages %}
-            {% for message in messages %}
-                {% if 'invoice' in message.tags %}
-                <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
-                {% endif %}
-            {% endfor %} 
-        {% endif %}
-        {% else %}
-            {% if messages %}
-                {% for message in messages %}
-                    {% if 'invoice' in message.tags %}
-                    <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+        {% if not context.cycle_status.approve_invoice %}
+            <div class="file-action">
+                {% if context.invoice %}
+                    <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Delete Invoice</a></p>
+                    <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Notify Member</a></p>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'invoice' in message.tags %}
+                            <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                            {% endif %}
+                        {% endfor %} 
                     {% endif %}
-                {% endfor %} 
-            {% endif %}
-        {% endif %} 
-    </div>
-    {% endif %}
+                {% endif %} 
+            </div>
+        {% endif %}
     {% endif %}
 </section>
 
