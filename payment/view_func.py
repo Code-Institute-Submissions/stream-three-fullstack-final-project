@@ -53,3 +53,4 @@ def set_status_to_complete(cycle):
     cycle_status.complete = True
     cycle_status.save(update_fields=['pending', 'cancelled', 'complete'])
     return True
+

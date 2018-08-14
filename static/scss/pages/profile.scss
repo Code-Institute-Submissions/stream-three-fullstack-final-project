@@ -10,11 +10,11 @@
     @include flex_column;
     position: relative;
     top: 4rem;
-    min-height: calc(100% - 4rem);
+    //min-height: calc(100% - 4rem);
 
     @include tablet {
 
-        min-height: calc(100% - 6rem);
+        //min-height: calc(100% - 6rem);
     }
     
 }

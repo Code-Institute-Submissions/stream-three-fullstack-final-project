@@ -21,13 +21,13 @@
 
     position: relative;
     top: 6rem;
-    padding-bottom: 4rem;
+    //padding-bottom: 4rem;
     //min-height: calc(100% - 4rem);
     @include flex-column;
 
     @include desktop {
 
-        top: 8rem;
+        top: 6rem;
         //height: 44rem;
         flex-direction: row;
         justify-content: space-evenly;

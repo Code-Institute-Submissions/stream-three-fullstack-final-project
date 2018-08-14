@@ -4,6 +4,7 @@ from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.contrib import messages
 from .models import Order
+from cyclestatus.models import CycleStatus
 from .forms import OrderForm, PaymentForm
 from managecycle.views import Cycles
 from profiles.models import Profile
@@ -22,6 +23,8 @@ from cycles.view_func import SetSessionValues
 @login_required
 def payment(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
+    status = get_object_or_404(CycleStatus, pk=cycle_id)
+    print(status.complete)
     total = cycle.cycle_value
     stripe_total = convert_total_for_stripe(total)
     profile = profile_exists(request.user.pk)
@@ -44,7 +47,7 @@ def payment(request, username, cycle_id):
             if customer.paid:
                 messages.success(request, 'Payment Successful. This Cycle is now Complete.')
                 set_status_to_complete(cycle)
-                return redirect(reverse('payment_success', kwargs={'username': username,
+                return redirect(reverse('payment', kwargs={'username': username,
                                                                     'cycle_id': cycle_id}))
             else:
                 messages.error(request, 'Apologies, we could not take payment with that card.')
@@ -53,10 +56,7 @@ def payment(request, username, cycle_id):
                     'payment.html', 
                     {'order_form': order_form,
                     'cycle': cycle,
+                    'status': status,
                     'payment_form': payment_form,
                     'publishable': settings.STRIPE_PUBLISHABLE,
                     'total': total })
-
-def payment_success(request, username, cycle_id):
-    SetSessionValues(request).set_values()
-    return render(request, 'payment_success.html', {'username': username})

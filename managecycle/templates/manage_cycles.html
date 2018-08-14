@@ -82,7 +82,7 @@
             <div class="manage-item-container">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
+                        <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
                     </div>
                     {% if item.cancelled %}
                     <div class="manage-item__column manage-item__column-status">
@@ -90,14 +90,14 @@
                     </div>
                     {% elif item.complete %}
                     <div class="manage-item__column manage-item__column-status">
-                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
+                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
                     </div>
                     {% endif %}
                 </div>
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
+                        <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
                     </div>
                 </div>
                 <hr class="manage-items-hr">

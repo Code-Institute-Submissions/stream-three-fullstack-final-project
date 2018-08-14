@@ -3,8 +3,8 @@
 .payment-container {
 
     @include flex-column;
-    position: relative;
-    top: 4rem;
+   // position: relative;
+
 }
 
 
@@ -20,6 +20,17 @@
 
 }
 
+.payment-heading-container {
+
+    @include flex-column;
+    max-width: 19rem;
+
+    @include desktop {
+
+        max-width: 39rem;
+    }
+}
+
 .payment-heading {
 
     margin: .5rem;
@@ -28,12 +39,17 @@
 
 .payment-text {
 
-    width: 17rem;
+    //width: 17rem;
+    flex: 1 1 auto;
     text-align: center;
-    word-wrap: break-word;
+    //word-wrap: break-word;
     margin: .25rem;
-}
 
+    @include desktop {
+
+        //width: 21rem;
+    }
+}
 
 .payment-bg-color {
 
@@ -52,14 +68,19 @@
     margin-top: .5rem;
     
     
-    @include tablet {
+    @include desktop {
 
         flex-direction: row;
         align-items: flex-start;
-        margin-top: 2rem;
+        margin-top: 1rem;
       
     }
 
+}
+
+.payment-form-pay-container {
+
+    @include flex-column;
 }
 
 .payment-form__details,
@@ -68,13 +89,17 @@
     @include flex-column;
     width: 18.6rem;
     border-radius: .3rem;
-    //width: 100%;
     background-color: $nav-icons;
     padding-top: .8rem;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
 
     @include tablet {
+
+        width: 21.6rem;
+    }
+
+    @include desktop {
 
         margin: 0 2rem 0 2rem;
         width: 21.6rem;
@@ -104,9 +129,9 @@
     }
 }
 
-.payment-form p {
+.payment-form__button:hover {
 
-    margin-top: .5rem;
+    cursor: pointer;
 }
 
 .payment-form__select {
@@ -132,4 +157,46 @@
 .payment-error {
 
     color: $login-error-red;
+    text-align: center;
+    width: 100%;
+    
+}
+
+#credit-card-errors {
+
+    margin-top: 1rem;
+}
+
+.payment-success {
+
+    @include flex-row;
+}
+.payment-success p {
+
+    flex: 1 1 auto;
+    margin-top: 1rem;
+    //color: $nav-icons;
+}
+
+.payment-link-container {
+
+    @include flex-row;
+    @include register-login-button-desktop;
+    background-color: $nav-icons;
+   
+}
+
+.payment-cycles-link {
+
+    @include flex-row;
+    height: 100%;
+    width: 100%;
+    //background-color: $nav-icons;
+}
+
+
+.payment-success__icon {
+
+    font-size: 3rem;
+    color: $nav-icons;
 }

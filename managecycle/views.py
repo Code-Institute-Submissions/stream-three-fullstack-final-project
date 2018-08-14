@@ -23,7 +23,7 @@ def manage_cycles(request, username):
     cycle_form = CycleForm(user.pk)
     users_cycles = users_cycles = CycleStatus.objects.filter(
                                                 cycle__member=user
-                                                ).order_by('-cycle__cycle_title')
+                                                ).order_by('cycle__job__job_title')
     
     jobs = get_all_jobs_for_user(username, user.pk)
     if request.method == 'POST':
@@ -60,27 +60,6 @@ def manage_cycles(request, username):
                             'cycles_count': users_cycles.count(),
                             'jobs': jobs})
 
-## Edit Cycle and Redirect to Manage Cycles ##
-#def edit_cycle(request, username, cycle_id):
- #   cycle = get_object_or_404(Cycles, pk=cycle_id)
-  #  form = CycleForm(cycle.member.id, initial={'cycle_title': cycle.cycle_title,
-   #                                     'description': cycle.description,
-    #                                    'location': cycle.location,
-     #                                   'start_date': cycle.start_date,
-      #                                  'end_date': cycle.end_date,
-       #                                 'jobs': cycle.job})
-#    if request.method == 'POST':
- #       form = CycleForm(cycle.member.id, request.POST)
-  #      if form.is_valid():
-   #        cycle_updated = update_cycle(cycle, form, request)
-    #        if cycle_updated:
-    #            messages.success(request, 
-     #                           'You have updated cycle with Fileo ID: {0}'.format(cycle.id),
-      #                          extra_tags='manage_cycle')
-       #         return redirect(reverse('manage_cycles', kwargs={'username': username}))                                       
-
-    #return render(request,'edit_cycle.html', {'username': username,
-     #                                           'form': form })
 
 ## Delete Cycle View, redirects to Manage Cycles View ##
 def delete_cycle(request, username, cycle_id):

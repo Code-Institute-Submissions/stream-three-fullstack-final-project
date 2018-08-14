@@ -2,6 +2,8 @@
 
 (() => {
 
+    const header = document.getElementsByClassName('main-header')[0];
+    const headerBanner = document.getElementById('header-banner');
     const expiryMonthSelect = document.getElementById('id_expiry_month');
     const expiryYearSelect = document.getElementById('id_expiry_year');
     const selects = document.getElementsByTagName('select');
@@ -73,7 +75,8 @@
 
 
     addBgColorToBody('payment-bg-color');
-    document.getElementById('header-banner').style.display = 'none';
+    headerBanner.style.display = 'none';
+    header.style.position = 'relative';
     removeFormLabels();
     setPlaceholder();
     setInputClass();
