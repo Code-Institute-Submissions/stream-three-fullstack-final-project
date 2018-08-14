@@ -52,6 +52,7 @@ def payment(request, username, cycle_id):
     return render(request, 
                     'payment.html', 
                     {'order_form': order_form,
+                    'cycle': cycle,
                     'payment_form': payment_form,
                     'publishable': settings.STRIPE_PUBLISHABLE,
                     'total': total })

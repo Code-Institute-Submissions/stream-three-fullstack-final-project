@@ -56,11 +56,11 @@ const insertNotSureOnOtherButtonClick = (condition, target) => {
     
         
         if (target.innerHTML == condition){
-            console.log('not sure');
+
             target.innerHTML = 'Not Sure';
 
         } else {
-            console.log('else');
+            
             target.innerHTML = condition;
         }
 
@@ -122,3 +122,18 @@ const addRequiredAttribute = (input) => {
     }
 
 }  
+
+
+    // WRAPS MULTIPLE SELECTS IN A DIV AND ADDS STYLES //
+    const wrapSelectsWithDiv = (selects, parentClass, iconClass) => {
+
+    for (let i = 0; i < selects.length; i++) {
+
+        let parent = selects[i].parentElement;
+        parent.insertAdjacentHTML('beforeend', '<div></div>');
+        parent.lastChild.appendChild(selects[i]);
+        addStylesToSelectParent(selects[i], parentClass);
+        addIconToSelect(selects[i], iconClass);                                      
+
+    }
+}

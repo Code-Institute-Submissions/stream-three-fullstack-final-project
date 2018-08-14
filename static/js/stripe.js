@@ -1,5 +1,5 @@
 $(function() {
-    console.log("here")
+   // console.log("here")
     $("#payment-form").submit(function() {
         
         var form = this;

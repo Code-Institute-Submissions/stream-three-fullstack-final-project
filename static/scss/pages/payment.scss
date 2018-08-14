@@ -3,9 +3,97 @@
 .payment-container {
 
     @include flex-column;
+    position: relative;
+    top: 4rem;
 }
+
+.payment-heading {
+
+    margin: .5rem;
+
+}
+
+.payment-text {
+
+    width: 17rem;
+    text-align: center;
+    word-wrap: break-word;
+    margin: .25rem;
+}
+
 
 .payment-bg-color {
 
     background-color: $login_bg_color;
+}
+
+.payment-form {
+
+    //@include flex_column;
+    
+    width: 18.6rem;
+    background-color: $nav-icons;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    margin-bottom: 2rem;
+    margin-top: .5rem;
+    border-radius: .3rem;
+
+    @include tablet {
+
+        flex-direction: row;
+        width: 21.6rem;
+    }
+
+}
+
+.payment-form__input {
+
+    @include login-form-mobile;
+
+    @include tablet {
+
+        //@include login-form-desktop-media-query;
+    }
+
+}
+
+.payment-form__button {
+
+    @include login-button-mobile;
+    background-color: $login-green;
+
+    @include tablet {
+
+        @include login-button-desktop-media-query;
+    }
+}
+
+.payment-form p {
+
+    margin-top: .5rem;
+}
+
+.payment-form__select {
+
+    @extend .profile-filter-styled;
+    background-color: #fff;
+    margin: 0rem 0rem 0rem 0rem;
+    
+}
+
+.payment-form__select select {
+
+    @extend .profile__select;
+    color: $nav-icons;
+}
+
+.payment-form-select__icon {
+
+    @extend .profile-filter-arrow;
+    color: $nav-icons;
 }

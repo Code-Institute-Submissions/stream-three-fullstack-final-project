@@ -15,16 +15,24 @@
 {% block content %}
 {% include 'header.html' %}
 <section class="payment-container">
-    <h1>Payment</h1>
-    <h2>Total: £{{ total }}</h2>
+    <h1 class="payment-heading">Cycle Payment</h1>
+    <!--<p class="payment-text">Please check the details below are correct before paying.</p>-->
+    <p class="payment-text">You are paying for Cycle with Fileo ID: {{ cycle.id }}</p>
+    <p class="payment-text">Please check your details are correct before proceeding.</p>
     <div id="credit-card-errors" style="display:none">
         <div class="alert-message block-message error" id="stripe-error-message"></div>
     </div>
-    <form id="payment-form" method='POST'>
+    <form id="payment-form" class="payment-form" method='POST'>
         {% csrf_token %}
-        {{ order_form.as_p }}
-        {{ payment_form.as_p}}
-        <button type='submit'>Pay</button>
+       <!-- <div>-->
+            {{ order_form.as_p }}
+        <!--</div>-->
+        <!--<div>-->
+            {{ payment_form.as_p}}
+            <p>Total: £{{ total }}</p>
+            <button class="payment-form__button" type='submit'>Checkout <i class="fas fa-shopping-cart" aria-hidden="true"></i></button>
+        <!--</div>-->
+        
     </form>
     <div>
         {% for message in messages %}

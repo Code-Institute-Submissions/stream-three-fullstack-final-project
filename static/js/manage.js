@@ -20,7 +20,6 @@
     const selectTwoDay = document.getElementById('id_end_date_day');
     const selectTwoYear = document.getElementById('id_end_date_year');
     const cyclesFormSelect = document.getElementById('id_jobs');
-    //const hiddenResetDiv = document.getElementById('manage-show-reset');
     const manageResetItemButtons = document.getElementsByClassName('manage-reset');
     const selectArray = [];
 
@@ -208,7 +207,9 @@
         selectArray.push(selectOneMonth, selectOneDay, selectOneYear,
                         selectTwoMonth, selectTwoDay, selectTwoYear);
         
-        wrapSelectsWithDiv(selectArray);
+        wrapSelectsWithDiv(selectArray, 
+                        'manage-cycles-form__date-select', 
+                        'manage-cycles-form__icon');
         
         addClassToElement(cyclesFormSelect, 'profile__select');
         addClassToElement(startDateSelectContainer, 'manage-cycles-form__start-date');

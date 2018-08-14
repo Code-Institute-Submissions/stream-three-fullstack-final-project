@@ -42,6 +42,9 @@ h1 {
   font-size: 1.5rem;
   color: #fff; }
 
+h2, h3, h4, h5, h6 {
+  color: #fff; }
+
 p, button, a {
   color: #fff;
   font-size: .8rem; }
@@ -1376,7 +1379,7 @@ p, button, a {
       height: 1.5rem;
       width: 19.6rem; } }
 
-.profile-filter-styled {
+.profile-filter-styled, .payment-form__select {
   height: 1.6rem;
   border-radius: .3rem;
   width: 7rem;
@@ -1392,11 +1395,11 @@ p, button, a {
   background-color: #384847;
   margin-bottom: .8rem; }
   @media (min-width: 768px) {
-    .profile-filter-styled {
+    .profile-filter-styled, .payment-form__select {
       height: 2.1rem;
       width: 20.1rem; } }
 
-.profile__select {
+.profile__select, .payment-form__select select {
   width: 100%;
   height: 100%;
   text-align: left;
@@ -1404,7 +1407,7 @@ p, button, a {
   padding-left: .3rem;
   color: #fff; }
 
-.profile-filter-arrow {
+.profile-filter-arrow, .payment-form-select__icon {
   color: #fff;
   height: 100%;
   position: relative;
@@ -2182,9 +2185,71 @@ p, button, a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  position: relative;
+  top: 4rem; }
+
+.payment-heading {
+  margin: .5rem; }
+
+.payment-text {
+  width: 17rem;
+  text-align: center;
+  word-wrap: break-word;
+  margin: .25rem; }
 
 .payment-bg-color {
   background-color: #3a5864; }
+
+.payment-form {
+  width: 18.6rem;
+  background-color: #1e3038;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  margin-bottom: 2rem;
+  margin-top: .5rem;
+  border-radius: .3rem; }
+  @media (min-width: 768px) {
+    .payment-form {
+      flex-direction: row;
+      width: 21.6rem; } }
+
+.payment-form__input {
+  height: 1rem;
+  width: 17rem;
+  border-radius: .3rem;
+  padding: .3rem;
+  font-size: .8rem;
+  margin-top: 0rem; }
+
+.payment-form__button {
+  height: 1.6rem;
+  border: none;
+  width: 17.5rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  color: #fff;
+  background-color: #81aeaa; }
+  @media (min-width: 768px) {
+    .payment-form__button {
+      height: 2.1rem;
+      width: 20.1rem; } }
+
+.payment-form p {
+  margin-top: .5rem; }
+
+.payment-form__select {
+  background-color: #fff;
+  margin: 0rem 0rem 0rem 0rem; }
+
+.payment-form__select select {
+  color: #1e3038; }
+
+.payment-form-select__icon {
+  color: #1e3038; }
 
 /*# sourceMappingURL=main.css.map */

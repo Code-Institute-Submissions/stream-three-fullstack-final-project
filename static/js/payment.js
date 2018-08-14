@@ -2,11 +2,85 @@
 
 (() => {
 
+    const expiryMonthSelect = document.getElementById('id_expiry_month');
+    const expiryYearSelect = document.getElementById('id_expiry_year');
+    const selects = document.getElementsByTagName('select');
+    const formLabel = document.getElementsByTagName('label');
+    const formInput = document.getElementsByTagName('input');
+    const nameOnCard = document.getElementById('id_name_on_card');
+    const houseNumber = document.getElementById('id_address1');
+    const street = document.getElementById('id_address2');
+    const city = document.getElementById('id_city');
+    const region = document.getElementById('id_region');
+    const postCode =document.getElementById('id_post_code');
+    const phone = document.getElementById('id_phone');
+    const creditCard = document.getElementById('id_credit_card_number');
+    const cvv = document.getElementById('id_cvv');
+    const placeholderNames = ['Name on Card', 
+                                'House/Flat Number',
+                                'Street Address',
+                                'Town/City',
+                                'Region',
+                                'Post Code',
+                                'Phone',
+                                'Card Number',
+                                'CVV']
+    const placeholderInputs = [nameOnCard, houseNumber, street, city, region,
+                                postCode, phone, creditCard, cvv ]
+
+
+    // SET PLACEHOLDER OF FORM //
+    const setPlaceholder = () => {
+
+        for (i = 0; i < placeholderNames.length; i++) {
+            
+            placeholderInputs[i].setAttribute('placeholder', `${placeholderNames[i]}`);
+        }
+
+    }
+   
+    // SET INPUT CLASSES FOR FORM //
+    const setInputClass = () =>  {
+
+        for (i = 0; i < placeholderNames.length; i++) {
+            
+            placeholderInputs[i].setAttribute('class', `payment-form__input`);
+        }
+
+    }
+
+    // REMOVE UNWANTED FORM LABELS //
+    const removeFormLabels = () => {
+
+        let i = 0;
+
+        while (i < formLabel.length) {
+
+            formLabel[i].style.display = 'none';
+            i++;
+        }
+
+    }
+
+    const addBlankSelectToExpiryDates = (select, value) => {
+
+        select.insertAdjacentHTML('afterbegin', `<option value='' selected>Choose Expiry ${value}</option>`);
+
+    }
     
-    //console.log('working');
+    addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
+    addBlankSelectToExpiryDates(expiryYearSelect, 'Year')
+
+
     addBgColorToBody('payment-bg-color');
     document.getElementById('header-banner').style.display = 'none';
-
+    removeFormLabels();
+    setPlaceholder();
+    setInputClass();
+    wrapSelectsWithDiv(selects, 
+                        'payment-form__select', 
+                        'payment-form-select__icon');
+    
 
 })();
 
