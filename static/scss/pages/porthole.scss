@@ -355,7 +355,8 @@
    
 }
 
-.upload-form__browse-button:hover {
+.upload-form__browse-button:hover,
+.upload-form__button:hover {
 
   cursor: pointer;
 }
@@ -392,6 +393,7 @@
 .file-action {
 
     @include flex_column;
+    margin-bottom: 0;
 }
 
 .file-action a {
@@ -491,6 +493,11 @@
     }
 }
 
+.file-approval__button:hover {
+
+    cursor: pointer;
+}
+
 .porthole-status,
 .porthole-status i {
 
@@ -582,7 +589,8 @@
 // -------------- HIDE/SHOW PORTHOLE DETAILS MEDIA QUERIES ------------------- //
 
 
-.porthole-details-container-mobile {
+.porthole-details-container-mobile,
+.upload-step-congrats-mobile {
 
     @include desktop {
 
@@ -590,7 +598,8 @@
     }
 }
 
-.porthole-details-container-desktop {
+.porthole-details-container-desktop,
+.upload-step-congrats-desktop {
 
     display: none;
 

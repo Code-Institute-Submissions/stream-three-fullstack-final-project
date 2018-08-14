@@ -148,6 +148,11 @@
     }
 }
 
+#last-dropdown-item {
+
+    border-bottom-left-radius: .3rem;
+}
+
 .main-header__dropdown-item {
 
     height: 1.9rem;
@@ -156,9 +161,9 @@
     padding: .1rem 0 .1rem 0;
     background-color: white;
     //margin-bottom: 1px;
-    border-bottom-left-radius: .2rem;
+    //border-bottom-left-radius: .2rem;
     transition: background-color .3s $drop-down-bezier;
-    border-bottom: 1px solid $login-signup-color;
+    //border-bottom: 1px solid $login-signup-color;
 
 }
 

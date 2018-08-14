@@ -1,10 +1,9 @@
 <!-- QUOTE STEP PARTIAL -->
 <section class="file-container {% if context.cycle_status.approve_quote %} file-container--padding {% endif %}">
     <h2 class="porthole-upload-heading">Quote</h2>
-    <!---FILE ICON ONLY SHOWS ON FILE UPLOADED -->
-    <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     <div class="upload-container">
         {% if context.quote %}
+        <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
         <div>
             {% if context.cycle_status.approve_quote %}
                 <p class="porthole-status"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>
@@ -23,7 +22,6 @@
             <a href="{{ context.quote.file.url }}" target="_blank">
                 <div class="uploaded-icon__icon"></div>
             </a>
-            <!--<p class="uploaded-icon__file-name">Click to view </p>-->
             <p>File uploaded on {{ context.quote.uploaded_at }}</p>
         </div>
         {% else %}
@@ -32,50 +30,44 @@
             <p>No file yet.</p>
         </div>
         {% endif %}
-        <!---- VIEWABLE BY MEMBER ONLY ---->
-        {% if request.user.is_member %}
-            {% if not context.cycle_status.approve_quote %}
+        {% if not context.cycle_status.approve_quote %}
+            {% if request.user.is_member %}
             <form class="upload-form" method="POST" enctype="multipart/form-data">
+                 <!---- VIEWABLE BY MEMBER ONLY ---->
                 {% csrf_token %}
                 {{ quote_form.as_p }}
                 <button id="upload-browse__button" class="upload-form__browse-button" type="button"/>Browse Files</button>
                 <button id="quote-submit__button" class="upload-form__button" type="submit">Upload</button>
             </form>
-            {% else %}
-            <div class="upload-step-congrats">
-                <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
-            </div>
+            {% elif request.user.is_client %}
+                <div class="file-approval">
+                    <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
+                    {% for message in messages %}
+                        {% if 'quote_message' in message.tags %}
+                            <p class="generic-success manage-success porthole-error">{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
+                    <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                        {% csrf_token %}
+                            {{ context.status_form.as_p }}
+                        <button class="file-approval__button" type="submit">Submit</button>
+                    </form>
+                    {% endif %}    
+                </div>
             {% endif %}
-        {% endif %}
-        <!-------- VIEWABLE BY CLIENT ONLY ---------------------->
-        {% if request.user.is_client %}
-            {% if not context.cycle_status.approve_quote %}
-            <div class="file-approval">
-                {% for message in messages %}
-                    {% if 'quote_message' in message.tags %}
-                        <p class="generic-success manage-success porthole-error">{{message}}</p>
-                    {% endif %}
-                {% endfor %}
-                {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
-                <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                    {% csrf_token %}
-                        {{ context.status_form.as_p }}
-                    <button class="file-approval__button" type="submit">Submit</button>
-                </form>
-                {% endif %}    
-            </div>
-            {% else %}
+        {% else %}
             <div class="upload-step-congrats">
-                <p><i class="fas fa-arrow-circle-right" aria-hidden="true"></i></p>
+                <p><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
+                <p><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
             </div>
-            {% endif %}
         {% endif %}   
     </div>
-    <!---- VIEWABLE BY MEMBER ONLY ---->
     {% if request.user.is_member %}
         {% if not context.cycle_status.approve_quote %}
-            {% if context.quote %}
-                <div class="file-action">
+            <div class="file-action">
+                 <!---- VIEWABLE BY MEMBER ONLY ---->
+                {% if context.quote %}
                     <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a></p>
                     <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a></p>
                     {% if messages %}
@@ -84,19 +76,9 @@
                             <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
                             {% endif %}
                         {% endfor %} 
-                    {% endif %}
-                </div>
-            {% else %}
-                <div>
-                    {% if messages %}
-                        {% for message in messages %}
-                            {% if 'quote' in message.tags %}
-                            <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
-                            {% endif %}
-                        {% endfor %} 
-                    {% endif %}
-                </div> 
-            {% endif %}
+                  {% endif %}
+                {% endif %} 
+            </div>
         {% endif %}
     {% endif %}
 </section>

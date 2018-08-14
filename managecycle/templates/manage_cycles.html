@@ -88,6 +88,10 @@
                     <div class="manage-item__column manage-item__column-status">
                         <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
                     </div>
+                    {% elif item.complete %}
+                    <div class="manage-item__column manage-item__column-status">
+                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
+                    </div>
                     {% endif %}
                 </div>
                 <hr class="manage-items-hr">
@@ -107,7 +111,7 @@
                     <div class="manage-item__column manage-item__button-column">
                         <div class="manage-button">
                             {% csrf_token %}
-                            <button  data-id="Reset Cycle" class="manage-button__button {% if item.cancelled %} manage-button__button--cancelled {% endif %} manage-reset" type='submit'{% if item.cancelled %} disabled {% endif %}>Reset Cycle</button>
+                            <button  data-id="Reset Cycle" class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %} manage-reset" type='submit'{% if item.cancelled or item.complete %} disabled {% endif %}>Reset Cycle</button>
                         </div>
                     </div>
                     <div class="manage-item__column manage-item__button-column">
@@ -115,7 +119,7 @@
                             {% csrf_token %}
                             {% if not item.cancelled %}
                             <input type='hidden' name='cancel' value='True'>              
-                            <button class="manage-button__button" type='submit'>Cancel</button>
+                            <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" {% if item.cancelled or item.complete %} disabled {% endif %} type='submit'>Cancel</button>
                             {% elif item.cancelled %}
                             <input type='hidden' name='cancel' value='False'>              
                             <button class="manage-button__button" type='submit'>Re-instate</button>
@@ -129,7 +133,7 @@
                             {% csrf_token %}    
                             <input type="hidden" name="update" value="true">
                             <input type="hidden" name="cycle_id" value="{{ item.cycle.id }}">
-                            <button class="manage-button__button {% if item.cancelled %} manage-button__button--cancelled {% endif %}" type="submit" {% if item.cancelled %} disabled {% endif %}>Update Cycle</button>
+                            <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" type="submit" {% if item.cancelled or item.complete %} disabled {% endif %}>Update Cycle</button>
                         </form>
                     </div>
                     <div class="manage-item__column manage-item__button-column">

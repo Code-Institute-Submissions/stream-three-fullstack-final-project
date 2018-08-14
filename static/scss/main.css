@@ -35,7 +35,7 @@ select {
   appearance: none;
   background: transparent; }
 
-h1, h2, h3, h4, h5, h6, p, a, button, select, span, label, textarea {
+h1, h2, h3, h4, h5, h6, p, a, button, select, span, label, textarea, input {
   font-family: "Quicksand", sans-serif; }
 
 h1 {
@@ -169,6 +169,9 @@ p, button, a {
     .main-header__dropdown ul {
       width: 9rem; } }
 
+#last-dropdown-item {
+  border-bottom-left-radius: .3rem; }
+
 .main-header__dropdown-item {
   height: 1.9rem;
   width: 100%;
@@ -178,9 +181,7 @@ p, button, a {
   align-items: center;
   padding: .1rem 0 .1rem 0;
   background-color: white;
-  border-bottom-left-radius: .2rem;
-  transition: background-color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75);
-  border-bottom: 1px solid #bbbdbee6; }
+  transition: background-color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
 
 .main-header__dropdown-item a {
   display: flex;
@@ -1984,7 +1985,8 @@ p, button, a {
       height: 2.1rem;
       width: 20.1rem; } }
 
-.upload-form__browse-button:hover {
+.upload-form__browse-button:hover,
+.upload-form__button:hover {
   cursor: pointer; }
 
 .upload-form p {
@@ -2017,7 +2019,8 @@ p, button, a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-bottom: 0; }
 
 .file-action a {
   transition: color 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
@@ -2091,6 +2094,9 @@ p, button, a {
       height: 2.1rem;
       width: 100%; } }
 
+.file-approval__button:hover {
+  cursor: pointer; }
+
 .porthole-status,
 .porthole-status i {
   margin: 0.4rem .4rem; }
@@ -2159,13 +2165,16 @@ p, button, a {
   text-align: center; }
 
 @media (min-width: 992px) {
-  .porthole-details-container-mobile {
+  .porthole-details-container-mobile,
+  .upload-step-congrats-mobile {
     display: none; } }
 
-.porthole-details-container-desktop {
+.porthole-details-container-desktop,
+.upload-step-congrats-desktop {
   display: none; }
   @media (min-width: 992px) {
-    .porthole-details-container-desktop {
+    .porthole-details-container-desktop,
+    .upload-step-congrats-desktop {
       display: flex; } }
 
 /*# sourceMappingURL=main.css.map */
