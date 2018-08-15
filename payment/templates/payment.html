@@ -18,11 +18,8 @@
     <div class="payment-heading-container">
         <i class="fas fa-credit-card payment-icon" aria-hidden="true"></i>
         <h1 class="payment-heading">Cycle Payment</h1>
-        <!--<div class="payment-text-wrapper">-->
-            <p class="payment-text">You are paying for the Cycle with <strong>Fileo ID: {{ cycle.id }}. </strong>Please check your details are correct before proceeding.</p>
-        <!--</div>-->
+        <p class="payment-text">You are paying for the Cycle with <strong>Fileo ID: {{ cycle.id }}. </strong>Please check your details are correct before proceeding.</p>
     </div>
-   <!-- <p class="payment-text">Please check your details are correct before proceeding.</p>-->
     <form id="payment-form" class="payment-form" method='POST'>
         {% csrf_token %}
        <div class="payment-form__details">
@@ -34,7 +31,7 @@
                 <p><strong>Payment Details</strong></p>
                 {{ payment_form.as_p}}
                 <p><strong>Total: £{{ total }}</strong></p>
-                <button class="payment-form__button" {% if not status.complete %} disabled="true" {% endif %} type='submit' >{% if status.complete %} Thankyou! {% else %} Checkout <i class="fas fa-shopping-cart" aria-hidden="true"></i>{% endif %}</button>
+                <button class="payment-form__button" {% if status.complete %} disabled="true" {% endif %} type='submit' >{% if status.complete %} Thankyou! {% else %} Checkout <i class="fas fa-shopping-cart" aria-hidden="true"></i>{% endif %}</button>
             </div>
             <div id="credit-card-errors"  style="display:none">
                 <p class="alert-message block-message error payment-error" id="stripe-error-message"></p>
