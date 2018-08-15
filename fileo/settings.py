@@ -35,7 +35,7 @@ if development:
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://fileo.herokuapp.com/']
 
 
 # Application definition
