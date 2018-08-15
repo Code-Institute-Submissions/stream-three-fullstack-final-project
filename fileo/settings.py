@@ -187,3 +187,4 @@ STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 #### MESSAGE STORAGE ####
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
