@@ -38,7 +38,7 @@ def manage_jobs(request, username):
                 form = JobsForm(user_id, request.POST)
                 if form.is_valid():
                     create_job(form, request.user)
-                    messages.success(request, 'New Job Created.')
+                    messages.success(request, 'Job Created.')
                     return redirect(reverse('manage_jobs',
                                                 kwargs={'username':username})) 
 

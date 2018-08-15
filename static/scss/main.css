@@ -344,9 +344,6 @@ p, button, a {
   color: #f00;
   margin: 0rem;
   font-size: .8rem; }
-  @media (min-width: 768px) {
-    .login-errors__text {
-      font-size: 1rem; } }
 
 .scroll-down {
   display: flex;

@@ -54,7 +54,7 @@
                     </div>
                 </a>
             </div>
-        {% elif not cycles %}
+        {% elif not jobs %}
             <p class="generic-success manage-success">You are seeing an empty drop down list because you have no jobs.
                 You must add one before you can create a new cycle.
             </p>
@@ -97,7 +97,11 @@
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
+                        {% if not item.cancelled %}
+                        <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }} - Click for Porthole</p></a>
+                        {% else %}
+                        <p class=""><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }} - <em>Porthole Unavailable</em></p>
+                        {% endif %}
                     </div>
                 </div>
                 <hr class="manage-items-hr">

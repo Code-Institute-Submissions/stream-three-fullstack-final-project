@@ -193,7 +193,11 @@
                     <hr class="cycles-item-hr">
                     <div class="cycles-results__porthole">
                         <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
-                            <button class="cycles-results__porthole-button" type="submit">Porthole</button>
+                            {% if not item.cancelled %}
+                                <button class="cycles-results__porthole-button" type="submit">Cycle Porthole</button>
+                            {% else %}
+                                <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

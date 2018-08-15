@@ -364,6 +364,12 @@
     cursor: pointer;
 }
 
+.cycles-results__porthole-button--cancelled {
+
+    background-color: $disabled-buttons;
+    color: $disabled-buttons-text;
+}
+
 .cycles-results-hr-container {
 
     @include flex_row;

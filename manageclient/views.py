@@ -29,7 +29,7 @@ def manage_clients(request, username):
 
                     NewClient(**kwargs).client_user_created()
                     messages.success(request, 
-                                    "Client created. An email has been sent.",
+                                    "Client created and an email has been sent.",
                                     extra_tags="create_client")
                     return redirect(reverse('manage_clients', kwargs={'username':username}))      
         else:
