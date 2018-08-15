@@ -43,14 +43,14 @@
 
 .fileo-logo__image {
 
-    background: url('../img/Fileo_text_White_HIGH_4%.png');
+    background: url('https://s3.eu-west-2.amazonaws.com/fileo/static/img/Fileo_text_White_HIGH_4%25.png');
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
 
     @include tablet {
 
-        background: url('../img/Fileo_text_White_HIGH_8%.png');
+        background: url('https://s3.eu-west-2.amazonaws.com/fileo/static/img/Fileo_text_White_HIGH_8%25.png');
         background-repeat: no-repeat;
 
     }
@@ -233,7 +233,7 @@
 
 .logo-f__logo {
 
-    background: url('../img/F_outline-WHITE_HIGH_8%.png');
+    background: url('https://s3.eu-west-2.amazonaws.com/fileo/static/img/F_outline-WHITE_HIGH_8%25.png');
     height: 61px;
     width: 44px;
     background-repeat: no-repeat;
