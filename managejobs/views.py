@@ -17,7 +17,7 @@ from .view_func import create_job, update_job
 ## If Updated in POST request run Update Helper instead of Create Helper ##
 def manage_jobs(request, username):
     user_id = request.user.id
-    jobs = get_all_jobs_for_user(username, user_id)
+    jobs = get_all_jobs_for_user(user_id)
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
     if request.method == 'POST':

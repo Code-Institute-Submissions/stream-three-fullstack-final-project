@@ -6,7 +6,7 @@ from accounts.models import AllUser
 ## Helper Functions for Manage Jobs views ##
 
 ## Get a QuerySet of all of the Users Jobs ##
-def get_all_jobs_for_user(username, user_id):
+def get_all_jobs_for_user(user_id):
     try:
         jobs = Jobs.objects.filter(member=user_id).order_by('job_title')
     except Jobs.DoesNotExist:
