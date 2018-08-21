@@ -8,10 +8,9 @@ from cyclestatus.models import CycleStatus
 from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 
-
-
 ## View helper functions/classes ##
 
+## CONVERT DATES TO MORE READABLE STRING ##
 def convert_dates(date):
     date = datetime.strptime(date, '%Y-%m-%d')
     date = '{0}.{1}.{2}'.format(date.day, date.month, date.year)
