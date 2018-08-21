@@ -64,6 +64,7 @@
 
     }
 
+    // ADDS A BLANK SELECTION TO SELECT BOXES //
     const addBlankSelectToExpiryDates = (select, value) => {
 
         select.insertAdjacentHTML('afterbegin', `<option value='' selected>Choose Expiry ${value}</option>`);
@@ -71,7 +72,7 @@
     }
     
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
-    addBlankSelectToExpiryDates(expiryYearSelect, 'Year')
+    addBlankSelectToExpiryDates(expiryYearSelect, 'Year');
 
 
     addBgColorToBody('payment-bg-color');
