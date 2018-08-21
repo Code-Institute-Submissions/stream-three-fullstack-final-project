@@ -33,9 +33,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 if development:
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
-ALLOWED_HOSTS = ['fileo.herokuapp.com','fileo.co.uk']
+ALLOWED_HOSTS = ['fileo.herokuapp.com','www.fileo.co.uk']
 
 
 # Application definition
