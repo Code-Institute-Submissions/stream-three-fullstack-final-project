@@ -58,7 +58,7 @@ class Quotes(UploadModel):
 
 
     def __str__(self):
-        return "{0} {1} {2} {3} {4}".format(self.uploaded_at,
+        return "{0} {1} {2} {3}".format(self.uploaded_at,
                                             self.client, self.member, 
                                             self.cycle)#, self.cycle_value)
 

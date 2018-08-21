@@ -42,14 +42,14 @@ class UploadFile:
         self.client = client
         self.member = member
         self.cycle = cycle
-    
+
     def upload_quote(self, quote_form):
         new_quote = Quotes(file=quote_form.cleaned_data['file'],
                             uploaded_at=timezone.now(),
                             client=self.client,
                             member=self.member,
                             cycle=self.cycle)
-                            #cycle_value=quote_form.cleaned_data['cycle_value'])
+                        
        
         old_quote = GetFile(self.cycle).get_quote()
        
