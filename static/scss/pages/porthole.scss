@@ -1,4 +1,5 @@
 // -------------- PORTHOLE TEMPLATE STYLES ------------------- //
+
 .porthole-bg-color {
 
     background-color: $login_green;
@@ -30,7 +31,6 @@
         align-items: flex-start;
         margin-bottom: 6rem;
         width: 100%;
-        //justify-content: space-around;
     
     }
 
@@ -67,7 +67,7 @@
 
         margin-top: 0rem;
     }
-    //width: 50%;
+
 }
 
 .porthole-nav {
@@ -94,11 +94,6 @@
     margin-right: .5rem;
 }
 
-.porthole-details__id {
-
-    //width:50%;
-}
-
 
 .porthole-details__row {
 
@@ -115,13 +110,7 @@
 
         width: 80%;
     }
-   // position: relative;
-    //left: 5%;
 
-    //@include tablet {
-
-       // flex-grow: 1;
-    //}
 }
 
 .porthole-details__column {
@@ -129,9 +118,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    //align-items: center;
     align-items: flex-start;
-    //flex-wrap: wrap;
     flex-grow: 1;
     margin-right: .5rem;
 
@@ -148,7 +135,7 @@
     @include large {
 
         max-width: 35rem;
-        //flex-grow: 0;
+   
     }
     
 
@@ -164,7 +151,6 @@
 
 .steps-hr {
 
-    //-top: 5.5rem;
     @include desktop {
 
         display: none;
@@ -195,7 +181,6 @@
     @include flex-column;
     background-color: $login-green;
     width: 100%;
-   // padding-bottom: 5.6rem;
 
     @include desktop {
         
@@ -214,14 +199,6 @@
         margin-bottom: 0;
     }
 }
-
-
-
-/*.file-container-po--padding {
-
-    padding-bottom: 5.6rem;
-}*/
-
 
 .upload-container {
 
@@ -249,10 +226,11 @@
 .dummy-approval {
 
     height: 2.6rem;
-   // margin-bottom: 0.5rem;
+ 
 }
 
-// DYNAMIC CLASS ONLY ADDED WHEN FILE APPROVED
+// DYNAMIC CLASS ONLY ADDED WHEN FILE APPROVED //
+
 .quote-upload-container--margin {
 
     margin-bottom: 2rem;
@@ -262,38 +240,12 @@
 .uploaded-icon {
 
     @include flex_column;
-    //position: relative;
     width: 90%;
     min-height: 209px;
     margin: 0 1rem 1rem 1rem;
     background-color: #3a5864;
     border-radius: .3rem;
 }
-
-/*.uploaded-icon--extra-margin {
-
-    margin-bottom: 1.5rem;
-    margin-top: 2.8rem;
-}
-
-.upload-po--extra-margin {
-
-    margin-top: 2.8rem;
-}
-
-.upload-invoice--extra-margin {
-
-    margin-top: 3.4rem;
-
-}
-
-/*.uploaded-icon-invoice {
-
-    //@include desktop {
-
-        margin-bottom: 4.6rem;
-   // }
-}*/
 
 
 .no-file-icon {
@@ -305,7 +257,6 @@
 .upload-form {
 
     @include flex-column;
-    //margin-top: .5rem;
    
 }
 
@@ -329,7 +280,6 @@
 
     @include large {
 
-        //margin: .5rem 0 1.4rem 0;
         @include login-button-desktop-media-query;
     }
    
@@ -364,7 +314,6 @@
 .upload-form p {
 
     margin: .5rem 0 .8rem 0;
-    //width: 17rem;
 
     @include desktop {
 
@@ -415,11 +364,8 @@
 
 .file-approval {
 
-    //background-color: $nav-icons;
     width: 18.6rem;
     border-radius: .3rem;
-    //margin-bottom: 2rem;
-    //margin-top: 3.6rem;
     @include flex-column;
     margin-bottom: .4rem;
     margin-top: 3.1rem;
@@ -453,11 +399,8 @@
 
 
 .file-approval ul {
-
-    //@include flex_row;
    
     padding-left: 0rem;
-    
     background-color: $login_bg_color;
     @include login-button-mobile;
     margin-bottom: 0rem;
@@ -466,7 +409,6 @@
     flex-direction:row;
     justify-content: center;
     align-items: center;
-   // width:100%;
 
     @include tablet {   
 
@@ -501,7 +443,6 @@
 .porthole-status,
 .porthole-status i {
 
-    //color: $nav-icons;
     margin: 0.4rem .4rem;
 }
 
@@ -526,7 +467,6 @@
 
 .upload-step-congrats {
 
-    //margin-top: 1rem;
     @include flex-column;
     width: 17rem;
 
@@ -569,7 +509,6 @@
 
         width: 15.6rem;
         height: 2.1rem;
-        //@include login-button-desktop-media-query;
         margin-top: 1rem;
     }
 

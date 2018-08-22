@@ -5,8 +5,6 @@
     height: 4rem;
     width: 100%;
     @include flex_row;
-    //position: fixed;
-    //right: 1.5rem;
     background-color: $reset-bg-color;
 }
 
@@ -104,15 +102,11 @@
     color: #fff;
     padding: 1rem;
     border-radius: .3rem;
-    //background-color: $reset-login-button-color;
-
     
 }
 
 
 // RESET DONE STYLES //
-
-
 .password-reset-success {
 
     height: 179px;
@@ -126,12 +120,10 @@
     text-align: center;
     padding: 0.5rem;
     border-radius: .3rem;
-    //font-size: .9rem;
 
 }
 
 // RESET CONFIRM STYLES //
-
 .reset-rules {
 
     width: 280px;
@@ -146,7 +138,7 @@
     text-align: left;
     margin: .5rem;
     color: #fff;
-    //font-size: .9rem;
+
 }
 
 .reset-rules__heading {
@@ -167,8 +159,6 @@
 }
 
 // RESET COMPLETE STYLES //
-
-
 .reset-complete {
 
     @include flex_column;
@@ -203,7 +193,6 @@
 
 .reset-complete__text {
 
-    //font-size: 1rem;
     color: #fff;
 }
 

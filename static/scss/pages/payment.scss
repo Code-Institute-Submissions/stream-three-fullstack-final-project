@@ -3,7 +3,6 @@
 .payment-container {
 
     @include flex-column;
-   // position: relative;
 
 }
 
@@ -39,16 +38,10 @@
 
 .payment-text {
 
-    //width: 17rem;
     flex: 1 1 auto;
     text-align: center;
-    //word-wrap: break-word;
     margin: .25rem;
 
-    @include desktop {
-
-        //width: 21rem;
-    }
 }
 
 .payment-bg-color {
@@ -58,8 +51,6 @@
 
 .payment-form {
 
-   
-    //background-color: $nav-icons;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -182,7 +173,7 @@
 
     flex: 1 1 auto;
     margin-top: 1rem;
-    //color: $nav-icons;
+
 }
 
 .payment-link-container {
@@ -198,7 +189,7 @@
     @include flex-row;
     height: 100%;
     width: 100%;
-    //background-color: $nav-icons;
+
 }
 
 

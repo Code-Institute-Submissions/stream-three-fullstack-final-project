@@ -160,10 +160,8 @@
     @include flex_row;
     padding: .1rem 0 .1rem 0;
     background-color: white;
-    //margin-bottom: 1px;
-    //border-bottom-left-radius: .2rem;
     transition: background-color .3s $drop-down-bezier;
-    //border-bottom: 1px solid $login-signup-color;
+
 
 }
 
@@ -214,8 +212,7 @@
 }
 
 .header-banner ul li span {
-
-    //display: block;
+    
     padding-left: .5rem;
     font-size: .8rem;
 }
