@@ -9,8 +9,7 @@ html, body {
   width: 100%; }
 
 a {
-  text-decoration: none;
-  color: #fff; }
+  text-decoration: none; }
 
 hr {
   margin: 0; }
@@ -1232,6 +1231,10 @@ p, button, a {
 .cycles-results__porthole-button:hover {
   cursor: pointer; }
 
+.cycles-results__porthole-button--cancelled {
+  background-color: #4f7382;
+  color: #7b7b7b; }
+
 .cycles-results-hr-container {
   display: flex;
   flex-direction: row;
@@ -1663,6 +1666,9 @@ p, button, a {
 
 .manage-item__button-column {
   width: 50%; }
+
+#cycles-results__text--grey {
+  color: #bbbdbee6; }
 
 .manage-button__button--delete-color,
 .manage-button__button--reset-color {
@@ -2261,7 +2267,8 @@ p, button, a {
       height: 1.5rem;
       width: 19.6rem; } }
 
-.payment-form__button {
+.payment-form__button,
+.payment-form__button-complete {
   height: 1.6rem;
   border: none;
   width: 17.5rem;
@@ -2271,7 +2278,8 @@ p, button, a {
   background-color: #81aeaa;
   margin-bottom: .5rem; }
   @media (min-width: 768px) {
-    .payment-form__button {
+    .payment-form__button,
+    .payment-form__button-complete {
       height: 2.1rem;
       width: 20.1rem; } }
 
@@ -2287,6 +2295,9 @@ p, button, a {
 
 .payment-form-select__icon {
   color: #1e3038; }
+
+.payment-form--grey {
+  background-color: #bbbdbee6; }
 
 .payment-error {
   color: #f00;

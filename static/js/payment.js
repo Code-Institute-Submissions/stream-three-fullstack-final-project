@@ -4,6 +4,7 @@
 
     const header = document.getElementsByClassName('main-header')[0];
     const headerBanner = document.getElementById('header-banner');
+    const paymentButton = document.getElementById('payment-button');
     const expiryMonthSelect = document.getElementById('id_expiry_month');
     const expiryYearSelect = document.getElementById('id_expiry_year');
     const selects = document.getElementsByTagName('select');
@@ -70,6 +71,28 @@
         select.insertAdjacentHTML('afterbegin', `<option value='' selected>Choose Expiry ${value}</option>`);
 
     }
+
+    // ON PAYMENT COMPLETE CHANGES COLOR OF INPUT ELEMENTS AND DISABLES FORM //
+    const changeFormBgColorOnComplete = () => {
+
+        if (paymentButton.classList.contains('payment-form__button-complete')) {
+
+            for (let i = 0; i < selects.length; i++) {
+
+                selects[i].parentElement.classList.add('payment-form--grey');
+                selects [i].setAttribute('disabled', 'true');
+            
+            }
+
+            for (let i = 0; i < placeholderInputs.length; i++) {
+
+                placeholderInputs[i].classList.add('payment-form--grey');
+                placeholderInputs[i].setAttribute('disabled', 'true');
+
+            }
+
+        }
+    }
     
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
     addBlankSelectToExpiryDates(expiryYearSelect, 'Year');
@@ -84,6 +107,8 @@
     wrapSelectsWithDiv(selects, 
                         'payment-form__select', 
                         'payment-form-select__icon');
+
+    changeFormBgColorOnComplete();
     
 
 })();

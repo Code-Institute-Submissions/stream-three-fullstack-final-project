@@ -117,7 +117,8 @@
 
 }
 
-.payment-form__button {
+.payment-form__button,
+.payment-form__button-complete {
 
     @include login-button-mobile;
     background-color: $login-green;
@@ -128,6 +129,7 @@
         @include login-button-desktop-media-query;
     }
 }
+
 
 .payment-form__button:hover {
 
@@ -152,6 +154,11 @@
 
     @extend .profile-filter-arrow;
     color: $nav-icons;
+}
+
+.payment-form--grey {
+
+    background-color: $login-signup-color;
 }
 
 .payment-error {

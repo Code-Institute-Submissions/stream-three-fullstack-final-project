@@ -95,7 +95,7 @@
                 <!---- VIEWABLE BY MEMBER ONLY ---->
                 {% if context.invoice %}
                     <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Delete Invoice</a></p>
-                    <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Notify Member</a></p>
+                    <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Notify Client</a></p>
                     {% if messages %}
                         {% for message in messages %}
                             {% if 'invoice' in message.tags %}

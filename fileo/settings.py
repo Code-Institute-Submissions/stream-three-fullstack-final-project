@@ -179,8 +179,6 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 STATICFILES_LOCATION = 'static'
 
-##############################
-
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_URL = '/static/'
 
@@ -195,13 +193,16 @@ AUTH_USER_MODEL = 'accounts.AllUser'
 
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+## EMAIL BACKEND ##
 
-#EMAIL_USE_TLS = True
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-#EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
-#EMAIL_PORT = 587
+if development: 
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+    EMAIL_PORT = 587
 
 ## FILE UPLOAD SETTINGS ##
 MAX_UPLOAD_SIZE = 5242880

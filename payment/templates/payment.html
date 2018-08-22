@@ -31,7 +31,7 @@
                 <p><strong>Payment Details</strong></p>
                 {{ payment_form.as_p}}
                 <p><strong>Total: £{{ total }}</strong></p>
-                <button class="payment-form__button" {% if status.complete %} disabled="true" {% endif %} type='submit' >{% if status.complete %} Thankyou! {% else %} Checkout <i class="fas fa-shopping-cart" aria-hidden="true"></i>{% endif %}</button>
+                <button id="payment-button" class="{% if status.complete %}payment-form__button-complete{% else %}payment-form__button{% endif %}" {% if status.complete %} disabled="true" {% endif %} type='submit' >{% if status.complete %} Thankyou! {% else %} Checkout <i class="fas fa-shopping-cart" aria-hidden="true"></i>{% endif %}</button>
             </div>
             <div id="credit-card-errors"  style="display:none">
                 <p class="alert-message block-message error payment-error" id="stripe-error-message"></p>

@@ -24,7 +24,6 @@ from cycles.view_func import SetSessionValues
 def payment(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     status = get_object_or_404(CycleStatus, pk=cycle_id)
-    print(status.complete)
     total = cycle.cycle_value
     stripe_total = convert_total_for_stripe(total)
     profile = profile_exists(request.user.pk)
