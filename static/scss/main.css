@@ -24,6 +24,9 @@ input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield; }
 
+textarea {
+  resize: none; }
+
 ul, ol {
   list-style: none; }
 
@@ -1099,6 +1102,22 @@ p, button, a {
   width: 18rem;
   text-align: center;
   margin-top: 0rem; }
+
+.cycles-profile-exp__link {
+  color: #f00;
+  display: inline-block; }
+
+.cycles-profile-exp__link:after {
+  content: '';
+  width: 100%;
+  opacity: 0;
+  height: 1px;
+  display: block;
+  background: #f00;
+  transition: opacity 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
+
+.cycles-profile-exp__link:hover:after {
+  opacity: 1; }
 
 .cycles-info__text {
   font-size: .8rem;

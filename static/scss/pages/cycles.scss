@@ -11,8 +11,6 @@
 .cycles-search {
 
     @include flex_column;
-    //position: relative; 
-    //top: 2rem;
     height: 6rem;
 }
 .cycles-search__form {
@@ -185,6 +183,28 @@
     width: 18rem;
     text-align: center;
     margin-top: 0rem;
+}
+
+.cycles-profile-exp__link {
+
+    color: $login-error-red;
+    display: inline-block;
+}
+
+.cycles-profile-exp__link:after {
+
+    content: '';
+    width: 100%;
+    opacity: 0;
+    height: 1px;
+    display: block;
+    background: $login-error-red;
+    transition: opacity .3s $drop-down-bezier;
+}
+
+.cycles-profile-exp__link:hover:after {
+
+    opacity: 1;
 }
 
 .cycles-info__text {
