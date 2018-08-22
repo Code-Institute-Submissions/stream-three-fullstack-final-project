@@ -194,14 +194,16 @@ AUTH_USER_MODEL = 'accounts.AllUser'
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
 
 ## EMAIL BACKEND ##
- 
-#EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
-EMAIL_PORT = 587
+if development: 
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+    EMAIL_PORT = 587
 
 ## FILE UPLOAD SETTINGS ##
 MAX_UPLOAD_SIZE = 5242880

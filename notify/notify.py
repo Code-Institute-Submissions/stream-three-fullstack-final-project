@@ -34,7 +34,7 @@ class NewMember:
         plain_message = strip_tags(html_message)
         from_email = os.environ.get('EMAIL_ADDRESS')
         to = [self.member_email]
-        send_mail(subject, plain_message, from_email, to, html_message=html_message,fail_silently=True)
+        send_mail(subject, plain_message, from_email, to, html_message=html_message, fail_silently=False)
 
 ## Notification for New Client Sign Up ##
 class NewClient:
