@@ -24,7 +24,7 @@ class ProfileForm(forms.Form):
     address1 = forms.CharField(max_length=50,
                                 label="",
                                 widget=forms.TextInput(
-                                attrs={'placeholder':'House/Flat No.',
+                                attrs={'placeholder':'Building No.',
                                     'class':'profile-form__input'})
                                 )
     address2 = forms.CharField(max_length=50,

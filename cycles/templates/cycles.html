@@ -13,7 +13,7 @@
         {% if user.is_member %}
             {% if not profile %}
             <div class="cycles-info__profile-exp">
-                <p class="cycles-profile-exp__text">Please complete your profile before proceeding.</p>
+                <p class="cycles-profile-exp__text">Please complete your <a class="cycles-profile-exp__link" href="{% url 'member_profile' username=user.username %}">profile</a> before proceeding.</p>
             </div>
             {% else %}
                 {% if messages %}
@@ -97,13 +97,14 @@
                         <h3>Getting Started.</h3>
                     </div>
                     <div class="fileo-explain__text">
-                        <p>After you have completed your profile.</p>
+                        <p>After you have completed your Profile.</p>
                         <p>1. Create your first client.</p>
                         <p>2. Create a job and attach your client.</p>
-                        <p>3. Create a cycle and attach the job.</p>
-                        <p>Once your cycle has been created it'll appear on this page.</p>
-                        <p>You can then proceed to it's Porthole to manage the cycle.</p>
-                        <p>Enjoy !</p>
+                        <p>3. Create a payment cycle and attach the job.</p>
+                        <p>Once a cycle has been created it'll appear on this page.</p>
+                        <p>You will be able to search and filter your cycles using the search bar above.</p>
+                        <p>And then be able to proceed to it's Porthole for further management.</p>
+                        <p>Enjoy!</p>
                     </div>
                 </div>
                 {% elif user.is_client %}
