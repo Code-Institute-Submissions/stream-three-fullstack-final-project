@@ -49,10 +49,7 @@ def manage_clients(request, username):
 ## Delete Client from AllUser Model ##
 def delete_client(request, username, client_id):
     client = get_object_or_404(AllUser, pk=client_id)
-    #messages.error(request, 
-     #               'Are you sure you want to delete this client?',
-      #              extra_tags='delete_client')
-    print(client)
+
     if request.method =='POST':
         client.delete()
         messages.success(request, 'Client deleted.')

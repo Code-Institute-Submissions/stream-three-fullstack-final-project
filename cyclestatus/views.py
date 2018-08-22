@@ -72,7 +72,7 @@ def set_po_status(request, username, cycle_id):
 ## Set Status of Invoice ##
 ## Get Invoice by Cycle Id, Save form to Model and Redirect back to Porthole ##
 def set_invoice_status(request, username, cycle_id):
-    print('here');
+
     try:
         invoice = Invoices.objects.get(cycle=cycle_id)
     except Invoices.DoesNotExist:

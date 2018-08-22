@@ -37,7 +37,6 @@ def index(request):
 @login_required
 def logout(request):
     """Log User Out"""
-    #print('logout', request)
     auth.logout(request)
     messages.success(request, "You have been logged out of Fileo.")
     return redirect(reverse('index'))

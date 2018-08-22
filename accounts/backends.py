@@ -18,7 +18,6 @@ class EmailAuth:
 
         try:
             user = AllUser.objects.get(pk=user_id)
-            print(user)
             if user.is_active:
                 return user
             return None

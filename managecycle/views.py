@@ -24,9 +24,7 @@ def manage_cycles(request, username):
     users_cycles = users_cycles = CycleStatus.objects.filter(
                                                 cycle__member=user
                                                 ).order_by('cycle__job__job_title')
-    
     jobs = get_all_jobs_for_user(user.pk)
-    print(jobs)
     if request.method == 'POST':
         if 'update' in request.POST.keys():
             cycle = get_object_or_404(Cycles, pk=(request.POST['cycle_id']))

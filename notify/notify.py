@@ -45,7 +45,6 @@ class NewClient:
         self.profile = kwargs.get('member_profile')
 
     def client_user_created(self):
-        print(self.client.password)
         subject = 'New Client Account at Fileo.'
         html_message = render_to_string('../templates/emails/client_account_email.html',
                                         {'recipient_email': self.client.email,
@@ -85,7 +84,6 @@ class NewFile(NewClient):
                     html_message=html_message,fail_silently=True)
 
     def new_po_notification(self):
-        print('here')
         subject = 'New Quote in your Client Porthole.'
         html_message = render_to_string('../templates/emails/new_file_email.html',
                                         {'recipient_email': self.member.email,
@@ -128,7 +126,6 @@ class NewStatusNotify(NewFile):
         self.file = kwargs.get('file')
     
     def status_notify_member(self):
-        
         subject = 'Your {0} for {1} has been {2}.'.format(self.file,
                                                             self.cycle.job.job_title,
                                                             self.status,)

@@ -46,7 +46,6 @@ class JobsForm(ParentJobForm):
             existing_jobs = None
 
         if existing_jobs:
-            print('now here')
             raise forms.ValidationError(u'Job number already exists for your company.')
       
         return form_job_number
