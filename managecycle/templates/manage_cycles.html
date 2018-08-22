@@ -55,8 +55,8 @@
                 </a>
             </div>
         {% elif not jobs %}
-            <p class="generic-success manage-success">You are seeing an empty drop down list because you have no jobs.
-                You must add one before you can create a new cycle.
+            <p class="generic-success manage-success">You are seeing an empty jobs list because you have no jobs.
+                You must add a job before you can create a new cycle.
             </p>
             <p class="generic-success manage-success">You can follow the link <a href="{% url 'manage_jobs' username=username %}"><strong>here</strong></a> to Manage Jobs.</p>
         {% else %}

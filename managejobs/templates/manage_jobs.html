@@ -56,8 +56,8 @@
         </div>
         <p>Note: The job number cannot be changed.</p>
     {% elif not clients %}
-        <p class="generic-success manage-success">You are seeing an empty drop down list because you have no clients.
-            You must add one before you can create a new job.
+        <p class="generic-success manage-success">You are seeing an empty clients list because you have no clients.
+            You must add a client before you can create a new job.
         </p>
         <p class="generic-success manage-success">You can follow the link <a href="{% url 'manage_clients' username=username %}"><strong>here</strong></a> to Manage Clients.</p>
     {% else %}
