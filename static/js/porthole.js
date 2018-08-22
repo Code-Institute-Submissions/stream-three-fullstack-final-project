@@ -9,10 +9,8 @@
     const valueInput = document.getElementById('id_cycle_value_0');
     const browseButtons = document.getElementsByClassName('upload-form__browse-button');
     
-
-
     // GET INPUTS BY FILE INPUT TYPE //
-    const getFileInput = (input) => {
+    const getFileInput = () => {
 
         fileInputs = []
 
@@ -30,7 +28,7 @@
     }
 
 
-    // SWITCH OUT FILE INPUT ID'S FOR INDIVUAL STYLING //
+    // SWITCH OUT DJANGO FILE INPUT ID'S FOR UNIQUE ID'S //
     const replaceFileInputId = (fileInput) => {
 
         for (i = 0; i < fileInput.length; i++) {
@@ -51,7 +49,7 @@
     }
 
 
-    // HIDE CURRENCY DROP DOWN LIST //
+    // HIDE CURRENCY DROP DOWN LIST, NOT NEEDED AT THIS STAGE //
     const hideSelects = (selects) => {
 
         for (i = 0; i < selects.length; i++) {
@@ -66,16 +64,14 @@
         valueInput.setAttribute('placeholder', 'Enter cycle value')
     }
 
-     // TRIGGER HIDDEN UNSTYLED BROWSE BUTTON ON CLICK OF STYLED BUTTON //
+     // TRIGGER HIDDEN UNSTYLED BROWSE BUTTON ON CLICK OF STYLED CUSTOM BUTTON //
     const onBrowseButtonClickTriggerHiddenButton = (browseButtons) => {
         
         for (let i = 0; i < browseButtons.length; i++) {
 
             
             browseButtons[i].addEventListener('click', () => {
-                
-                console.log(`upload-${i}`);
-                
+                      
                 document.getElementById(`upload-${i}`).click();
 
             });
@@ -83,7 +79,7 @@
 
     }
 
-    // SET NAME OF UPLOAD BUTTON TO FILE NAME ON CHANGE //
+    // SET NAME OF UPLOAD BUTTON TO FILE NAME ON CHANGE BY LISTENING FOR CHANGE ON DEFAULT HIDDEN BROWSE BUTTON //
     const setNameOfButtonToFile = (uploadFields, browseButtons) => {
 
         for (let i = 0; i < uploadFields.length; i++) {
@@ -110,7 +106,7 @@
     //----------------------------- FUNCTION CALLS ------------------------// 
 
     // REPLACE ID OF INPUT OF TYPE=FILE // 
-    const fileInput = getFileInput(input);
+    const fileInput = getFileInput();
     replaceFileInputId(fileInput);
 
     // GET THE ELEMENTS WITH REPLACED ID'S //
@@ -122,7 +118,8 @@
     // PUSH UPLOAD ELEMENTS TO ARRAY FOR USE IN BELOW FUNCTION CALLS. //
     // DEPENDING ON WHETHER THE USER IS A MEMBER OR CLIENT //
     // THEY WILL SEE A DIFFERENT NUMBER OF FILE UPLOAD BUTTONS.//
-    // THE IF CONDITIONS MAKE SURE A NULL VALUE ISN'T PUSHED TO THE ARRAY.       
+    // THE IF CONDITIONS MAKE SURE A NULL VALUE ISN'T PUSHED TO THE ARRAY. 
+
     if (quoteUpload) {
 
         uploadFields.push(quoteUpload);

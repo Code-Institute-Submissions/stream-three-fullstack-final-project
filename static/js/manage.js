@@ -7,7 +7,6 @@
     // SPECIFIC TO CLIENT TEMPLATE //
     const manageClientInput = document.getElementsByClassName('register-form__input');
  
-    
     // SPECFIC TO JOB TEMPLATE //
     const jobsFormSelect = document.getElementById('id_client');
     const jobsFormInput = document.getElementsByTagName('input');
@@ -24,7 +23,7 @@
     const selectArray = [];
 
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
-    // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY addRemoveClassOnClick FUNCTION
+    // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY.JS addRemoveClassOnClick FUNCTION
     // AND CALL insertHTMLonClick TO ALTER BUTTON DISPLAY
 
     const addRemoveManageButtonClasses = (buttons, showClass, clickClass) => {
@@ -42,7 +41,6 @@
                                 parentElement.
                                 nextElementSibling;
 
-                //console.log(hiddenDeleteDiv);
                 addRemoveClassOnClick(buttons[i], 
                                         hiddenDeleteDiv, 
                                         showClass);
@@ -71,7 +69,7 @@
 
     }
 
-
+    // ALTER INNER HTML OF BUTTONS ON CLICK //
     const alterButtonInnerHtml = (buttons) => {
 
         for (let i = 0; i < buttons.length; i++) {
@@ -186,7 +184,6 @@
     // JOBS TEMPLATE SPECIFIC //
     if (jobsFormSelect) {
 
-        // STYLES FOR JOB FORM SELECT //
         addClassToElement(jobsFormSelect, 'profile__select');
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
@@ -217,8 +214,7 @@
         addStylesToSelectParent(cyclesFormSelect, 'profile-filter-styled');
         addIconToSelect(cyclesFormSelect, 'profile-filter-arrow');    
         alterButtonInnerHtml(manageResetItemButtons);
-        addRemoveManageButtonClasses( 
-                                    manageResetItemButtons,
+        addRemoveManageButtonClasses(manageResetItemButtons,
                                     'manage-reset__button--show',
                                     'manage-button__button--reset-click');
         

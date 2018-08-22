@@ -6,7 +6,7 @@
    
     // -------------------------- FUNCTIONS --------------------------- //
 
-    // CHANGE THE COLOR OF THE RESULT CONTAINER DIV AND STATUS ICON DEPENDING ON STATUS, //
+    // CHANGE THE COLOR OF THE RESULTS CONTAINER DIV AND STATUS ICON DEPENDING ON ITS STATUS //
     const colorForStatus = (cycleStatus) => {
 
         if (cycleStatus) {
@@ -24,9 +24,7 @@
                                     getAttribute('data-id');
 
                 const statusText = cycleStatus[i].firstElementChild;
-                
-                //console.log(status);
-               
+                               
                 if (status == "cancelled") {
                    
                     cycleStatusParent.classList.add('cycle-results__container-cancelled--color');

@@ -1,5 +1,7 @@
 
-// ----- FUNCTIONS AND CLASSES ACCESIBLE BY ALL TEMPLATES ---- //
+// ----- FUNCTIONS AND CLASSES ACCESSIBLE BY ALL TEMPLATES ---- //
+
+// ADD BG COLOR TO BODY IN BASE.HTML //
 
 const addBgColorToBody = (_class) => {
 
@@ -33,7 +35,7 @@ const addRemoveClassOnClick = (clickElement, _element, _class) => {
 
 }
 
-// USED TO CHANGE THE INNER HTML OF A BUTTON ELEMENTS TO CANCEL ON CLICK //
+// USED TO CHANGE THE INNER HTML OF MANAGE TEMPLATES BUTTON ELEMENTS TO 'NOT SURE' ON CLICK //
 const insertNotSureOnClick = (clickElement, condition) => {
     
     clickElement.addEventListener('click', function() {
@@ -51,10 +53,12 @@ const insertNotSureOnClick = (clickElement, condition) => {
 
 }
 
-const insertNotSureOnOtherButtonClick = (condition, target) => {
 
+// WILL CHECK TO SEE IF 'NOT SURE' IS ALREADY PART OF THE INNER HTML OF A BUTTON.
+// IF IT ISN'T IT WILL SET INNER HTML TO 'NOT SURE'
+// IF IT IS, IT WILL SET THE INNER HTML TO THE CONDITION ARGUMENT
+const insertNotSureOnOtherButtonClick = (condition, target) => {
     
-        
         if (target.innerHTML == condition){
 
             target.innerHTML = 'Not Sure';
@@ -70,10 +74,8 @@ const insertNotSureOnOtherButtonClick = (condition, target) => {
 
 
 // ADD CLASS TO HTML COLLECTION // 
-
 const addClassToCollection = (collection, _class) => {
 
-    
     if (collection instanceof HTMLCollection) {
 
         for(let i = 0; i < collection.length; i++) {
@@ -90,23 +92,24 @@ const addClassToElement = (_element, _class) => {
 
 }
 
+
+// ADD CLASSNAME TO A CLASSLIST //
 const addClassToClassList = (_element, _class) => {
 
     _element.classList.add(_class);
 }
 
-// ADD STYLES AND ICON TO SELECT BOX //
-
+ // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
 const addStylesToSelectParent = (select, _class) => {
 
-     // ADD CLASSES TO PARENT ELEMENT OF SELECT BOX //
      select.parentElement.setAttribute('class', _class);
     
 }
 
+
+  // INSERT ICON INTO SELECT BOX //
 const addIconToSelect = (select, _class) => {
 
-     // INSERT ICON INTo SELECT BOX //
      select.parentElement.insertAdjacentHTML('beforeend',
                          `<i class="fas fa-sort-down ${_class}" aria-hidden="true"></i>`);
 
@@ -124,16 +127,16 @@ const addRequiredAttribute = (input) => {
 }  
 
 
-    // WRAPS MULTIPLE SELECTS IN A DIV AND ADDS STYLES //
+    // WRAPS MULTIPLE SELECTS IN A DIV FOR STYLING //
     const wrapSelectsWithDiv = (selects, parentClass, iconClass) => {
 
-    for (let i = 0; i < selects.length; i++) {
+        for (let i = 0; i < selects.length; i++) {
 
-        let parent = selects[i].parentElement;
-        parent.insertAdjacentHTML('beforeend', '<div></div>');
-        parent.lastChild.appendChild(selects[i]);
-        addStylesToSelectParent(selects[i], parentClass);
-        addIconToSelect(selects[i], iconClass);                                      
+            let parent = selects[i].parentElement;
+            parent.insertAdjacentHTML('beforeend', '<div></div>');
+            parent.lastChild.appendChild(selects[i]);
+            addStylesToSelectParent(selects[i], parentClass);
+            addIconToSelect(selects[i], iconClass);                                      
 
-    }
+        }
 }

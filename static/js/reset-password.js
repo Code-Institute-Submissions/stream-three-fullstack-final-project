@@ -1,5 +1,5 @@
             // SCRIPTS FOR PASSWORD RESET //
-// ADDS PLACEHOLDER AND CLASSES TO INPUT FOR STYLING //
+// ADDS PLACEHOLDER AND CLASSES TO INPUTS FOR STYLING //
 
 (() => {
     const emailInput = document.getElementById("id_email");

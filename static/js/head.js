@@ -5,7 +5,8 @@
     const moreIcons = document.getElementsByClassName("more__icon");
     const navIcons = document.getElementsByClassName("nav__icons");
 
-                            // Click Element, Affected Element, Class //
+    // FUNCTION CALLS FROM UTILITY JS //
+                        // Click Element, Affected Element, Class //
     addRemoveClassOnClick(dropDownIcon, dropDown, "drop-down-menu--show");
     addRemoveClassOnClick(dropDownIcon, dropDownIcon, "more--rotate")
 

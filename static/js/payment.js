@@ -9,7 +9,7 @@
     const expiryYearSelect = document.getElementById('id_expiry_year');
     const selects = document.getElementsByTagName('select');
     const formLabel = document.getElementsByTagName('label');
-    const formInput = document.getElementsByTagName('input');
+    //const formInput = document.getElementsByTagName('input');
     const nameOnCard = document.getElementById('id_name_on_card');
     const houseNumber = document.getElementById('id_address1');
     const street = document.getElementById('id_address2');
@@ -72,7 +72,8 @@
 
     }
 
-    // ON PAYMENT COMPLETE CHANGES COLOR OF INPUT ELEMENTS AND DISABLES FORM //
+    // ON PAYMENT COMPLETE CHANGE COLOR OF INPUT/SELECT ELEMENTS AND DISABLE THEM //
+    // PREVENTS CLIENT FROM PAYING MORE THAN ONCE //
     const changeFormBgColorOnComplete = () => {
 
         if (paymentButton.classList.contains('payment-form__button-complete')) {
@@ -94,6 +95,8 @@
         }
     }
     
+    // FUNCTION CALLS //
+
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
     addBlankSelectToExpiryDates(expiryYearSelect, 'Year');
 

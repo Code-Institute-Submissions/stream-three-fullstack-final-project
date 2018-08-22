@@ -1,3 +1,4 @@
+// REGISTER TEMPLATE JS //
 
 (() => { 
 
@@ -50,6 +51,8 @@
             } 
         });
     }
+
+    // FUNCTION CALLS //
 
     setDivToFixed(explain, "container--fixed", 
                             "container--fixed-100");

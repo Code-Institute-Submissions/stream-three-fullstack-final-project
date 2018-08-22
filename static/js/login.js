@@ -1,7 +1,7 @@
+// LOGIN TEMPLATE RELATED JS //
 
 (() => {
 
-    
     // FUNCTION ROTATES ARROW ICON WHEN SCROLLING //
     const rotateUpArrowOnScrollDown = () => {
 
