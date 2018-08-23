@@ -56,8 +56,6 @@ hr {
  select {
 
     border: none;
-    //height: 1.6rem;
-    //border-radius: .2rem;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -88,8 +86,6 @@ p, button, a{
 
 .body-color {
 
-    //height: auto;
-    //width: 100%;
     background-color:$login-green;
     position: relative;
     z-index:-10;

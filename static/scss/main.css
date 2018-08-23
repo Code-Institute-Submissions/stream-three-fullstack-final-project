@@ -465,16 +465,6 @@ p, button, a {
 .login-blurb__signup-link {
   cursor: pointer; }
 
-/*.register-body--color {
-
-    background-repeat: no-repeat;
-    background-color: $register-bg-color;
-
-}*/
-/*.register--bg-color {
-    
-    
-}*/
 .register-header {
   display: flex;
   align-items: center;
@@ -986,7 +976,8 @@ p, button, a {
   align-items: center;
   border-radius: .3rem;
   background-color: #fff;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  height: 1rem; }
 
 .cycles-search__input-wrapper i {
   padding-left: .5rem;
@@ -1198,20 +1189,6 @@ p, button, a {
   word-wrap: break-word;
   margin: 0 .5rem 0 .5rem; }
 
-/*.column-icon p {
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-}
-
-.column-4 {
-
-    //width: 25%;
-    //align-items: center;
-}*/
 .column-1 {
   width: 100%;
   align-items: flex-start; }
@@ -1222,10 +1199,6 @@ p, button, a {
 .column-2 {
   width: 50%; }
 
-/*.cycles-results__step-approval-icons {
-
-    font-size: 1.5rem;
-}*/
 .cycles-results__porthole {
   width: 100%; }
 
@@ -1326,10 +1299,6 @@ p, button, a {
   .cycle-results-mobile {
     display: none; } }
 
-/*.profile-bg-color {
-
-    background-color: $login-green;
-}*/
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -1894,10 +1863,6 @@ p, button, a {
     .invoice-file-container--padding {
       margin-bottom: 0; } }
 
-/*.file-container-po--padding {
-
-    padding-bottom: 5.6rem;
-}*/
 .upload-container {
   display: flex;
   flex-direction: column;
@@ -1930,30 +1895,6 @@ p, button, a {
   background-color: #3a5864;
   border-radius: .3rem; }
 
-/*.uploaded-icon--extra-margin {
-
-    margin-bottom: 1.5rem;
-    margin-top: 2.8rem;
-}
-
-.upload-po--extra-margin {
-
-    margin-top: 2.8rem;
-}
-
-.upload-invoice--extra-margin {
-
-    margin-top: 3.4rem;
-
-}
-
-/*.uploaded-icon-invoice {
-
-    //@include desktop {
-
-        margin-bottom: 4.6rem;
-   // }
-}*/
 .no-file-icon {
   color: #fff; }
 
