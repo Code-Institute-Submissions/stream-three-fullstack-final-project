@@ -976,8 +976,7 @@ p, button, a {
   align-items: center;
   border-radius: .3rem;
   background-color: #fff;
-  margin-bottom: 1rem;
-  height: 1rem; }
+  margin-bottom: 1rem; }
 
 .cycles-search__input-wrapper i {
   padding-left: .5rem;
