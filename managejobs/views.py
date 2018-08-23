@@ -20,7 +20,7 @@ def manage_jobs(request, username):
     jobs = get_all_jobs_for_user(user_id)
     clients = does_the_user_have_clients(username, user_id)
     form = JobsForm(user_id)
-    print(jobs.count())
+    run
     if request.method == 'POST':
         if 'update' in request.POST.keys(): 
             job = get_object_or_404(Jobs, pk=(int(request.POST['job_id'])))

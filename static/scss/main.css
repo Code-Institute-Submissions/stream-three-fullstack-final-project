@@ -24,6 +24,9 @@ select:focus,
 textarea:focus {
   outline: none; }
 
+select:hover {
+  cursor: pointer; }
+
 input[type=number] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
@@ -1130,13 +1133,13 @@ p, button, a {
   color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .2; }
+  opacity: .3; }
 
 .cycles-item-hr {
   color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .2;
+  opacity: .3;
   margin: .5rem 0 .5rem 0;
   color: rgba(37, 37, 37, 0.15); }
 
@@ -1563,7 +1566,7 @@ p, button, a {
   color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .2;
+  opacity: .3;
   margin: 0rem 0 0rem 0;
   color: #fff3; }
 
@@ -1571,7 +1574,7 @@ p, button, a {
   color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .2;
+  opacity: .3;
   margin: .5rem 0 .5rem 0; }
 
 .manage-hr--added-margin {
@@ -2024,7 +2027,8 @@ p, button, a {
 
 .file-approval ul li {
   color: #fff;
-  display: inline; }
+  display: inline;
+  margin-right: .5rem; }
 
 .file-approval ul li label {
   font-size: .8rem; }

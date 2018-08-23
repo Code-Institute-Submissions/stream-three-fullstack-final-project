@@ -33,11 +33,16 @@ hr {
    
  }
 
- input:focus,
- select:focus,
- textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
 
     outline: none;
+ }
+
+ select:hover {
+
+    cursor: pointer;
  }
 
  input[type=number] {
@@ -70,7 +75,7 @@ hr {
     background:transparent;
  }
 
- h1,h2,h3,h4,h5,h6,p,a,button,select,span,label,textarea, input {
+ h1,h2,h3,h4,h5,h6,p,a,button,select,span,label,textarea,input {
 
     font-family: $text-font;
 }
@@ -86,7 +91,7 @@ h2,h3,h4,h5,h6 {
     color: #fff;
 }
 
-p, button, a{
+p, button, a {
 
     color: #fff;
     font-size: .8rem;

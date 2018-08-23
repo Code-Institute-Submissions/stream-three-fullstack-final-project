@@ -2,7 +2,7 @@
   
 (() => {
 
-    const cycleStatus = document.getElementsByClassName('column-icon'); 
+    const cycleStatus = document.getElementsByClassName('column-icon');
    
     // -------------------------- FUNCTIONS --------------------------- //
 
@@ -17,14 +17,15 @@
                                         parentElement.
                                         parentElement;
 
-                // GET CYCLES STATUS FIRST ICON //
+                // GET CYCLES STATUS FIRST ICON DATA ID //
                 const status = cycleStatus[i].
                                     firstElementChild.
                                     firstElementChild.
                                     getAttribute('data-id');
 
                 const statusText = cycleStatus[i].firstElementChild;
-                               
+                
+                // DEPENDING ON DATA ID SET COLOR //
                 if (status == "cancelled") {
                    
                     cycleStatusParent.classList.add('cycle-results__container-cancelled--color');
@@ -50,7 +51,6 @@
         }
 
     }
-
 
     // -------------------- FUNCTION CALLS ----------------------- //
     
