@@ -24,6 +24,7 @@ def manage_cycles(request, username):
     users_cycles = users_cycles = CycleStatus.objects.filter(
                                                 cycle__member=user
                                                 ).order_by('cycle__job__job_title')
+   
     jobs = get_all_jobs_for_user(user.pk)
     if request.method == 'POST':
         if 'update' in request.POST.keys():
@@ -51,12 +52,12 @@ def manage_cycles(request, username):
                     messages.success(request, 'Cycle created.', extra_tags='manage_cycle')
             
                     return redirect(reverse('manage_cycles', kwargs={'username':username}))
-
+    print(users_cycles.count())
     return render(request, 'manage_cycles.html', 
                             {'username': username,
                             'cycle_form':cycle_form,
                             'cycles': users_cycles,
-                            'cycles_count': users_cycles.count(),
+                            #'cycles_count': users_cycles.count(),
                             'jobs': jobs})
 
 

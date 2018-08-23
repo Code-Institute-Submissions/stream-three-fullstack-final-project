@@ -132,13 +132,14 @@
 
 .manage-form textarea {
 
-    width: 17.34rem;
+    width: 17rem;
     border-radius: .3rem;
     font-size: .8rem;
+    padding: .3rem;
 
-    @include desktop {
+    @include tablet {
 
-        width: 20.34rem;
+        width: 19.6rem;
     }
 }
 

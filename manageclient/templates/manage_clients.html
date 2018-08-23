@@ -15,12 +15,12 @@
         <h1 class="manage-heading">Manage Clients</h1>
         <!----- DESKTOP TOTALS VIEW ------>
         <div class="manage-total manage-total-desktop">
-            {% if clients_count > 1 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 0 %}
-                <p>You have a total of {{ clients_count }} clients.</p>
-            {% elif clients_count == 1 %}
-                <p>You have a total of {{ clients_count }} client.</p>
+            {% if clients|length > 1 %}
+                <p>You have a total of {{ clients|length }} clients.</p>
+            {% elif clients|length == 0 %}
+                <p>You have a total of {{ clients|length }} clients.</p>
+            {% elif clients|length == 1 %}
+                <p>You have a total of {{ clients|length }} client.</p>
             {% endif %}
         </div>
         <!-------------------------------->
@@ -45,12 +45,12 @@
     </section>
     <hr class="manage-hr manage-total-mobile">
     <section class="manage-total manage-total-mobile">
-        {% if clients_count > 1 %}
-            <p>You have a total of {{ clients_count }} clients.</p>
-        {% elif clients_count == 0 %}
-            <p>You have a total of {{ clients_count }} clients.</p>
-        {% elif clients_count == 1 %}
-            <p>You have a total of {{ clients_count }} client.</p>
+        {% if clients|length > 1 %}
+            <p>You have a total of {{ clients|length }} clients.</p>
+        {% elif clients|length == 0 %}
+            <p>You have a total of {{ clients|length }} clients.</p>
+        {% elif clients|length == 1 %}
+            <p>You have a total of {{ clients|length }} client.</p>
         {% endif %}
     </section>
     <hr class="manage-hr manage-hr--added-margin manage-total-mobile">

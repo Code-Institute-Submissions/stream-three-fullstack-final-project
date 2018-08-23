@@ -15,12 +15,12 @@
         <h1 class="manage-heading">Manage Jobs</h1>
         <!----- DESKTOP TOTALS VIEW ------>
         <div class="manage-total manage-total-desktop">
-            {% if jobs_count > 1 %}
-                <p>You have a total of {{ jobs_count }} jobs.</p>
-            {% elif jobs_count == 0 %}
-                <p>You have a total of {{ jobs_count }} jobs.</p>
-            {% elif jobs_count == 1 %}
-                <p>You have a total of {{ clients_count }} job.</p>
+            {% if jobs|length > 1 %}
+                <p>You have a total of {{ jobs|length }} jobs.</p>
+            {% elif jobs|length == 0 %}
+                <p>You have a total of {{ jobs|length }} jobs.</p>
+            {% elif jobs|length == 1 %}
+                <p>You have a total of {{ clients|length }} job.</p>
             {% endif %}
         </div>
         <!-------------------------------->
@@ -67,12 +67,12 @@
     <!----- MOBILE TOTALS VIEW ---->
     <hr class="manage-hr manage-total-mobile">
     <section class="manage-total manage-total-mobile">
-        {% if jobs_count > 1 %}
-            <p>You have a total of {{ jobs_count }} jobs.</p>
-        {% elif jobs_count == 0 %}
-            <p>You have a total of {{ jobs_count }} jobs.</p>
-        {% elif jobs_count == 1 %}
-            <p>You have a total of {{ jobs_count }} job.</p>
+        {% if jobs|length > 1 %}
+            <p>You have a total of {{ jobs|length }} jobs.</p>
+        {% elif jobs|length == 0 %}
+            <p>You have a total of {{ jobs|length }} jobs.</p>
+        {% elif jobs|length == 1 %}
+            <p>You have a total of {{ jobs|length }} job.</p>
         {% endif %}
     </section>
     <hr class="manage-hr manage-hr--added-margin manage-total-mobile">

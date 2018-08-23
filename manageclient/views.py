@@ -38,14 +38,13 @@ def manage_clients(request, username):
                             extra_tags="failed_client")
             return render(request, 'manage_clients.html', {'new_client': new_client, 
                                                             'username':username,
-                                                            'clients':clients_exist,
-                                                            'clients_count':clients_exist.count()})
+                                                            'clients':clients_exist})
+                                                            #'clients_count':clients_exist.count()
 
     return render(request, 'manage_clients.html', {'new_client': new_client, 
                                                     'username':username,
-                                                    'clients':clients_exist,
-                                                    'clients_count':clients_exist.count()})
-
+                                                    'clients':clients_exist})
+                                                    #'clients_count':clients_exist.count()
 ## Delete Client from AllUser Model ##
 def delete_client(request, username, client_id):
     client = get_object_or_404(AllUser, pk=client_id)

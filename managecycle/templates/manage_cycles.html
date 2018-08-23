@@ -15,12 +15,12 @@
         <h1 class="manage-heading">Manage Cycles</h1>
         <!----- DESKTOP TOTALS VIEW ------>
         <div class="manage-total manage-total-desktop">
-                {% if cycles_count > 1 %}
-                    <p>You have a total of {{ cycles_count }} cycles.</p>
-                {% elif cycles_count == 0 %}
-                    <p>You have a total of {{ cycles_count }} cycles.</p>
-                {% elif cycles_count == 1 %}
-                    <p>You have a total of {{ clients_count }} cycle.</p>
+                {% if cycles|length > 1 %}
+                    <p>You have a total of {{ cycles|length }} cycles.</p>
+                {% elif cycles|length == 0 %}
+                    <p>You have a total of {{ cycles|length }} cycles.</p>
+                {% elif cycles|length == 1 %}
+                    <p>You have a total of {{ cycles|length }} cycle.</p>
                 {% endif %}
             </div>
             <!-------------------------------->
@@ -66,12 +66,12 @@
         <!----- MOBILE TOTALS VIEW ---->
         <hr class="manage-hr manage-total-mobile">
         <div class="manage-total manage-total-mobile">
-            {% if cycles_count > 1 %}
-                <p>You have a total of {{ cycles_count }} cycles.</p>
-            {% elif cycles_count == 0 %}
-                <p>You have a total of {{ cycles_count }} cycles.</p>
-            {% elif cycles_count == 1 %}
-                <p>You have a total of {{ jobs_count }} cycle.</p>
+            {% if cycles|length > 1 %}
+                <p>You have a total of {{ cycles|length }} cycles.</p>
+            {% elif cycles|length == 0 %}
+                <p>You have a total of {{ cycles|length }} cycles.</p>
+            {% elif cycles|length == 1 %}
+                <p>You have a total of {{ cycles|length }} cycle.</p>
             {% endif %}
         </div>
         <hr class="manage-hr manage-hr--added-margin manage-total-mobile">

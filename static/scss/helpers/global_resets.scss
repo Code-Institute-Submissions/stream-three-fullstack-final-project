@@ -33,6 +33,13 @@ hr {
    
  }
 
+ input:focus,
+ select:focus,
+ textarea:focus {
+
+    outline: none;
+ }
+
  input[type=number] {
 
     -webkit-appearance: textfield;
@@ -44,6 +51,7 @@ hr {
  textarea {
 
     resize: none;
+    border: none;
  }
 
 
