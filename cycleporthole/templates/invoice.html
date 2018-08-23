@@ -1,5 +1,5 @@
 <!-- INVOICE STEP PARTIAL -->
-<section class="file-container invoice-file-container--padding ">
+<section class="file-container {% if request.user.is_client %} invoice-file-container--margin {% endif %}">
     <h2 class="porthole-upload-heading">Invoice</h2>
     <div class="upload-container">
         {% if context.invoice %}

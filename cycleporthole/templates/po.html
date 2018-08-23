@@ -1,5 +1,5 @@
 <!-- PO STEP PARTIAL -->
-<section class="file-container">
+<section class="file-container {% if request.user.is_client %} po-file-container--margin-top {% else %} po-file-container-margin--bottom {% endif %}">
     <h2 class="porthole-upload-heading">PO</h2>
     <div class="upload-container">
         {% if context.po %}

@@ -148,7 +148,7 @@
 
     @include hr-cycles;
     margin: 0rem 0 0rem 0;
-    color:#fff3;
+    border-top: 1px solid $manage-items-hr;
 }
 
 .manage-hr {
@@ -180,7 +180,7 @@
         overflow: scroll;
         width: 25rem;
         padding: 2rem;
-        border: 1px solid $hr-items-color;
+        border: 1px solid rgba(37,37,37,.15);
         border-radius: .3rem;
     }
 }

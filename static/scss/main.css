@@ -1130,19 +1130,20 @@ p, button, a {
   margin-top: 0rem; }
 
 .hr-cycles {
-  color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .3; }
+  opacity: .2;
+  border: 0;
+  border-top: 1px solid #3a5864; }
 
 .cycles-item-hr {
-  color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .3;
+  opacity: .2;
+  border: 0;
+  border-top: 1px solid #3a5864;
   margin: .5rem 0 .5rem 0;
-  color: rgba(37, 37, 37, 0.15);
-  opacity: 1; }
+  border-top: 1px solid #252525; }
 
 .cycles-summary {
   display: flex;
@@ -1564,18 +1565,20 @@ p, button, a {
       width: 19.6rem; } }
 
 .manage-items-hr, .porthole-details__hr {
-  color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .3;
+  opacity: .2;
+  border: 0;
+  border-top: 1px solid #3a5864;
   margin: 0rem 0 0rem 0;
-  color: #fff3; }
+  border-top: 1px solid #1b2928; }
 
 .manage-hr {
-  color: #337f78;
   margin: 1rem 0 1rem 0;
   width: calc(100% - 2.232px);
-  opacity: .3;
+  opacity: .2;
+  border: 0;
+  border-top: 1px solid #3a5864;
   margin: .5rem 0 .5rem 0; }
 
 .manage-hr--added-margin {
@@ -1847,7 +1850,7 @@ p, button, a {
       max-width: 35rem; } }
 
 .porthole-details__hr {
-  color: rgba(58, 88, 100, 0.15); }
+  border-top: 1px solid #3a5864; }
 
 @media (min-width: 992px) {
   .steps-hr {
@@ -1875,10 +1878,28 @@ p, button, a {
     .file-container {
       margin: 0rem 2rem 0 2rem; } }
 
-.invoice-file-container--padding {
-  margin-bottom: 3rem; }
+.quote-file-container--margin {
+  margin-top: 72px; }
   @media (min-width: 992px) {
-    .invoice-file-container--padding {
+    .quote-file-container--margin {
+      margin-top: 0; } }
+
+.invoice-file-container--margin {
+  margin-bottom: 72px; }
+  @media (min-width: 992px) {
+    .invoice-file-container--margin {
+      margin-bottom: 0; } }
+
+.po-file-container--margin-top {
+  margin-top: 72px; }
+  @media (min-width: 992px) {
+    .po-file-container--margin-top {
+      margin-top: 0; } }
+
+.po-file-container-margin--bottom {
+  margin-bottom: 72px; }
+  @media (min-width: 992px) {
+    .po-file-container-margin--bottom {
       margin-bottom: 0; } }
 
 .upload-container {

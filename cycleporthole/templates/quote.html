@@ -1,5 +1,5 @@
 <!-- QUOTE STEP PARTIAL -->
-<section class="file-container {% if context.cycle_status.approve_quote %} file-container--padding {% endif %}">
+<section class="file-container quote-file-container--margin">
     <h2 class="porthole-upload-heading">Quote</h2>
     <div class="upload-container">
         {% if context.quote %}
@@ -63,9 +63,9 @@
         {% endif %}   
     </div>
     {% if request.user.is_member %}
+    <!---- VIEWABLE BY MEMBER ONLY ---->
         {% if not context.cycle_status.approve_quote %}
             <div class="file-action">
-                 <!---- VIEWABLE BY MEMBER ONLY ---->
                 {% if context.quote %}
                     <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a></p>
                     <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a></p>

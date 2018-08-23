@@ -144,7 +144,7 @@
 .porthole-details__hr {
 
     @extend .manage-items-hr;
-    color: $porthole-items-hr-color;
+    border-top: 1px solid $porthole-items-hr-color;
     
 }
 
@@ -189,14 +189,45 @@
 
 }
 
-.invoice-file-container--padding {
+.quote-file-container--margin {
 
-    margin-bottom: 3rem;
+    margin-top: 72px;
+
+    @include desktop {
+
+        margin-top: 0;
+    }
+}
+
+.invoice-file-container--margin {
+
+    margin-bottom: 72px;
+   
+    @include desktop {
+
+        margin-bottom: 0;
+    }
+}
+
+.po-file-container--margin-top {
+
+    margin-top: 72px;
+
+    @include desktop {
+
+        margin-top: 0;
+    }
+}
+
+.po-file-container-margin--bottom {
+
+    margin-bottom: 72px;
 
     @include desktop {
 
         margin-bottom: 0;
     }
+
 }
 
 .upload-container {

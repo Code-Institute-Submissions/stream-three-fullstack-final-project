@@ -232,8 +232,9 @@
 
     @include hr-cycles;
     margin: .5rem 0 .5rem 0;
-    color: $hr-items-color;
-    opacity: 1;
+    //color: $hr-items-color;
+    //opacity: 1;
+    border-top: 1px solid $hr-items-color;
    
 }
 // CYCLES RESULTS SUMMARY //
