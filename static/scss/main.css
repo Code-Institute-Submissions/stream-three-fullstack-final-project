@@ -1141,7 +1141,8 @@ p, button, a {
   width: calc(100% - 2.232px);
   opacity: .3;
   margin: .5rem 0 .5rem 0;
-  color: rgba(37, 37, 37, 0.15); }
+  color: rgba(37, 37, 37, 0.15);
+  opacity: 1; }
 
 .cycles-summary {
   display: flex;

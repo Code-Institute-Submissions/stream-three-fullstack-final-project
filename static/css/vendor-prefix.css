@@ -1802,7 +1802,9 @@ p, button, a {
   opacity: .3;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   margin: .5rem 0 .5rem 0;
-  color: rgba(37, 37, 37, 0.15); }
+  color: rgba(37, 37, 37, 0.15);
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
 
 .cycles-summary {
   display: -webkit-box;
