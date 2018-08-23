@@ -1198,9 +1198,6 @@ p, button, a {
   align-items: center;
   width: 100%; }
 
-.cycles-results__column {
-  overflow: hidden; }
-
 .cycles-results__text {
   word-wrap: break-word;
   margin: 0 .5rem 0 .5rem; }
@@ -1631,7 +1628,6 @@ p, button, a {
   justify-content: center;
   align-items: center;
   align-items: flex-start;
-  overflow: hidden;
   flex-grow: 1; }
 
 .manage-item__column-status p {

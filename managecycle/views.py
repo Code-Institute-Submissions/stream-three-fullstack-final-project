@@ -52,7 +52,7 @@ def manage_cycles(request, username):
                     messages.success(request, 'Cycle created.', extra_tags='manage_cycle')
             
                     return redirect(reverse('manage_cycles', kwargs={'username':username}))
-    print(users_cycles.count())
+    
     return render(request, 'manage_cycles.html', 
                             {'username': username,
                             'cycle_form':cycle_form,

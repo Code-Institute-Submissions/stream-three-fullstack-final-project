@@ -11,7 +11,7 @@ class ParentJobForm(forms.Form):
         super(ParentJobForm, self).__init__(*args, **kwargs)
         self.user_id = user_id
         self.client_choices = MemberClient.objects.filter(member=self.user_id)
-        self.fields['job_title'] = forms.CharField(max_length=20, 
+        self.fields['job_title'] = forms.CharField(max_length=50, 
                                                     label="",
                                                     widget=forms.TextInput(
                                                     attrs={'placeholder':'Job Name',}

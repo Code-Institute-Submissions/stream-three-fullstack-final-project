@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from .models import Jobs
+from managecycle.models import Cycles
 from manageclient.models import MemberClient
 from accounts.models import AllUser
 
@@ -34,11 +35,23 @@ def create_job(form, member):
     new_job.save()
     return True
 
+## Update Client field of Cycle Model when Job Client changes ##
+def update_cycles_client(job, client):
+    try:
+        cycles = Cycles.objects.filter(job=job)
+    except Cycles.DoesNotExist:
+        cycles = None
+
+    if cycles:
+        for cycle in cycles:
+            cycle.client = client
+            cycle.save(update_fields=['client'])
+    
+        return True
+
 ## Update the selected Job, preserving Job Number ##
-def update_job(job, form):
-    client = get_object_or_404(AllUser, 
-                            username=form.cleaned_data.get('client'))
+def update_job(job, form, client):
     job.job_title = form.cleaned_data.get('job_title')
     job.client = client
-    job.save() 
+    job.save(update_fields=['job_title', 'client']) 
     return True

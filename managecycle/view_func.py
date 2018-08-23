@@ -40,14 +40,17 @@ def get_user_cycles(user):
 
 ## Update Cycle ##
 def update_cycle(cycle, form):
+    job = form.cleaned_data.get('jobs')
+    client = get_object_or_404(Jobs, pk=job.id).client
     cycle.cycle_title = form.cleaned_data.get('cycle_title')
     cycle.description = form.cleaned_data.get('description')  
     cycle.location = form.cleaned_data.get('location')
     cycle.start_date = form.cleaned_data.get('start_date')
     cycle.end_date = form.cleaned_data.get('end_date')
-    cycle.jobs = form.cleaned_data.get('jobs')
+    cycle.job = form.cleaned_data.get('jobs')
+    cycle.client = client
     cycle.save(update_fields=['cycle_title', 'description', 'location',
-                                'start_date', 'end_date', 'job'])
+                                'start_date', 'end_date', 'job', 'client'])
     return True
 
 ## Resets all Statuses for a Cycle ##

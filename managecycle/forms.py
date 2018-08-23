@@ -12,7 +12,7 @@ class CycleForm(forms.Form):
         super(CycleForm, self).__init__(*args, **kwargs)
         self.member = member
         self.job_choices = Jobs.objects.filter(member=self.member)
-        self.fields['cycle_title'] = forms.CharField(max_length=30,
+        self.fields['cycle_title'] = forms.CharField(max_length=50,
                                                         label="",
                                                         widget=forms.TextInput(
                                                         attrs={'class':'register-form__input',
@@ -22,7 +22,7 @@ class CycleForm(forms.Form):
                                                     widget=forms.Textarea(
                                                         attrs={'class':'manage__cycle-text-field',
                                                         'placeholder':'Description'}))
-        self.fields['location'] = forms.CharField(max_length=30,
+        self.fields['location'] = forms.CharField(max_length=50,
                                                     label="",
                                                     widget=forms.TextInput(
                                                     attrs={'class':'register-form__input',
