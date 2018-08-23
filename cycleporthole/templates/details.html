@@ -1,4 +1,4 @@
-    <!------  DETAILS PARTIAL -------->
+<!------  DETAILS PARTIAL -------->
 <section class="porthole-details mobile-porthole-details">
     <div class="porthole-details__row">
         <div class="porthole-details__column">
@@ -17,7 +17,6 @@
         </div>
     </div> 
     <hr class="porthole-details-hr">
-    <!-----CLIENT------>
     <div class="porthole-details__row">
         <div class="porthole-details__column">
             {% if request.user.is_member %}
@@ -28,10 +27,6 @@
         </div>
     </div>
     <hr class="porthole-details-hr">
-    <!-----JOB------>
-   
-    <hr class="porthole-details-hr">
-    <!-----CYCLE------>
     <div class="porthole-details__row">
         <div class="porthole-details__column">
             <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
@@ -39,19 +34,12 @@
         </div>  
     </div>
     <hr class="porthole-details-hr">
-    <!-----DESCRIPTION------>
     <div class="porthole-details__row">
         <div class="porthole-details__column">
             <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
         </div>
     </div>
     <hr class="porthole-details-hr">
-    <!-----CYCLE DATES------>
-    
-    <hr class="porthole-details-hr">
-    <!-----CYCLE VALUE------>
-   
-
 </section>
 
 <!-------------------------------------------------------------------------------------------------------------------------------------------->

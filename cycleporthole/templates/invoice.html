@@ -1,9 +1,9 @@
 <!-- INVOICE STEP PARTIAL -->
 <section class="file-container invoice-file-container--padding ">
     <h2 class="porthole-upload-heading">Invoice</h2>
-    <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     <div class="upload-container">
         {% if context.invoice %}
+        <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
         <div>
             {% if context.cycle_status.approve_invoice %}
                 <p class="porthole-status"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>

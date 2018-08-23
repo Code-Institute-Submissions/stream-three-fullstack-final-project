@@ -1,9 +1,9 @@
 <!-- PO STEP PARTIAL -->
 <section class="file-container">
     <h2 class="porthole-upload-heading">PO</h2>
-    <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
     <div class="upload-container">
         {% if context.po %}
+         <!------ VIEWABLE BY BOTH MEMBER AND CLIENT ------>
         <div>
             {% if context.cycle_status.approve_po %}
                 <p class="porthole-status"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>
@@ -67,8 +67,8 @@
             </div>
         {% endif %}
     </div>
-    <!---- VIEWABLE BY CLIENT ONLY ---->
     {% if request.user.is_client %}
+      <!---- VIEWABLE BY CLIENT ONLY ---->
         {% if not context.cycle_status.approve_po %}
         <div class="file-action">
             {% if context.po %}
