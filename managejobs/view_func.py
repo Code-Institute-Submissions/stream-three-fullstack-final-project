@@ -36,18 +36,18 @@ def create_job(form, member):
     return True
 
 ## Update Client field of Cycle Model when Job Client changes ##
-def update_cycles_client(job, client):
-    try:
-        cycles = Cycles.objects.filter(job=job)
-    except Cycles.DoesNotExist:
-        cycles = None
+#def update_cycles_client(job, client):
+ #   try:
+  #      cycles = Cycles.objects.filter(job=job)
+   # except Cycles.DoesNotExist:
+    #    cycles = None
 
-    if cycles:
-        for cycle in cycles:
-            cycle.client = client
-            cycle.save(update_fields=['client'])
+    #if cycles:
+     #   for cycle in cycles:
+      #      cycle.client = client
+       #     cycle.save(update_fields=['client'])
     
-        return True
+   #     return True
 
 ## Update the selected Job, preserving Job Number ##
 def update_job(job, form, client):

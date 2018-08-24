@@ -15,31 +15,33 @@
         <h1 class="manage-heading">Manage Cycles</h1>
         <!----- DESKTOP TOTALS VIEW ------>
         <div class="manage-total manage-total-desktop">
-                {% if cycles|length > 1 %}
-                    <p>You have a total of {{ cycles|length }} cycles.</p>
-                {% elif cycles|length == 0 %}
-                    <p>You have a total of {{ cycles|length }} cycles.</p>
-                {% elif cycles|length == 1 %}
-                    <p>You have a total of {{ cycles|length }} cycle.</p>
-                {% endif %}
-            </div>
-            <!-------------------------------->
-            {% if not cycle_form.cycle_title.value %}
-            <p class="manage-text">Create a New Cycle</p>
-            {% else %}
-            <p class="manage-text">Update {{ form.cycle_title.value }}</p>
+            {% if cycles|length > 1 %}
+                <p>You have a total of {{ cycles|length }} cycles.</p>
+            {% elif cycles|length == 0 %}
+                <p>You have a total of {{ cycles|length }} cycles.</p>
+            {% elif cycles|length == 1 %}
+                <p>You have a total of {{ cycles|length }} cycle.</p>
             {% endif %}
+        </div>
+        <!-------------------------------->
+        {% if not cycle_form.cycle_title.value %}
+            <p class="manage-text">Create a New Cycle</p>
+        {% else %}
+            <p class="manage-text">Update {{ form.cycle_title.value }}</p>
+        {% endif %}
             <form class="manage-form" method="POST">
                 {% csrf_token %}
                     {{ cycle_form.as_p }}
-                
                 {% if not cycle_form.cycle_title.value %}
-                <button class="manage-form__button"type="submit">Add Cycle</button>
+                    <button class="manage-form__button"type="submit">Add Cycle</button>
                 {% else %}
-                <input type="hidden" name="updated" value="true">
-                <button class="manage-form__button"type="submit">Update Cycle</button>
+                    <input type="hidden" name="updated" value="true">
+                    <button id="cycle-button" class="manage-form__button"type="submit">Update Cycle</button>
                 {% endif %}
             </form>
+            {% if cycle_form.cycle_title.value %}
+            <p class="manage-text">Once set, you cannot update the Job already linked to your Cycle.</p>
+            {% endif %}
        {% if messages %}
             {% for message in messages %}
                 {% if 'manage_cycle' in message.tags %}

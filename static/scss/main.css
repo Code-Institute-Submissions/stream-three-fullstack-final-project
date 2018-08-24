@@ -1453,7 +1453,8 @@ p, button, a {
       margin-top: .5rem; } }
 
 .manage-text {
-  margin-bottom: 0.8rem; }
+  margin-bottom: 0.8rem;
+  text-align: center; }
 
 .manage-container {
   position: relative;

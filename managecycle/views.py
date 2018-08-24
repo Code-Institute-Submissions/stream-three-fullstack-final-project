@@ -57,7 +57,6 @@ def manage_cycles(request, username):
                             {'username': username,
                             'cycle_form':cycle_form,
                             'cycles': users_cycles,
-                            #'cycles_count': users_cycles.count(),
                             'jobs': jobs})
 
 

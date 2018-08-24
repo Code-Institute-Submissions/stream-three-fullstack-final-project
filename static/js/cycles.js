@@ -3,7 +3,7 @@
 (() => {
 
     const cycleStatus = document.getElementsByClassName('column-icon');
-   
+    
     // -------------------------- FUNCTIONS --------------------------- //
 
     // CHANGE THE COLOR OF THE RESULTS CONTAINER DIV AND STATUS ICON DEPENDING ON ITS STATUS //

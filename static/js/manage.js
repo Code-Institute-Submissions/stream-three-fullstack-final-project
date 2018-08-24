@@ -1,5 +1,4 @@
 // JS FOR ALL 3 TEMPLATES MANAGE CLIENT, JOBS AND CYCLES //
-
 (() => {
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
     const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
@@ -21,7 +20,26 @@
     const cyclesFormSelect = document.getElementById('id_jobs');
     const manageResetItemButtons = document.getElementsByClassName('manage-reset');
     const selectArray = [];
+    const cycleFormButton = document.getElementById('cycle-button');
+    const jobsFormButton = document.getElementById('jobs-button');
 
+
+    // DISABLE CYCLE FORM/JOB FORM SELECT IF IN UPDATE MODE //
+    // JOB/CLIENT CANNOT BE UPDATED OTHERWISE IT CAUSES ISSUES //
+    // WITH THE CYCLE PORTHOLE AND PAYMENTS CYCLE //
+
+    const disableUpdateFormSelect = (button, select) => {
+
+        if (button) {
+
+            select.setAttribute('disabled', 'true');
+            select.style.color = '#999898';
+            select.style.cursor = 'default';
+        
+        }
+
+    }
+  
     // GET ALL THE DELETE BUTTONS BY CLASS, LOOK FOR BUTTONS WITH DATA-ID ATTR, 
     // TRAVERSE TO DIV TO SHOW/HIDE AND CALL UTILITY.JS addRemoveClassOnClick FUNCTION
     // AND CALL insertHTMLonClick TO ALTER BUTTON DISPLAY
@@ -188,6 +206,7 @@
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
         addClassToCollection(jobsFormInput, 'register-form__input');
+        disableUpdateFormSelect(jobsFormButton, jobsFormSelect);
        
     }
 
@@ -217,6 +236,7 @@
         addRemoveManageButtonClasses(manageResetItemButtons,
                                     'manage-reset__button--show',
                                     'manage-button__button--reset-click');
+        disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
         
     }
     

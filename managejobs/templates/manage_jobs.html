@@ -39,7 +39,7 @@
             <button class="manage-form__button"type="submit">Add Job</button>
             {% else %}
             <input type="hidden" name="updated" value="true">
-            <button class="manage-form__button"type="submit">Update Job</button>
+            <button id="jobs-button" class="manage-form__button"type="submit">Update Job</button>
             {% endif %}
         </form>
     {% if messages %}
@@ -54,7 +54,7 @@
                 </div>
             </a>
         </div>
-        <p>Note: The job number cannot be changed.</p>
+        <p class="manage-text">Once set, you cannot update the Client already linked to your Job, or Job Number.</p>
     {% elif not clients %}
         <p class="generic-success manage-success">You are seeing an empty clients list because you have no clients.
             You must add a client before you can create a new job.
