@@ -32,7 +32,7 @@
 
         if (button) {
 
-            select.setAttribute('disabled', 'true');
+            select.setAttribute('readonly', 'true');
             select.style.color = '#999898';
             select.style.cursor = 'default';
         

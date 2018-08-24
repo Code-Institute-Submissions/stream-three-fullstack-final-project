@@ -52,6 +52,6 @@ def create_job(form, member):
 ## Update the selected Job, preserving Job Number ##
 def update_job(job, form, client):
     job.job_title = form.cleaned_data.get('job_title')
-    job.client = client
-    job.save(update_fields=['job_title', 'client']) 
+    #job.client = client
+    job.save(update_fields=['job_title'])#, 'client']) 
     return True
