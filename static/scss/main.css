@@ -1610,7 +1610,8 @@ p, button, a {
   background-color: #597b78;
   width: 100%;
   border-radius: .3rem;
-  margin: 0rem 0 2.9rem 0; }
+  margin: 0rem 0rem 2.9rem 0rem;
+  min-height: 25rem; }
 
 .manage-item__row {
   display: flex;
