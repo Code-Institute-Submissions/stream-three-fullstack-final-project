@@ -40,7 +40,7 @@ def get_user_cycles(user):
 
 ## Update Cycle ##
 def update_cycle(cycle, form):
-    #job = form.cleaned_data.get('jobs')
+    job = form.cleaned_data.get('jobs')
     client = get_object_or_404(Jobs, pk=job.id).client
     cycle.cycle_title = form.cleaned_data.get('cycle_title')
     cycle.description = form.cleaned_data.get('description')  
