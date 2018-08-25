@@ -2,7 +2,6 @@
 
 (() => {
 
-    const landingContainer = document.getElementById('landing-container');
     // FUNCTION ROTATES ARROW ICON WHEN SCROLLING //
     const rotateUpArrowOnScrollDown = () => {
 
@@ -25,21 +24,6 @@
         });
 
     }
-
-    let lastHeight = '';
-    $(window).on('resize', function () {
-
-        if (lastHeight) {
-
-            $('#landing-container').height(lastHeight = '');
-        }
-    }).on('touchmove', function () {
-
-        if (lastHeight != window.innerHeight) {
-
-            $('#landing-container').height(lastHeight = window.innerHeight);
-        }
-    })
 
     rotateUpArrowOnScrollDown();
 
