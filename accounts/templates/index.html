@@ -4,7 +4,7 @@
 <script defer type="text/javascript" src="{% static 'js/login.js' %}"></script>
 {% endblock %}  
 {% block content %}
-<section class="login-bg-color landing-container">
+<section id="landing-container" class="login-bg-color landing-container">
     <div class="login-container">
             <div class="fileo-logo fileo-logo--margin">
                 <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
@@ -34,11 +34,11 @@
                 {% endif %}
             </div>
         </div>
+        <div id="down-arrow" class="scroll-down">
+            <i class="scroll-down__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
+        </div>
     </div>
 </section>
-<div id="down-arrow" class="scroll-down">
-    <i class="scroll-down__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>
-</div>
 <section id="login-blurb" class="login-blurb">
     <div id="up-arrow" class="scroll-up">
         <i class="scroll-up__icon far fa-arrow-alt-circle-down" aria-hidden="true"></i>

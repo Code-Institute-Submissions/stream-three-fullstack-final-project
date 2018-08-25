@@ -255,10 +255,9 @@ p, button, a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
   width: 100%;
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%); }
+  position: fixed; }
 
 .fileo-logo {
   display: flex;

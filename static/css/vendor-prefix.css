@@ -385,9 +385,12 @@ p, button, a {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
   width: 100%;
-  position: fixed; }
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%); }
 
 .fileo-logo {
   display: -webkit-box;
