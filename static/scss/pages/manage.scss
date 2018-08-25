@@ -194,7 +194,8 @@
     width: 100%;
     border-radius: .3rem;
     margin: $item-card-margin;
-    min-height: 13rem;
+   // min-height: 13rem;
+    flex-shrink: 0;
    
 }
 

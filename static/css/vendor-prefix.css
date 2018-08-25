@@ -2587,7 +2587,9 @@ p, button, a {
   width: 100%;
   border-radius: .3rem;
   margin: 0rem 0rem 2.9rem 0rem;
-  min-height: 13rem; }
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
 
 .manage-item__row {
   display: -webkit-box;
