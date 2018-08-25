@@ -32,9 +32,11 @@
 
         if (button) {
 
+            const disableColor = '#999898';
             select.setAttribute('readonly', 'true');
-            select.style.color = '#999898';
+            select.style.color = disableColor;
             select.style.cursor = 'default';
+            select.nextElementSibling.style.color = disableColor;
         
         }
 
