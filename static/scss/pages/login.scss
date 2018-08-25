@@ -187,28 +187,20 @@
 
 .login-blurb {
 
-    height: 40rem;
+    min-height: 100%;
     background-color: $login-green;
     position:relative;
     top: 100%;
+   
     @include flex_column;
-
-    @include sm-mobile {
-
-        height: 46rem;
-
-    }
-
-    @include tablet {
-
-        height: 100vh;
-    }
-
+    
 }
 
 .login-blurb__container {
 
     position: relative;
+    margin: 5rem 0 5rem 0;
+
 
 }
 

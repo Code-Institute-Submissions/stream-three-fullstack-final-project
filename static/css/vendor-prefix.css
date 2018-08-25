@@ -385,12 +385,9 @@ p, button, a {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100%;
   width: 100%;
-  position: fixed;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%); }
+  position: fixed; }
 
 .fileo-logo {
   display: -webkit-box;
@@ -627,7 +624,7 @@ p, button, a {
           transform: rotate(-180deg); }
 
 .login-blurb {
-  height: 40rem;
+  min-height: 100%;
   background-color: #81aeaa;
   position: relative;
   top: 100%;
@@ -648,15 +645,10 @@ p, button, a {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center; }
-  @media (min-width: 375px) {
-    .login-blurb {
-      height: 46rem; } }
-  @media (min-width: 768px) {
-    .login-blurb {
-      height: 100vh; } }
 
 .login-blurb__container {
-  position: relative; }
+  position: relative;
+  margin: 5rem 0 5rem 0; }
 
 .logo-f {
   height: 4rem;

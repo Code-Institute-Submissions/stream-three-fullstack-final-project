@@ -3,6 +3,7 @@
 (() => {
 
     // FUNCTION ROTATES ARROW ICON WHEN SCROLLING //
+    const body =  document.getElementsByTagName('body');
     const rotateUpArrowOnScrollDown = () => {
 
         window.addEventListener('scroll', () => {
@@ -25,6 +26,16 @@
 
     }
 
+   //console.log(body);
+    let bodyHeight = (0.9 * $(window).height());
+   
+    bodyHeight = `${bodyHeight}` + 'px';
+    for ( let i = 0; i < body.lenght; i++ ) {
+
+        body[i].setAttribute('style', `height:${bodyHeight}`)
+
+    }
+    
     rotateUpArrowOnScrollDown();
 
 })();
