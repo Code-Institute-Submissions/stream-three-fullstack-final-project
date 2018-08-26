@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_js %}
+<script defer type="text/javascript" src="{% static 'js/utility.js' %}"></script>
+<script defer type="text/javascript" src="{% static 'js/errors.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="error-container">
+    <div class="fileo-logo fileo-logo--margin">
+        <a class="fileo-logo__link" href="{% url 'index' %}"><div class="fileo-logo__image" alt="Fileo Logo"></div></a>
+    </div>
+     {% block error_code %}{% endblock error_code %}
+    <p class="error-text">Oops! Something went wrong. Please try again later. </p>
+    <div class="error-login">
+        <a class="error-login__link" href="{% url 'index' %}">Login</a>
+    </div>
+</div>
+{% endblock %}

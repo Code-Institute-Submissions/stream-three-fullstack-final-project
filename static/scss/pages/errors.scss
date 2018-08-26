@@ -1,0 +1,60 @@
+// ERROR TEMPLATE STYLES // 
+
+.errors-bg-color {
+
+    background-color: $error-page-bg-color;
+}
+
+.error-title {
+
+    margin-bottom: 0rem;
+    font-size: 1.2rem;
+}
+.error-text {
+
+    padding: 1rem;
+    border: 1px solid #fff;
+    border-radius: .3rem;
+    text-align: center;
+    width: 17rem;
+
+    @include tablet {
+
+        width: 20rem;
+    }
+}
+
+.error-container {
+
+    @extend .reset-container;
+}
+
+.error-login {
+
+
+    background-color: $error-page-button-color;
+    @include register-login-button-mobile;
+
+    @include tablet {
+
+        @include register-login-button-desktop;
+    }
+}
+
+
+.error-login__link {
+
+    @include flex_row;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.error-icon {
+
+    margin-bottom: 2rem;
+    width: 100%;
+    @include flex_row;
+
+}
+
