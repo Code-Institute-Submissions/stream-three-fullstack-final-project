@@ -38,9 +38,9 @@
             let value = window.orientation;
            
             if (value == 0) {
-
+                alert('ipad');
                 landingContainer.setAttribute('style', `height: ${(window.innerHeight).toString() + 'px'};` );
-                loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 60).toString() + 'px'};`);
+                loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 80).toString() + 'px'};`);
 
             } else if ( value != 0) {
 
@@ -58,16 +58,17 @@
 
     // DETECT IF MOBILE BROWSER // 
 
-    // RUN FUNCTION BELOW IF TRUE. FUNCTION COMBATES ISSUES WITH MOBILE BROWSER AUTO/SHOW HIDE OF URL BAR //
-    // AND THE JERKY DISPLAY OF FIXED DIVS //
+    // TO COMBAT ISSUES WITH MOBILE BROWSER AUTO/SHOW HIDE OF URL BAR //
+    // SHOW/HIDE RESULTS IN JERKY DISPLAY OF FIXED DIVS //
 
     // CREDIT : https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser // 
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
+        
         landingContainer.setAttribute('style', `height: ${(window.innerHeight).toString() + 'px'};` );
-        loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 60).toString() + 'px'};`);
+        loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 80).toString() + 'px'};`);
         orientationValue();
     }
    
