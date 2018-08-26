@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import auth, messages
 from accounts.forms import UserLoginForm
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import AllUser
 from notify.notify import NewMember
-
 
 ## Returns Index.html or redirects to Profiles ## 
 ## If already logged in redirect to relevant Account ## 
