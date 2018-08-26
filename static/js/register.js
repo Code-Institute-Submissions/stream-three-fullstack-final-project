@@ -8,13 +8,13 @@
     const stepTwo = document.getElementById("step-two");
     const stepThree = document.getElementById("step-three");
     const explainArray = [stepOne, stepTwo, stepThree, explain]
-    const fixHeight = (window.innerHeight + 80).toString();
+    const initialFixHeight = (window.innerHeight + 80).toString();
     
 
     // FIX EXPLAIN DIV HEIGHTS ON MOBILE DEVICES TO COMBAT FIXED //
     // POSITION BUG WITH SHOW/HIDE OF URL BAR // 
 
-    const fixExplainDivHeight = () => {
+    const fixExplainDivHeight = (fixHeight) => {
 
         for (let i = 0; i < explainArray.length; i++) {
 
@@ -23,11 +23,20 @@
 
     }
 
+    // OFFSET THE POSITION OF EXPLAIN TEXT BY 80 PX //
+    // TO ACCOUNT FOR FIXES HEIGHT ON MOBILE //
+
+    const shiftPositionOfExplainText = () => {
+
+        explainText.style.position = 'relative';
+        explainText.style.top = '-40px';
+    }
+
     // SET EXPLAIN DIV POSITION BASED ON NEW HEIGHT VALUES //
 
-    const setExplainDivPosition = () => {
+    const setExplainDivPosition = (fixHeight) => {
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i <= 2; i++) {
             
             explainArray[i].style.top = (fixHeight * (i + 1)) + 'px';
         
@@ -41,15 +50,15 @@
 
         window.addEventListener('orientationchange', () => {
 
-            fixExplainDivHeight();
-            setExplainDivPosition();
+            let orientationFixHeight = (window.innerHeight + 80).toString();
+            //alert('change');
+            fixExplainDivHeight(orientationFixHeight);
+            setExplainDivPosition(orientationFixHeight);
          
         })
 
     }
    
-    
-
     // CHANGES GIVEN DIV TO FIXED BASED ON TOP POSITION //
 
     const setDivToFixed = (div, class1, class2) => {
@@ -76,7 +85,7 @@
 
     // CHANGES FIXED DIV TEXT BASED ON TOP SCROLL POSITION OF RELATIVE DIVS //
 
-    const changeFixedDivText = () => {
+    const changeFixedDivTextOnScroll = () => {
 
         window.addEventListener('scroll', () => {
 
@@ -105,15 +114,15 @@
 
     if (isMobile) {
 
-        fixExplainDivHeight();
-        setExplainDivPosition();
+        fixExplainDivHeight(initialFixHeight);
+        setExplainDivPosition(initialFixHeight);
+        shiftPositionOfExplainText();
         setExplainOnOrientation();
     }
 
     setDivToFixed(explain, "container--fixed", 
                             "container--fixed-100");
-    
-    changeFixedDivText();
+    changeFixedDivTextOnScroll();
     addBgColorToBody('body-color');
     
 
