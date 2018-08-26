@@ -6,8 +6,52 @@
     const explainText = document.getElementById("explain-text");
     const stepOne = document.getElementById("step-one");
     const stepTwo = document.getElementById("step-two");
+    const stepThree = document.getElementById("step-three");
+    const explainArray = [stepOne, stepTwo, stepThree, explain]
+    const fixHeight = (window.innerHeight + 80).toString();
     
+
+    // FIX EXPLAIN DIV HEIGHTS ON MOBILE DEVICES TO COMBAT FIXED //
+    // POSITION BUG WITH SHOW/HIDE OF URL BAR // 
+
+    const fixExplainDivHeight = () => {
+
+        for (let i = 0; i < explainArray.length; i++) {
+
+            explainArray[i].style.height = fixHeight + 'px';
+        }
+
+    }
+
+    // SET EXPLAIN DIV POSITION BASED ON NEW HEIGHT VALUES //
+
+    const setExplainDivPosition = () => {
+
+        for (let i = 0; i < 2; i++) {
+            
+            explainArray[i].style.top = (fixHeight * (i + 1)) + 'px';
+        
+        }
+
+    }
+
+    // CALL ABOVE FUNCTIONS ON ORIENTATION CHANGE //
+
+    const setExplainOnOrientation = () => {
+
+        window.addEventListener('orientationchange', () => {
+
+            fixExplainDivHeight();
+            setExplainDivPosition();
+         
+        })
+
+    }
+   
+    
+
     // CHANGES GIVEN DIV TO FIXED BASED ON TOP POSITION //
+
     const setDivToFixed = (div, class1, class2) => {
 
         window.addEventListener('scroll', () => {
@@ -30,7 +74,8 @@
         });
     }
 
-    // CHANGES FIXED DIV TEXT BASED ON TOP POSITION OF RELATIVE DIVS //
+    // CHANGES FIXED DIV TEXT BASED ON TOP SCROLL POSITION OF RELATIVE DIVS //
+
     const changeFixedDivText = () => {
 
         window.addEventListener('scroll', () => {
@@ -52,7 +97,18 @@
         });
     }
 
+ 
+
     // FUNCTION CALLS //
+
+    // DETECT MOBILE BROWSER //
+
+    if (isMobile) {
+
+        fixExplainDivHeight();
+        setExplainDivPosition();
+        setExplainOnOrientation();
+    }
 
     setDivToFixed(explain, "container--fixed", 
                             "container--fixed-100");

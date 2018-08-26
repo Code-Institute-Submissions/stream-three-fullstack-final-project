@@ -7,7 +7,6 @@
     const upArrow = document.getElementById("up-arrow");
     const downArrow = document.getElementById("down-arrow");
   
-   
     // FUNCTION ROTATES ARROW ICON WHEN SCROLLING //
     
     const rotateUpArrowOnScrollDown = () => {
@@ -31,14 +30,14 @@
       
     // SET FIXED HEIGHTS ON 100% CENTRALLY ALIGNED FIXED FLEX ELEMENT TO FIX JERKING ON SCROLL //
     // LISTEN FOR ORIENTATION CHANGE TO RECALCULATE DIV HEIGHT //
-    const orientationValue = () => {
+    const setHeightOnOrientationChange = () => {
         
         window.addEventListener('orientationchange', () => {
 
             let value = window.orientation;
            
             if (value == 0) {
-                alert('ipad');
+                
                 landingContainer.setAttribute('style', `height: ${(window.innerHeight).toString() + 'px'};` );
                 loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 80).toString() + 'px'};`);
 
@@ -57,19 +56,12 @@
     rotateUpArrowOnScrollDown();
 
     // DETECT IF MOBILE BROWSER // 
-
-    // TO COMBAT ISSUES WITH MOBILE BROWSER AUTO/SHOW HIDE OF URL BAR //
-    // SHOW/HIDE RESULTS IN JERKY DISPLAY OF FIXED DIVS //
-
-    // CREDIT : https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser // 
-
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
+    console.log(isMobile);
     if (isMobile) {
         
         landingContainer.setAttribute('style', `height: ${(window.innerHeight).toString() + 'px'};` );
         loginBlurbContainer.setAttribute('style', `height: ${(window.innerHeight + 80).toString() + 'px'};`);
-        orientationValue();
+        setHeightOnOrientationChange();
     }
    
 

@@ -1,6 +1,17 @@
 
 // ----- FUNCTIONS AND CLASSES ACCESSIBLE BY ALL TEMPLATES ---- //
 
+// DETECT IF MOBILE BROWSER // 
+
+// USED TO COMBAT ISSUES WITH MOBILE BROWSER AUTO/SHOW HIDE OF URL BAR //
+// SHOW/HIDE RESULTS IN JERKY DISPLAY OF FIXED DIVS ON LOGIN AND REGISTER TEMPLATE //
+
+// CREDIT : https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser // 
+
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+
+
 // ADD BG COLOR TO BODY IN BASE.HTML //
 
 const addBgColorToBody = (_class) => {
