@@ -11,7 +11,6 @@ class TestPortholeViewFunctions(TestCase):
         self.new_models = CreateTestModels()
         self.new_models.create_job()
         self.new_models.create_cycle()
-
         self.member = self.new_models.get_member()
         self.client = self.new_models.get_client()
         self.cycle = self.new_models.get_cycle()

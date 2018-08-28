@@ -3,7 +3,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 from cyclestatus.models import CycleStatus
 from django.utils import timezone
 from django.contrib import messages
-from .view_func import GetFile  
+from .view_func import GetFile, CycleStatuses  
 
 ## Class containing methods to push files to Relevant Model ##
 ## If the file model already contains an entry, it is deleted ##
@@ -12,16 +12,16 @@ from .view_func import GetFile
 
 ## HELPER FUNCTIONS ##
 
-def get_cycle_status(cycle):
-    try:
-        status = CycleStatus.objects.get(cycle=cycle)
-    except CycleStatus.DoesNotExist:
-        status = None
-    return status
+#def get_cycle_status(cycle):
+    #try:
+       # status = CycleStatus.objects.get(cycle=cycle)
+    #except CycleStatus.DoesNotExist:
+       # status = None
+    #return status
     
 ## CHECK IF QUOTE IS APPROVED ##
 def is_quote_approved(cycle):
-    quote_approved = get_cycle_status(cycle)
+    quote_approved = CycleStatuses(cycle).get_cycle_status()
     if quote_approved:
         return quote_approved.approve_quote
     else:
@@ -29,7 +29,7 @@ def is_quote_approved(cycle):
     
 ## CHECK IF PO IS APPROVED ##
 def is_po_approved(cycle):
-    po_approved = get_cycle_status(cycle)
+    po_approved = CycleStatuses(cycle).get_cycle_status()
     if po_approved:
         return po_approved.approve_po
     else:
@@ -43,6 +43,8 @@ class UploadFile:
         self.member = member
         self.cycle = cycle
 
+    ## CHECK IF A QUOTE FILE EXISTS, IF IT DOES, DELETE IT THEN ##
+    ## SAVE THE NEW FILE ##
     def upload_quote(self, quote_form):
         new_quote = Quotes(file=quote_form.cleaned_data['file'],
                             uploaded_at=timezone.now(),
