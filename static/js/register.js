@@ -51,7 +51,7 @@
         window.addEventListener('orientationchange', () => {
 
             let orientationFixHeight = (window.innerHeight + 80).toString();
-            //alert('change');
+           
             fixExplainDivHeight(orientationFixHeight);
             setExplainDivPosition(orientationFixHeight);
          
@@ -70,8 +70,6 @@
                 div.classList.add(class1);
         
             } else if (window.scrollY == div.offsetTop) {
-
-                div.classList.add(class2);
 
                 setTimeout(() => {
 
