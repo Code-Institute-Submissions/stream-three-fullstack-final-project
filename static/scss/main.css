@@ -495,7 +495,9 @@ p, button, a {
   width: 3rem;
   position: absolute;
   right: 1.5rem;
-  background-color: #597b78; }
+  background-color: #597b78;
+  top: 50%;
+  transform: translateY(-50%); }
   @media (min-width: 768px) {
     .register-login {
       border-radius: .3rem;

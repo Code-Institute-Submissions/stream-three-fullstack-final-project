@@ -31,6 +31,8 @@
     position: absolute;
     right: 1.5rem;
     background-color: $register-icon-color;
+    top: 50%;
+    transform: translateY(-50%);
 
     @include tablet {
 
