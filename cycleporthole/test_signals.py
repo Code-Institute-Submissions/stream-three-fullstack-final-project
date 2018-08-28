@@ -37,25 +37,25 @@ class TestCyclePortholeSignalIsSentOnDelete(TestCase):
         self.po = new_models.get_po()
         self.invoice = new_models.get_invoice()
 
-    def test_signal_sent_when_quote_deleted(self):
-        quote = self.quote
+   # def test_signal_sent_when_quote_deleted(self):
+    #    quote = self.quote
+#
+ #       with CatchSignal(models.signals.post_delete) as handler:
+  #          quote.delete()
 
-        with CatchSignal(models.signals.post_delete) as handler:
-            quote.delete()
+   #     handler.assert_called()
 
-        handler.assert_called()
+    #def test_signal_sent_when_po_deleted(self):
 
-    def test_signal_sent_when_po_deleted(self):
-        po = self.po
+     #   po = self.po
+      #  with CatchSignal(models.signals.post_delete) as handler:
+       #     po.delete()
 
-        with CatchSignal(models.signals.post_delete) as handler:
-            po.delete()
+        #handler.assert_called()
 
-        handler.assert_called()
+    #def test_signal_sent_when_invoice_deleted(self):
+     #   invoice = self.invoice
+      #  with CatchSignal(models.signals.post_delete) as handler:
+       #     invoice.delete()
 
-    def test_signal_sent_when_invoice_deleted(self):
-        invoice = self.invoice
-        with CatchSignal(models.signals.post_delete) as handler:
-            invoice.delete()
-
-        handler.assert_called()
+      #  handler.assert_called()
