@@ -2,13 +2,19 @@
 (() => {
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
     const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
+    const clientNavIcon = document.getElementById('nav-clients');
+    const jobsNavIcon = document.getElementById('nav-jobs');
+    const cyclesNavIcon = document.getElementById('nav-cycles');
 
     // SPECIFIC TO CLIENT TEMPLATE //
     const manageClientInput = document.getElementsByClassName('register-form__input');
+    const manageClients = document.getElementById('manage-clients');
  
     // SPECFIC TO JOB TEMPLATE //
     const jobsFormSelect = document.getElementById('id_client');
     const jobsFormInput = document.getElementsByTagName('input');
+    const manageJobs = document.getElementById('manage-jobs');
+    
 
     // SPECIFIC TO CYCLES TEMPLATE //
     const selectOneMonth = document.getElementById('id_start_date_month');
@@ -22,6 +28,8 @@
     const selectArray = [];
     const cycleFormButton = document.getElementById('cycle-button');
     const jobsFormButton = document.getElementById('jobs-button');
+    const manageCycles = document.getElementById('manage-cycles');
+    
 
 
     // DISABLE CYCLE FORM/JOB FORM SELECT IF IN UPDATE MODE //
@@ -194,27 +202,29 @@
 
     // CLIENTS TEMPLATE SPECIFIC //
 
-    if (manageClientInput) {
+    if (manageClients) {
 
         addRequiredAttribute(manageClientInput);
+        addClassToClassList(clientNavIcon, 'nav__icons--clicked');
         
     }
 
 
     // JOBS TEMPLATE SPECIFIC //
-    if (jobsFormSelect) {
+    if (manageJobs) {
 
         addClassToElement(jobsFormSelect, 'profile__select');
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
         addClassToCollection(jobsFormInput, 'register-form__input');
         disableUpdateFormSelect(jobsFormButton, jobsFormSelect);
-       
+        addClassToClassList(jobsNavIcon, 'nav__icons--clicked');
+        
     }
 
     // CYCLES TEMPLATE SPECIFIC //
 
-    if (selectOneMonth) {
+    if (manageCycles) {
 
         const startDateSelectContainer = selectOneMonth.parentElement;
         const endDateSelectContainer = selectTwoMonth.parentElement;
@@ -239,6 +249,7 @@
                                     'manage-reset__button--show',
                                     'manage-button__button--reset-click');
         disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
+        addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
         
     }
     

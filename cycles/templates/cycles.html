@@ -11,11 +11,10 @@
     <section class="cycles-info">
         <h1 class="cycles-info__heading">Search Your Cycles.</h1>
         {% if user.is_member %}
-            {% if not profile %}
-            <div class="cycles-info__profile-exp">
-                <p class="cycles-profile-exp__text">Please complete your <a class="cycles-profile-exp__link" href="{% url 'member_profile' username=user.username %}">profile</a> before proceeding.</p>
-            </div>
-            {% else %}
+            <!--<div class="cycles-info__profile-exp">
+                <p class="cycles-profile-exp__text">Please complete your <a class="cycles-profile-exp__link" href="{% url 'member_profile' username=user.username %}">profile</a> before doing anything else.</p>
+            </div>-->
+            {% if profile %}
                 {% if messages %}
                     {% for message in messages %}
                         <div class="cycles-info__profile-exp">
@@ -97,13 +96,13 @@
                         <h3>Getting Started.</h3>
                     </div>
                     <div class="fileo-explain__text">
-                        <p>After you have completed your Profile.</p>
-                        <p>1. Create your first client.</p>
-                        <p>2. Create a job and attach your client.</p>
-                        <p>3. Create a payment cycle and attach the job.</p>
+                        <p>1. Please complete your <strong><a class="cycles-profile-exp__link" href="{% url 'member_profile' username=user.username %}"> Profile</a></strong>.</p>
+                        <p>2. Create a client.</p>
+                        <p>3. Create a job and attach your client.</p>
+                        <p>4. Create a payment cycle and attach the job.</p>
                         <p>Once a cycle has been created it'll appear on this page.</p>
-                        <p>You will be able to search and filter your cycles using the search bar above.</p>
-                        <p>And then be able to proceed to it's Porthole for further management.</p>
+                        <p>As they build up, you will be able to search and filter your cycles using the search bar above.</p>
+                        <p>Then follow each Porthole button to manage the payment cycle.</p>
                         <p>Enjoy!</p>
                     </div>
                 </div>

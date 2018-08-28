@@ -193,7 +193,7 @@
 
 .cycles-profile-exp__link {
 
-    color: $login-error-red;
+    color: #fff;
     display: inline-block;
 }
 
@@ -204,7 +204,7 @@
     opacity: 0;
     height: 1px;
     display: block;
-    background: $login-error-red;
+    background: #fff;
     transition: opacity .3s $drop-down-bezier;
 }
 

@@ -7,7 +7,7 @@
 {% endblock head_js %}
 {% block content %}
 {% include 'header.html' %}
-<div class="manage-container">
+<div id="manage-jobs" class="manage-container">
     <section class="manage-form-container">
         <div class="steps-icon">
             <i class="fas fa-briefcase steps-icon__icon" aria-hidden="true"></i>
@@ -54,7 +54,7 @@
                 </div>
             </a>
         </div>
-        <p class="manage-text">Once set, you cannot update the Client already linked to your Job, or Job Number.</p>
+        <p class="manage-text">Once set, you cannot update the Client or Job Number linked to your Job.</p>
     {% elif not clients %}
         <p class="generic-success manage-success">You are seeing an empty clients list because you have no clients.
             You must add a client before you can create a new job.

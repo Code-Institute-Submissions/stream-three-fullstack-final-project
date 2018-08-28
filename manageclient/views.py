@@ -11,13 +11,13 @@ from accounts.forms import UserRegisterForm
 from notify.notify import NewClient, get_email_details
 
 ## Create New Client and Write pk of Member and Client to MemberClient Model ##
+
 def manage_clients(request, username):
     user_id = request.user.pk
     clients_exist = get_all_clients_of_user(user_id)
     new_client = UserRegisterForm()
     if request.method == "POST":
         new_client = UserRegisterForm(request.POST)
-        """ Check if a full Profile Exists for User first, force User to create one. """
         profile = profile_exists(user_id)
         if profile:
             if new_client.is_valid():
@@ -29,7 +29,7 @@ def manage_clients(request, username):
 
                     NewClient(**kwargs).client_user_created()
                     messages.success(request, 
-                                    "Client created and an email has been sent.",
+                                    "Client created. A notification email has been sent.",
                                     extra_tags="create_client")
                     return redirect(reverse('manage_clients', kwargs={'username':username}))      
         else:

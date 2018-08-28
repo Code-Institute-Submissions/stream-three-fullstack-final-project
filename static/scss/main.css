@@ -1105,7 +1105,7 @@ p, button, a {
   margin-top: 0rem; }
 
 .cycles-profile-exp__link {
-  color: #f00;
+  color: #fff;
   display: inline-block; }
 
 .cycles-profile-exp__link:after {
@@ -1114,7 +1114,7 @@ p, button, a {
   opacity: 0;
   height: 1px;
   display: block;
-  background: #f00;
+  background: #fff;
   transition: opacity 0.3s cubic-bezier(1, 0.32, 0.32, 0.75); }
 
 .cycles-profile-exp__link:hover:after {
