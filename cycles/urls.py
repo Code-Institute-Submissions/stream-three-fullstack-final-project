@@ -6,5 +6,5 @@ urlpatterns = [
 
     url(r'^member/(?P<username>[\w.@+-]+)/$', member_cycles, name='member_cycles'),
     url(r'^client/(?P<username>[\w.@+-]+)/$', client_cycles, name='client_cycles'),
-    url(r'^(?P<username>[\w.@+-]+)/$', reset_search, name='reset_search'),
+    url(r'^(?P<username>[\w.@+-]+)/reset-search$', reset_search, name='reset_search'),
 ]
