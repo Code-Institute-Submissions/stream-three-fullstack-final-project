@@ -10,8 +10,6 @@
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-
-
 // ADD BG COLOR TO BODY IN BASE.HTML //
 
 const addBgColorToBody = (_class) => {
