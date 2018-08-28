@@ -53,7 +53,6 @@ def reset_invoice_status(instance):
 
 ########### RECEIVERS ###############
 
-
 ####### SET DEFAULT STATUS ENTRY ON NEW CYCLE CREATION ######
 @receiver(models.signals.post_save, sender=Cycles)
 def set_default_quote_status(sender, instance, **kwargs):

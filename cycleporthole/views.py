@@ -69,13 +69,13 @@ def step_notify(request, username, cycle_id, step):
     message = 'Notification sent.'
     if step == 'quote':
         NewFile(**kwargs).new_quote_notification()
-        messages.success(request, message , extra_tags='quote')
+        messages.success(request, message, extra_tags='quote', fail_silently=True)
     elif step == 'po':
         NewFile(**kwargs).new_po_notification()
-        messages.success(request, message , extra_tags='po')
+        messages.success(request, message, extra_tags='po',fail_silently=True)
     elif step == 'invoice':
         NewFile(**kwargs).new_invoice_notification()
-        messages.success(request, message , extra_tags='invoice')
+        messages.success(request, message , extra_tags='invoice',fail_silently=True)
 
     return redirect(reverse('porthole', 
                                 kwargs={'username':username,

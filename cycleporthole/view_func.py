@@ -19,10 +19,10 @@ def convert_dates(date):
 ## Get Context for Porthole View ##
 def get_porthole_context(cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
-    profile = get_object_or_404(MemberClient, client=cycle.client.id)
+    #profile = get_object_or_404(MemberClient, client=cycle.client.id)
     context = {'member': cycle.member,
                 'client': cycle.client,
-                'client_profile': profile,
+                #'client_profile': profile,
                 'status_form': StatusForm(),
                 'cycle': cycle,
                 'cycle_start': convert_dates(cycle.start_date),
@@ -104,7 +104,7 @@ class DeleteFile:
             quote.delete()
             messages.success(self.request, 
                             'You successfully deleted your Quote.',
-                                extra_tags='quote')
+                                extra_tags='quote', fail_silently=True)
         return True
 
     def delete_po(self):
@@ -113,7 +113,7 @@ class DeleteFile:
             po.delete()
             messages.success(self.request, 
                             'You successfully deleted your Purchase Order.',
-                            extra_tags='po')
+                            extra_tags='po', fail_silently=True)
         return True
         
 
@@ -123,5 +123,5 @@ class DeleteFile:
             invoice.delete()
             messages.success(self.request, 
                             'You successfully deleted your Invoice.',
-                        extra_tags='invoice')
+                        extra_tags='invoice', fail_silently=True)
         return True
