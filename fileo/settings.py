@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'fileo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if not development:
+if 'DATABASE_URL' in os.environ:
     print('Using PostGRES')
     DATABASES = {
 
