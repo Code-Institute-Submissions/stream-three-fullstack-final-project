@@ -1,3 +1,4 @@
+import datetime
 from django import forms
 from django.forms import ModelForm
 from .models import Cycles
@@ -27,12 +28,19 @@ class CycleForm(forms.Form):
                                                     widget=forms.TextInput(
                                                     attrs={'class':'register-form__input',
                                                     'placeholder':'Location'}))                                   
-        self.fields['start_date'] = forms.DateField(widget=forms.SelectDateWidget(
+        self.fields['start_date'] = forms.DateField(initial=datetime.date.today(),
+                                                    widget=forms.SelectDateWidget(
                                                         attrs={'label':''}))                                        
-        self.fields['end_date'] = forms.DateField(widget=forms.SelectDateWidget(
+        self.fields['end_date'] = forms.DateField(initial=datetime.date.today(),
+                                                    widget=forms.SelectDateWidget(
                                                          attrs={'label':''}))
         self.fields['jobs'] = forms.ModelChoiceField(queryset=self.job_choices,
                                                     label="")
         self.fields['jobs'].empty_label='Attach a Job'
 
-                                 
+
+class UpdateCycleForm(CycleForm):
+
+    def __init__(self, member, *args, **kwargs):
+        super(UpdateCycleForm, self).__init__(member, *args, **kwargs)
+        self.fields['updated'] = forms.CharField(widget=forms.HiddenInput())

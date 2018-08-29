@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from datetime import datetime
-from .forms import CycleForm#, EditCycleForm
+from .forms import CycleForm, UpdateCycleForm
 from managejobs.view_func import get_all_jobs_for_user  
 from .view_func import create_cycle, delete_all_files, clear_status
 from .view_func import get_user_cycles, update_cycle, clear_value
@@ -32,7 +32,7 @@ def manage_cycles(request, username):
             request.session['update_cycle_id'] = cycle.id
             start_date = datetime.strptime(cycle.start_date, '%Y-%m-%d')
             end_date = datetime.strptime(cycle.end_date, '%Y-%m-%d')
-            cycle_form = CycleForm(cycle.member.id, 
+            cycle_form = UpdateCycleForm(cycle.member.id, 
                                     initial={'cycle_title': cycle.cycle_title,
                                     'description': cycle.description,
                                     'location': cycle.location,

@@ -24,7 +24,7 @@
             {% endif %}
         </div>
         <!-------------------------------->
-        {% if not cycle_form.cycle_title.value %}
+        {% if not cycle_form.updated %}
             <p class="manage-text">Create a New Cycle</p>
         {% else %}
             <p class="manage-text">Update {{ form.cycle_title.value }}</p>
@@ -32,14 +32,14 @@
             <form class="manage-form" method="POST">
                 {% csrf_token %}
                     {{ cycle_form.as_p }}
-                {% if not cycle_form.cycle_title.value %}
+                {% if not cycle_form.updated %}
                     <button class="manage-form__button"type="submit">Add Cycle</button>
                 {% else %}
-                    <input type="hidden" name="updated" value="true">
+                    <!--<input type="hidden" name="updated" value="true">-->
                     <button id="cycle-button" class="manage-form__button"type="submit">Update Cycle</button>
                 {% endif %}
             </form>
-            {% if cycle_form.cycle_title.value %}
+            {% if cycle_form.updated %}
             <p class="manage-text">Once set, you cannot update the Job already linked to your Cycle.</p>
             {% endif %}
        {% if messages %}
@@ -48,7 +48,7 @@
             <p class="generic-success manage-success"> <i class="fas fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
                 {% endif %}
             {% endfor %}
-        {% elif cycle_form.cycle_title.value %}
+        {% elif cycle_form.updated %}
             <div class="form-reset-container">
                     <a href="{% url 'manage_cycles' username=user.username %}" class="cycles-search-reset__button">
                         <div class="cycles-search-reset">
