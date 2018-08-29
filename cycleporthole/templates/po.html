@@ -72,8 +72,8 @@
         {% if not context.cycle_status.approve_po %}
         <div class="file-action">
             {% if context.po %}
-                <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='po' %}">Delete PO</a></p>
-                <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='po' %}">Notify Member</a></p>
+                <p><a class="file-action__delete" href="{% url 'delete' username=context.client.username cycle_id=context.cycle.id step='po' %}">Delete PO</a></p>
+                <p><a class="file-action__notify" href="{% url 'step_notify' username=context.client.username cycle_id=context.cycle.id step='po' %}">Notify Member</a></p>
                 {% if messages %}
                     {% for message in messages %}
                         {% if 'po' in message.tags %}

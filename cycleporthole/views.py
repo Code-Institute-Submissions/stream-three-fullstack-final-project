@@ -77,8 +77,9 @@ def step_notify(request, username, cycle_id, step):
         NewFile(**kwargs).new_invoice_notification()
         messages.success(request, message , extra_tags='invoice',fail_silently=True)
 
+
     return redirect(reverse('porthole', 
-                                kwargs={'username':username,
+                                kwargs={'username': username,
                                         'cycle_id': cycle.id,
                                         }))
 
