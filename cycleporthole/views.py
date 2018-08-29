@@ -64,7 +64,7 @@ def porthole(request, username, cycle_id):
 ## Send Email Notification of Upload and redirect to Porthole View ##
 def step_notify(request, username, cycle_id, step):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
-    kwargs = get_email_details(username, cycle.client.username)
+    kwargs = get_email_details(cycle.member.username, cycle.client.username)
     kwargs['cycle'] = cycle
     message = 'Notification sent.'
     if step == 'quote':
