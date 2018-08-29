@@ -150,6 +150,7 @@ class CreateTestModels():
 
     ## Create Cycle Status entry ##
     def create_cycle_status(self):
+        
         new_status = CycleStatus(approve_quote = False,
                                 contest_quote = False,
                                 approve_po = False,
@@ -161,7 +162,7 @@ class CreateTestModels():
                                 cancelled = False,
                                 cycle = self.get_cycle())
         new_status.save()
-
+        
     ## Return Cycle Status Object ##
     def get_cycle_status(self):
         status = CycleStatus.objects.get(cycle=self.get_cycle())
