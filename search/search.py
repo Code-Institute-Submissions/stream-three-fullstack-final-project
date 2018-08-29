@@ -27,6 +27,7 @@ class SearchCycles:
 
     def search_all_cycles(self):
         if self.user.is_member:
+           
             cycles = self.filter_by_member()
             cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
                             Q(cycle__client__first_name__contains=self.query) | 
