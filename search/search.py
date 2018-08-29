@@ -28,18 +28,18 @@ class SearchCycles:
     def search_all_cycles(self):
         if self.user.is_member:
             cycles = self.filter_by_member()
-            cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
-                            Q(cycle__client__first_name__contains=self.query) | 
-                            Q(cycle__client__last_name__contains=self.query) | 
-                            Q(cycle__cycle_title__contains=self.query) | 
-                            Q(cycle__client__username__contains=self.query) |
-                            Q(cycle__id__contains=self.query)
+            cycles = cycles.filter(Q(cycle__job__job_title__icontains=self.query) | 
+                            Q(cycle__client__first_name__icontains=self.query) | 
+                            Q(cycle__client__last_name__icontains=self.query) | 
+                            Q(cycle__cycle_title__icontains=self.query) | 
+                            Q(cycle__client__username__icontains=self.query) |
+                            Q(cycle__id__icontains=self.query)
                             ).order_by(self.order_by)
         elif self.user.is_client:
             cycles = self.filter_by_client()
-            cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
-                            Q(cycle__cycle_title__contains=self.query) | 
-                            Q(cycle__id__contains=self.query)
+            cycles = cycles.filter(Q(cycle__job__job_title__icontains=self.query) | 
+                            Q(cycle__cycle_title__icontains=self.query) | 
+                            Q(cycle__id__icontains=self.query)
                             ).order_by(self.order_by)
             
         return cycles
