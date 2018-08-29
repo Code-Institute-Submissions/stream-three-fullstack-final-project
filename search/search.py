@@ -38,10 +38,7 @@ class SearchCycles:
         elif self.user.is_client:
             cycles = self.filter_by_client()
             cycles = cycles.filter(Q(cycle__job__job_title__contains=self.query) | 
-                            Q(cycle__member__first_name__contains=self.query) | 
-                            Q(cycle__member__last_name__contains=self.query) | 
                             Q(cycle__cycle_title__contains=self.query) | 
-                            Q(cycle__member__username__contains=self.query) |
                             Q(cycle__id__contains=self.query)
                             ).order_by(self.order_by)
             

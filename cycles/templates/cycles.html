@@ -27,6 +27,10 @@
                 </div>
                 {% endif %}
             {% endif %}
+        {% elif user.is_client %}
+            <div class="cycles-info__profile-exp">
+                <p class="cycles-info__text">Search your cycles by Cycle, Job or Fileo ID.</p>
+            </div>
         {% endif %}
     </section>
     <section class="cycles-search">
