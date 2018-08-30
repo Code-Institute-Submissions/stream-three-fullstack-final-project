@@ -34,7 +34,7 @@ class CreateTestModels():
         member = AllUser.objects.get(username='testadmin')
         return member
 
-    ## Returnt the User Client Object ##
+    ## Return the User Client Object ##
     def get_client(self):
         client = AllUser.objects.get(username='testclient')
         return client

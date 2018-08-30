@@ -4,7 +4,7 @@ from fileo.test_models import CreateTestModels
 class TestMemberClient(TestCase):
     
     def setUp(self):
-        new_models =CreateTestModels()
+        new_models = CreateTestModels()
         new_models.create_profile()
         new_models.create_member_client()
         self.member = new_models.get_member()
