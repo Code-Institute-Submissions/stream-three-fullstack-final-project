@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from django.contrib.sessions.middleware import SessionMiddleware
 from search.search import SearchCycles
 from fileo.test_models import CreateTestModels
-from .view_func import get_searched_cycles
+from .view_func import get_searched_cycles, SetSessionValues
 
 ## TESTS FOR CYCLES APP VIEW HELPER FUNCTIONS/CLASSES ##
 class TestCyclesViewFunctions(TestCase):
