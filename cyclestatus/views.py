@@ -15,7 +15,8 @@ def set_quote_status(request, username, cycle_id):
     except Quotes.DoesNotExist:
         messages.error(request, 
                         "A quote needs to be uploaded before you can set a status.",
-                        extra_tags='quote_message')
+                        extra_tags='quote_message', 
+                        fail_silently=True)
         quote = None
     if quote != None:
         if request.method == 'POST':
@@ -46,7 +47,8 @@ def set_po_status(request, username, cycle_id):
     except PurchaseOrder.DoesNotExist:
         messages.error(request, 
                         "A PO needs to be uploaded before you can set a status.",
-                        extra_tags='po_message')
+                        extra_tags='po_message',
+                        fail_silently=True)
         po = None
     if po != None:
         if request.method == 'POST':
@@ -78,7 +80,8 @@ def set_invoice_status(request, username, cycle_id):
     except Invoices.DoesNotExist:
         messages.error(request, 
                         "An Invoice needs to be uploaded before you can set a status.",
-                        extra_tags='invoice_message')
+                        extra_tags='invoice_message',
+                        fail_silently=True)
         invoice = None
     if invoice != None:
         if request.method == 'POST':

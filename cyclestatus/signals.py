@@ -11,7 +11,6 @@ from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 
 
 ## HELPERS ##
-
 def reset_quote_status(instance):
     try:
         quote_status = CycleStatus(cycle=instance.cycle)
@@ -23,7 +22,7 @@ def reset_quote_status(instance):
         quote_status.contest_quote = False
         quote_status.save(update_fields=['approve_quote', 
                                         'contest_quote'])
-    return True
+    return quote_status
     
 def reset_po_status(instance):
     try:
@@ -53,7 +52,7 @@ def reset_invoice_status(instance):
 
 ########### RECEIVERS ###############
 
-####### SET DEFAULT STATUS ENTRY ON NEW CYCLE CREATION ######
+####### SET DEFAULT STATUS OBJECT ON NEW CYCLE CREATION ######
 @receiver(models.signals.post_save, sender=Cycles)
 def set_default_quote_status(sender, instance, **kwargs):
     ## See if a Status Object Exists ##

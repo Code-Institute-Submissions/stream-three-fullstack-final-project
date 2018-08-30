@@ -9,6 +9,7 @@ from cyclestatus.models import CycleStatus
 
 
 ## Class Housing All Model Creation for Re-use in Individual App Tests ##
+
 class CreateTestModels():
     ## Create a Member User and a Client User on Initilise ## 
     def __init__(self):
