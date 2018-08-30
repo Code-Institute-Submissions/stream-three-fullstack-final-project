@@ -35,7 +35,7 @@ def reset_po_status(instance):
         po_status.contest_po = False
         po_status.save(update_fields=['approve_po',
                                         'contest_po'])
-    return True
+    return po_status
 
 def reset_invoice_status(instance):
     try:
@@ -48,13 +48,13 @@ def reset_invoice_status(instance):
         invoice_status.contest_invoice = False
         invoice_status.save(update_fields=['approve_invoice',
                                             'contest_invoice'])
-    return True
+    return invoice_status
 
 ########### RECEIVERS ###############
 
 ####### SET DEFAULT STATUS OBJECT ON NEW CYCLE CREATION ######
 @receiver(models.signals.post_save, sender=Cycles)
-def set_default_quote_status(sender, instance, **kwargs):
+def set_default_status(sender, instance, **kwargs):
     ## See if a Status Object Exists ##
     try:
         status = CycleStatus.objects.get(cycle=instance)
