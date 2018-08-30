@@ -128,5 +128,36 @@ class TestCyclesViewFunctions(TestCase):
         self.assertTrue(filter_by_client)
         self.assertEqual(filter_by_client[0].cycle.client, self.new_models.get_client())
 
+    def test_value_of_active_cycles(self):
+        request = RequestFactory().get('/')
+        request.user = self.new_models.get_client()
+        SessionMiddleware().process_request(request)
+        request.session.save()
+        
+        active_value = SetSessionValues(request).value_of_active()
+
+        self.assertEqual('1.00', active_value)
+
+    def test_value_of_cycles(self):
+        request = RequestFactory().get('/')
+        request.user = self.new_models.get_client()
+        SessionMiddleware().process_request(request)
+        request.session.save()
+        
+        self.status.pending = True
+        self.status.complete = True
+        self.status.cancelled = True
+        self.status.save(update_fields=['pending',
+                                        'complete',
+                                        'cancelled'])
+
+        session_values = SetSessionValues(request)
+        pending_value = session_values.value_of_pending()
+        completed_value = session_values.value_of_completed()
+        cancelled_value = session_values.value_of_cancelled()
+
+        self.assertEqual('1.00', pending_value)
+        self.assertEqual('1.00', completed_value)
+        self.assertEqual('1.00', cancelled_value)
 
 
