@@ -105,9 +105,28 @@ class TestCyclesViewFunctions(TestCase):
         self.assertTrue(cycles)
         self.assertEqual(cycles[0].cycle.client, self.cycle.client)
 
-    
         
+    def test_filter_cycles_by_member(self):
+        request = RequestFactory().get('/')
+        request.user = self.new_models.get_member()
+        SessionMiddleware().process_request(request)
+        request.session.save()
 
+        filter_by_member = SetSessionValues(request).filter_user()
+       
+        self.assertTrue(filter_by_member)
+        self.assertEqual(filter_by_member[0].cycle.member, self.new_models.get_member())
+
+    def test_filter_cycles_by_client(self):
+        request = RequestFactory().get('/')
+        request.user = self.new_models.get_client()
+        SessionMiddleware().process_request(request)
+        request.session.save()
+
+        filter_by_client = SetSessionValues(request).filter_user()
+       
+        self.assertTrue(filter_by_client)
+        self.assertEqual(filter_by_client[0].cycle.client, self.new_models.get_client())
 
 
 
