@@ -2,7 +2,7 @@ from django.test import TestCase
 from fileo.test_models import CreateTestModels
 
 
-## CYCLE MODEL TEST ##
+## TEST MANAGE CYCLE MODEL ##
 class TestCyclesModel(TestCase):
     
     def setUp(self):

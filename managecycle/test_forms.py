@@ -8,6 +8,7 @@ from managejobs.models import Jobs
 from fileo.test_models import CreateTestModels
 from .models import Cycles
 
+## TEST MANAGE CYCLE FORM ##
 class TestCycleForm(TestCase):
     
     def setUp(self):

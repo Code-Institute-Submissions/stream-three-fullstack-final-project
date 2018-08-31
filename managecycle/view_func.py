@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from .forms import CycleForm
+#from .forms import CycleForm
 from .models import Cycles      
 from accounts.models import AllUser
 from managejobs.models import Jobs
@@ -47,10 +47,8 @@ def update_cycle(cycle, form):
     cycle.location = form.cleaned_data.get('location')
     cycle.start_date = form.cleaned_data.get('start_date')
     cycle.end_date = form.cleaned_data.get('end_date')
-    #cycle.job = form.cleaned_data.get('jobs')
-    #cycle.client = client
     cycle.save(update_fields=['cycle_title', 'description', 'location',
-                                'start_date', 'end_date'])#, 'job', 'client'])
+                                'start_date', 'end_date'])
     return True
 
 ## Resets all Statuses for a Cycle ##
