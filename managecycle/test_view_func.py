@@ -58,5 +58,42 @@ class TestManageCycleViewFunc(TestCase):
         self.assertNotEqual(start, updated_cycle.start_date)
         self.assertNotEqual(end, updated_cycle.end_date)
 
+    def test_clear_status(self):
+        self.models.create_cycle()
+        cycle = self.models.get_cycle()
+        self.models.create_cycle_status()
+        status = self.models.get_cycle_status()
+        status.approve_quote = True
+        status.contest_quote = True
+        status.approve_po = True
+        status.contest_po = True
+        status.approve_invoice = True
+        status.contest_invoice = True
+        status.complete = True
+        status.pending = True
+        status.cancelled = True
+        status.save()
+
+        reset = view_func.clear_status(cycle)
+
+        self.assertTrue(reset)
+        self.assertFalse(reset.approve_quote)
+        self.assertFalse(reset.contest_quote)
+        self.assertFalse(reset.approve_po)
+        self.assertFalse(reset.contest_po)
+        self.assertFalse(reset.approve_invoice)
+        self.assertFalse(reset.contest_invoice)
+        self.assertFalse(reset.complete)
+        self.assertFalse(reset.pending)
+        self.assertFalse(reset.cancelled)
+
+    def test_clear_cycle_value(self):
+        self.models.create_cycle()
+        cycle = self.models.get_cycle()
+        
+        value = view_func.clear_value(cycle)
+       
+        self.assertEqual(str(value.cycle_value), '0.00 GBP')
+
         
 
