@@ -3,6 +3,7 @@ from django.forms.models import model_to_dict
 from .forms import JobsForm, EditJobsForm
 from fileo.test_models import CreateTestModels
 
+## TEST MANAGE JOBS FORMS ##
 class TestJobsForms(TestCase):
 
     def setUp(self):

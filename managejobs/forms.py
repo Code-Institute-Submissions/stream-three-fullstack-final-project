@@ -58,8 +58,8 @@ class EditJobsForm(ParentJobForm):
     def __init__(self, user_id, *args, **kwargs):
         super(EditJobsForm, self).__init__(user_id, *args, **kwargs) 
         self.fields['job_number'] = forms.CharField(
-                                    widget=forms.TextInput(attrs={'readonly':'readonly'})
-                                    ,max_length=20, label="")
+                                    widget=forms.TextInput(attrs={'readonly':'readonly'}),
+                                    max_length=20, label="")
         
     
     
