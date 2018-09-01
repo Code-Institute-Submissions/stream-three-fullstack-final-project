@@ -34,12 +34,12 @@ def manage_jobs(request, username):
                     job = get_object_or_404(Jobs, 
                                             pk=request.session['update_job_id'])
                     update_job(job, form, client)
-                    #update_cycles_client(job, client)
                     messages.success(request, 'Job updated.')
                     return redirect(reverse('manage_jobs',
                                                 kwargs={'username':username})) 
             else:
                 form = JobsForm(user_id, request.POST)
+                print(request.POST)
                 if form.is_valid():
                     create_job(form, request.user)
                     messages.success(request, 'Job Created.')
@@ -49,7 +49,6 @@ def manage_jobs(request, username):
     return render(request, 'manage_jobs.html', {'username':username,
                                                 'form':form,
                                                 'jobs':jobs,
-                                                #'jobs_count': jobs.count(),
                                                 'clients':clients })
 
 
