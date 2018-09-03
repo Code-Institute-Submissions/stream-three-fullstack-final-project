@@ -6,7 +6,7 @@ from manageclient.models import MemberClient
 from profiles.models import Profile
 from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 from cyclestatus.models import CycleStatus
-from payment.models import Order, OrderLineItem
+from payment.models import Payment
 
 
 ## Class Housing All Model Creation for Re-use in Individual App Tests ##
@@ -190,23 +190,20 @@ class CreateTestModels():
         status = CycleStatus.objects.get(cycle=self.get_cycle())
         return status
 
-    ## Create Order Model Object ##
-    def create_order(self):
-        payment = Order(name_on_card='Test Payee')
+    ## Create Prder Model Object ##
+    def create_payment(self):
+        payment = Payment(phone='+441784938491',
+                            address1='Address1',
+                            address2='Address2',
+                            city='London',
+                            region='Middlesex',
+                            post_code='Postcode',
+                            country='country',
+                            name_on_card='Test Payee',
+                            cycle=self.get_cycle())
         payment.save()
 
-    ## Get Order Model Object ##
-    def get_order(self):
-        order = Order.objects.get(name_on_card='Test Payee')
+    ## Get Payment Model Object ##
+    def get_payment(self):
+        order = Payment.objects.get(name_on_card='Test Payee')
         return order
-
-    ## Create Order Line Item Object ##
-    def create_order(self):
-        payment = Order(name_on_card='Test Payee')
-        payment.save()
-
-    ## Get Order Line Item Object ##
-    def get_order(self):
-        order = Order.objects.get(name_on_card='Test Payee')
-        return order
-

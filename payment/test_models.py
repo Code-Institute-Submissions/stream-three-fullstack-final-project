@@ -7,3 +7,9 @@ class TestPaymentModels(TestCase):
         self.models = CreateTestModels()
         self.models.create_job()
         self.models.create_cycle()
+        self.models.create_payment()
+
+    def test_order_model(self):
+        order = self.models.get_payment()
+
+        self.assertTrue(order)
