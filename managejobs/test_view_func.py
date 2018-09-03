@@ -62,4 +62,4 @@ class TestManageJobsViewHelpers(TestCase):
 
         updated_job = Jobs.objects.get(job_title='update job')
 
-        self.assertEqual(update_job.job_title, 'updated job')
+        self.assertEqual(updated_job.job_title, 'updated job')
