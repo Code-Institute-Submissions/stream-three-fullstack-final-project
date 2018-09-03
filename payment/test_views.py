@@ -10,17 +10,19 @@ class TestPaymentViews(TestCase):
     def setUp(self):
         self.models = CreateTestModels()
         self.member = self.models.get_member()
+        self.models.create_job()
+        self.models.create_client_profile()
         self.models.create_cycle()
         self.cycle = self.models.get_cycle()
 
     def test_payment_view(self):
         url = ('payment/{0}/{1}'.format(self.member.username, self.cycle.pk))
 
-        request = RequestFactory.get(url)
+        request = RequestFactory().get(url)
         request.user = self.member
-        SessionMiddleware.process_request(url)
+        SessionMiddleware().process_request(request)
         request.session.save()
 
         response = payment(request, self.member.username, self.cycle.pk)
 
-        self.assertEqual(response.status, 200)
+        self.assertEqual(response.status_code, 200)
