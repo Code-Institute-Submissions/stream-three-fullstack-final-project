@@ -1,6 +1,7 @@
 from django.test import TestCase
 from fileo.testing_models import CreateTestModels
 
+## TEST PAYMENT APP MODELS ##
 class TestPaymentModels(TestCase):
 
     def setUp(self):
