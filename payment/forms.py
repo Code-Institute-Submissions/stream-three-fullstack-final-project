@@ -1,4 +1,4 @@
-from .models import Order
+from .models import Payment
 from django.forms import ModelForm
 from django import forms
 from django_countries.fields import CountryField
@@ -8,7 +8,7 @@ class OrderForm(ModelForm):
     country = CountryField(blank_label='Select Country').formfield()
 
     class Meta:
-        model = Order
+        model = Payment
         fields = ['name_on_card', 
                     'address1', 
                     'address2',

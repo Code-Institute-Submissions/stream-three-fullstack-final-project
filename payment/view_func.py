@@ -3,7 +3,7 @@ from django.utils import timezone
 from fileo import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-from .models import OrderLineItem
+#from .models import OrderLineItem
 from cyclestatus.models import CycleStatus
 
 
@@ -24,11 +24,11 @@ def convert_total_for_stripe(total):
 ## Save Order Form to Order Model ##    
 def save_order(cycle, order_form):
     order = order_form.save(commit=False)
-    order.date = timezone.now()
+    order.cycle = cycle
     order.save()
-    line_item = OrderLineItem(order=order,
-                            cycle=cycle)
-    line_item.save()
+    #line_item = OrderLineItem(order=order,
+                           # cycle=cycle)
+   # line_item.save()
     return True
 
 ## Create Stripe Charge ##

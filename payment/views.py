@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.contrib import messages
-from .models import Order
+from .models import Payment
 from cyclestatus.models import CycleStatus
 from .forms import OrderForm, PaymentForm
 from managecycle.views import Cycles
