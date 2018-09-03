@@ -14,7 +14,7 @@ def member_profile(request, username):
     user_id = user.pk
     is_existing = profile_exists(user_id)
     if is_existing:
-        
+        profile = ProfileForm(model_to_dict(is_existing))
     else:
         profile = ProfileForm()
     if request.method == 'POST':
