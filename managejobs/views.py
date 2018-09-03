@@ -9,7 +9,7 @@ from .forms import JobsForm, EditJobsForm
 from accounts.forms import AllUser
 from .models import Jobs
 from .view_func import get_all_jobs_for_user, does_the_user_have_clients
-from .view_func import create_job, update_job#, update_cycles_client
+from .view_func import create_job, update_job
 
 ## Return Manage Jobs Template ##
 ## User can see all jobs and create new ones ##
@@ -33,7 +33,7 @@ def manage_jobs(request, username):
                                                 username=form.cleaned_data.get('client'))
                     job = get_object_or_404(Jobs, 
                                             pk=request.session['update_job_id'])
-                    update_job(job, form, client)
+                    update_job(job, form)
                     messages.success(request, 'Job updated.')
                     return redirect(reverse('manage_jobs',
                                                 kwargs={'username':username})) 

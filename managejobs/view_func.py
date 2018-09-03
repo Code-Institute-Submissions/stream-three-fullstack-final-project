@@ -36,7 +36,7 @@ def create_job(form, member):
     return True
 
 ## Update the selected Job, preserving Job Number ##
-def update_job(job, form, client):
+def update_job(job, form):
     job.job_title = form.cleaned_data.get('job_title')
     job.save(update_fields=['job_title']) 
     return True

@@ -34,21 +34,22 @@ class JobsForm(ParentJobForm):
     def clean_job_number(self):
         form_job_number = self.cleaned_data.get('job_number')
         user = get_object_or_404(AllUser, pk=self.user_id)
-        
+       
         try:
             existing_jobs = Jobs.objects.filter(
                                         member=user
                                         ).filter(
                                         job_number=form_job_number   
-                                        )
-            
+                                        )  
         except Jobs.DoesNotExist:
+            
             existing_jobs = None
-
+             
         if existing_jobs:
             raise forms.ValidationError(u'Job number already exists for your company.')
-      
-        return form_job_number
+        else:
+            print(form_job_number)
+            return form_job_number
 
 ## Inherits from Parent Job Form with Job Number field in READ ONLY, clean Method removed. ##
 ## This allows the Job to be edited preserving the Job Number, and stops clean job number Validation 

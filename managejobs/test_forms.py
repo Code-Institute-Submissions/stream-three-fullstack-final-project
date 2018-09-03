@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.forms.models import model_to_dict
 from .forms import JobsForm, EditJobsForm
 from fileo.test_models import CreateTestModels
 
@@ -23,6 +22,6 @@ class TestJobsForms(TestCase):
         form = JobsForm(self.member.pk, self.data)
         self.assertTrue(form.is_valid())
 
-    def test_edit_job(self):
+    def test_edit_job_form(self):
         form = EditJobsForm(self.member.pk, self.data)
         self.assertTrue(form.is_valid())
