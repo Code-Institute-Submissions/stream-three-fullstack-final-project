@@ -44,12 +44,16 @@ def payment(request, username, cycle_id):
                                         payment_form, 
                                         stripe_total)
             if customer.paid:
-                messages.success(request, 'Payment Successful. This Cycle is now Complete.')
+                messages.success(request, 
+                                'Payment Successful. This Cycle is now Complete.',
+                                fail_silently=True)
                 set_status_to_complete(cycle)
                 return redirect(reverse('payment', kwargs={'username': username,
                                                                     'cycle_id': cycle_id}))
             else:
-                messages.error(request, 'Apologies, we could not take payment with that card.')
+                messages.error(request, 
+                                'Apologies, we could not take payment with that card.',
+                                fail_silently=True)
 
     return render(request, 
                     'payment.html', 
