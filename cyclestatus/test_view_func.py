@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .view_func import set_status, email_status
 from .forms import StatusForm
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 ## TEST CYCLE STATUS VIEW HELPER FUNCTIONS/CLASSES ##
 class TestCycleStatusViewHelpers(TestCase):

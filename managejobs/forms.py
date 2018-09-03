@@ -48,7 +48,6 @@ class JobsForm(ParentJobForm):
         if existing_jobs:
             raise forms.ValidationError(u'Job number already exists for your company.')
         else:
-            print(form_job_number)
             return form_job_number
 
 ## Inherits from Parent Job Form with Job Number field in READ ONLY, clean Method removed. ##

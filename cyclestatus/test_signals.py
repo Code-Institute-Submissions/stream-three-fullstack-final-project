@@ -6,7 +6,7 @@ from .models import CycleStatus
 from .signals import reset_quote_status, reset_po_status, reset_invoice_status
 from cycleporthole.test_signals import CatchSignal
 from accounts.models import AllUser
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 
 ## TEST SIGNALS ARE RECEIVED AND STATUSES RESET ##

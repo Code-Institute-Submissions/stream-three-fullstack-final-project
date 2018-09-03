@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory
 from cycleporthole import upload
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 ## TESTS FOR CYCLEPORTHOLE UPLOAD HELPER FUNCTIONS/CLASSES ##
 class TestUploadHelpers(TestCase):

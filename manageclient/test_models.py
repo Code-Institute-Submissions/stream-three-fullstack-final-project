@@ -1,5 +1,5 @@
 from django.test import TestCase
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 class TestMemberClient(TestCase):
     

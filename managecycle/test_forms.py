@@ -5,7 +5,7 @@ from .forms import CycleForm
 from accounts.models import AllUser
 from manageclient.models import MemberClient
 from managejobs.models import Jobs
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from .models import Cycles
 
 ## TEST MANAGE CYCLE FORM ##

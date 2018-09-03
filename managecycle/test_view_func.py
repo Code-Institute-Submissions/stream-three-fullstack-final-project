@@ -1,6 +1,6 @@
 from django.test import TestCase
 from managecycle import view_func
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from .forms import CycleForm
 
 ## TEST MANAGE CYCLE VIEW HELPER FUNCTIONS ##

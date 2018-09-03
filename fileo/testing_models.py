@@ -93,6 +93,26 @@ class CreateTestModels():
         profile = Profile.objects.get(user=self.member)
         return profile
 
+    ## Create a Client Profile Object ##
+    def create_client_profile(self):
+        new_profile = Profile(company='Test Client Company',
+                                phone='+441784938491',
+                                position='Cient',
+                                user=self.client,
+                                address1='Address1',
+                                address2='Address2',
+                                city='London',
+                                region='Middlesex',
+                                post_code='Postcode',
+                                country='country')
+
+        new_profile.save()
+    ## Return the saved Client Profile Object ##
+    def get_client_profile(self):
+        profile = Profile.objects.get(user=self.client)
+        return profile
+        
+
     ## Create a Member/Client Entry ##
     def create_member_client(self):
         new_member_client = MemberClient(created=timezone.now(),

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from managejobs import view_func
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from managejobs import view_func
 from .forms import JobsForm, EditJobsForm
 from .models import Jobs
@@ -54,12 +54,12 @@ class TestManageJobsViewHelpers(TestCase):
         if form.is_valid():
             view_func.create_job(form, self.member)
         job = Jobs.objects.get(job_title='new job')
-        update_form = EditJobsForm(self.member.pk, {'job_title':'update job',
+        update_form = EditJobsForm(self.member.pk, {'job_title':'updated job',
                                                     'job_number': '123',
                                                     'client':self.models.get_client()})
         if update_form.is_valid():
             view_func.update_job(job, update_form)
 
-        updated_job = Jobs.objects.get(job_title='update job')
+        updated_job = Jobs.objects.get(job_title='updated job')
 
         self.assertEqual(updated_job.job_title, 'updated job')

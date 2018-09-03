@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory
 from django.contrib.sessions.middleware import SessionMiddleware
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from .views import porthole, step_notify, delete_file
 
 

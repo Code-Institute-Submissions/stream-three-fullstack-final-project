@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .forms import JobsForm, EditJobsForm
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 ## TEST MANAGE JOBS FORMS ##
 class TestJobsForms(TestCase):

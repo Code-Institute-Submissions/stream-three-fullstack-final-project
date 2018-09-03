@@ -1,5 +1,5 @@
 from django.test import TestCase
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from .view_func import get_all_clients_of_user
 
 ## TEST GET ALL CLIENTS BELONGING TO A MEMBER ##

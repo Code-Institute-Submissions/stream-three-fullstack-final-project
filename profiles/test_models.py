@@ -1,7 +1,7 @@
 from django.test import TestCase
 from accounts.models import AllUser
 from .models import Profile
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 class TestProfileModel(TestCase):
 

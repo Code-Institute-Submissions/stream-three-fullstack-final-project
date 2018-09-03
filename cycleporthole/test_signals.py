@@ -6,7 +6,7 @@ from .models import Quotes, PurchaseOrder, Invoices
 from accounts.models import AllUser
 from managecycle.models import Cycles
 from djmoney.money import Money
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 
 
 ## Catch Signal Class ##

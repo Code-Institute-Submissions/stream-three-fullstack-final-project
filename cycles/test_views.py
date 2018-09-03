@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.shortcuts import get_object_or_404
 from accounts.models import AllUser
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from cycles.views import member_cycles, client_cycles, reset_search
 
 

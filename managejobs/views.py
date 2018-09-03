@@ -39,7 +39,6 @@ def manage_jobs(request, username):
                                                 kwargs={'username':username})) 
             else:
                 form = JobsForm(user_id, request.POST)
-                print(request.POST)
                 if form.is_valid():
                     create_job(form, request.user)
                     messages.success(request, 'Job Created.')

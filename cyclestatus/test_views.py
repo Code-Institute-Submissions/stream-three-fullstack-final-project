@@ -1,5 +1,5 @@
 from django.test import TestCase, RequestFactory
-from fileo.test_models import CreateTestModels
+from fileo.testing_models import CreateTestModels
 from django.contrib.sessions.middleware import SessionMiddleware
 from .views import set_quote_status, set_invoice_status, set_po_status
 
