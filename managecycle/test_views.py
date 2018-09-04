@@ -35,7 +35,7 @@ class TestCyclesViews(TestCase):
         url = '/profile/manage_cycles/{0}/{1}/cancel'.format(self.member.username,
                                                         self.cycle.pk)
 
-        request = RequestFactory().post(url, cancel='cancel')
+        request = RequestFactory().post(url, {'cancel':'cancel'})
 
         request.user = self.member
         SessionMiddleware().process_request(request)

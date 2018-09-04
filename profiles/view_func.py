@@ -28,7 +28,6 @@ def edit_profile(profile, is_existing):
         
 ## Create a New Profile ##
 def new_profile(profile, user):
-   # print('here'#)
     new_profile = Profile(company=profile.cleaned_data['company'],
                             phone=profile.cleaned_data['phone'],
                             address1=profile.cleaned_data['address1'],

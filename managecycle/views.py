@@ -76,15 +76,14 @@ def delete_cycle(request, username, cycle_id):
 def cancel_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     status = get_object_or_404(CycleStatus, cycle=cycle)
-    if request.method == 'POST':
-        if request.POST['cancel'] == 'True':
-            status.cancelled = True
-            status.pending = False
-            status.save(update_fields=['cancelled', 'pending', 'complete'])
-        elif request.POST['cancel'] == 'False':
-            status.cancelled = False
-            status.save(update_fields=['cancelled'])
-            CycleStatuses(cycle).set_pending()
+    if request.POST['cancel'] == 'True':
+        status.cancelled = True
+        status.pending = False
+        status.save(update_fields=['cancelled', 'pending', 'complete'])
+    elif request.POST['cancel'] == 'False':
+        status.cancelled = False
+        status.save(update_fields=['cancelled'])
+        CycleStatuses(cycle).set_pending()
 
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
