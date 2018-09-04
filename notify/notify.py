@@ -68,7 +68,7 @@ class NewFile(NewClient):
        
 
     def new_quote_notification(self):
-        subject = 'New Quote in your Client Porthole.'
+        subject = 'New Quote in your Cycle Porthole.'
         html_message = render_to_string('../templates/emails/new_file_email.html',
                                         {'recipient_email': self.client.email,
                                         'recipient_name' : self.client.first_name,
@@ -84,7 +84,7 @@ class NewFile(NewClient):
                     html_message=html_message,fail_silently=True)
 
     def new_po_notification(self):
-        subject = 'New Quote in your Client Porthole.'
+        subject = 'New PO in your Cycle Porthole.'
         html_message = render_to_string('../templates/emails/new_file_email.html',
                                         {'recipient_email': self.member.email,
                                         'recipient_name' : self.member.first_name,
@@ -100,7 +100,7 @@ class NewFile(NewClient):
                     html_message=html_message,fail_silently=True)
 
     def new_invoice_notification(self):
-        subject = 'New Quote in your Client Porthole.'
+        subject = 'New Invoice in your Cycle Porthole.'
         html_message = render_to_string('../templates/emails/new_file_email.html',
                                         {'recipient_email': self.client.email,
                                         'recipient_name' : self.client.first_name,

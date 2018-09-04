@@ -3,7 +3,6 @@ from django.utils import timezone
 from fileo import settings
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-#from .models import OrderLineItem
 from cyclestatus.models import CycleStatus
 
 
