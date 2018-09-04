@@ -25,9 +25,6 @@ def save_order(cycle, order_form):
     order = order_form.save(commit=False)
     order.cycle = cycle
     order.save()
-    #line_item = OrderLineItem(order=order,
-                           # cycle=cycle)
-   # line_item.save()
     return True
 
 ## Create Stripe Charge ##
@@ -41,7 +38,8 @@ def create_payment(request, cycle, payment_form, stripe_total):
         )
     except stripe.error.CardError:
         messages.error(request,
-                        'Card Error. Check your details and try again.')  
+                        'Card Error. Check your details and try again.',
+                        fail_silently=True)  
     return customer
 
 ## Set Cycle Status to Complete ##
