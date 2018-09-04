@@ -53,9 +53,12 @@ def manage_jobs(request, username):
 
 ## Delete Job View, Redirect to Manage Jobs ##
 def delete_job(request, username, job_id):
+    print('here')
     if request.method == 'POST':
         job = get_object_or_404(Jobs, pk=job_id)
+       
         job.delete()
-        messages.success(request, 'Job deleted.')
+        messages.success(request, 'Job deleted.',
+                        fail_silently=True)
         return redirect(reverse('manage_jobs',
                                 kwargs={'username':username}))

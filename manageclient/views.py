@@ -5,7 +5,7 @@ from accounts.models import AllUser
 from profiles.models import Profile
 from profiles.view_func import profile_exists
 from .models import MemberClient
-from .view_func import create_client #email_client_account_details, 
+from .view_func import create_client 
 from .view_func import get_all_clients_of_user
 from accounts.forms import UserRegisterForm
 from notify.notify import NewClient, get_email_details

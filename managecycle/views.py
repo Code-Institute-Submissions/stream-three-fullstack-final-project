@@ -14,9 +14,8 @@ from cyclestatus.models import CycleStatus
 from cycles.view_func import SetSessionValues
 
 ## Return Manage Cycles Template ##
-## User can see all Cyles and create new ones ##
 ## If Update Key in request.POST, render form with inital values ##
-## If Updated in POST request run Update Helper instead of Create Helper ##
+## If Updated in POST request run Update Cycle Helper instead of Create Cycle Helper ##
 def manage_cycles(request, username):
     SetSessionValues(request).set_values()
     user = request.user
@@ -65,7 +64,8 @@ def delete_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     cycle.delete()
     messages.success(request, 'Cycle deleted.',
-                    extra_tags='manage_cycle')
+                    extra_tags='manage_cycle',
+                    fail_silently=True)
     
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
@@ -76,14 +76,15 @@ def delete_cycle(request, username, cycle_id):
 def cancel_cycle(request, username, cycle_id):
     cycle = get_object_or_404(Cycles, pk=cycle_id)
     status = get_object_or_404(CycleStatus, cycle=cycle)
-    if request.POST['cancel'] == 'True':
-        status.cancelled = True
-        status.pending = False
-        status.save(update_fields=['cancelled', 'pending', 'complete'])
-    elif request.POST['cancel'] == 'False':
-        status.cancelled = False
-        status.save(update_fields=['cancelled'])
-        CycleStatuses(cycle).set_pending()
+    if request.method == 'POST':
+        if request.POST['cancel'] == 'True':
+            status.cancelled = True
+            status.pending = False
+            status.save(update_fields=['cancelled', 'pending', 'complete'])
+        elif request.POST['cancel'] == 'False':
+            status.cancelled = False
+            status.save(update_fields=['cancelled'])
+            CycleStatuses(cycle).set_pending()
 
     return redirect(reverse('manage_cycles', kwargs={'username':username}))
 
@@ -96,6 +97,7 @@ def reset_cycle(request, username, cycle_id):
     delete_all_files(request, cycle_id)
     messages.success(request,   
                     'Cycle reset',
-                    extra_tags='manage_cycle')
+                    extra_tags='manage_cycle',
+                    fail_silently=True)
 
     return redirect(reverse('manage_cycles', kwargs={'username':username}))

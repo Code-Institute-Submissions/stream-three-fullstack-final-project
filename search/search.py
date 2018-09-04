@@ -44,21 +44,25 @@ class SearchCycles:
             
         return cycles
 
+    ## SEARCH ALL CYCLES, THEN FILTER QUERYSET BY PENDING STATUS ##
     def search_pending_cycles(self):
         cycles = self.search_all_cycles()
         cycles = cycles.filter(pending=True).order_by(self.order_by)
         return cycles
 
+    ## SEARCH ALL CYCLES, THEN FILTER QUERYSET BY CANCELLED STATUS ##
     def search_cancelled_cycles(self):
         cycles = self.search_all_cycles()
         cycles = cycles.filter(cancelled=True).order_by(self.order_by)
         return cycles
-        
+    
+    ## SEARCH ALL CYCLES, THEN FILTER QUERYSET BY COMPLETED STATUS ##
     def search_completed_cycles(self):
         cycles = self.search_all_cycles()
         cycles = cycles.filter(complete=True).order_by(self.order_by)
         return cycles
 
+    ## SEARCH ALL CYCLES, THEN FILTER QUERYSET BY ACTIVE STATUS ##
     def search_active_cycles(self):
         cycles = self.search_all_cycles()
         cycles = cycles.exclude(Q(pending=True) | 
