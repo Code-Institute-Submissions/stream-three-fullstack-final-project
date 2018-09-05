@@ -231,9 +231,9 @@
     content: '';
     position: absolute;
     bottom: -1px;
-    left: 15px;
+    left: 16px;
     height: 1px;
-    width: calc(100% - 15px);
+    width: calc(100% - 16px);
     background-color: #fff;
     transition: background-color .2s $drop-down-bezier;
 }

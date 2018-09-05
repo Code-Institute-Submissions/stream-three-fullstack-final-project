@@ -2,7 +2,6 @@
 
 (() => {
 
-   // const nav = document.getElementById('nav');
     const headerBanner = document.getElementById('header-banner');
     const input = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');

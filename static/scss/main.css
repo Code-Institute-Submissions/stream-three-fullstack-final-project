@@ -1638,9 +1638,9 @@ p, button, a {
   content: '';
   position: absolute;
   bottom: -1px;
-  left: 15px;
+  left: 16px;
   height: 1px;
-  width: calc(100% - 15px);
+  width: calc(100% - 16px);
   background-color: #fff;
   transition: background-color 0.2s cubic-bezier(1, 0.32, 0.32, 0.75); }
 

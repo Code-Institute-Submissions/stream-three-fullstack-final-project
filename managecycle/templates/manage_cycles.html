@@ -84,32 +84,35 @@
                 <div class="manage-item-container">
                     <div class="manage-item__row">
                         <div class="manage-item__column">
-                            <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
-                        </div>
-                        {% if item.cancelled %}
-                        <div class="manage-item__column manage-item__column-status">
-                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
-                        </div>
-                        {% elif item.complete %}
-                        <div class="manage-item__column manage-item__column-status">
-                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
-                        </div>
-                        {% elif item.pending %}
-                        <div class="manage-item__column manage-item__column-status">
-                            <p class="cycles-results__text"><i class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Pending</p>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <hr class="manage-items-hr">
-                    <div class="manage-item__row">
-                        <div class="manage-item__column">
                             {% if not item.cancelled %}
                             <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
                             {% elif item.cancelled %}
                             <p id="cycles-results__text--grey"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
                             {% endif %}
                         </div>
-                        
+                        {% if item.cancelled %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Fileo ID: {{ item.cycle.id }}</p>
+                        </div>
+                        {% elif item.complete %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Fileo ID: {{ item.cycle.id }}</p>
+                        </div>
+                        {% elif item.pending %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Fileo ID: {{ item.cycle.id }}</p>
+                        </div>
+                        {% else %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> Fileo ID: {{ item.cycle.id }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <hr class="manage-items-hr">
+                    <div class="manage-item__row">
+                        <div class="manage-item__column">
+                            <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
+                        </div>
                     </div>
                     <hr class="manage-items-hr">
                     <div class="manage-item__row">

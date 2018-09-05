@@ -20,9 +20,9 @@ def manage_cycles(request, username):
     SetSessionValues(request).set_values()
     user = request.user
     cycle_form = CycleForm(user.pk)
-    users_cycles = users_cycles = CycleStatus.objects.filter(
+    users_cycles = CycleStatus.objects.filter(
                                                 cycle__member=user
-                                                ).order_by('cycle__job__job_title')
+                                                ).order_by('cycle__id')
    
     jobs = get_all_jobs_for_user(user.pk)
     if request.method == 'POST':
