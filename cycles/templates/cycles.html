@@ -11,9 +11,6 @@
     <section class="cycles-info">
         <h1 class="cycles-info__heading">Search Your Cycles.</h1>
         {% if user.is_member %}
-            <!--<div class="cycles-info__profile-exp">
-                <p class="cycles-profile-exp__text">Please complete your <a class="cycles-profile-exp__link" href="{% url 'member_profile' username=user.username %}">profile</a> before doing anything else.</p>
-            </div>-->
             {% if profile %}
                 {% if messages %}
                     {% for message in messages %}
@@ -209,4 +206,5 @@
         {% endif %}
     </section>
 </div>
+{% include 'footer.html' %}
 {% endblock %}

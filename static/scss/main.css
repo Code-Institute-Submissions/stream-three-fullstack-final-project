@@ -247,6 +247,20 @@ p, button, a {
 .header-banner ul li i {
   font-size: 1rem; }
 
+footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #759f9b;
+  width: 100%;
+  margin-top: 5rem; }
+
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-grow: 1; }
+
 .login-bg-color {
   background-repeat: no-repeat;
   background-color: #3a5864; }
