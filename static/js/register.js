@@ -121,7 +121,7 @@
     setDivToFixed(explain, "container--fixed", 
                             "container--fixed-100");
     changeFixedDivTextOnScroll();
-    addBgColorToBody('body-color');
+    //addBgColorToBody('body-color');
     
 
 })();

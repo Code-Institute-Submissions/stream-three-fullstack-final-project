@@ -81,94 +81,99 @@
         <div class="manage-items-container {% if cycles|length <= 1 %} manage-items-container--no-items {% endif %}">
             {% if cycles %}
             {% for item in cycles %}
-            <div class="manage-item-container">
-                <div class="manage-item__row">
-                    <div class="manage-item__column">
-                        <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
-                    </div>
-                    {% if item.cancelled %}
-                    <div class="manage-item__column manage-item__column-status">
-                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
-                    </div>
-                    {% elif item.complete %}
-                    <div class="manage-item__column manage-item__column-status">
-                        <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
-                    </div>
-                    {% endif %}
-                </div>
-                <hr class="manage-items-hr">
-                <div class="manage-item__row">
-                    <div class="manage-item__column">
-                        {% if not item.cancelled %}
-                        <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
-                        {% elif item.cancelled %}
-                        <p id="cycles-results__text--grey"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
+                <div class="manage-item-container">
+                    <div class="manage-item__row">
+                        <div class="manage-item__column">
+                            <p><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
+                        </div>
+                        {% if item.cancelled %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban cycles-results__overall-icons" aria-hidden="true"></i> Cancelled</p>
+                        </div>
+                        {% elif item.complete %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-check-circle cycles-results__overall-icons" aria-hidden="true"></i> Complete</p>
+                        </div>
+                        {% elif item.pending %}
+                        <div class="manage-item__column manage-item__column-status">
+                            <p class="cycles-results__text"><i class="far fa-clock cycles-results__overall-icons" aria-hidden="true"></i> Pending</p>
+                        </div>
                         {% endif %}
                     </div>
-                </div>
-                <hr class="manage-items-hr">
-                <div class="manage-item__row">
-                    <div class="manage-item__column">
-                        <p><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
-                    </div>
-                </div>
-                <hr class="manage-items-hr">
-                <div class="manage-item__row">
-                    <div class="manage-item__column manage-item__button-column">
-                        <div class="manage-button">
-                            {% csrf_token %}
-                            <button  data-id="Reset Cycle" class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %} manage-reset" type='submit'{% if item.cancelled or item.complete %} disabled {% endif %}>Reset Cycle</button>
-                        </div>
-                    </div>
-                    <div class="manage-item__column manage-item__button-column">
-                        <form class="manage-button" method='POST' action="{% url 'cancel_cycle' username=username cycle_id=item.cycle.id %}">
-                            {% csrf_token %}
+                    <hr class="manage-items-hr">
+                    <div class="manage-item__row">
+                        <div class="manage-item__column">
                             {% if not item.cancelled %}
-                            <input type='hidden' name='cancel' value='True'>              
-                            <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" {% if item.cancelled or item.complete %} disabled {% endif %} type='submit'>Cancel</button>
+                            <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p></a>
                             {% elif item.cancelled %}
-                            <input type='hidden' name='cancel' value='False'>              
-                            <button class="manage-button__button" type='submit'>Re-instate</button>
+                            <p id="cycles-results__text--grey"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
                             {% endif %}
-                        </form>
+                        </div>
+                        
                     </div>
-                </div>
-                <div class="manage-item__row">
-                    <div class="manage-item__column manage-item__button-column">
-                        <form class="manage-button" method="POST" action="{% url 'manage_cycles' username=username %}">
-                            {% csrf_token %}    
-                            <input type="hidden" name="update" value="true">
-                            <input type="hidden" name="cycle_id" value="{{ item.cycle.id }}">
-                            <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" type="submit" {% if item.cancelled or item.complete %} disabled {% endif %}>Update Cycle</button>
-                        </form>
+                    <hr class="manage-items-hr">
+                    <div class="manage-item__row">
+                        <div class="manage-item__column">
+                            <p><i class="fas fa-user manage-item__icon" aria-hidden="true"></i> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                        </div>
                     </div>
-                    <div class="manage-item__column manage-item__button-column">
-                        <div class="manage-button">
-                            <button data-id="Delete Cycle" class="manage-button__button manage-button__button--delete-color manage-delete">Delete Cycle</button>
+                    <hr class="manage-items-hr">
+                    <div class="manage-item__row">
+                        <div class="manage-item__column manage-item__button-column">
+                            <div class="manage-button">
+                                {% csrf_token %}
+                                <button  data-id="Reset Cycle" class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %} manage-reset" type='submit'{% if item.cancelled or item.complete %} disabled {% endif %}>Reset Cycle</button>
+                            </div>
+                        </div>
+                        <div class="manage-item__column manage-item__button-column">
+                            <form class="manage-button" method='POST' action="{% url 'cancel_cycle' username=username cycle_id=item.cycle.id %}">
+                                {% csrf_token %}
+                                {% if not item.cancelled %}
+                                <input type='hidden' name='cancel' value='True'>              
+                                <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" {% if item.cancelled or item.complete %} disabled {% endif %} type='submit'>Cancel</button>
+                                {% elif item.cancelled %}
+                                <input type='hidden' name='cancel' value='False'>              
+                                <button class="manage-button__button" type='submit'>Re-instate</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                    <div class="manage-item__row">
+                        <div class="manage-item__column manage-item__button-column">
+                            <form class="manage-button" method="POST" action="{% url 'manage_cycles' username=username %}">
+                                {% csrf_token %}    
+                                <input type="hidden" name="update" value="true">
+                                <input type="hidden" name="cycle_id" value="{{ item.cycle.id }}">
+                                <button class="manage-button__button {% if item.cancelled or item.complete %} manage-button__button--cancelled {% endif %}" type="submit" {% if item.cancelled or item.complete %} disabled {% endif %}>Update Cycle</button>
+                            </form>
+                        </div>
+                        <div class="manage-item__column manage-item__button-column">
+                            <div class="manage-button">
+                                <button data-id="Delete Cycle" class="manage-button__button manage-button__button--delete-color manage-delete">Delete Cycle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="manage-show-delete" class="manage-item__row manage-item__row--center manage-delete__button--hide">
+                        <div class="manage-item__column manage-item__column--center">
+                            <p class="manage-item__delete-text">Are you sure ?</p>
+                            <p class="manage-item__delete-text">All related files will be deleted too.</p>
+                            <form class="manage-button" method="POST" action="{% url 'delete_cycle' username=username cycle_id=item.cycle.id %}">
+                                {% csrf_token %}
+                                <button class="manage-button__button manage-button__button--delete-color" type="submit">I'm Sure <i class="fas fa-check" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-id="manage-show-reset" class="manage-item__row manage-item__row--center manage-reset_button--hide">
+                        <div class="manage-item__column manage-item__column--center">
+                            <p class="manage-item__delete-text">Are you sure ?</p>
+                            <p class="manage-item__delete-text">All statuses will be reset and files deleted.</p>
+                            <form class="manage-button" method='POST' action="{% url 'reset_cycle' username=username cycle_id=item.cycle.id %}">
+                                {% csrf_token %}
+                                <button class="manage-button__button {% if item.cancelled %} manage-button__button--cancelled {% endif %} manage-button__button--reset-color" type='submit'{% if item.cancelled %} disabled {% endif %}>I'm Sure <i class="fas fa-check" aria-hidden="true"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div data-id="manage-show-delete" class="manage-item__row manage-item__row--center manage-delete__button--hide">
-                    <div class="manage-item__column manage-item__column--center">
-                        <p class="manage-item__delete-text">Are you sure ?</p>
-                        <p class="manage-item__delete-text">All related files will be deleted too.</p>
-                        <form class="manage-button" method="POST" action="{% url 'delete_cycle' username=username cycle_id=item.cycle.id %}">
-                            {% csrf_token %}
-                            <button class="manage-button__button manage-button__button--delete-color" type="submit">I'm Sure <i class="fas fa-check" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <div data-id="manage-show-reset" class="manage-item__row manage-item__row--center manage-reset_button--hide">
-                    <div class="manage-item__column manage-item__column--center">
-                        <p class="manage-item__delete-text">Are you sure ?</p>
-                        <p class="manage-item__delete-text">All statuses will be reset and files deleted.</p>
-                        <form class="manage-button" method='POST' action="{% url 'reset_cycle' username=username cycle_id=item.cycle.id %}">
-                            {% csrf_token %}
-                            <button class="manage-button__button {% if item.cancelled %} manage-button__button--cancelled {% endif %} manage-button__button--reset-color" type='submit'{% if item.cancelled %} disabled {% endif %}>I'm Sure <i class="fas fa-check" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
             {% endfor %}
             {% else %}
             <div>

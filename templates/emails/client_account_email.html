@@ -1,10 +1,15 @@
 <p>Hi {{ recipient_name }}.</p>
 <br>
-<p>{{ sender_name }} from {{ member_company }} has created a client account for you at Fileo.<br>
+<p>{{ sender_name }} from {{ member_profile.company }} has created a client account for you at Fileo.
+<br>
+<p>Their contact details are below:</p>
+<br>
+<p>Email: {{ sender_email }}</p>
+<p>Phone: {{ member_profile.phone }}</p>
 <br>
 <p>Your username is {{ client_username }}.</p>
 <br>
-<p>{{ sender_name }} has setup your account with a temporary password but we strongly recommend setting up your own.</p>
+<p>{{ sender_name }} has set up your account with a temporary password but we strongly recommend setting up your own.</p>
 <br>
 <p>Please visit www.fileo.co.uk/accounts/password-reset to choose your own password.</p>
 <br>

@@ -164,7 +164,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 ### STATIC FILES SETTINGS ###
 
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 STATICFILES_LOCATION = 'static'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)

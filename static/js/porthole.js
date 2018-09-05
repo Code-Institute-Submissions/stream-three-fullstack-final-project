@@ -2,7 +2,7 @@
 
 (() => {
 
-    const nav = document.getElementById('nav');
+   // const nav = document.getElementById('nav');
     const headerBanner = document.getElementById('header-banner');
     const input = document.getElementsByTagName('input');
     const selects = document.getElementsByTagName('select');
@@ -160,8 +160,8 @@
     hideSelects(selects);
 
     // BODY AND NAV STYLES //
-    addClassToClassList(nav, 'porthole-nav');
-    addBgColorToBody('porthole-bg-color');
+    //addClassToClassList(nav, 'porthole-nav');
+   // addBgColorToBody('porthole-bg-color');
     headerBanner.style.display = 'none';
 
 })();

@@ -3,7 +3,7 @@
     const dropDown = document.getElementById("drop-down-menu");
     const dropDownIcon = document.getElementById("drop-down-icon");
     const moreIcons = document.getElementsByClassName("more__icon");
-    const navIcons = document.getElementsByClassName("nav__icons");
+    //const navIcons = document.getElementsByClassName("nav__icons");
 
     // FUNCTION CALLS FROM UTILITY JS //
                         // Click Element, Affected Element, Class //

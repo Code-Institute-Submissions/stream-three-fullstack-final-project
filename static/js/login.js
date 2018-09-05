@@ -56,7 +56,7 @@
     rotateUpArrowOnScrollDown();
 
     // DETECT IF MOBILE BROWSER // 
-    console.log(isMobile);
+    
     if (isMobile) {
         
         landingContainer.setAttribute('style', `height: ${(window.innerHeight).toString() + 'px'};` );

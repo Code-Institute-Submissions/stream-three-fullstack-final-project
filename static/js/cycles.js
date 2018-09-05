@@ -55,6 +55,6 @@
     // -------------------- FUNCTION CALLS ----------------------- //
     
     colorForStatus(cycleStatus);
-    addBgColorToBody('body-color');
+    //addBgColorToBody('body-color');
 
 })();

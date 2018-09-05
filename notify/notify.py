@@ -19,7 +19,7 @@ def get_email_details(username, client_username):
 
 ## Notification of New Member Sign Up ##
 class NewMember:
-    """Class sends emails to Members"""
+   
     def __init__(self, member_name, member_email, member_username):
         self.member_name = member_name
         self.member_email = member_email
@@ -38,7 +38,7 @@ class NewMember:
 
 ## Notification for New Client Sign Up ##
 class NewClient:
-    """Class Sends emails to clients"""
+    
     def __init__(self, **kwargs):
         self.client = kwargs.get('client')
         self.member = kwargs.get('member')
@@ -50,8 +50,10 @@ class NewClient:
                                         {'recipient_email': self.client.email,
                                         'recipient_name' : self.client.first_name,
                                         'sender_name': self.member.first_name,
+                                        'sender_email':self.member.email,
                                         'client_username': self.client.username,
-                                        'member_company': self.profile.company})
+                                        'member_profile': self.profile
+                                        })
         plain_message = strip_tags(html_message)
         from_email = os.environ.get('EMAIL_ADDRESS')
         to = [self.client.email]

@@ -193,7 +193,7 @@
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
 
     alterButtonInnerHtml(manageDeleteItemButtons);
-    addBgColorToBody('body-color');
+    //addBgColorToBody('body-color');
     addRemoveManageButtonClasses(
                                 manageDeleteItemButtons,
                                 'manage-delete__button--show',

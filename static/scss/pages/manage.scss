@@ -221,6 +221,29 @@
     
 }
 
+.manage-items__cycle-link {
+
+    position: relative;
+}
+
+.manage-items__cycle-link::after {
+
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 15px;
+    height: 1px;
+    width: calc(100% - 15px);
+    background-color: #fff;
+    transition: background-color .2s $drop-down-bezier;
+}
+
+.manage-items__cycle-link:hover:after {
+
+    background-color: #bab5b5;
+    
+}
+
 
 .manage-item__column-status p {
 
