@@ -75,6 +75,12 @@ p, button, a {
   font-size: .8rem;
   text-align: center; }
 
+.tippy-tooltip.body-theme {
+  background-color: #fff;
+  font-family: "Quicksand", sans-serif;
+  font-size: .8rem;
+  color: #26404a; }
+
 .main-header {
   height: 4rem;
   width: 100%;
