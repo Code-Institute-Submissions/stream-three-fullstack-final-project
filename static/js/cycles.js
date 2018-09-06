@@ -3,7 +3,13 @@
 (() => {
 
     const cycleStatus = document.getElementsByClassName('column-icon');
-    
+    const portholeButton = document.getElementsByClassName('cycles-results__porthole-button');
+
+    for (let i = 0; i < portholeButton.length; i++) {
+
+        tippy(portholeButton[i], defaultToolTip);
+    }
+  
     // -------------------------- FUNCTIONS --------------------------- //
 
     // CHANGE THE COLOR OF THE RESULTS CONTAINER DIV AND STATUS ICON DEPENDING ON ITS STATUS //
@@ -55,6 +61,6 @@
     // -------------------- FUNCTION CALLS ----------------------- //
     
     colorForStatus(cycleStatus);
-    //addBgColorToBody('body-color');
+   
 
 })();

@@ -10,6 +10,20 @@
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+// TIPPY DEFAULT TOOL TIP SETTINGS //
+
+const defaultToolTip = {position: 'top-start',
+                        arrow: true,
+                        animateFill: false,
+                        animation: 'fade',
+                        arrowSize: 'small',
+                        delay: [200, 100],
+                        size: 'regular',
+                        theme: 'body',
+                        distance: 15
+                        }
+
+
 // ADD BG COLOR TO BODY IN BASE.HTML //
 
 const addBgColorToBody = (_class) => {

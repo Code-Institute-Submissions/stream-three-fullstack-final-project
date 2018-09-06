@@ -7,7 +7,7 @@
 {% endblock head_js %}
 {% block content %}
 {% include 'header.html' %}
-<div class="cycles-container">
+<div class="cycles-container">  
     <section class="cycles-info">
         <h1 class="cycles-info__heading">Search Your Cycles.</h1>
         {% if user.is_member %}
@@ -168,7 +168,6 @@
                             {% endif %}
                         </div>
                     </div>
-                    <!--<hr class="cycles-item-hr cycle-results-mobile">-->
                     <!--- TABLET AND UP ARRANGEMENT ONLY -->
                     <div class="cycles-results__row cycle-results-tablet">
                         <div class="cycles-results__column column-2">
@@ -195,7 +194,7 @@
                     <div class="cycles-results__porthole">
                         <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                             {% if not item.cancelled %}
-                                <button class="cycles-results__porthole-button" type="submit">Cycle Porthole</button>
+                                <button class="cycles-results__porthole-button" type="submit" title="Click through to the cycle porthole to manage your payment cycle files." data-position="bottom">Cycle Porthole</button>
                             {% else %}
                                 <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
                             {% endif %}
