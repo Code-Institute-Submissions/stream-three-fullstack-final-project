@@ -12,7 +12,7 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 // TIPPY DEFAULT TOOL TIP SETTINGS //
 
-const defaultToolTip = {position: 'top-start',
+const defaultToolTip = {position: 'top',
                         arrow: true,
                         animateFill: false,
                         animation: 'fade',
