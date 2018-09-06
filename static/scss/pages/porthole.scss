@@ -13,11 +13,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
-
-    @include desktop {
-
-        
-    }
+    min-height: calc(100% - 3rem);
 
 }
 

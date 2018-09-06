@@ -3,6 +3,7 @@
 .payment-container {
 
     @include flex-column;
+    min-height: calc(100% - 4rem);
 
 }
 
