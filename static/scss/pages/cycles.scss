@@ -6,6 +6,7 @@
     position: relative;
     top: 4rem;
     z-index: -1;
+    min-height: calc(100% - 6rem);
 }
 
 // ------- SEARCH FORM STYLES ------ //
