@@ -27,9 +27,9 @@
 </header>
 <div id="header-banner" class="header-banner">
     <ul>
-        <li><i class="fas fas fa-check-circle" aria-hidden="true"></i><span>Complete: <strong>£{{ request.session.complete }}</strong></span></li>
-        <li><i class="far fa-clock" aria-hidden="true"></i><span>Pending: <strong>£{{ request.session.pending }}</strong></span></li>
-        <li><i class="fas fa-walking" aria-hidden="true"></i><span>Active: <strong>£{{ request.session.active }}</strong></span></li>
-        <li><i class="fas fas fa-ban" aria-hidden="true"></i><span>Cancelled: <strong>£{{ request.session.cancelled }}</strong></span></li>
+        <li><i class="fas fas fa-check-circle" aria-hidden="true"></i><span id="header-banner__complete" title=" A running total of your completed payment cycles, it will update as and when each cycle is paid for. ">Complete: <strong>£{{ request.session.complete }}</strong></span></li>
+        <li><i class="far fa-clock" aria-hidden="true"></i><span id="header-banner__pending" title="A running total of your pending payment cycles, it will update when all cycle steps have been approved, but not yet paid. ">Pending: <strong>£{{ request.session.pending }}</strong></span></li>
+        <li><i class="fas fa-walking" aria-hidden="true"></i><span id="header-banner__active" title="A running total of your active payment cycles, it will update when you assign a value to a cycle in the porthole. ">Active: <strong>£{{ request.session.active }}</strong></span></li>
+        <li><i class="fas fas fa-ban" aria-hidden="true"></i><span id="header-banner__cancelled" title=" A running total of your cancelled payment cycles, it will keep track of any cycle with it's status set to cancelled. ">Cancelled: <strong>£{{ request.session.cancelled }}</strong></span></li>
     </ul>
 </div>

@@ -3,6 +3,7 @@
 (() => {
 
     const header = document.getElementsByClassName('main-header')[0];
+    const footer = document.getElementsByTagName('footer');
     const headerBanner = document.getElementById('header-banner');
     const paymentButton = document.getElementById('payment-button');
     const expiryMonthSelect = document.getElementById('id_expiry_month');
@@ -96,6 +97,8 @@
     }
     
     // FUNCTION CALLS //
+
+    addClassToClassList(footer[0], 'footer--payment-background-color');
 
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
     addBlankSelectToExpiryDates(expiryYearSelect, 'Year');

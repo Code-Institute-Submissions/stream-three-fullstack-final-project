@@ -5,10 +5,7 @@
     const cycleStatus = document.getElementsByClassName('column-icon');
     const portholeButton = document.getElementsByClassName('cycles-results__porthole-button');
 
-    for (let i = 0; i < portholeButton.length; i++) {
 
-        tippy(portholeButton[i], defaultToolTip);
-    }
   
     // -------------------------- FUNCTIONS --------------------------- //
 
@@ -61,6 +58,9 @@
     // -------------------- FUNCTION CALLS ----------------------- //
     
     colorForStatus(cycleStatus);
-   
+    for (let i = 0; i < portholeButton.length; i++) {
+
+        tippy(portholeButton[i], toolTip);
+    }
 
 })();

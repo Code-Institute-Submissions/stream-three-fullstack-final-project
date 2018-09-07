@@ -2,9 +2,14 @@ footer {
     display: flex; 
     flex-direction: column;
     position: relative;
-    background-color: #759f9b;
+    background-color: $login_bg_color;//#fff;//#759f9b;
     width: 100%;
     margin-top: 5rem;
+}
+
+.footer--payment-background-color {
+
+    background-color: $login-green;
 }
 
 .footer-row {
@@ -20,15 +25,15 @@ footer {
 .footer-column a p,
 .footer-column p {
 
-    color: $footer-icons;
+    color: #fff //$footer-icons;
 }
 
 .footer-base__copyright-text {
 
     font-size: .7rem;
     text-align: center;
-    margin-bottom: 1rem;
-    color: $footer-icons;
+    margin-bottom: 1.5rem;
+    color: #fff;// $footer-icons;
 }
 
 .footer-base__icons {
@@ -49,12 +54,17 @@ footer {
 .footer-base__icons p i {
 
     font-size: 1rem;
-    color: $footer-icons;
+    color: #fff;//$footer-icons;
 }
 
 
 .footer-base {
 
     margin-top: .8rem;
-    background-color: $footer-base;
+    //background-color: $login_bg_color;//$footer-base;
+}
+
+.footer-hr {
+
+    color: rgba(0,0,0,.1);
 }

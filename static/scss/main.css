@@ -257,9 +257,12 @@ footer {
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: #759f9b;
+  background-color: #3a5864;
   width: 100%;
   margin-top: 5rem; }
+
+.footer--payment-background-color {
+  background-color: #81aeaa; }
 
 .footer-row {
   display: flex;
@@ -271,13 +274,13 @@ footer {
 .footer-column h5,
 .footer-column a p,
 .footer-column p {
-  color: #415452; }
+  color: #fff; }
 
 .footer-base__copyright-text {
   font-size: .7rem;
   text-align: center;
-  margin-bottom: 1rem;
-  color: #415452; }
+  margin-bottom: 1.5rem;
+  color: #fff; }
 
 .footer-base__icons {
   display: flex;
@@ -289,11 +292,13 @@ footer {
 
 .footer-base__icons p i {
   font-size: 1rem;
-  color: #415452; }
+  color: #fff; }
 
 .footer-base {
-  margin-top: .8rem;
-  background-color: #618280; }
+  margin-top: .8rem; }
+
+.footer-hr {
+  color: rgba(0, 0, 0, 0.1); }
 
 .login-bg-color {
   background-repeat: no-repeat;
@@ -1650,7 +1655,8 @@ footer {
       padding: 2rem;
       border: 1px solid rgba(37, 37, 37, 0.15);
       border-radius: .3rem;
-      margin-top: 6rem; } }
+      margin-top: 6rem;
+      margin-bottom: 6rem; } }
 
 .manage-item-container {
   display: flex;
