@@ -81,6 +81,26 @@ p, button, a {
   font-size: .8rem;
   color: #26404a; }
 
+/* Right placement tooltip arrow (arrow will be on left side of tooltip) */
+.tippy-popper[x-placement^=right] .tippy-tooltip.body-theme .tippy-arrow {
+  border-right: 7px solid #fff;
+  /* your color here */ }
+
+/* Left placement tooltip arrow (arrow will be on right side of tooltip) */
+.tippy-popper[x-placement^=left] .tippy-tooltip.body-theme .tippy-arrow {
+  border-left: 7px solid  #fff;
+  /* your color here */ }
+
+/* Top placement tooltip arrow (arrow will be on bottom side of tooltip) */
+.tippy-popper[x-placement^=top] .tippy-tooltip.body-theme .tippy-arrow {
+  border-top: 7px solid  #fff;
+  /* your color here */ }
+
+/* Bottom placement tooltip arrow (arrow will be on top side of tooltip) */
+.tippy-popper[x-placement^=bottom] .tippy-tooltip.body-theme .tippy-arrow {
+  border-bottom: 7px solid  #fff;
+  /* your color here */ }
+
 .main-header {
   height: 4rem;
   width: 100%;
@@ -1688,22 +1708,28 @@ footer {
   align-items: flex-start;
   flex-grow: 1; }
 
-.manage-items__cycle-link {
-  position: relative; }
+/*.manage-items__cycle-link {
 
-.manage-items__cycle-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 19px;
-  height: 1px;
-  width: calc(100% - 19px);
-  background-color: #fff;
-  transition: background-color 0.2s cubic-bezier(1, 0.32, 0.32, 0.75); }
+    position: relative;
+}
+
+/*.manage-items__cycle-link::after {
+
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 19px;
+    height: 1px;
+    width: calc(100% - 19px);
+    background-color: #fff;
+    transition: background-color .2s $drop-down-bezier;
+}
 
 .manage-items__cycle-link:hover:after {
-  background-color: #bab5b5; }
 
+    background-color: #bab5b5;
+    
+}*/
 .manage-item__column-status p {
   align-self: flex-end; }
 

@@ -36,7 +36,7 @@
             <p {% if form.job_number.field.widget.attrs.readonly %} class="manage-form__update-job-number"{% endif %}>{{ form.job_number}}</p>
             <p>{{ form.client }}</p>
             {% if not form.job_number.field.widget.attrs.readonly %}
-            <button class="manage-form__button"type="submit">Add Job</button>
+            <button class="manage-form__button"type="submit">Create Job</button>
             {% else %}
             <input type="hidden" name="updated" value="true">
             <button id="jobs-button" class="manage-form__button"type="submit">Update Job</button>

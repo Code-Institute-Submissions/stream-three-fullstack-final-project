@@ -12,16 +12,46 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 // TIPPY DEFAULT TOOL TIP SETTINGS //
 
-const toolTip = {position: 'bottom-start',
-                arrow: true,
-                animation: 'fade',
-                arrowSize: 'small',
-                delay: [200, 100],
-                size: 'regular',
-                theme: 'body',
-                distance: 15
-                }
+const toolTipDefault = {position:'top-start',
+                        arrow: true,
+                        animateFill: false,
+                        animation: 'fade',
+                        arrowSize: 'small',
+                        delay: [200, 100],
+                        size: 'regular',
+                        theme: 'body',
+                        distance: 15
+                        }
 
+const toolTipBottom = {position:'bottom-start',
+                        arrow: true,
+                        animateFill: false,
+                        animation: 'fade',
+                        arrowSize: 'small',
+                        delay: [200, 100],
+                        size: 'regular',
+                        theme: 'body',
+                        distance: 15
+                        }
+
+
+const toolTipRight = {position:'right',
+                        arrow: true,
+                        animateFill: false,
+                        animation: 'fade',
+                        arrowSize: 'small',
+                        delay: [200, 100],
+                        size: 'regular',
+                        theme: 'body',
+                        distance: 15
+                        }
+
+// USED TO ADD TITLE ATTRIBUTE TO DJANGO FORM ELEMENTS //
+const addTitleAttribute = (_element, text) => {
+
+    _element.setAttribute('title', `${text}`);
+
+}
 
 // ADD BG COLOR TO BODY IN BASE.HTML //
 

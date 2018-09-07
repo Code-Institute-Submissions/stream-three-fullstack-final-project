@@ -26,7 +26,7 @@
                                 'Town/City',
                                 'Region',
                                 'Post Code',
-                                'Phone',
+                                'Phone inc country code',
                                 'Card Number',
                                 'CVV']
     const placeholderInputs = [nameOnCard, houseNumber, street, city, region,

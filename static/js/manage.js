@@ -1,5 +1,6 @@
 // JS FOR ALL 3 TEMPLATES MANAGE CLIENT, JOBS AND CYCLES //
 (() => {
+
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
     const manageDeleteItemButtons = document.getElementsByClassName('manage-delete');
     const clientNavIcon = document.getElementById('nav-clients');
@@ -9,11 +10,17 @@
     // SPECIFIC TO CLIENT TEMPLATE //
     const manageClientInput = document.getElementsByClassName('register-form__input');
     const manageClients = document.getElementById('manage-clients');
+    const noPhoneNumber = document.getElementsByClassName('manage-item__no-client-number');
+    const manageClientButton = document.getElementById('manage-client-button');
+    const clientFirstName = document.getElementById('id_first_name');
  
     // SPECFIC TO JOB TEMPLATE //
     const jobsFormSelect = document.getElementById('id_client');
     const jobsFormInput = document.getElementsByTagName('input');
     const manageJobs = document.getElementById('manage-jobs');
+    const jobTitleInput = document.getElementById('id_job_title');
+    //const jobAddClient = document.getElementById('id_client');
+    const jobNumber = document.getElementById('id_job_number');
     
 
     // SPECIFIC TO CYCLES TEMPLATE //
@@ -29,6 +36,9 @@
     const cycleFormButton = document.getElementById('cycle-button');
     const jobsFormButton = document.getElementById('jobs-button');
     const manageCycles = document.getElementById('manage-cycles');
+    const manageCyclesPortholeLink = document.getElementsByClassName('manage-items__cycle-link');
+    const cycleTitleInput = document.getElementById('id_cycle_title');
+    const cycleDescriptionInput = document.getElementById('id_description');
     
 
 
@@ -187,13 +197,11 @@
 
    } 
 
-
     //------------------- FUNCTION CALLS ------------------------------//
 
     // COMMON TO CLIENTS, JOBS AND CYCLES TEMPLATES //
 
     alterButtonInnerHtml(manageDeleteItemButtons);
-    //addBgColorToBody('body-color');
     addRemoveManageButtonClasses(
                                 manageDeleteItemButtons,
                                 'manage-delete__button--show',
@@ -206,13 +214,32 @@
 
         addRequiredAttribute(manageClientInput);
         addClassToClassList(clientNavIcon, 'nav__icons--clicked');
-        
-    }
+        addTitleAttribute(clientFirstName, `Your client should be the person you 
+                                            want to have access to your Quotes and Invoices.`)
+        tippy(clientFirstName, toolTipDefault);
+        //tippy(manageClientButton, toolTipDefault);
 
+        if (noPhoneNumber) {
+
+            for (let i =0; i < noPhoneNumber.length; i++) {
+
+                tippy(noPhoneNumber[i], toolTipDefault);
+
+            }
+            
+        }
+         
+    }
 
     // JOBS TEMPLATE SPECIFIC //
     if (manageJobs) {
 
+        addTitleAttribute(jobTitleInput, `The job title should be the overall job or project name.
+                                            Many payment cycles may be linked to it.`)
+        addTitleAttribute(jobNumber, `Give the job a unique number.As well as the Fileo ID, 
+                                        you will be able to search for any cycle by this number.`)
+        tippy(jobTitleInput, toolTipDefault);
+        tippy(jobNumber, toolTipBottom);
         addClassToElement(jobsFormSelect, 'profile__select');
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
@@ -223,7 +250,6 @@
     }
 
     // CYCLES TEMPLATE SPECIFIC //
-
     if (manageCycles) {
 
         const startDateSelectContainer = selectOneMonth.parentElement;
@@ -250,6 +276,16 @@
                                     'manage-button__button--reset-click');
         disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
         addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
+        
+        addTitleAttribute(cycleTitleInput, 'Give this payment cycle a name.');
+        addTitleAttribute(cycleDescriptionInput, 'For your reference, describe the work to be carried out in relation to this payment.');
+        tippy(cycleDescriptionInput, toolTipRight);
+        tippy(cycleTitleInput, toolTipRight);
+
+        for (let i = 0; i < manageCyclesPortholeLink.length; i++) {
+
+            tippy(manageCyclesPortholeLink[i], toolTipDefault);
+        }
         
     }
     

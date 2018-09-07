@@ -24,11 +24,11 @@
             {% endif %}
         </div>
         <!-------------------------------->
-        <p class="manage-text">Create a New Client</p>
+        <p class="manage-text">Create a New Client Account</p>
         <form class="manage-form" method="POST">
             {% csrf_token %}
             {{ new_client.as_p }}
-            <button class="manage-form__button"type="submit">Create New Client</button>
+            <button id="manage-client-button" class="manage-form__button"type="submit">Create Account</button>
         </form>
         {% if messages %}
             {% for message in messages %}
@@ -73,7 +73,7 @@
                 <hr class="manage-items-hr">
                 <div class="manage-item__row">
                     <div class="manage-item__column">
-                        <p><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> {% if client.profile %}{{ client.profile.phone}}{% else %} No number for this client.{% endif %}</p>
+                        <p><i class="fas fa-phone manage-item__icon" aria-hidden="true"></i> {% if client.profile %}{{ client.profile.phone}}{% else %}<span class="manage-item__no-client-number" title="No number yet, client profile incomplete."> n/a</span>{% endif %}</p>
                     </div>
                 </div>
                 <hr class="manage-items-hr">

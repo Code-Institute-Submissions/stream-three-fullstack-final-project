@@ -26,13 +26,13 @@
     // CALL TIPPY TOOL TIP ON NAV ICONS //
     for (let i = 0; i < navIcons.length; i++) {
 
-        tippy(navIcons[i], toolTip);
+        tippy(navIcons[i], toolTipDefault);
 
     }
 
-    tippy(headerBannerComplete, toolTip);
-    tippy(headerBannerPending, toolTip);
-    tippy(headerBannerActive, toolTip);
-    tippy(headerBannerCancelled, toolTip);
+    tippy(headerBannerComplete, toolTipDefault);
+    tippy(headerBannerPending, toolTipDefault);
+    tippy(headerBannerActive, toolTipDefault);
+    tippy(headerBannerCancelled, toolTipDefault);
     
 })();
