@@ -59,7 +59,7 @@
                         </form>
                     {% endif %}
                     {% if context.cycle_status.contest_po %}
-                    <p class="generic-success">Please wait for {{ context.cycle.client.first_name }} to upload a revised PO.</p>
+                        <p class="generic-success">Please come back when {{ context.cycle.client.first_name }} has uploaded a revised PO.</p>
                     {% endif %}
                 </div>
             {% endif %}
@@ -82,7 +82,6 @@
             {% if context.po and not context.cycle_status.contest_po %}
                 <p><a class="file-action__delete" href="{% url 'delete' username=context.client.username cycle_id=context.cycle.id step='po' %}">Delete PO</a></p>
                 <p><a class="file-action__notify" href="{% url 'step_notify' username=context.client.username cycle_id=context.cycle.id step='po' %}">Notify Member</a></p>
-            
                 {% if messages %}
                     {% for message in messages %}
                         {% if 'po' in message.tags %}
@@ -91,7 +90,7 @@
                     {% endfor %} 
                 {% endif %}
             {% elif context.cycle_status.contest_po %}
-            <p class="generic-success">{{ context.cycle.member.first_name }} has contested your PO. You must upload a revised PO to proceed.</p>
+                <p class="generic-success">{{ context.cycle.member.first_name }} has contested your PO. You must upload a revised PO to proceed.</p>
             {% endif %}
         </div>
         {% endif %}

@@ -70,15 +70,18 @@
                                 {{ context.status_form.as_p }}
                             <button class="file-approval__button" type="submit">Submit</button>
                         </form>
-                    {% endif %}    
+                    {% endif %}
+                    {% if context.cycle_status.contest_invoice %}
+                        <p class="generic-success">Please come back when {{ context.cycle.member.first_name }} has uploaded a revised Invoice.</p>
+                    {% endif %}
                 </div>
             {% else %}
                 {% if context.cycle_status.pending %}
                     <div class="payment-pending">
-                            <p>Please proceed to payment.</p>
-                            <form class="payment-pending__form" action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
-                                <button class="payment-pending__button"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay</button>
-                            </form>
+                        <p>Please proceed to payment.</p>
+                        <form class="payment-pending__form" action="{% url 'payment' username=user.username cycle_id=context.cycle.id %}">
+                            <button class="payment-pending__button"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay</button>
+                        </form>
                     </div>
                 {% elif context.cycle_status.complete %}
                     <div class="upload-step-congrats">
@@ -93,16 +96,18 @@
         {% if not context.cycle_status.approve_invoice %}
             <div class="file-action">
                 <!---- VIEWABLE BY MEMBER ONLY ---->
-                {% if context.invoice %}
+                {% if context.invoice and not context.cycle_status.contest_invoice %}
                     <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Delete Invoice</a></p>
                     <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='invoice' %}">Notify Client</a></p>
                     {% if messages %}
                         {% for message in messages %}
                             {% if 'invoice' in message.tags %}
-                            <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
+                                <p class="generic-success manage-success porthole-success"> <i class="far fa-check-circle" aria-hidden="true"></i> {{ message }}</p>
                             {% endif %}
                         {% endfor %} 
                     {% endif %}
+                {% elif context.cycle_status.contest_invoice %}
+                    <p class="generic-success">{{ context.cycle.client.first_name }} has contested your Invoice. You must upload a revised Invoice to proceed.</p>
                 {% endif %} 
             </div>
         {% endif %}
