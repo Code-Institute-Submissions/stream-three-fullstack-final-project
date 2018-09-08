@@ -1,16 +1,17 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block head_js %}
+<script defer type="text/javascript" src="{% static 'vendor/jquery/jquery-3.3.1.min.js'%}"></script>
+<script defer type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script defer type="text/javascript" src="{% static 'js/utility.js' %}"></script>
 <script defer type="text/javascript" src="{% static 'js/head.js' %}"></script>
 <script defer type="text/javascript" src="{% static 'js/payment.js' %}"></script>
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
+<script defer type="text/javascript">
     //<![CDATA[
     Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
-<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+<script defer type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 {% block content %}
 {% include 'header.html' %}
@@ -22,7 +23,7 @@
     </div>
     <form id="payment-form" class="payment-form" method='POST'>
         {% csrf_token %}
-       <div class="payment-form__details">
+        <div class="payment-form__details">
            <p><strong>Your Information</strong></p>
             {{ order_form.as_p }}
         </div>

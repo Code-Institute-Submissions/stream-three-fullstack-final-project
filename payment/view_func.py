@@ -29,6 +29,7 @@ def save_order(cycle, order_form):
 
 ## Create Stripe Charge ##
 def create_payment(request, cycle, payment_form, stripe_total):
+    print(payment_form.cleaned_data['stripe_id'])
     try:
         customer = stripe.Charge.create(
             amount=stripe_total,
