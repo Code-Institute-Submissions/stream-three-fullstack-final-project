@@ -10,7 +10,7 @@
     position: relative;
     top: 4rem;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
     min-height: calc(100% - 3rem);
@@ -107,6 +107,11 @@
         width: 80%;
     }
 
+}
+
+.porthole-details__date-row {
+
+    width: 100%;
 }
 
 .porthole-details__column {
