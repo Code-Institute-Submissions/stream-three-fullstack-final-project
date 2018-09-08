@@ -1,4 +1,4 @@
-(function() {
+$(function() {
 
     $("#payment-form").submit(function() {
         
@@ -34,4 +34,4 @@
 
         return false;
     });
-})();
+});
