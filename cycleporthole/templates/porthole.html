@@ -19,23 +19,35 @@
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column porthole-details--description">
-                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
-                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i><strong> Cycle Name: </strong> {{ context.cycle.cycle_title }}</p>
+                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i><strong> Description: </strong>{{ context.cycle.description }}</p>
             </div>  
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
             <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i><strong> Location:</strong> {{ context.cycle.location }}</p>
             </div>
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
-            <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
+            {% if request.user.is_member %}
+                <p class="porthole-details__date"><i class="fas fa-user" aria-hidden="true"></i><strong> Client Name:</strong> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+            {% else %}
+                <p class="porthole-details__date"><i class="fas fa-user" aria-hidden="true"></i><strong> Member Name:</strong> {{ context.cycle.member.first_name }} {{ context.cycle.member.last_name }}</p>
+            {% endif %}
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <p class="porthole-details__date"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i><strong> Job Name:</strong> {{ context.cycle.job.job_title }}</p>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <div class="porthole-details__column"> 
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i><strong> From:</strong> {{ context.cycle_start }}</p>
             </div>
             <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i>  To: {{ context.cycle_end }}</p>
+                <p class="porthole-details__text"><i class="far fa-calendar" aria-hidden="true"></i><strong> Until:</strong> {{ context.cycle_end }}</p>
             </div>
         </div>
         <hr class="porthole-details__hr">
@@ -52,7 +64,6 @@
     </section>
     <!---------------------------DESKTOP-------------------------->
     <section class="porthole-details-container porthole-details-container-desktop">
-        <!--<hr class="porthole-details__hr">-->
         <div class="porthole-details__row">
             <div class="porthole-details__column">
                 <h1 class="porthole-details__heading">Cycle Porthole</h1>
@@ -61,19 +72,31 @@
                 <p class="porthole-details__text porthole-details__id"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
             </div>
             <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i> {{ context.cycle.cycle_title }}</p>
+                <p class="porthole-details__text"><i class="far fa-circle" aria-hidden="true"></i><strong> Cycle Name: </strong> {{ context.cycle.cycle_title }}</p>
             </div>
             <div class="porthole-details__column porthole-details--description">
-                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i> {{ context.cycle.description }}</p>
+                <p class="porthole-details__text"><i class="fas fa-pen-square" aria-hidden="true"></i><strong> Description: </strong> {{ context.cycle.description }}</p>
             </div>
             <div class="porthole-details__column">
-                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i> {{ context.cycle.location }}</p>
+                <p class="porthole-details__text"><i class="fas fa-map-marked-alt" aria-hidden="true"></i><strong> Location: </strong> {{ context.cycle.location }}</p>
             </div>
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
-            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i> From: {{ context.cycle_start }}</p>
-            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i>  Until: {{ context.cycle_end }}</p>
+            {% if request.user.is_member %}
+                <p class="porthole-details__date"><i class="fas fa-user" aria-hidden="true"></i><strong> Client Name: </strong> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>
+            {% else %}
+                <p class="porthole-details__date"><i class="fas fa-user" aria-hidden="true"></i><strong> Member Name: </strong> {{ context.cycle.member.first_name }} {{ context.cycle.member.last_name }}</p>
+            {% endif %}
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <p class="porthole-details__date"><i class="fas fa-briefcase manage-item__icon" aria-hidden="true"></i><strong> Job Name: </strong> {{ context.cycle.job.job_title }}</p>
+        </div>
+        <hr class="porthole-details__hr">
+        <div class="porthole-details__row">
+            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i><strong> From:</strong> {{ context.cycle_start }}</p>
+            <p class="porthole-details__date"><i class="far fa-calendar" aria-hidden="true"></i><strong> Until:</strong> {{ context.cycle_end }}</p>
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">

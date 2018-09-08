@@ -39,6 +39,9 @@
     const manageCyclesPortholeLink = document.getElementsByClassName('manage-items__cycle-link');
     const cycleTitleInput = document.getElementById('id_cycle_title');
     const cycleDescriptionInput = document.getElementById('id_description');
+    const cycleLocation = document.getElementById('id_location');
+    const cycleStartDate = document.getElementsByClassName('manage-cycles-form__start-date');
+    const cycleEndDate = document.getElementsByClassName('manage-cycles-form__end-date');
     
 
 
@@ -214,10 +217,10 @@
 
         addRequiredAttribute(manageClientInput);
         addClassToClassList(clientNavIcon, 'nav__icons--clicked');
+        // CREATE TOOL TIPS //
         addTitleAttribute(clientFirstName, `Your client should be the person you 
                                             want to have access to your Quotes and Invoices.`)
-        tippy(clientFirstName, toolTipDefault);
-        //tippy(manageClientButton, toolTipDefault);
+        tippy(clientFirstName, toolTipRight);
 
         if (noPhoneNumber) {
 
@@ -234,18 +237,19 @@
     // JOBS TEMPLATE SPECIFIC //
     if (manageJobs) {
 
-        addTitleAttribute(jobTitleInput, `The job title should be the overall job or project name.
-                                            Many payment cycles may be linked to it.`)
-        addTitleAttribute(jobNumber, `Give the job a unique number.As well as the Fileo ID, 
-                                        you will be able to search for any cycle by this number.`)
-        tippy(jobTitleInput, toolTipDefault);
-        tippy(jobNumber, toolTipBottom);
         addClassToElement(jobsFormSelect, 'profile__select');
         addStylesToSelectParent(jobsFormSelect, 'profile-filter-styled');
         addIconToSelect(jobsFormSelect, 'profile-filter-arrow');
         addClassToCollection(jobsFormInput, 'register-form__input');
         disableUpdateFormSelect(jobsFormButton, jobsFormSelect);
         addClassToClassList(jobsNavIcon, 'nav__icons--clicked');
+        // CREATE TOOL TIPS //
+        addTitleAttribute(jobTitleInput, `Give the job or project a name.
+                                            Many payment cycles may be linked to it.`)
+        addTitleAttribute(jobNumber, `Assign a unique job number. 
+                                        You will be able to search for all cycles belonging to this job number.`)
+        tippy(jobTitleInput, toolTipRight);
+        tippy(jobNumber, toolTipRight);
         
     }
 
@@ -276,11 +280,19 @@
                                     'manage-button__button--reset-click');
         disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
         addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
-        
+        // CREATE TOOL TIPS //
         addTitleAttribute(cycleTitleInput, 'Give this payment cycle a name.');
-        addTitleAttribute(cycleDescriptionInput, 'For your reference, describe the work to be carried out in relation to this payment.');
-        tippy(cycleDescriptionInput, toolTipRight);
+        addTitleAttribute(cycleDescriptionInput, `For your reference, describe the work 
+                                                to be carried out in relation to this payment.`);
+        addTitleAttribute(cycleLocation, 'Where will the work take place?');
+        addTitleAttribute(cycleStartDate[0], 'Set the date the work is to begin.');
+        addTitleAttribute(cycleEndDate[0], 'Set the date the work is to finish.');
         tippy(cycleTitleInput, toolTipRight);
+        tippy(cycleDescriptionInput, toolTipRight);
+        tippy(cycleLocation, toolTipRight);
+        tippy(cycleStartDate[0], toolTipRight);
+        tippy(cycleEndDate[0], toolTipRight);
+       
 
         for (let i = 0; i < manageCyclesPortholeLink.length; i++) {
 

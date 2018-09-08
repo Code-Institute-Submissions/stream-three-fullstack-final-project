@@ -149,7 +149,7 @@
                     <hr class="cycles-item-hr cycle-results-mobile">        
                     <div class="cycles-results__row cycle-results-mobile">
                         <div class="cycles-results__column column-1">
-                            <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
+                            <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i><strong> Cycle Name: </strong> {{ item.cycle.cycle_title }}</p>
                         </div>
                     </div> 
                     <hr class="cycles-item-hr cycle-results-mobile">
@@ -194,7 +194,7 @@
                     <div class="cycles-results__porthole">
                         <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                             {% if not item.cancelled %}
-                                <button class="cycles-results__porthole-button" type="submit" title="Click to manage the files for this payment cycle.">Cycle Porthole</button>
+                                <button class="cycles-results__porthole-button" type="submit" title="Manage files for this payment cycle in the porthole.">Cycle Porthole</button>
                             {% else %}
                                 <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
                             {% endif %}

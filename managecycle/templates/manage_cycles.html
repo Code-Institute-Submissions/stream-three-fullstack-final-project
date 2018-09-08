@@ -33,7 +33,7 @@
                 {% csrf_token %}
                     {{ cycle_form.as_p }}
                 {% if not cycle_form.updated %}
-                    <button class="manage-form__button"type="submit">Add Cycle</button>
+                    <button class="manage-form__button"type="submit">Create Cycle</button>
                 {% else %}
                     <!--<input type="hidden" name="updated" value="true">-->
                     <button id="cycle-button" class="manage-form__button"type="submit">Update Cycle</button>
@@ -85,7 +85,7 @@
                     <div class="manage-item__row">
                         <div class="manage-item__column">
                             {% if not item.cancelled %}
-                            <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link" title="Click to go to the porthole for this cycle."><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> <strong>{{ item.cycle.cycle_title }}</strong></p></a>
+                            <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link" title="Follow the link for the cycle porthole."><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> <strong>{{ item.cycle.cycle_title }}</strong></p></a>
                             {% elif item.cancelled %}
                             <p id="cycles-results__text--grey"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
                             {% endif %}
