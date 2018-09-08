@@ -8,11 +8,7 @@
             {% if context.cycle_status.approve_quote %}
                 <p class="porthole-status"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>
             {% elif context.cycle_status.contest_quote %}
-                {% if request.user.is_member %}
-                <p id="porthole-quote-contested" title="Your quote is contested. Upload an ammended Quote for your client in order to move forward." class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
-                {% elif request.user.is_client %}
-                <p id="porthole-quote-contested" title="You have contested this quote. Please wait for an ammended quote to be uploaded." class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
-                {% endif %}
+                <p class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
             {% else %}
                 <p id="porthole-quote-waiting" title="Once approved you will be able to move on to the next step." class="porthole-status"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
             {% endif %}
@@ -65,11 +61,11 @@
         {% else %}
             <div class="upload-step-congrats">
                 {% if request.user.is_member %}
-                <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
-                <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
+                    <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
+                    <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
                 {% elif request.user.is_client %}
-                <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
-                <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
+                    <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
+                    <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
                 {% endif %}
             </div>
         {% endif %}   

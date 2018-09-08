@@ -11,6 +11,9 @@
     const portholeQuoteWaiting = document.getElementById('porthole-quote-waiting');
     //const portholeQuoteContested = document.getElementById('porthole-quote-contested');
     const quoteSuccessArrow = document.getElementById('quote-success');
+    const portholePoWaiting = document.getElementById('porthole-po-waiting');
+    const poSuccessArrow = document.getElementById('po-success');
+    const portholeInvoiceWaiting = document.getElementById('porthole-invoice-waiting');
    
     
     // GET INPUTS BY FILE INPUT TYPE //
@@ -193,7 +196,11 @@
         tippy(portholeQuoteContested, toolTipLeft);
 
     }*/
+
     tippy(quoteSuccessArrow, toolTipRight);
+    tippy(portholePoWaiting, toolTipRight);
+    tippy(poSuccessArrow, toolTipRight);
+    tippy(portholeInvoiceWaiting, toolTipLeft);
 
     
 

@@ -10,7 +10,7 @@
             {% elif context.cycle_status.contest_invoice %}
                 <p class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
             {% else %}
-                <p class="porthole-status"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
+                <p id="porthole-invoice-waiting"class="porthole-status" title="Once approved payment can be taken."><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
             {% endif %}
         </div>
         {% elif not context.invoice %}
