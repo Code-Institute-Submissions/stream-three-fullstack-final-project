@@ -8,9 +8,13 @@
             {% if context.cycle_status.approve_quote %}
                 <p class="porthole-status"><i class="far fa-thumbs-up cycles-results__overall-icons" aria-hidden="true"></i> Approved</p>
             {% elif context.cycle_status.contest_quote %}
-                <p class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
+                {% if request.user.is_member %}
+                <p id="porthole-quote-contested" title="Your quote is contested. Upload an ammended Quote for your client in order to move forward." class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
+                {% elif request.user.is_client %}
+                <p id="porthole-quote-contested" title="You have contested this quote. Please wait for an ammended quote to be uploaded." class="porthole-status"><i class="fas fa-times cycles-results__overall-icons" aria-hidden="true"></i> Contested</p>
+                {% endif %}
             {% else %}
-                <p class="porthole-status"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
+                <p id="porthole-quote-waiting" title="Once approved you will be able to move on to the next step." class="porthole-status"><i class="fas fa-minus cycles-results__overall-icons" aria-hidden="true"></i>Awaiting approval.</p>
             {% endif %}
         </div>
         {% elif not context.quote %}
@@ -47,18 +51,26 @@
                         {% endif %}
                     {% endfor %}
                     {% if not context.cycle_status.approve_quote and not context.cycle_status.contest_quote %}
-                    <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
-                        {% csrf_token %}
-                            {{ context.status_form.as_p }}
-                        <button class="file-approval__button" type="submit">Submit</button>
-                    </form>
-                    {% endif %}    
+                        <form class="file-approval__form" action="{% url 'quote_status' username=context.member.username cycle_id=context.cycle.id %}" method="POST">
+                            {% csrf_token %}
+                                {{ context.status_form.as_p }}
+                            <button class="file-approval__button" type="submit">Submit</button>
+                        </form>
+                    {% endif %}
+                    {% if context.cycle_status.contest_quote %}
+                        <p class="generic-success">Please wait for {{ context.cycle.member.first_name }} to upload a revised quote.</p>
+                    {% endif %}
                 </div>
             {% endif %}
         {% else %}
             <div class="upload-step-congrats">
-                <p><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
-                <p><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
+                {% if request.user.is_member %}
+                <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
+                <p id="quote-success" title="Once your client has uploaded their PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
+                {% elif request.user.is_client %}
+                <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-right upload-step-congrats-desktop" aria-hidden="true"></i></p>
+                <p id="quote-success" title="When you are ready to PO, please proceed to the next step."><i class="fas fa-arrow-circle-down upload-step-congrats-mobile" aria-hidden="true"></i></p>
+                {% endif %}
             </div>
         {% endif %}   
     </div>
@@ -66,7 +78,7 @@
     <!---- VIEWABLE BY MEMBER ONLY ---->
         {% if not context.cycle_status.approve_quote %}
             <div class="file-action">
-                {% if context.quote %}
+                {% if context.quote and not context.cycle_status.contest_quote %}
                     <p><a class="file-action__delete" href="{% url 'delete' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Delete Quote</a></p>
                     <p><a class="file-action__notify" href="{% url 'step_notify' username=context.member.username cycle_id=context.cycle.id step='quote' %}">Notify Client</a></p>
                     {% if messages %}
@@ -76,6 +88,8 @@
                             {% endif %}
                         {% endfor %} 
                   {% endif %}
+                {% elif context.cycle_status.contest_quote %}
+                    <p class="generic-success">{{ context.cycle.client.first_name }} has contested your quote. You must upload a revised quote to proceed.</p>
                 {% endif %} 
             </div>
         {% endif %}

@@ -10,41 +10,57 @@
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// TIPPY DEFAULT TOOL TIP SETTINGS //
+// TIPPY TOOL TIP SETTINGS //
 
 const toolTipDefault = {position:'top-start',
-                        arrow: true,
+                        arrow: false,
                         animateFill: false,
                         animation: 'fade',
                         arrowSize: 'small',
                         delay: [200, 100],
                         size: 'regular',
                         theme: 'body',
-                        distance: 15
+                        distance: 15,
+                        maxWidth: '200px'
                         }
 
 const toolTipBottom = {position:'bottom-start',
-                        arrow: true,
+                        arrow: false,
                         animateFill: false,
                         animation: 'fade',
                         arrowSize: 'small',
                         delay: [200, 100],
                         size: 'regular',
                         theme: 'body',
-                        distance: 15
+                        distance: 15,
+                        maxWidth: '200px'
                         }
 
 
 const toolTipRight = {position:'right',
-                        arrow: true,
+                        arrow: false,
                         animateFill: false,
                         animation: 'fade',
                         arrowSize: 'small',
                         delay: [200, 100],
                         size: 'regular',
                         theme: 'body',
-                        distance: 15
+                        distance: 15,
+                        maxWidth: '200px'
                         }
+
+const toolTipLeft = {position:'left',
+                        arrow: false,
+                        animateFill: false,
+                        animation: 'fade',
+                        arrowSize: 'small',
+                        delay: [200, 100],
+                        size: 'regular',
+                        theme: 'body',
+                        distance: 15,
+                        maxWidth: '200px'
+                        }
+
 
 // USED TO ADD TITLE ATTRIBUTE TO DJANGO FORM ELEMENTS //
 const addTitleAttribute = (_element, text) => {

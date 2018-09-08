@@ -43,28 +43,9 @@
     font-size: .8rem;
     color: $input-color;
 
-  }
-
-  // CREDIT https://github.com/atomiks/tippyjs/issues/35 //
-
-/* Right placement tooltip arrow (arrow will be on left side of tooltip) */
-.tippy-popper[x-placement^=right] .tippy-tooltip.body-theme .tippy-arrow {
-    border-right: 7px solid #fff; /* your color here */
 }
 
-/* Left placement tooltip arrow (arrow will be on right side of tooltip) */
-.tippy-popper[x-placement^=left] .tippy-tooltip.body-theme .tippy-arrow {
-    border-left: 7px solid  #fff; /* your color here */
+.tippy-popper {
+
+    max-width: 250px;
 }
-
-/* Top placement tooltip arrow (arrow will be on bottom side of tooltip) */
-.tippy-popper[x-placement^=top] .tippy-tooltip.body-theme .tippy-arrow {
-    border-top: 7px solid  #fff; /* your color here */
-}
-
-/* Bottom placement tooltip arrow (arrow will be on top side of tooltip) */
-.tippy-popper[x-placement^=bottom] .tippy-tooltip.body-theme .tippy-arrow {
-    border-bottom: 7px solid  #fff; /* your color here */
-}
-
-

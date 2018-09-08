@@ -7,6 +7,10 @@
     const selects = document.getElementsByTagName('select');
     const valueInput = document.getElementById('id_cycle_value_0');
     const browseButtons = document.getElementsByClassName('upload-form__browse-button');
+    const fileUploadedIcon = document.getElementsByClassName('uploaded-icon__icon');
+    const portholeQuoteWaiting = document.getElementById('porthole-quote-waiting');
+    //const portholeQuoteContested = document.getElementById('porthole-quote-contested');
+    const quoteSuccessArrow = document.getElementById('quote-success');
    
     
     // GET INPUTS BY FILE INPUT TYPE //
@@ -163,37 +167,34 @@
     headerBanner.style.display = 'none';
 
     // TOOLTIPS //
-    
+
     if (valueInput) {
 
         addTitleAttribute(id_cycle_value_0, 'Input the amount you wish to be paid for this cycle.')
         tippy(id_cycle_value_0, toolTipRight);
     }
    
-    
-    for (let i = 0; i < browseButtons.length; i++) {
+    if (fileUploadedIcon) {
 
-        let uploadType = browseButtons[i].
-                        parentElement.
-                        parentElement.
-                        previousElementSibling.
-                        innerHTML;
+        for (let i = 0; i < fileUploadedIcon.length; i++) {
 
-        if (uploadType == 'Quote') {
-
-            addTitleAttribute(browseButtons[i], `Select a quote to upload.`);
-
-        } else if (uploadType == 'PO') {
-
-            addTitleAttribute(browseButtons[i], `Select a PO to upload.`);
-
-        } else if (uploadType == 'Invoice') {
-
-            addTitleAttribute(browseButtons[i], `Select an Invoice to upload.`);
-
+            addTitleAttribute(fileUploadedIcon[i], 'Click to view file.')
+            tippy(fileUploadedIcon[i], toolTipRight);
         }
-        
-        tippy(browseButtons[i], toolTipRight);
+
     }
+
+    if (portholeQuoteWaiting) {
+
+        tippy(portholeQuoteWaiting, toolTipLeft);
+
+    } /*else if (portholeQuoteContested) {
+
+        tippy(portholeQuoteContested, toolTipLeft);
+
+    }*/
+    tippy(quoteSuccessArrow, toolTipRight);
+
+    
 
 })();

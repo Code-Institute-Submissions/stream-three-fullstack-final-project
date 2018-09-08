@@ -171,22 +171,22 @@
                     <!--- TABLET AND UP ARRANGEMENT ONLY -->
                     <div class="cycles-results__row cycle-results-tablet">
                         <div class="cycles-results__column column-2">
-                            <p class="cycles-results__text">Fileo ID: {{ item.cycle.id }} created on {{item.cycle.created}}</p>
+                            <p class="cycles-results__text"><strong> Fileo ID: {{ item.cycle.id }} </strong>created on {{item.cycle.created}}</p>
                         </div>
                         <div class="cycles-results__column column-2">
-                            <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
+                            <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i><strong> Cycle Name: </strong>  {{ item.cycle.cycle_title }}</p>
                         </div>
                     </div>
                     <hr class="cycles-item-hr cycle-results-tablet">
                     <div class="cycles-results__row cycle-results-tablet">
                         <div class="cycles-results__column column-2">
-                            <p class="cycles-results__text"><i class="fas fa-briefcase" aria-hidden="true"></i> {{ item.cycle.job.job_title }}</p>
+                            <p class="cycles-results__text"><i class="fas fa-briefcase" aria-hidden="true"></i><strong> Job Name: </strong>  {{ item.cycle.job.job_title }}</p>
                         </div>
                         <div class="cycles-results__column column-2">
                             {% if user.is_member %}
-                                <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i>  {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                                <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i><strong> Client Name: </strong>   {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
                             {% elif user.is_client %}
-                                <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i>  {{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
+                                <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i><strong> Member Name: </strong>   {{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
                             {% endif %}
                         </div>
                     </div>
