@@ -42,7 +42,8 @@
     const cycleLocation = document.getElementById('id_location');
     const cycleStartDate = document.getElementsByClassName('manage-cycles-form__start-date');
     const cycleEndDate = document.getElementsByClassName('manage-cycles-form__end-date');
-    
+    const inactivePorholeLink = document.getElementsByClassName('cycles-results__text--grey');
+    console.log(inactivePorholeLink);
 
 
     // DISABLE CYCLE FORM/JOB FORM SELECT IF IN UPDATE MODE //
@@ -281,10 +282,10 @@
         disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
         addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
         // CREATE TOOL TIPS //
-        addTitleAttribute(cycleTitleInput, 'Give this payment cycle a name.');
+        addTitleAttribute(cycleTitleInput, 'Please, assign a name to this payment cycle.');
         addTitleAttribute(cycleDescriptionInput, `For your reference, describe the work 
-                                                to be carried out in relation to this payment.`);
-        addTitleAttribute(cycleLocation, 'Where will the work take place?');
+                                                to be carried out in relation to this payment cycle.`);
+        addTitleAttribute(cycleLocation, 'Again, for reference, where will the work be undertaken?');
         addTitleAttribute(cycleStartDate[0], 'Set the date the work is to begin.');
         addTitleAttribute(cycleEndDate[0], 'Set the date the work is to finish.');
         tippy(cycleTitleInput, toolTipRight);
@@ -297,6 +298,11 @@
         for (let i = 0; i < manageCyclesPortholeLink.length; i++) {
 
             tippy(manageCyclesPortholeLink[i], toolTipDefault);
+        }
+
+        for (let i = 0; i < inactivePorholeLink.length; i++) {
+            
+            tippy(inactivePorholeLink[i], toolTipDefault);
         }
         
     }

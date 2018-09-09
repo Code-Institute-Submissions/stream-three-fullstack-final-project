@@ -85,9 +85,9 @@
                     <div class="manage-item__row">
                         <div class="manage-item__column">
                             {% if not item.cancelled %}
-                            <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link" title="Follow the link for the cycle porthole."><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> <strong>{{ item.cycle.cycle_title }}</strong></p></a>
+                            <a href="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}"><p class="manage-items__text-top manage-items__cycle-link" title="Click to manage files."><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> <strong>{{ item.cycle.cycle_title }}</strong></p></a>
                             {% elif item.cancelled %}
-                            <p id="cycles-results__text--grey"><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
+                            <p class="cycles-results__text--grey" title="You don't have access to this porthole as you have cancelled this cycle. Re-instate it to regain access."><i class="far fa-circle manage-item__icon" aria-hidden="true"></i> {{ item.cycle.cycle_title }}</p>
                             {% endif %}
                         </div>
                         {% if item.cancelled %}

@@ -12,7 +12,27 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 // TIPPY TOOL TIP SETTINGS //
 
-const toolTipDefault = {position:'top-start',
+// HIDE TOOL TIPS ON SCROLL //
+
+// CREDIT https://atomiks.github.io/tippyjs/ //
+
+window.addEventListener('scroll', () => {
+
+    for (const popper of document.querySelectorAll('.tippy-popper')) {
+
+        const instance = popper._tippy
+
+        if (instance.state.visible) {
+                instance.popperInstance.disableEventListeners()
+                instance.hide()
+        }
+    }
+})
+
+// DEFAULT SETTINGS //
+
+const toolTipDefault = {position:'top',
+                        touchHold: true,
                         arrow: false,
                         animateFill: false,
                         animation: 'fade',
@@ -24,7 +44,8 @@ const toolTipDefault = {position:'top-start',
                         maxWidth: '200px'
                         }
 
-const toolTipBottom = {position:'bottom-start',
+const toolTipBottom = {position:'bottom',
+                        touchHold: true,
                         arrow: false,
                         animateFill: false,
                         animation: 'fade',
@@ -38,6 +59,7 @@ const toolTipBottom = {position:'bottom-start',
 
 
 const toolTipRight = {position:'right',
+                        touchHold: true,    
                         arrow: false,
                         animateFill: false,
                         animation: 'fade',
@@ -50,6 +72,7 @@ const toolTipRight = {position:'right',
                         }
 
 const toolTipLeft = {position:'left',
+                        touchHold: true,
                         arrow: false,
                         animateFill: false,
                         animation: 'fade',

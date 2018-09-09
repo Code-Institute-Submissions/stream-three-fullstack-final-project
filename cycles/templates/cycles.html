@@ -177,7 +177,7 @@
                         <td>
                             <form class="cycles-results__table-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                                 {% if not item.cancelled %}
-                                    <button class="cycles-results__porthole-button" type="submit" title="Manage files for this payment cycle in the porthole.">Cycle Porthole</button>
+                                    <button class="cycles-results__porthole-button" type="submit" title="Click to manage files.">Cycle Porthole</button>
                                 {% else %}
                                     <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
                                 {% endif %}
@@ -188,6 +188,7 @@
             </div>
             <!-- DESKTOP TABLE RESULTS -->
             <div class="cycles-results__container cycles-results__desktop">
+                <a>
                 <table class="cycles-results__table">
                     <tr class="cycles-results__table-row cycles-results__table-row-border">
                         <th class="cycles-results__heading">
@@ -232,9 +233,9 @@
                         <td>
                             <form class="cycles-results__table-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
                                 {% if not item.cancelled %}
-                                    <button class="cycles-results__porthole-button" type="submit" title="Manage files for this payment cycle in the porthole.">Cycle Porthole</button>
+                                    <button class="cycles-results__porthole-button" type="submit" title="Click to manage files.">Cycle Porthole</button>
                                 {% else %}
-                                    <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
+                                    <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true" title="You don't have porthole access. This cycle has been cancelled. ">Porthole Unavailable</button>
                                 {% endif %}
                             </form>
                         </td>

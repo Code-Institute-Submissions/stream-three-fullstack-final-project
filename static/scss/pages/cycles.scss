@@ -280,6 +280,7 @@
     width: 100%;
     border-collapse: collapse;
     border-radius: .3rem;
+    table-layout: fixed;
 }
 
 .cycles-results__heading {
@@ -296,6 +297,13 @@
 .cycles-results__table-row-border {
 
     border-bottom: 1px solid rgba(37,37,37, .2);
+
+}
+
+.cycles-results__table-row-border td {
+
+    width: 33.3%;
+    //text-align: center;
 }
 
 .cycles-results__table-form--container {
@@ -365,7 +373,7 @@
     
 }
 
-.column-1 {
+/*.column-1 {
 
     width: 100%;
     align-items: flex-start;
@@ -374,12 +382,12 @@
 
         align-items: center;
     }
-}
+}*/
 
-.column-2 {
+/*.column-2 {
 
     width: 50%;
-}
+}*/
 
 // RESULTS BUTTON STYLES //
 
@@ -400,6 +408,7 @@
     @include cycle-porthole-button;
     background-color: $login_bg_color;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     font-size: .8rem;
     
 }
