@@ -57,11 +57,12 @@
 .porthole-details__heading {
 
     color: $nav-icons;
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
 
     @include desktop {
 
-        margin-top: 0rem;
+        margin-top: 1rem;
+        
     }
 
 }

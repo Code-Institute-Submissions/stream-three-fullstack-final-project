@@ -123,6 +123,58 @@
         {% endif %}
         {% if cycles %}
             {% for item in cycles %}
+                <table>
+                    <tr>
+                        <th>
+                            {% if item.cancelled %}
+                            <p class="cycles-results__text"><i data-id="cancelled" class="fas fa-ban" aria-hidden="true"></i> Cancelled</p>
+                            {% elif item.pending %}
+                            <p class="cycles-results__text"><i data-id="pending" class="far fa-clock" aria-hidden="true"></i> Payment Pending</p>
+                            {% elif item.complete %}
+                            <p class="cycles-results__text"><i data-id="complete" class="fas fa-check-circle" aria-hidden="true"></i> Complete</p>
+                            {% else %}
+                            <p class="cycles-results__text"><i data-id="active" class="fas fa-walking" aria-hidden="true"></i> Active</p>
+                            {% endif %}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="cycles-results__text"><strong>Fileo ID: {{ item.cycle.id }} </strong> created on {{item.cycle.created}}</p>
+                        </td>
+                        <td>
+                            <p class="cycles-results__text"><i class="far fa-circle" aria-hidden="true"></i><strong> Cycle Name: </strong> {{ item.cycle.cycle_title }}</p>
+                        </td>
+                        <td>
+                            <p class="cycles-results__text"><i class="fas fa-briefcase" aria-hidden="true"></i><strong> Job Name: </strong> {{ item.cycle.job.job_title }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        {% if user.is_member %}
+                            <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i><strong> Client Name: </strong> {{ item.cycle.client.first_name}} {{ item.cycle.client.last_name}}</p>
+                        {% elif user.is_client %}
+                            <p class="cycles-results__text"><i class="fas fa-user" aria-hidden="true"></i><strong> Member Name: </strong>  {{ item.cycle.member.first_name}} {{ item.cycle.member.last_name}}</p>
+                        {% endif %}
+                        </td>
+                        <td>
+                            <p class="cycles-results__text"><i class="far fa-calendar" aria-hidden="true"></i><strong> To: </strong> {{ item.cycle.start_date }} </p>
+                        </td>
+                        <td>
+                            <p class="cycles-results__text"><i class="far fa-calendar" aria-hidden="true"></i><strong> Until: </strong> {{ item.cycle.end_date }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form class="cycles-results__porthole-form" action="{% url 'porthole' username=user.username cycle_id=item.cycle.id %}">
+                                {% if not item.cancelled %}
+                                    <button class="cycles-results__porthole-button" type="submit" title="Manage files for this payment cycle in the porthole.">Cycle Porthole</button>
+                                {% else %}
+                                    <button class="cycles-results__porthole-button cycles-results__porthole-button--cancelled" type="submit" disabled="true">Porthole Unavailable</button>
+                                {% endif %}
+                            </form>
+                        </td>
+                    </tr>
+                </table>
                 <div class="cycles-results__container">
                     <div class="cycles-results__row cycles-results__overall-status">
                         <div class="cycles-results__column column-4 column-icon">

@@ -98,13 +98,13 @@
     
     // FUNCTION CALLS //
 
-    addClassToClassList(footer[0], 'footer--payment-background-color');
+    //addClassToClassList(footer[0], 'footer--payment-background-color');
 
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
     addBlankSelectToExpiryDates(expiryYearSelect, 'Year');
 
 
-    addBgColorToBody('payment-bg-color');
+    //addBgColorToBody('payment-bg-color');
     headerBanner.style.display = 'none';
     header.style.position = 'relative';
     removeFormLabels();
