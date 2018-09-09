@@ -8,7 +8,7 @@ from django.http import Http404
 from django.dispatch import receiver
 from .models import Quotes, PurchaseOrder, Invoices
 
-## Receiver Helper Function ##
+## RECEIVER HELPER ##
 def remove_file_from_aws(instance):    
     s3 = boto3.resource('s3')
     try:

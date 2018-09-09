@@ -10,7 +10,6 @@
     const expiryYearSelect = document.getElementById('id_expiry_year');
     const selects = document.getElementsByTagName('select');
     const formLabel = document.getElementsByTagName('label');
-    //const formInput = document.getElementsByTagName('input');
     const nameOnCard = document.getElementById('id_name_on_card');
     const houseNumber = document.getElementById('id_address1');
     const street = document.getElementById('id_address2');
@@ -33,7 +32,7 @@
                                 postCode, phone, creditCard, cvv ]
 
 
-    // SET PLACEHOLDER OF FORM //
+    // SET PLACEHOLDERS FOR INPUT //
     const setPlaceholder = () => {
 
         for (i = 0; i < placeholderNames.length; i++) {
@@ -98,15 +97,13 @@
     
     // FUNCTION CALLS //
 
-    //addClassToClassList(footer[0], 'footer--payment-background-color');
-
     addBlankSelectToExpiryDates(expiryMonthSelect, 'Month');
     addBlankSelectToExpiryDates(expiryYearSelect, 'Year');
 
-
-    //addBgColorToBody('payment-bg-color');
+    // REMOVE RUNNING TOTAL BANNER ON PAYMENT TEMPLATE //
     headerBanner.style.display = 'none';
     header.style.position = 'relative';
+    // ----------------------------------------------- //
     removeFormLabels();
     setPlaceholder();
     setInputClass();
@@ -115,7 +112,8 @@
                         'payment-form-select__icon');
 
     changeFormBgColorOnComplete();
-    // TOOL TIPS //
+
+    // CREATE TOOL TIPS //
     
     addTitleAttribute(phone, 'Make sure to include the country code. For example +44 for the UK.')
     tippy(phone, toolTipRight);

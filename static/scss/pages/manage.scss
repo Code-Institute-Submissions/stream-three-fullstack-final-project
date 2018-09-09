@@ -19,8 +19,7 @@
 
 .manage-container {
 
-    position: relative;
-    top: 6rem;
+    margin-top: 6rem;
     min-height: calc(100% - 6rem);
         
 
@@ -199,8 +198,6 @@
     background-color: $register-icon-color;
     width: 100%;
     border-radius: .3rem;
-    //margin: $item-card-margin;
-   // min-height: 13rem;
     flex-shrink: 0;
    
 }
@@ -222,33 +219,9 @@
 
     @include flex-column;
     align-items: flex-start;
-    //overflow: hidden;
     flex-grow: 1;
     
 }
-
-/*.manage-items__cycle-link {
-
-    position: relative;
-}
-
-/*.manage-items__cycle-link::after {
-
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 19px;
-    height: 1px;
-    width: calc(100% - 19px);
-    background-color: #fff;
-    transition: background-color .2s $drop-down-bezier;
-}
-
-.manage-items__cycle-link:hover:after {
-
-    background-color: #bab5b5;
-    
-}*/
 
 
 .manage-item__column-status p {

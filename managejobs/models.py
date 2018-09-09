@@ -2,8 +2,6 @@ from django.utils import timezone
 from django.db import models
 from accounts.models import AllUser
 
-## Function get Job last number for User and Increment by 1 ##
-
 class Jobs(models.Model):
     created = models.DateTimeField(auto_now_add=timezone.now())
     job_title = models.CharField(max_length=50, blank=False)

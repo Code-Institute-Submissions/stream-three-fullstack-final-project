@@ -4,13 +4,13 @@ from managecycle.models import Cycles
 from cyclestatus.models import CycleStatus
 from cycleporthole.models import Quotes, PurchaseOrder, Invoices
 
-## Receiver writes entry into Status Model's when a new cycle is ##
+## Receiver saves record to Status Models when a new cycle is ##
 ## created.This means a reverse query on Cycles for each user can be ##
 ## done in the Cycles View App from Cycle Status Model. ##
-## Reciever won't overwrite Statuses if a User Updates Cycle Details. ##
+## Reciever won't overwrite Statuses if a User Updates Cycle Details, ##
+## only on new record creation. ##
 
-
-## HELPERS ##
+## RECEIVER HELPERS ##
 def reset_quote_status(instance):
     try:
         quote_status = CycleStatus(cycle=instance.cycle)

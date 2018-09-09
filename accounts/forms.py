@@ -2,12 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
-
-#from phonenumber_field.modelfields import PhoneNumberField
 from .models import AllUser
 
+## LOGIN FORM ##
 class UserLoginForm(forms.Form):
-    """Login form for both Members and Clients"""
+    
     username = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'login-form__input',
                                                                         'placeholder': 'Username'}))
     password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class':'login-form__input',
@@ -17,6 +16,7 @@ class UserLoginForm(forms.Form):
         model = AllUser
         fields = ['username', 'password']
 
+## REGISTRATION FORM FOR MEMBERS, DOUBLES AS CLIENT CREATION FORM ##
 class UserRegisterForm(forms.Form):
     
     first_name = forms.CharField(label="",

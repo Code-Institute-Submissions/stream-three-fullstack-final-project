@@ -10,15 +10,8 @@ from .view_func import GetFile, CycleStatuses
 ## before writing the new entry. A signal is used to delete the actual PDF 
 ## to ensure only one file exists for each step in a cycle. ##
 
-## HELPER FUNCTIONS ##
+## HELPER FUNCTIONS AND CLASSES ##
 
-#def get_cycle_status(cycle):
-    #try:
-       # status = CycleStatus.objects.get(cycle=cycle)
-    #except CycleStatus.DoesNotExist:
-       # status = None
-    #return status
-    
 ## CHECK IF QUOTE IS APPROVED ##
 def is_quote_approved(cycle):
     quote_approved = CycleStatuses(cycle).get_cycle_status()

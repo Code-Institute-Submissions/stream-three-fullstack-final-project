@@ -1,6 +1,7 @@
 from django.test import TestCase
 from fileo.testing_models import CreateTestModels
 
+## TEST CYCLE STATUS APP MODEL ##
 class TestCycleStatusModels(TestCase):
 
     def setUp(self):

@@ -3,9 +3,6 @@
 (() => {
 
     const portholeButton = document.getElementsByClassName('cycles-results__porthole-button');
-
-    //-----//
-
     const cycleStatus = document.getElementsByClassName(' cycles-status-icon');
 
     // -------------------------- FUNCTIONS --------------------------- //
@@ -23,7 +20,7 @@
                                         parentElement.
                                         parentElement;
 
-                // GET CYCLES STATUS FIRST ICON DATA ID //
+                // GET CYCLE STATUS //
                 const status = cycleStatus[i].getAttribute('data-id');
 
                 const statusText = cycleStatus[i].parentElement;
@@ -57,7 +54,6 @@
 
     // -------------------- FUNCTION CALLS ----------------------- //
     
-   //colorForStatus(cycleStatus);
     colorForTable();
 
     for (let i = 0; i < portholeButton.length; i++) {

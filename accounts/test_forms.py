@@ -2,6 +2,7 @@ from django import forms
 from django.test import TestCase
 from .forms import UserLoginForm, UserRegisterForm
 
+## TEST ACCOUNTS APP FORMS ##
 class TestUserLoginForm(TestCase):
     
     def test_user_login_form(self):

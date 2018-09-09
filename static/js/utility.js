@@ -4,13 +4,13 @@
 // DETECT IF MOBILE BROWSER // 
 
 // USED TO COMBAT ISSUES WITH MOBILE BROWSER AUTO/SHOW HIDE OF URL BAR //
-// SHOW/HIDE RESULTS IN JERKY DISPLAY OF FIXED DIVS ON LOGIN AND REGISTER TEMPLATE //
+// SHOW/HIDE OF DIVS ON SCROLL RESULTS IN JERKY DISPLAY IN LOGIN AND REGISTER TEMPLATE //
 
 // CREDIT : https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser // 
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// TIPPY TOOL TIP SETTINGS //
+//--------- TIPPY TOOL TIP SETTINGS -------------------//
 
 // HIDE TOOL TIPS ON SCROLL //
 
@@ -218,16 +218,16 @@ const addRequiredAttribute = (input) => {
 }  
 
 
-    // WRAPS MULTIPLE SELECTS IN A DIV FOR STYLING //
-    const wrapSelectsWithDiv = (selects, parentClass, iconClass) => {
+// WRAPS MULTIPLE SELECTS IN A DIV FOR STYLING //
+const wrapSelectsWithDiv = (selects, parentClass, iconClass) => {
 
-        for (let i = 0; i < selects.length; i++) {
+    for (let i = 0; i < selects.length; i++) {
 
-            let parent = selects[i].parentElement;
-            parent.insertAdjacentHTML('beforeend', '<div></div>');
-            parent.lastChild.appendChild(selects[i]);
-            addStylesToSelectParent(selects[i], parentClass);
-            addIconToSelect(selects[i], iconClass);                                      
+        let parent = selects[i].parentElement;
+        parent.insertAdjacentHTML('beforeend', '<div></div>');
+        parent.lastChild.appendChild(selects[i]);
+        addStylesToSelectParent(selects[i], parentClass);
+        addIconToSelect(selects[i], iconClass);                                      
 
-        }
+    }
 }

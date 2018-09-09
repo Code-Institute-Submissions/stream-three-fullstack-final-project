@@ -5,8 +5,8 @@ from accounts.models import AllUser
 from fileo.testing_models import CreateTestModels
 from cycles.views import member_cycles, client_cycles, reset_search
 
-
-class TestAccountsViews(TestCase):
+## TEST CYCLES APP VIEWS ##
+class TestCyclesViews(TestCase):
     
     def setUp(self):
         self.new_models = CreateTestModels()

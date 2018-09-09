@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .models import AllUser
 from notify.notify import NewMember
 
-## Returns Index.html or redirects to Profiles ## 
-## If already logged in redirect to relevant Account ## 
+## RETURNS INDEX OR REDIRECTS TO PROFILE SEARCH CYCLES. ## 
+## IF LOGGED IN REDIRECT TO SEARCH CYCLES ## 
 def index(request):
     if request.user.is_authenticated:
         if request.user.is_member:
@@ -32,14 +32,14 @@ def index(request):
         login_form = UserLoginForm()
     return render(request, 'index.html', {'login_form':login_form})
 
-## LOGOUT ##
+## LOGOUT, REDIRECTS TO INDEX ##
 @login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have been logged out of Fileo.")
     return redirect(reverse('index'))
 
-## REGISTER A NEW MEMBER ACCOUNT ##
+## REGISTER A NEW MEMBER ACCOUNT, RETURNS REGISER TEMPLATE ##
 def register(request):
     register = UserRegisterForm()
     if request.user.is_authenticated:

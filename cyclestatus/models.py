@@ -1,7 +1,7 @@
 from django.db import models
 from managecycle.models import Cycles
 
-## Models to store Boolean Fields about Approval Statuses of each Cycle Step ##
+## Model stores Boolean Fields of Approval Statuses for each Cycle Step ##
 
 class CycleStatus(models.Model):
     approve_quote = models.BooleanField(default=False, blank=True)

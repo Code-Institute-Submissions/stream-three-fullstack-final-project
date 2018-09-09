@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from .views import member_cycles, client_cycles, reset_search
-#from accounts import urls_reset
+
 
 urlpatterns = [
 

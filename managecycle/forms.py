@@ -38,7 +38,11 @@ class CycleForm(forms.Form):
                                                     label="")
         self.fields['jobs'].empty_label='Attach a Job'
 
-
+## INHERITS FROM CYCLE FORM BUT WITH A HIDDEN INPUT. ##
+## THIS IS USED IN THE VIEW TO IDENTIFY WHETHER ##
+## A REQUEST IS COMING FROM A CREATION FORM OR UPDATE FORM. ##
+## DEPENDING ON WHICH, DATA IS PUSHED TO DIFFERENT FUNCTIONS. ##
+## ONE CREATING A NEW RECORD, THE OTHER UPDATING AN EXISTING. ##
 class UpdateCycleForm(CycleForm):
 
     def __init__(self, member, *args, **kwargs):

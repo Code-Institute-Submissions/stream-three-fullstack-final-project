@@ -4,8 +4,6 @@ from managejobs.models import Jobs
 from djmoney.models.fields import MoneyField
 from djmoney.money import Money
 
-#from cyclestatus.models import QuotesStatus, POStatus, InvoicesStatus
-
 ## Model to store Cycle Info ##
 class Cycles(models.Model):
     created = models.DateTimeField()

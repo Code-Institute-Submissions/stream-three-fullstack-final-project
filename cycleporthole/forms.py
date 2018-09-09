@@ -7,8 +7,7 @@ from djmoney.forms import MoneyField
 from PyPDF2.utils import PdfReadError
 from .models import Quotes, PurchaseOrder, Invoices
 
-
-## Upload Form Base Class ##
+## UPLOAD FORM BASE CLASS ##
 class UploadForm(ModelForm):
     file = forms.FileField(label='')
     
@@ -25,6 +24,7 @@ class UploadForm(ModelForm):
             
         return pdf_file 
 
+## QUOTE FORM INHERITS BASE, BUT ADDS A CYCLE VALUE INPUT FIELD ##
 class QuotesForm(UploadForm):
     cycle_value = MoneyField(min_value=0,
                             max_value = 999999,
@@ -37,6 +37,7 @@ class QuotesForm(UploadForm):
         model = Quotes
         fields = ['file']
 
+## PO FORM INHERITS FROM BASE WITH NO CYCLE VALUE INPUT FIELD ##
 class PurchaseOrderForm(UploadForm):
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'po'}))
                                    
@@ -44,6 +45,7 @@ class PurchaseOrderForm(UploadForm):
         model = PurchaseOrder
         fields = ['file']
 
+## INVOICE FORM INHERITS FROM BASE WITH NO CYCLE VALUE INPUT FIELD ##
 class InvoiceForm(UploadForm):
     step_type = forms.CharField(widget=forms.HiddenInput(attrs={'value':'invoice'}))
                                                             

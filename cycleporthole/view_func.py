@@ -9,21 +9,20 @@ from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 
 
-## View helper functions/classes ##
+## VIEW HELPER FUNCTIONS AND CLASSES ##
 
-## CONVERT DATES TO MORE READABLE STRING ##
+## Convert dates to more user friendly string ##
 def convert_dates(date):
     date = datetime.strptime(date, '%Y-%m-%d')
     date = '{0}.{1}.{2}'.format(date.day, date.month, date.year)
     return date
 
-## Get Context for Porthole View ##
+## Get context for Porthole View ##
 def get_porthole_context(cycle_id):
+    
     cycle = get_object_or_404(Cycles, pk=cycle_id)
-    #profile = get_object_or_404(MemberClient, client=cycle.client.id)
     context = {'member': cycle.member,
                 'client': cycle.client,
-                #'client_profile': profile,
                 'status_form': StatusForm(),
                 'cycle': cycle,
                 'cycle_start': convert_dates(cycle.start_date),

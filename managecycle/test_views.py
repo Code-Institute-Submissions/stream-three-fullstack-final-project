@@ -3,6 +3,7 @@ from fileo.testing_models import CreateTestModels
 from django.contrib.sessions.middleware import SessionMiddleware
 from .views import manage_cycles, cancel_cycle, reset_cycle, delete_cycle
 
+## TEST MANAGECYCLE APP VIEWS ##
 class TestCyclesViews(TestCase):
     
     def setUp(self):

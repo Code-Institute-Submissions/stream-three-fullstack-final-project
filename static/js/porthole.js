@@ -9,7 +9,6 @@
     const browseButtons = document.getElementsByClassName('upload-form__browse-button');
     const fileUploadedIcon = document.getElementsByClassName('uploaded-icon__icon');
     const portholeQuoteWaiting = document.getElementById('porthole-quote-waiting');
-    //const portholeQuoteContested = document.getElementById('porthole-quote-contested');
     const quoteSuccessArrow = document.getElementById('quote-success');
     const portholePoWaiting = document.getElementById('porthole-po-waiting');
     const poSuccessArrow = document.getElementById('po-success');
@@ -169,7 +168,7 @@
     // HIDE HEADER BANNER IN PORTHOLE //
     headerBanner.style.display = 'none';
 
-    // TOOLTIPS //
+    // CREATE TOOLTIPS //
 
     if (valueInput) {
 
@@ -191,11 +190,7 @@
 
         tippy(portholeQuoteWaiting, toolTipLeft);
 
-    } /*else if (portholeQuoteContested) {
-
-        tippy(portholeQuoteContested, toolTipLeft);
-
-    }*/
+    } 
 
     tippy(quoteSuccessArrow, toolTipRight);
     tippy(portholePoWaiting, toolTipRight);

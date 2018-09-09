@@ -2,15 +2,10 @@ footer {
     display: flex; 
     flex-direction: column;
     position: relative;
-    background-color: $login_bg_color;//#fff;//#759f9b;
+    background-color: $login_bg_color;
     width: 100%;
     margin-top: 5rem;
 }
-
-/*.footer--payment-background-color {
-
-    background-color: $login-green;
-}*/
 
 .footer-row {
 
@@ -25,7 +20,7 @@ footer {
 .footer-column a p,
 .footer-column p {
 
-    color: #fff //$footer-icons;
+    color: #fff;
 }
 
 .footer-base__copyright-text {
@@ -33,7 +28,7 @@ footer {
     font-size: .7rem;
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #fff;// $footer-icons;
+    color: #fff;
 }
 
 .footer-base__icons {
@@ -54,14 +49,14 @@ footer {
 .footer-base__icons p i {
 
     font-size: 1rem;
-    color: #fff;//$footer-icons;
+    color: #fff;
 }
 
 
 .footer-base {
 
     margin-top: .8rem;
-    //background-color: $login_bg_color;//$footer-base;
+
 }
 
 .footer-hr {

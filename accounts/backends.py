@@ -1,10 +1,10 @@
 from .models import AllUser
 
+## EMAIL AUTHENTICATION BACKEND ##
+
 class EmailAuth:
-    """ Authenticate a user by email and password """
-
+  
     def authenticate(self, username=None, password=None):
-
         try:
             user = AllUser.objects.get(email=username)
             if user.check_password(password):

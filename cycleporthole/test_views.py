@@ -6,7 +6,7 @@ from .views import porthole, step_notify, delete_file
 
 ## TEST PORTHOLE VIEWS ##
 class TestCyclePortholeViews(TestCase):
-    ## Build Model Objects ##
+    
     def setUp(self):
         self.new_models = CreateTestModels()
         self.new_models.create_job()

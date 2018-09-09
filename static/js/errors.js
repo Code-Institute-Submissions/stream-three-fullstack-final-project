@@ -2,8 +2,6 @@
 
 (() => {
 
-
     addBgColorToBody('errors-bg-color');
-
 
 })();

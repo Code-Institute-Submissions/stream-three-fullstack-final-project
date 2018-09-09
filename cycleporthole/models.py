@@ -60,7 +60,7 @@ class Quotes(UploadModel):
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.uploaded_at,
                                             self.client, self.member, 
-                                            self.cycle)#, self.cycle_value)
+                                            self.cycle)
 
 class PurchaseOrder(UploadModel):
     client = models.ForeignKey(AllUser,related_name='POUserFK', on_delete=models.CASCADE)

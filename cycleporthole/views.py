@@ -22,7 +22,7 @@ def porthole(request, username, cycle_id):
         upload = UploadFile(context['client'], 
                             context['member'], 
                             context['cycle'])
-        ### DEPENDING ON STEP TYPE, UPLOAD TO RELEVANT MODEL ##
+        ### Depending on step type, upload to related model ##
         if request.POST.get('step_type') == 'quote':
             quote_form = QuotesForm(request.POST, request.FILES)
             if quote_form.is_valid():

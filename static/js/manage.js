@@ -19,7 +19,6 @@
     const jobsFormInput = document.getElementsByTagName('input');
     const manageJobs = document.getElementById('manage-jobs');
     const jobTitleInput = document.getElementById('id_job_title');
-    //const jobAddClient = document.getElementById('id_client');
     const jobNumber = document.getElementById('id_job_number');
     
 
@@ -43,12 +42,11 @@
     const cycleStartDate = document.getElementsByClassName('manage-cycles-form__start-date');
     const cycleEndDate = document.getElementsByClassName('manage-cycles-form__end-date');
     const inactivePorholeLink = document.getElementsByClassName('cycles-results__text--grey');
-    console.log(inactivePorholeLink);
 
 
-    // DISABLE CYCLE FORM/JOB FORM SELECT IF IN UPDATE MODE //
+    // SET CYCLE FORM/JOB FORM SELECT TO READONLY IF UPDATING DATA. //
     // JOB/CLIENT CANNOT BE UPDATED OTHERWISE IT CAUSES ISSUES //
-    // WITH THE CYCLE PORTHOLE AND PAYMENTS CYCLE //
+    // DOWN THE LINE. //
 
     const disableUpdateFormSelect = (button, select) => {
 
@@ -139,7 +137,7 @@
 
     }
     
-    // WRAPS DATE SELECTS IN A DIV AND ADD STYLES //
+    // WRAPS DATE SELECTS IN A DIV AND ADD CLASSES //
     const wrapSelectsWithDiv = (selects) => {
 
         for (let i = 0; i < selects.length; i++) {
@@ -301,7 +299,7 @@
         }
 
         for (let i = 0; i < inactivePorholeLink.length; i++) {
-            
+
             tippy(inactivePorholeLink[i], toolTipDefault);
         }
         

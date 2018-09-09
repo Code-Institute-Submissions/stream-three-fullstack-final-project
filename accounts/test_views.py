@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.shortcuts import get_object_or_404
 from .models import AllUser
 
+## TEST ACCOUNTS APP VIEWS ##
 class TestAccountsViews(TestCase):
     def test_get_landing_page(self):
         page = self.client.get('/')
