@@ -74,9 +74,6 @@
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
-           <!-- <div class="porthole-details__column">
-                <h1 class="porthole-details__heading">Cycle Porthole</h1>
-            </div>-->
             <div class="porthole-details__column">
                 <p class="porthole-details__text porthole-details__id"><strong>Fileo Cycle ID: </strong> {{ context.cycle.id }}</p>
             </div>
@@ -92,7 +89,6 @@
         </div>
         <hr class="porthole-details__hr">
         <div class="porthole-details__row">
-            <!--<div class="porthole-details__column"></div>-->
             <div class="porthole-details__column">
             {% if request.user.is_member %}
                 <p class="porthole-details__date"><i class="fas fa-user" aria-hidden="true"></i><strong> Client Name: </strong> {{ context.cycle.client.first_name }} {{ context.cycle.client.last_name }}</p>

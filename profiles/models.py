@@ -3,7 +3,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 from accounts.models import AllUser
 
-## Profile Base Class inherited by Profile Model and Order Model ##
+## Profile Base Class. ##
+## Base Class inherited by Profile below ##
+## and Payment APP payment model ##
 class ProfileBase(models.Model):
     address1 = models.CharField(max_length=50, blank=False)
     address2 = models.CharField(max_length=50, blank=False)
@@ -16,6 +18,7 @@ class ProfileBase(models.Model):
     class Meta:
         abstract = True
 
+## Profile inherits from ProfileBase ##
 class Profile(ProfileBase):
     company = models.CharField(max_length=50)
     position = models.CharField(max_length=50)

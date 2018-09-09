@@ -4,6 +4,7 @@ from .view_func import convert_total_for_stripe, save_order, set_status_to_compl
 from .forms import OrderForm
 from .models import Payment
 
+## TEST PAYMENT APP HELPER FUNCTIONS ##
 class TestPaymentViewHelpers(TestCase):
 
     def setUp(self):

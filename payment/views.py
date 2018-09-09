@@ -16,9 +16,8 @@ from cycles.view_func import SetSessionValues
 
 
 ## Payment View Populates Order Form with Client Profile information if it exists. ##
-## Order is Saved to Order Model, Charge is Created with Stripe and Cycle Status ##
-## Updated to COMPLETE if Payment is Completed. On Completion Redirects to Payment ##
-## Success View ##.
+## Order is Saved to Payment Model, Charge is Created with Stripe and Cycle Status ##
+## Updated to COMPLETE if Payment is Completed. ##
 
 @login_required
 def payment(request, username, cycle_id):

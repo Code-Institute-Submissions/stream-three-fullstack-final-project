@@ -2,7 +2,6 @@ from django.test import TestCase
 from .forms import OrderForm, PaymentForm
 
 ## TEST PAYMENT APP FORMS ##
-
 class TestPaymentForms(TestCase):
 
     def test_order_form(self):
