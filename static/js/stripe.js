@@ -10,6 +10,7 @@ $(function() {
             expYear: $("#id_expiry_year").val(),
             cvc: $("#id_cvv").val()
         };
+        
         Stripe.createToken(card, function(status, response) {
 
             if (status === 200) {
