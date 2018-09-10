@@ -12,25 +12,40 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 //--------- TIPPY TOOL TIP SETTINGS -------------------//
 
+// CREDIT https://atomiks.github.io/tippyjs/ //
+
+// DETECT TOUCH DEVICE AND DISABLE TOOLTIPS //
+
+const detectTouchAndDisableToolTips = () => {
+
+    tippy.browser.onUserInputChange = type => {
+        const method = type === 'touch' ? 'disable' : 'enable'
+            for (const tooltip of tip.tooltips) {
+            tooltip[method]()
+            }
+      }
+}
+
+
 // HIDE TOOL TIPS ON SCROLL //
 
 const hideToolTipsOnScroll = () => {
 
     window.addEventListener('scroll', () => {
-        
-        for (const toolTip of document.querySelectorAll('.tippy-popper')) {
-
-            if (toolTip) {
-                
-                toolTip.hide()
-            }
+        for (const popper of document.querySelectorAll('.tippy-popper')) {
+          const instance = popper._tippy
+      
+          if (instance.state.visible) {
+            instance.popperInstance.disableEventListeners()
+            instance.hide()
+          }
         }
-    })
+      })
 }
 
-// DEFAULT SETTINGS //
+// DEFAULT POSITION SETTINGS //
 
-const toolTipDefault = {position:'top',
+const toolTipDefault = {placement:'top',
                         touchHold: true,
                         arrow: false,
                         animateFill: false,
@@ -43,7 +58,7 @@ const toolTipDefault = {position:'top',
                         maxWidth: '200px'
                         }
 
-const toolTipBottom = {position:'bottom',
+const toolTipBottom = {placement:'bottom',
                         touchHold: true,
                         arrow: false,
                         animateFill: false,
@@ -57,7 +72,7 @@ const toolTipBottom = {position:'bottom',
                         }
 
 
-const toolTipRight = {position:'right',
+const toolTipRight = {placement:'right',
                         touchHold: true,    
                         arrow: false,
                         animateFill: false,
@@ -70,7 +85,7 @@ const toolTipRight = {position:'right',
                         maxWidth: '200px'
                         }
 
-const toolTipLeft = {position:'left',
+const toolTipLeft = {placement:'left',
                         touchHold: true,
                         arrow: false,
                         animateFill: false,
@@ -83,6 +98,7 @@ const toolTipLeft = {position:'left',
                         maxWidth: '200px'
                         }
 
+//-----------------------------------------------------//
 
 // USED TO ADD TITLE ATTRIBUTE TO DJANGO FORM ELEMENTS //
 const addTitleAttribute = (_element, text) => {

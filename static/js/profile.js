@@ -13,5 +13,6 @@
     addTitleAttribute(phone, 'Make sure to include the country code. For example +44 for the UK.')
     tippy(phone, toolTipRight);
     hideToolTipsOnScroll();
+    detectTouchAndDisableToolTips();
 
 })();

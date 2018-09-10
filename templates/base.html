@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fileo</title>
     <link rel="icon" href="{% static 'img/fileo_black_WiO_icon.ico' %}" type="image/x-icon"/>
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.4.2/dist/tippy.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
-    <!--<link rel="stylesheet" href="{% static 'css/vendor-prefix.min.css' %}">-->
-    <link rel="stylesheet" href="{% static 'scss/main.css' %}">
-   <!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script>-->
-   <script defer type="text/javascript" src="https://unpkg.com/tippy.js@1.4.2/dist/tippy.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/vendor-prefix.min.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'scss/main.css' %}">-->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script defer type="text/javascript" src="{% static 'vendor/tippy/tippy.all.min.js' %}"></script>
     {% block head_js %}
     {% endblock head_js %}
 </head>

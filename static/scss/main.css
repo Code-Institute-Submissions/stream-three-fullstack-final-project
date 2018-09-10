@@ -174,7 +174,7 @@ p, button, a {
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  top: -8rem;
+  top: -15rem;
   transition: top 0.3s cubic-bezier(1, 0.32, 0.32, 0.75);
   z-index: 1;
   padding-right: 0;
@@ -280,7 +280,14 @@ footer {
   font-size: .7rem;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #fff; }
+  color: #fff;
+  width: 90%;
+  left: 5%;
+  position: relative; }
+  @media (min-width: 992px) {
+    .footer-base__copyright-text {
+      width: 100%;
+      left: 0; } }
 
 .footer-base__icons {
   display: flex;
@@ -298,7 +305,9 @@ footer {
   margin-top: .8rem; }
 
 .footer-hr {
-  color: rgba(0, 0, 0, 0.1); }
+  color: #4f7382;
+  opacity: 0.1;
+  margin-top: .8rem; }
 
 .login-bg-color {
   background-repeat: no-repeat;
@@ -463,9 +472,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  justify-content: top;
-  position: relative; }
+  align-items: center; }
 
 .logo-f__logo {
   background: url("https://s3.eu-west-2.amazonaws.com/fileo/static/img/F_outline-WHITE_HIGH_8%25.png");

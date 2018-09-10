@@ -136,53 +136,6 @@
         }   
 
     }
-    
-
-    /*const wrapSelectsWithDiv = (selects) => {
-
-        for (let i = 0; i < selects.length; i++) {
-
-            const parent = selects[i].parentElement;
-            parent.insertAdjacentHTML('beforeend', '<div></div>');
-            parent.lastChild.appendChild(selects[i]);
-            addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
-            addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
-
-        }
-    }*/
-    // WRAPS DATE SELECTS IN A DIV AND ADD CLASSES //
-    const wrapSelectsWithDiv = (selects) => {
-
-        const startDate = selectOneMonth.parentElement;
-        const endDate = selectTwoMonth.parentElement;
-
-        let i = 0;
-
-        while (i < 3) {
-
-            startDate.insertAdjacentHTML('beforeend', '<div></div>');
-            endDate.insertAdjacentHTML('beforeend', '<div></div>');
-            //const parent = selects[i].parentElement;
-            //parent.lastChild.appendChild(selects[i]);
-            //addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
-            //addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
-
-            //endDate.insertAdjacentHTML('beforeend', '<div></div>');
-            
-            //i+=1;
-        }
-
-      /* for (let i = 0; i < selects.length; i++) {
-
-            let parent = selects[i].parentElement;
-           // parent.insertAdjacentHTML('beforeend', '<div></div>');
-            parent.lastChild.appendChild(selects[i]);
-            addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
-            addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
-
-        }*/
-       
-    }
 
     // IF DELETE BUTTON CLICKED, HIDE RESET BUTTON STYLES, IF RESET CLICKED, HIDE DELETE STYLES //
     const hideOtherButtonStylesOnClick = () => {
@@ -276,8 +229,8 @@
         disableUpdateFormSelect(jobsFormButton, jobsFormSelect);
         addClassToClassList(jobsNavIcon, 'nav__icons--clicked');
         // CREATE TOOL TIPS //
-        addTitleAttribute(jobTitleInput, `Give the job or project a name.
-                                            Many payment cycles may be linked to it.`)
+        addTitleAttribute(jobTitleInput, `Give the overall job a name.
+                                        Many payment cycles can be linked to one job.`)
         addTitleAttribute(jobNumber, `Assign a unique job number. 
                                         You will be able to search for all cycles belonging to this job number.`)
         tippy(jobTitleInput, toolTipRight);
@@ -286,6 +239,7 @@
     }
 
     // CYCLES TEMPLATE SPECIFIC //
+
     if (manageCycles) {
 
         const startDateSelectContainer = selectOneMonth.parentElement;
@@ -313,7 +267,7 @@
         addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
        
         // CREATE TOOL TIPS //
-       /* addTitleAttribute(cycleTitleInput, 'Please, assign a name to this payment cycle.');
+        addTitleAttribute(cycleTitleInput, 'Please, assign a name to this payment cycle.');
         addTitleAttribute(cycleDescriptionInput, `For your reference, describe the work 
                                                 to be carried out in relation to this payment cycle.`);
         addTitleAttribute(cycleLocation, 'Again, for reference, where will the work be undertaken?');
@@ -334,10 +288,11 @@
         for (let i = 0; i < inactivePorholeLink.length; i++) {
 
             tippy(inactivePorholeLink[i], toolTipDefault);
-        }*/
+        }
         
     }
 
-    //hideToolTipsOnScroll();
+    hideToolTipsOnScroll();
+    detectTouchAndDisableToolTips();
     
 })();

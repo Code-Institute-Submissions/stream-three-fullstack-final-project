@@ -197,5 +197,6 @@
     tippy(poSuccessArrow, toolTipRight);
     tippy(portholeInvoiceWaiting, toolTipLeft);
     hideToolTipsOnScroll();
+    detectTouchAndDisableToolTips();
 
 })();

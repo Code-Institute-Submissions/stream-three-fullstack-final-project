@@ -9,7 +9,8 @@
     const headerBannerPending = document.getElementById("header-banner__pending");
     const headerBannerActive = document.getElementById("header-banner__active");
     const headerBannerCancelled = document.getElementById("header-banner__cancelled");
-       
+    const headerIcon = document.getElementById('main-header-icon');
+
     // FUNCTION CALLS FROM UTILITY JS //
                         // Click Element, Affected Element, Class //
     addRemoveClassOnClick(dropDownIcon, dropDown, "drop-down-menu--show");
@@ -26,7 +27,7 @@
     // CALL TIPPY TOOL TIP ON NAV ICONS //
     for (let i = 0; i < navIcons.length; i++) {
 
-        tippy(navIcons[i], toolTipDefault);
+        tippy(navIcons[i], toolTipBottom);
 
     }
 
@@ -34,6 +35,9 @@
     tippy(headerBannerPending, toolTipDefault);
     tippy(headerBannerActive, toolTipDefault);
     tippy(headerBannerCancelled, toolTipDefault);
+    tippy(headerIcon, toolTipBottom);
+
     hideToolTipsOnScroll();
+    detectTouchAndDisableToolTips();
     
 })();

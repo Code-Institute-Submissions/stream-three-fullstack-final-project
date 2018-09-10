@@ -29,6 +29,16 @@ footer {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #fff;
+
+    width: 90%;
+    left: 5%;
+    position: relative;
+
+    @include desktop {
+
+        width: 100%;
+        left: 0;
+    }
 }
 
 .footer-base__icons {
@@ -61,5 +71,7 @@ footer {
 
 .footer-hr {
 
-    color: rgba(0,0,0,.1);
+    color: rgb(79, 115, 130);
+    opacity: .1 ;
+    margin-top: .8rem;
 }

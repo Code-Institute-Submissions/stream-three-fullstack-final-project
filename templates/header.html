@@ -1,7 +1,7 @@
 <!-- MAIN HEADER PARTIAL -->
 <header class="main-header">
     <nav id="nav" class="main-header__nav">
-        <a href="{% url 'index' %}"><div class="main-header__logo" alt="Fileo Logo"></div></a>
+        <a id="main-header-icon" href="{% url 'index' %}" title="Back to Search Cycles"><div class="main-header__logo" alt="Fileo Logo"></div></a>
         {% if user.is_member %}
         <ul class="nav">
             <li><a href="{% url 'manage_clients' username=user.username %}"><i title="Manage your clients." id="nav-clients" class="fas fa-user-plus nav__icons" aria-hidden="true"></i></a></li>

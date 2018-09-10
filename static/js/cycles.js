@@ -5,6 +5,7 @@
     const portholeButton = document.getElementsByClassName('cycles-results__porthole-button');
     const cycleStatus = document.getElementsByClassName(' cycles-status-icon');
 
+
     // -------------------------- FUNCTIONS --------------------------- //
 
     const colorForTable = () => {
@@ -25,7 +26,7 @@
 
                 const statusText = cycleStatus[i].parentElement;
                 
-                // DEPENDING ON DATA ID SET COLOR //
+                // DEPENDING ON DATA ID VALUE SET COLOR //
                 if (status == "cancelled") {
                    
                     cycleStatusParent.classList.add('cycle-results__container-cancelled--color');
@@ -62,5 +63,6 @@
     }
 
     hideToolTipsOnScroll();
+    detectTouchAndDisableToolTips();
     
 })();
