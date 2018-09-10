@@ -60,7 +60,7 @@
     }
    
     // CHANGES GIVEN DIV TO FIXED BASED ON TOP POSITION //
-
+    // THEN REMOVES IT ONCE SCROLL POSITION HITS TOP OF WINDOW. //
     const setDivToFixed = (div, class1, class2) => {
 
         window.addEventListener('scroll', () => {
@@ -68,9 +68,11 @@
             if (window.scrollY > div.offsetTop) {
                 
                 div.classList.add(class1);
-        
+               
             } else if (window.scrollY == div.offsetTop) {
 
+                div.classList.add(class2);
+        
                 setTimeout(() => {
 
                     div.classList.remove(class2);

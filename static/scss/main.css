@@ -759,7 +759,7 @@ footer {
 
 .container--fixed-100 {
   top: 100%;
-  transition: top 0.4s cubic-bezier(0, 0.8, 0.53, 1); }
+  transition: top 0.3s cubic-bezier(0, 0.8, 0.53, 1); }
 
 .register-success {
   display: flex;
