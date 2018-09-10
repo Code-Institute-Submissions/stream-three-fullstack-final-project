@@ -34,5 +34,6 @@
     tippy(headerBannerPending, toolTipDefault);
     tippy(headerBannerActive, toolTipDefault);
     tippy(headerBannerCancelled, toolTipDefault);
+    hideToolTipsOnScroll();
     
 })();

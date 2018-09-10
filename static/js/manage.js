@@ -137,18 +137,51 @@
 
     }
     
-    // WRAPS DATE SELECTS IN A DIV AND ADD CLASSES //
-    const wrapSelectsWithDiv = (selects) => {
+
+    /*const wrapSelectsWithDiv = (selects) => {
 
         for (let i = 0; i < selects.length; i++) {
 
-            let parent = selects[i].parentElement;
+            const parent = selects[i].parentElement;
             parent.insertAdjacentHTML('beforeend', '<div></div>');
             parent.lastChild.appendChild(selects[i]);
             addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
             addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
 
         }
+    }*/
+    // WRAPS DATE SELECTS IN A DIV AND ADD CLASSES //
+    const wrapSelectsWithDiv = (selects) => {
+
+        const startDate = selectOneMonth.parentElement;
+        const endDate = selectTwoMonth.parentElement;
+
+        let i = 0;
+
+        while (i < 3) {
+
+            startDate.insertAdjacentHTML('beforeend', '<div></div>');
+            endDate.insertAdjacentHTML('beforeend', '<div></div>');
+            //const parent = selects[i].parentElement;
+            //parent.lastChild.appendChild(selects[i]);
+            //addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
+            //addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
+
+            //endDate.insertAdjacentHTML('beforeend', '<div></div>');
+            
+            //i+=1;
+        }
+
+       for (let i = 0; i < selects.length; i++) {
+
+            let parent = selects[i].parentElement;
+           // parent.insertAdjacentHTML('beforeend', '<div></div>');
+            parent.lastChild.appendChild(selects[i]);
+            addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
+            addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
+
+        }
+       
     }
 
     // IF DELETE BUTTON CLICKED, HIDE RESET BUTTON STYLES, IF RESET CLICKED, HIDE DELETE STYLES //
@@ -263,10 +296,9 @@
 
         selectArray.push(selectOneMonth, selectOneDay, selectOneYear,
                         selectTwoMonth, selectTwoDay, selectTwoYear);
-        
         wrapSelectsWithDiv(selectArray, 
-                        'manage-cycles-form__date-select', 
-                        'manage-cycles-form__icon');
+                                    'manage-cycles-form__date-select', 
+                                    'manage-cycles-form__icon');
         
         addClassToElement(cyclesFormSelect, 'profile__select');
         addClassToElement(startDateSelectContainer, 'manage-cycles-form__start-date');
@@ -279,8 +311,9 @@
                                     'manage-button__button--reset-click');
         disableUpdateFormSelect(cycleFormButton, cyclesFormSelect);
         addClassToClassList(cyclesNavIcon, 'nav__icons--clicked');
+       
         // CREATE TOOL TIPS //
-        addTitleAttribute(cycleTitleInput, 'Please, assign a name to this payment cycle.');
+       /* addTitleAttribute(cycleTitleInput, 'Please, assign a name to this payment cycle.');
         addTitleAttribute(cycleDescriptionInput, `For your reference, describe the work 
                                                 to be carried out in relation to this payment cycle.`);
         addTitleAttribute(cycleLocation, 'Again, for reference, where will the work be undertaken?');
@@ -293,7 +326,7 @@
         tippy(cycleEndDate[0], toolTipRight);
        
 
-        for (let i = 0; i < manageCyclesPortholeLink.length; i++) {
+       for (let i = 0; i < manageCyclesPortholeLink.length; i++) {
 
             tippy(manageCyclesPortholeLink[i], toolTipDefault);
         }
@@ -301,8 +334,10 @@
         for (let i = 0; i < inactivePorholeLink.length; i++) {
 
             tippy(inactivePorholeLink[i], toolTipDefault);
-        }
+        }*/
         
     }
+
+    //hideToolTipsOnScroll();
     
 })();

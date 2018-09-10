@@ -14,20 +14,19 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 // HIDE TOOL TIPS ON SCROLL //
 
-// CREDIT https://atomiks.github.io/tippyjs/ //
+const hideToolTipsOnScroll = () => {
 
-window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
+        
+        for (const toolTip of document.querySelectorAll('.tippy-popper')) {
 
-    for (const popper of document.querySelectorAll('.tippy-popper')) {
-
-        const instance = popper._tippy
-
-        if (instance.state.visible) {
-                instance.popperInstance.disableEventListeners()
-                instance.hide()
+            if (toolTip) {
+                
+                toolTip.hide()
+            }
         }
-    }
-})
+    })
+}
 
 // DEFAULT SETTINGS //
 

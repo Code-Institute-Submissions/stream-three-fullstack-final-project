@@ -61,4 +61,6 @@
         tippy(portholeButton[i], toolTipRight);
     }
 
+    hideToolTipsOnScroll();
+    
 })();
