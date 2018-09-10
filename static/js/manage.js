@@ -172,7 +172,7 @@
             //i+=1;
         }
 
-       for (let i = 0; i < selects.length; i++) {
+      /* for (let i = 0; i < selects.length; i++) {
 
             let parent = selects[i].parentElement;
            // parent.insertAdjacentHTML('beforeend', '<div></div>');
@@ -180,7 +180,7 @@
             addStylesToSelectParent(selects[i],'manage-cycles-form__date-select');
             addIconToSelect(selects[i],'manage-cycles-form__icon');                                      
 
-        }
+        }*/
        
     }
 
