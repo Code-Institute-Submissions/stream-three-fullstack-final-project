@@ -39,9 +39,9 @@ Fileo attempts to address these issues in a simple, visual and user friendly way
 
 ## Demo
 
-A live demo of the application is available [here] (www.fileo.co.uk.)
+A live demo of the application is available here www.fileo.co.uk.
 
-The github repo is [here] (https://github.com/darchard1984/stream-three-fullstack-final-project).
+The github repo is here https://github.com/darchard1984/stream-three-fullstack-final-project.
 
 ## Getting Started/Deployment
 
