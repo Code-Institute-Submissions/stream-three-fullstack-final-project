@@ -119,6 +119,7 @@ Details of the UX design and research process are available in the repo "documen
 8. I split my JS into multiple files, generally one file per template, with all re-usable functions available to each modular JS file in a utility.js file. 
 9. Payments are taken using Stripe.
 10. I used http://pleeease.io/play/ to generate vendor prefixes once the building of the application was complete. This allowed me to concentrate on writing clean SCSS until ready for deployment.
+11. After deploying to Heroku I chose to purchase the domain www.fileo.co.uk and map the domain to my Heroku application.
 
 ## Testing
 
