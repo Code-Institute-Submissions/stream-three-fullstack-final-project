@@ -54,21 +54,21 @@ Take a company that builds sets for TV and Film as an example, they are called S
 
     1. Set Builder Co. have a Fileo members account to manage their payment cycles. 
     2. Set Builder Co. are asked to quote for "Interior Construction" for all interior set builds for a Film called "Coder", by a film studio called Wolf.
-    3. They add a _client_ to the system (this is their contact at Wolf).
-    4. The _client_ is sent a link to fileo.co.uk to access their account.
-    5. Builder Co. add a _job_ to the system. In this case the _job_ is called "Coder". 
-    6. They create a payment _cycle_ for the _job_. For example, the payment _cycle_ would be "Interior Construction" for the _job_ "Coder".
-    7. The next step is for Set Builder Co. to upload their quote to the _client_ at Wolf.
+    3. They add a *client* to the system (this is their contact at Wolf).
+    4. The *client* is sent a link to fileo.co.uk to access their account.
+    5. Builder Co. add a *job* to the system. In this case the *job* is called "Coder". 
+    6. They create a payment *cycle* for the *job*. For example, the payment *cycle* would be "Interior Construction" for the *job* "Coder".
+    7. The next step is for Set Builder Co. to upload their quote to the *client* at Wolf.
     8. Wolf get notified via email, and can view the Quote in Fileo. Approving or contesting the offering.
     9. If approved, Wolf can then proceed to upload their promise to pay (purchase order) when ready. 
     10. Set Builder Co. get's notified. If happy that the purchase order matches the quote, they can approve. 
-    11. After the works are completed Set Builder Co. upload their invoice to Fox and the _client_ at Wolf is notified. 
+    11. After the works are completed Set Builder Co. upload their invoice to Fox and the *client* at Wolf is notified. 
     12. Wolf check the invoice matches the purchase order and approve it. 
     13. At this point, Wolf can proceed to payment and pay Set Builder Co. via Stripe, within Fileo. 
 
-This is the completion of one payment _cycle_. 
+This is the completion of one payment *cycle*. 
 
-Imagine next that Wolf come back to Set Builder Co. and ask them to quote again for the same film, but now for "Exterior Construction of a City Scape". Set Builder Co. can now attach the new payment _cycle_ to the same job ("Coder"), and to the same client ("Wolf"), and the file management steps repeat.
+Imagine next that Wolf come back to Set Builder Co. and ask them to quote again for the same film, but now for "Exterior Construction of a City Scape". Set Builder Co. can now attach the new payment *cycle* to the same job ("Coder"), and to the same client ("Wolf"), and the file management steps repeat.
 All happening at different times, in different locations, some of which happen, some of which don't. This is where Fileo comes in. 
 
 ### Demo the application live
