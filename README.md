@@ -8,7 +8,7 @@ A web application prototype aimed at improving the tracking of Quotes, Purchase 
 
 ### The Need
 
-The payment pattern for many businesses that provide a service is relatively common. It goes a bit something like this:
+The payment pattern for many businesses that provide a service is relatively common. It goes something like this:
 
     - A client contacts a service provider and asks them to produce a quote or tender for some work. 
     - The client is sent the quote, and if approved a purchase order is issued to the service provider, promising to pay them for their services upon completion of work.
