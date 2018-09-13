@@ -11,8 +11,8 @@ A web application prototype aimed at improving the tracking of Quotes, Purchase 
 The payment pattern for many businesses that provide a service is relatively common. It goes something like this:
 
     - A client contacts a service provider and asks them to produce a quote or tender for some work. 
-    - The client is sent the quote, and if approved a purchase order is issued to the service provider, promising to pay them for their services upon completion of work.
-    -  After which, an invoice would be generated requiring payment from the client. 
+    - The client is sent the quote, and if approved a purchase order is issued to the service provider.
+    - After work completion, an invoice is generated requiring payment from the client. 
 
 Through my own experience, and through talking to friends and colleagues about their experience. I have identified common problems in relation to aspects of this workflow.
 
