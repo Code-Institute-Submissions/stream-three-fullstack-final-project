@@ -3,7 +3,6 @@ from django.utils import timezone
 from accounts.models import AllUser
 from profiles.models import Profile
 
-
 ### MODEL HOLDING MEMBER TO CLIENT RELATIONSHIPS. ###
 
 class MemberClient(models.Model):

@@ -79,20 +79,6 @@ class TestPortholeViewFunctions(TestCase):
 
         self.assertTrue(status)
 
-    #def test_delete_file(self):
-     #   self.new_models.create_quote()
-      #  url = 'porthole/member/{0}/{1}/{2}/delete'.format(self.member.username,
-       #                                                 self.client.username,
-        #                                                self.cycle.id)
-
-       # request = RequestFactory.post(url)
-        #request.user = self.member
-       # SessionMiddleware.process_request(request)
-        #request.session.save()
-        
-      #  delete_file = view_func.DeleteFile(request, self.cycle.id)
-       # deleted_po = delete_file.delete_po()
-
-        #self.assertTrue(deleted_po)
+ 
 
 

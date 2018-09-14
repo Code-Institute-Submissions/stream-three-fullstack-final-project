@@ -8,7 +8,6 @@ from cyclestatus.models import CycleStatus
 from cyclestatus.forms import StatusForm
 from manageclient.models import MemberClient
 
-
 ## VIEW HELPER FUNCTIONS AND CLASSES ##
 
 ## Convert dates to more user friendly string ##
