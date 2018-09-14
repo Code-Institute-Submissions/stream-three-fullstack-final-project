@@ -2,7 +2,7 @@
 
 ## FILEO
 
-A web application prototype aimed at improving the tracking of Quotes, Purchase Orders and Invoices for small businesses.
+A web application aimed at improving the tracking of Quotes, Purchase Orders and Invoices for small businesses.
 
 [![Build Status](https://travis-ci.org/darchard1984/stream-three-fullstack-final-project.svg?branch=master)](https://travis-ci.org/darchard1984/stream-three-fullstack-final-project)
 
@@ -38,7 +38,7 @@ Fileo attempts to address these issues in the following ways:
 
 #### Please Note:
 
-Fileo attempts to address these issues in a simple, visual and user friendly way. Fileo is not attempting to be accounting software, it is not supposed to replace that. Fileo is not scheduling software either. Fileo is designed to sit between these current solutions as a middle man, complimenting systems that a business may already have in place, not replace them. 
+Fileo attempts to address these issues in a simple, visual and user friendly way. Fileo is not attempting to be accounting software, it is not supposed to replace that. Fileo is not scheduling software either. Fileo is designed to sit between these current solutions as a middle man, complimenting systems that a business may already have in place, instead of replacing them. 
 
 ## Demo
 
@@ -68,8 +68,8 @@ Take a company that builds sets for TV and Film as an example, they are called S
 
 This is the completion of one payment cycle. 
 
-Imagine next that Wolf come back to Set Builder Co. and ask them to quote again for the same film, but now for "Exterior Construction of a City Scape". Set Builder Co. can now attach the new payment *cycle* to the same job ("Coder"), and to the same client ("Wolf"), and the file management steps repeat.
-All happening at different times, in different locations, some of which happen, some of which don't. This is where Fileo comes in. 
+Imagine next that Wolf come back to Set Builder Co. and ask them to quote again for the same film, but now for "Exterior Construction of a City Scape". Set Builder Co. can now attach the new payment cycle to the same job ("Coder") and to the same client ("Wolf"). The file management steps can then repeat.
+Now imagine that Set Builder Co. get 100's of inquiries like this every year, for multiple jobs, with multiple cycles. All happening at different times, in different locations, some of which happen, some of which don't. This is where Fileo comes in. 
 
 ### Demo the application live
 
@@ -95,6 +95,8 @@ When running the application, if an external database has not been provisioned, 
 
 Alternatively, provision a Postgres database on a cloud platform such as Heroku. Set the environment variable DATABASE_URL in env.py, then migrate models to the external database. 
 
+There is a folder in the github repo called 'dummy_files' which provides template Quote, Purchase Order and Invoice PDF files should you choose to use them for testing purposes.
+
 ### Deploy live
 
 * Follow the steps above in the first instance. At the point of deployment you will need to create your own repo on a platform such as Heroku, set the Heroku environment variables as above, then push the app to Heroku.
@@ -111,7 +113,7 @@ Details of the UX design and research process are available in the repo "documen
 
 1. I built the application using VSCODE and Django 1.11 in a local Virtual Environment.
 2. I began by considering my Database Schema and mapped out my models to get a better understanding of the data structure of the application. 
-3. I built the application app by app. Firstly, creating the model, any form related to that model and a view rendering a basic template. I tested the models using unit tests and also by manually testing them in the admin panel. If the app uses a form I'd test the form using unit tests, and/or manually by rendering the form in the template and passing form data to and from the model from the template.
+3. I built the application app by app. Firstly, creating the model, any forms related to that model and a view rendering a basic template. I tested the models using unit tests and also by manually testing them in the admin panel. If the app used a form I'd test the form using unit tests, and/or manually by rendering the form in the template and passing form data to and from the model and the template.
 4. Once happy that all apps, models, forms and signals were behaving as intended, I proceeded to work on the front-end.
 5. The application utilises two types of user. Member and client. The user types are presented with different representations of certain templates to control the application flow and limit functionality to clients. I achieved this by using template logic.
 6. I used SASS/SCSS to style Fileo. I tried to keep re-useable styles modular by using mixins and variables, making it easier to maintain consistent styles throughout the application. I also created separate stylesheets for each template to keep things organised, then imported each modular sheet into a master main.scss file. 
@@ -123,17 +125,18 @@ Details of the UX design and research process are available in the repo "documen
 
 ## Testing
 
-Automated, manual and technical testing of the site was undertaken and passed. 
+Automated, manual and technical testing of the site was undertaken. 
 
 1. Django Unit Tests were used as I built the logic of the application.
 2. Chrome/Firefox/Safari/Opera dev tools were used throughout front-end developement to test JS, responsiveness and function.
 3. I tested the site across different devices in real world scenarios. Mobiles, Tablets, Laptops, and Desktops etc..
 4. I asked third party users to use the application to gather feedback and make alterations to the UI.
-5. I used W3C code validator to pass HTML, CSS and JS. 
+5. I used W3C code validator to pass HTML, CSS and JS.
+6. I tested the application across multiple desktop browsers including Firefox, Chrome, Opera and Safari and all is well with these browsers. However, I am aware of some styling issues with IE and Edge.
 
 ## Authors
 
-**Dafydd Archard** this application was created as part of Code Institute's Web Development Online Full-Stack Course in September 2018.
+**Dafydd Archard** - this application was created as part of Code Institute's Web Development Online Full-Stack Course in September 2018.
 
 1. http://pleeease.io/play/
 2. w3c Validator service
